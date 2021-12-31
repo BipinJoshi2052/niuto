@@ -1,101 +1,123 @@
-@php
-$pages = App\Models\Admin\Page::get();
-$lilAbout = App\Models\Admin\Page::where('slug', 'about-us')->first();
-@endphp
-<!-- Footer -->
-<footer id="footer-wrapper" class="position-relative pt-5 pb-3">
+<footer id="footer" class="footer-bg-color position-relative padding_top pt-5" style="--r1: 130%; --r2: 71.5%">
     <div class="container">
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                <div class="footer-logo-box text-white">
-                    <div class="header-logo mb-3">
-                        <a class="" href="{{ url('/') }}"><img
-                                src="{{ asset('frontend/assets/images/logo/logo-footer.jpeg') }}"
-                                class="img-fluid"></a>
+            <div class="col-lg-4 col-12">
+                <div class="footer-logo-box text_white">
+                    <div class="header-logo">
+                        <a class="
+                    footer-logo
+                    navbar-brand
+                    text-white
+                    font-weight-bold
+                    text-uppercase
+                    font-weight-bolder
+                    mb-4
+                    p-0
+                  "
+                            href="index.html">
+                            <img src="img/logo.png" alt="image" />
+                        </a>
                     </div>
-                    <p>
-                        @if (isset($lilAbout) && $lilAbout)
-                            {{ str_replace('&nbsp;', ' ', strip_tags($lilAbout->available_page_detail()->description)) }}
-                        @else
-                            {{ getSetting()['about_us'] }}
-                        @endif
+                    <p class="text-white font-weight-normal">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Sequi, quia accusantium eum aperiam ea eaque ab dignissimos
+                        totam pariatur debitis corporis laborum earum illo alias
+                        cumque harum quasi, rem commodi.
                     </p>
-                    <ul class="d-flex pl-0">
-                        <li class="logo-bg ">
-                            <a href="{{ getSetting()['facebook_url'] }}" class="text-white"><i
-                                    class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <ul class="d-flex">
+                        <li class="logo-bg">
+                            <a href="https://www.facebook.com" class="text-white"><i class="fa fa-facebook"
+                                    aria-hidden="true"></i></a>
                         </li>
                         <li class="feature_in_bg ml-3">
-                            <a href="{{ getSetting()['instagram_url'] }}" class="text-white"><i
-                                    class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com" class="text-white"=""=""><i class="fa fa-instagram"
+                                    aria-hidden="true"></i></a>
                         </li>
                         <li class="logo-bg ml-3">
-                            <a href="{{ getSetting()['google_url'] }}" class="text-white"><i
-                                    class="fa fa-google-plus" aria-hidden="true"></i></a>
+                            <a href="https://www.google.com" class="text-white"=""=""><i class="fa fa-google-plus"
+                                    aria-hidden="true"></i></a>
                         </li>
                         <li class="logo-bg ml-3">
-                            <a href="{{ getSetting()['instagram_url'] }}" class="text-white"><i
-                                    class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            <a href="https://np.linkedin.com" class="text-white"=""=""><i class="fa fa-linkedin"
+                                    aria-hidden="true"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12 mt-2 mt-md-0">
+            <div class="col-lg-2 col-6">
                 <div class="footer-title text_white footer_after">
-                    <h4 class="mb-3 mb-md-4 text-white">Pages</h4>
+                    <h4 class="mb-2 mb-md-4 text-white">Quick Links</h4>
                     <ul class="text-white">
-                        <li class="mb-3">
-                            <a href="{{ url('/') }}" class="text-white">Home</a>
+                        <li class="mb-2">
+                            <a href="index.html" class="text-white">Home</a>
                         </li>
-                        <li class="mb-3">
-                            <a href="{{ url('/shop') }}" class="text-white">Shop</a>
+                        <li class="mb-2">
+                            <a href="product.html" class="text-white">Products</a>
                         </li>
-                        <li class="mb-3">
-                            <a href="{{ url('/wishlist') }}" class="text-white">Wishlist</a>
+                        <li class="mb-2">
+                            <a href="checkout.html" class="text-white">Checkout</a>
                         </li>
-                        <li class="mb-3">
-                            <a href="{{ url('/contact-us') }}" class="text-white">Contact Us</a>
+                        <li class="mb-2">
+                            <a href="cart.html" class="text-white">Cart</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="blog.html" class="text-white">Blog</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12 mt-4 mt-lg-0">
+            <div class="col-lg-2 col-6">
                 <div class="footer-title text_white footer_after">
-                    <h4 class="text-white mb-3 mb-md-4">Support</h4>
+                    <h4 class="text-white mb-2 mb-md-4">Links</h4>
                     <ul>
-                        @foreach ($pages as $page)
-                            <li class="mb-3">
-                                <a href="{{ url('/page', $page->slug) }}"
-                                    class="text-white">{{ $page->available_page_detail()->title }}</a>
-                            </li>
-                        @endforeach
+                        <li class="mb-2">
+                            <a href="" class="text-white">Links 1</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="" class="text-white">Links 2</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="" class="text-white">Links 3</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="" class="text-white">Links 4</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="" class="text-white">Links 5</a>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mt-lg-0">
+            <div class="col-lg-4 col-12 mt-4 mt-lg-0">
                 <div class="footer-title text_white footer_after">
-                    <h4 class="text-white mb-3 mb-md-4">Find Us</h4>
+                    <h4 class="text-white mb-2 mb-md-4">Find Us</h4>
                     <ul>
-                        <li class="text-white mb-3"><span class="pr-3"><i class="fa fa-map-marker"
-                                    aria-hidden="true"></i></span>{{ getSetting()['address'] ?? 'Kathmandu, Nepal' }}
+                        <li class="text-white mb-2">
+                            <span class="pr-3"><i class="fa fa-map-marker"
+                                    aria-hidden="true"></i></span>Kathmandu, Nepal
                         </li>
-                        <li class="text-white mb-3"><span class="pr-3"><i class="fa fa-phone"
-                                    aria-hidden="true"></i></span>{{ getSetting()['phone_number'] }}</li>
-                        <li class="text-white "><span class="pr-3"><i class="fa fa-envelope-square"
-                                    aria-hidden="true"></i></span>{{ getSetting()['email'] }}</li>
+                        <li class="text-white mb-2">
+                            <a href="tel:+61283870907, +61452145677" class="text-light"><span
+                                    class="pr-3"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                +61283870907, +61452145677</a>
+                        </li>
+                        <li>
+                            <a href="mailto:niuto@gmail.com" class="text-white"><span class="pr-3"><i
+                                        class="fa fa-envelope-square" aria-hidden="true"></i></span>niuto@gmail.com</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <hr>
+        <hr />
         <div class="row">
-            <div class="col-md-12 text-center">
-                <p class="mb-0 text-white text-center ">
-                    Copyright All Right Reserved {{ date('Y') }}.
-                    <span class="testimonial-title">Next Nepal Pvt.Ltd</span>
+            <div class="col-md-12 text-center pb-3 pt-2">
+                <p class="mb-0 text-white text-center font-weight-normal">
+                    Copyright All Right Reserved 2021.
+                    <span class="testimonial-title">Power by NEXT NEPAL </span>
                 </p>
             </div>
         </div>
     </div>
 </footer>
-<!-- Footer Ends -->
+<!--=============================FOOTER END  ============================ -->
