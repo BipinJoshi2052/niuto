@@ -34,181 +34,505 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap link Starts -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/bootstrap-4.3.1/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/bootstrap-4.3.1/css/bootstrap.min.css.map') }}">
-    <!-- Bootstrap link Ends -->
-    <!-- Font Awesome Link Starts -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <!-- Font Awesome Link Ends -->
-    <!-- Slick Css -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/slick/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/slick/slick-theme.css') }}">
-    <!-- Slick Css Ends-->
-    <!-- Custom Links -->
-    <!-- Font Link -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&display=swap"
-        rel="stylesheet">
-    <!-- Font Link Ends -->
-    <link rel="stylesheet" href="https://k1ngzed.com/dist/swiper/swiper.min.css" />
-    <link rel="stylesheet" href="https://k1ngzed.com/dist/EasyZoom/easyzoom.css" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/toastr/toastr.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/datepicker/datepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/jssocials/jssocials.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/jssocials/jssocials-theme-flat.css') }}">
-    <!-- Custom Links Ends -->
+        href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Vidaloka&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap.minn.css" />
+    <title>Niuto Store</title>
+    <link rel="stylesheet" href="css/slick.css" />
+    <link rel="stylesheet" href="css/slick-theme.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    @yield('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body class="animation-s1 {{ $data['direction'] === 'rtl' ? 'bodyrtl' : '' }}">
-    {{-- <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4&appId=241110544128";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script> --}}
+<body>
+    @include(isset(getSetting()['header_style']) ? 'includes.headers.header-'.getSetting()['header_style'] :
+    'includes.headers.header-style1')
 
-    {{-- {{   dd(getSetting()) }} --}}
-    {{-- @include('extras.preloader') --}}
-    <!-- Whole Body Wrapper Starts -->
-    <section id="index-wrapper">
-        @include(isset(getSetting()['header_style']) ? 'includes.headers.header-'.getSetting()['header_style'] :
-        'includes.headers.header-style1')
+    @yield('content')
 
-        @yield('content')
+    @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
+    'includes.footers.footer-style1')
 
-        @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
-        'includes.footers.footer-style1')
+    <script type="text/javascript" src="js/jquery-3.3.1.minn.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="js/slick.js"></script>
+    <script src="js/font-awesom.js"></script>
+    <script src="js/main.js"></script>
 
-
-    </section>
-    <!-- Whole Body Wrapper Ends -->
-
-    <!-- 1st Jquery Link Starts-->
-    <script src="{{ asset('frontend/assets/jquery-3.5.1/jquery-3.5.1.js') }}"></script>
-    <!-- Jquery Link Ends-->
-    <!-- 2nd Popper Js Starts -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <!-- Popper Js Ends -->
-    <!-- 3rd Bootstrap Js Link Starts -->
-    <script src="{{ asset('frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js.map') }}"></script>
-    <!-- Bootstrap Js Link Ends -->
-    <!-- Slick Js -->
-    <script src="{{ asset('frontend/assets/slick/slick.min.js') }}"></script>
-    <!-- Slick Js Ends-->
-    <!-- toastr Js -->
-    <script src="{{ asset('/assets/toastr/toastr.min.js') }}"></script>
-    {{-- <script src="{{ asset('/assets/toastr/toastr.js.map') }}"></script> --}}
-    <!-- toastr Js Ends-->
-    <!-- datepicker Js -->
-    <script src="{{ asset('/assets/datepicker/datepicker.js') }}"></script>
-    <!-- datepicker Js Ends-->
-    <script src="{{ asset('/assets/jssocials/jssocials.min.js') }}"></script>
-    <!-- Custom Js Starts -->
-    <script src="https://k1ngzed.com/dist/swiper/swiper.min.js"></script>
-    <script src="https://k1ngzed.com/dist/EasyZoom/easyzoom.js"></script>
-    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-    <!-- Custom Js Ends -->
-    <!-- Nav Cart Popup -->
-    <!-- Modal -->
-    <div class="modal fade" id="nav-cart" tabindex="-1" role="dialog" aria-labelledby="navcartlabel"
-        aria-hidden="true">
+    @yield('script')
+    
+    <!-- Mobile Nav -->
+    <div class="modal fade" id="rightsidebarfilter" tabindex="-1" role="dialog"
+        aria-labelledby="rightsidebarfilterlabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title m-auto" id="navcartlabel"> <span class="mr-2"><i
-                                class="fa fa-opencart" aria-hidden="true"></i></span> Items List</h5>
+            <div class="modal-content h-100">
+                <div class="modal-header px-3 py-3 align-items-center">
+                    <div class="cart-wishlist">
+                        <div class="image">
+                            <a class="navbar-brand" href="index.html">
+                                <h2 class="m-0 font-weight-bold">
+                                    <span>Niuto</span> Mart !
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <table id="top-cart-product-template">
-                        {{-- <tr>
-                            <div class="item">
-                                <td class="pr-4 py-3"><img src=" frontend/assets/images/product-images/1 (2).jpg " class="img-fluid"></td>
-                                <td class="px-4 py-3">
-                                    <div class="head font-weight-bold">
-                                        Beats Headphone x <span class="cart-quantity ">1</span>
+                <div class="modal-body d-flex justify-content-between h-100 px-4">
+                    <ul class="navbar-nav w-100">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">
+                                <span class="nav-indication mr-2"><i class="fa fa-eercast"
+                                        aria-hidden="true"></i></span>
+                                Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link add-on" data-toggle="modal" data-target="#nav-cart">
+                                <span class="nav-indication mr-2"><i class="fa fa-eercast"
+                                        aria-hidden="true"></i></span>My Cart
+                                <span class="mx-2"><i class="fa fa-shopping-bag"
+                                        aria-hidden="true"></i></span>
+                                <sup class="cart-items text-white">2</sup>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link add-on" data-toggle="modal" data-target="#nav-cart">
+                                <span class="nav-indication mr-2"><i class="fa fa-eercast"
+                                        aria-hidden="true"></i></span>Wishlist
+                                <span class="mx-2"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+                                <sup class="cart-items text-white">2</sup>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span class="nav-indication mr-2"><i class="fa fa-eercast"
+                                        aria-hidden="true"></i></span>Products<span class="ml-1">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="container d-block">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 29</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 27</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 39</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 4</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 2</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 3</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 4</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
                                     </div>
-                                    <div class="price">
-                                        Rs 1000
-                                    </div>
-                                </td>
-                                <td class="px-4 py-3">
-                                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-                                </td>
+                                </div>
+                                <!--  /.container  -->
                             </div>
-                        </tr>
-                        <tr>
-                            <div class="item">
-                                <td class="pr-4 py-3"><img src=" frontend/assets/images/product-images/1 (1).jpg " class="img-fluid"></td>
-                                <td class="px-4 py-3">
-                                    <div class="head font-weight-bold">
-                                        Beats Headphone x <span class="cart-quantity ">1</span>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span class="nav-indication mr-2"><i class="fa fa-eercast"
+                                        aria-hidden="true"></i></span>Category<span class="ml-1">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="container d-block">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 29</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 27</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 39</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 4</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 2</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 3</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 4</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
                                     </div>
-                                    <div class="price">
-                                        Rs 1000
-                                    </div>
-                                </td>
-                                <td class="px-4 py-3">
-                                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-                                </td>
+                                </div>
+                                <!--  /.container  -->
                             </div>
-                        </tr> --}}
-                    </table>
-                    <span id="top-cart-product-total"></span>
-                    {{-- <div class="total-amount pt-3 text-center">
-                        Total : <span class="font-weight-bold" id="top-cart-product-total">
-                            Rs 1500
-                        </span>
-                    </div> --}}
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span class="nav-indication mr-2"><i class="fa fa-eercast"
+                                        aria-hidden="true"></i></span>
+                                Recipes<span class="ml-1">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="container d-block">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 29</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 27</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 39</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 4</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 2</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 3</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                        <div class="col-md-12">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link head font-weight-bold"
+                                                        href="under-construction.html">Heading 4</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                </li>
+                                                <li class="nav-item p-0">
+                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-12  -->
+                                    </div>
+                                </div>
+                                <!--  /.container  -->
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="modal-footer">
-                    <a href="/cart" class="m-auto">
-                        <button type="button" class="btn btn-primary m-auto">View Cart Page</button>
-                    </a>
-                    <a href="/checkout" class="m-auto">
-                        <button type="button" class="btn btn-primary m-auto">Proceed Checkout</button>
-                    </a>
+                <div class="modal-footer py-3">
+                    <a class="w-50 text-center" href="under-construction.html">
+                        <span class="mr-2"><i class="fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
+                    <a class="w-50 text-center" href="under-construction.html">
+                        <span class="mr-2"><i class="fa fa-paper-plane"
+                                aria-hidden="true"></i></span>Register</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal End -->
-    <!-- Nav Cart Popup -->
-
-    {{-- <a href="javascript:void(0)" class="btn-secondary swipe-to-top" id="back-to-top" data-toggle="tooltip"
-        data-placement="bottom" data-original-title="{{ trans('lables.general-backtotop') }}"
-        title="{{ trans('lables.general-backtotop') }}">&uarr;</a> --}}
-
-    {{-- <div class="mobile-overlay"></div> --}}
-
-    {{-- <div class="notifications" id="notificationWishlist">Product Added To Wishlist</div> --}}
-
-
-
-    {{-- @include('extras.settings') --}}
-    {{-- @include('modals.product-quick-view') --}}
-
-    <!-- All custom scripts here -->
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
-    {{-- <script src="{{ asset('assets/front/js/scripts.js') }}"></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
+    <!-- Mobile Nav -->
 
     @php
         $language_id = $data['selectedLenguage'];
@@ -558,11 +882,11 @@
             });
         }
 
-        function buyNow(input){
-            if(loggedIn == '1'){
+        function buyNow(input) {
+            if (loggedIn == '1') {
                 addToCart(input);
                 window.location.href = '{{ url('checkout') }}';
-            }else{
+            } else {
                 toastr.error('Please login');
             }
         }
@@ -975,7 +1299,7 @@
                                     }
                                 }
                                 if (data.data[i].product_detail != null && $.trim(data.data[i]
-                                    .product_detail) != '') {
+                                        .product_detail) != '') {
                                     imgAlt = data.data[i].product_detail[0].title;
                                     itemName = data.data[i].product_detail[0].title;
                                 }
@@ -992,12 +1316,12 @@
                                     sum = +data.data[i].qty * +discount_price;
                                     cartItemTotal = data.data[i].currency.code + ' ' + sum.toFixed(2);
                                     cartItemPrice = data.data[i].currency.code + ' ' + discount_price.toFixed(
-                                    2);
+                                        2);
                                 } else {
                                     sum = +data.data[i].qty * +discount_price;
                                     cartItemTotal = sum.toFixed(2) + ' ' + data.data[i].currency.code;
                                     cartItemPrice = discount_price.toFixed(2) + ' ' + data.data[i].currency
-                                    .code;
+                                        .code;
                                 }
                             } else {
                                 cartItemPrice = discount_price.toFixed(2);
@@ -1161,11 +1485,15 @@
                                 price = e.price;
                                 discount = e.discount_price;
                                 newPrice = parseInt(price) - parseInt(discount);
-                                results += '<a href="/product/' + e.id + '/' + e.product_slug + '" style="text-decoration: none;">' +
+                                results += '<a href="/product/' + e.id + '/' + e.product_slug +
+                                    '" style="text-decoration: none;">' +
                                     '<li class="dropdown-item">' +
-                                        '<img class="img-thumbnail" src="{{ asset("/gallary") }}/' + e.gallary_name + '" style="width: 150px; height: 100px;"> ' + e.title + ' (Rs. ' + newPrice + ')' +
+                                    '<img class="img-thumbnail" src="{{ asset('/gallary') }}/' +
+                                    e.gallary_name +
+                                    '" style="width: 150px; height: 100px;"> ' + e.title +
+                                    ' (Rs. ' + newPrice + ')' +
                                     '</li>' +
-                                '</a>';
+                                    '</a>';
                             });
                             $('#searchBox > ul').html(results);
                             $('#searchBox').addClass('show');
@@ -1186,15 +1514,15 @@
             }
         });
 
-        $('#search-clear').on('click', function(){
+        $('#search-clear').on('click', function() {
             $('#search-input').val('');
         })
 
         $('body').click(function(e) {
-            if (e.target.id == "searchBox" || e.target.id == "search-input"){
+            if (e.target.id == "searchBox" || e.target.id == "search-input") {
                 return;
             }
-            if ($(e.target).closest('#searchBox').length){
+            if ($(e.target).closest('#searchBox').length) {
                 return;
             }
             $('#searchBox > ul').html('');

@@ -6,153 +6,255 @@ $categories = App\Models\Admin\Category::inRandomOrder()
     ->take(8)
     ->get();
 ?>
-<!-- Navigation Starts -->
-<section id="navigation-wrapper" class="sticky-top">
+<header class="section-header top-header-bg">
     <div class="container">
-        <div class="nav-logo d-flex justify-content-between align-items-center">
-            <div class="logo pr-xl-5 pr-md-3 pr-1">
-                <a href="{{ url('/') }}">
-                    <img src="{{ isset(getSetting()['site_logo']) ? getSetting()['site_logo'] : asset('01-logo.png') }}"
-                        alt="{{ isset(getSetting()['site_name']) ? getSetting()['site_name'] : 'Logo' }}"
-                        class="img-fluid" />
-                </a>
-            </div>
-            <div class="search-nav m-auto w-50">
-                <!-- Actual search box -->
-                <div class="form-group has-search mb-0">
-                    <span class="fa fa-search form-control-feedback"></span>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" id="search-input" autocomplete="off" />
-                        <div class="btn input-group-addon" style="cursor: pointer; border-top: 1px solid #ced4da; border-right: 1px solid #ced4da; border-bottom: 1px solid #ced4da;" id="search-clear">
-                            <span class="fa fa-close"></span>
-                        </div>
-                    </div>
-                    <div class="dropdown searchBox" id="searchBox">
-                        <ul class="dropdown-menu" style="width: 100%; overflow-y: auto; max-height: 400px; min-height:auto">
-                            {{-- <a href="" style="text-decoration: none;">
-                                <li class="dropdown-item">
-                                    <img class="img-thumbnail" height="100px" src="https://dummyimage.com/150x100/000/fff"> India
+        <div class="top-header d-flex justify-content-end align-items-center">
+            <div class="top-social-icon">
+                <ul class="mb-0">
+                    <li>
+                        <a href="wishlist.html" class="wishlist_mobile"><i class="fa fa-heart-o"
+                                aria-hidden="true"></i><span class="font-weight-normal">Wishlist</span></a>
+                        <!-- user login start  -->
+                        <div class="dropdown user_login_mobile">
+                            <button
+                                class="
+                    pb-0
+                    btn
+                    bg-transparent
+                    dropdown-toggle
+                    pt-0
+                    font-weight-normal
+                  "
+                                type="button" data-toggle="dropdown">
+                                <i class="fa fa-user-o" aria-hidden="true"></i> My Account
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="login.html" class="font-weight-normal"><span class="pr-2"><i
+                                                class="fa fa-user" aria-hidden="true"></i></span>
+                                        Login</a>
                                 </li>
-                            </a> --}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="cart-wishlist d-xl-block">
-                <ul class="d-flex m-0">
-                    <li class="nav-item">
-                        <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal"
-                            data-target="#nav-cart">
-                            <span class="mr-1"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
-                            Cart <sup class="cart-item-no text-white px-2" id="total-menu-cart-product-count">
-                                0
-                            </sup>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" href="{{ url('/wishlist') }}">
-                            <span class="mr-1"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-                            Wishlist <sup class="cart-item-no text-white px-2 wishlist-count">
-                                0
-                            </sup>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="extra auth-login" hidden>
-                <ul class="d-flex align-items-center justify-content-center mb-0 p-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle m-auto add-on" href="#" id="profilenav"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-1"><i class="fa fa-user-o" aria-hidden="true"></i></span> <span
-                                class="welcomeUsername"></span>
-                        </a>
-                        <div class="profilenav-dropdown dropdown-menu p-0" aria-labelledby="profilenav">
-                            <a class="dropdown-item" href="{{ url('/profile') }}"> <span class="mr-2"><i
-                                        class="fa fa-user" aria-hidden="true"></i></span>Profile</a>
-                            <a class="dropdown-item" href="{{ url('/wishlist') }}"> <span class="mr-2"><i
-                                        class="fa fa-heart" aria-hidden="true"></i></span>Wish List</a>
-                            <a class="dropdown-item" href="{{ url('/orders') }}"> <span class="mr-2"><i
-                                        class="fa fa-sort" aria-hidden="true"></i></span>Order Status</a>
-                            <a class="dropdown-item" href="{{ url('/change-password') }}"> <span
-                                    class="mr-2"><i class="fa fa-lock"
-                                        aria-hidden="true"></i></span>Change Pas...</a>
-                            <a class="dropdown-item log_out" href="javascript:void(0)"> <span class="mr-2"><i
-                                        class="fa fa-sign-out" aria-hidden="true"></i></span>Logout</a>
+                                <li>
+                                    <a href="register.html" class="font-weight-normal"><span class="pr-2"><i
+                                                class="fa fa-sign-in" aria-hidden="true"></i></span>Sign Up</a>
+                                </li>
+                            </ul>
                         </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="extra without-auth-login" hidden>
-                <ul class="d-flex align-items-center justify-content-center mb-0 p-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle m-auto add-on" href="#" id="profilenav"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
-                            Profile
-                        </a>
-                        <div class="profilenav-dropdown dropdown-menu p-0" aria-labelledby="profilenav">
-                            <a class="dropdown-item" href="{{ url('/login') }}"> <span class="mr-2"><i
-                                        class="fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
-                            <a class="dropdown-item" href="{{ url('/register') }}"> <span class="mr-2"><i
-                                        class="fa fa-paper-plane" aria-hidden="true"></i></span>Register</a>
+                        <!-- cart modal start  -->
+                        <a href="" class="cart_mobile" data-toggle="modal" data-target="#exampleModal"><i
+                                class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <sup>1</sup></a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-dark font-weight-bold" id="exampleModalLabel">
+                                            My Cart
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body mb-0 pb-0">
+                                        <div class="table-responsive px-md-3">
+                                            <table class="table text-center mb-0">
+                                                <tbody class="">
+                                                    <tr class="d-flex align-items-center">
+                                                        <th scope="row">
+                                                            <div class="cart_img">
+                                                                <img src="https://montechbd.com/shopist/demo/public/uploads/1619869340-h-250-tv2.png"
+                                                                    alt="image" />
+                                                            </div>
+                                                        </th>
+                                                        <td class="border-0">
+                                                            <h5>Blue Diamond Almonds</h5>
+                                                            <h6>Rs233</h6>
+                                                        </td>
+                                                        <td class="border-0">
+                                                            <a href="" class="gray_title"><i class="fa fa-trash-o"
+                                                                    aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="d-flex align-items-center">
+                                                        <th scope="row">
+                                                            <div class="cart_img">
+                                                                <img src="https://montechbd.com/shopist/demo/public/uploads/1619869340-h-250-tv2.png"
+                                                                    alt="image" />
+                                                            </div>
+                                                        </th>
+                                                        <td class="border-0">
+                                                            <h5>Blue Diamond Almonds</h5>
+                                                            <h6>Rs233</h6>
+                                                        </td>
+                                                        <td class="border-0">
+                                                            <a href="" class="gray_title"><i class="fa fa-trash-o"
+                                                                    aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer d-flex flex-column align-items-end">
+                                        <div class="cart_top_total">
+                                            <h6 class="text-dark mr-1">Total Rs233</h6>
+                                        </div>
+                                        <div
+                                            class="
+                          top_cartmodal_btn
+                          d-flex
+                          justify-content-between
+                          align-items-center
+                          w-100
+                        ">
+                                            <a href="cart.html" class="them_btn_new btn_cart_modal">View Cart</a>
+                                            <a href="checkout.html" class="them_btn_new btn_cart_modal">Proceed
+                                                Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- cart modal end  -->
+
+                        <!-- Popup Search Modal -->
+                        <!-- Modal -->
+
+                        <!-- Popup Search Modal Ends-->
+                        <!-- search modal end  -->
+                        <!-- search header end  -->
                     </li>
                 </ul>
             </div>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav m-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ url('/') }}">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle dropdown-custom" data-open="#item2"
-                            href="under-construction.html" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Product
-                        </a>
-                        <div id="item2" class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
-                            <div class="container d-block">
-                                <div class="row">
-                                    @foreach ($categories as $key => $category)
-                                        <div class="col-md-3">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="/shop?category={{ $category->id }}">{{ $category->detail[0]->category_name }}</a>
-                                                </li>
-                                                @foreach ($category->my_products->take(2) as $value)
-                                                    <li class="nav-item p-0">
-                                                        <a class="nav-link"
-                                                            href="/product/{{ $value->id }}/{{ $value->product_slug }}">{{ $value->detail[0]->title }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endforeach
+    </div>
+</header>
+<nav class="header navbar navbar-expand-lg header-sticky">
+    <div class="container">
+        <div class="header-logo text-center d-flex">
+            <a class="navbar-brand text-white text-uppercase text-left p-0 mr-5" href=""><img src="img/logo.png"
+                    class="img-fluid" alt="imageOriana Eatery" /></a>
+            <!-- search start  -->
+
+            <div class="searchbar d-none d-md-block">
+                <input class="search_input" type="text" name="" placeholder="Search..." />
+                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+            </div>
+
+            <!-- search end  -->
+            <!-- search mobile new star  -->
+            <div class="search_mobile_men d-block d-md-none">
+                <button class="search_icon_new" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+
+                <div class="sub_search">
+                    <form action="" class="d-flex">
+                        <input class="input_box" type="text" placeholder="Search.." name="search" />
+                        <button class="search_top" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- search mobile new end  -->
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+            <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item position-relative">
+                    <a class="
+                drop_arrow
+                nav-link
+                font-weight-bold
+                text-left text-lg-center
+              "
+                        href="product.html">Products
+                    </a>
+                    <div class="menu_drop_down">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="menu_drop_list">
+                                    <ul>
+                                        <h3 class="text-left">Gaming</h3>
+                                        <li><a href="">Office Product</a></li>
+                                        <li><a href="">Office Productsss</a></li>
+                                        <li><a href="">Office Product</a></li>
+                                        <li><a href="">Office Productsss</a></li>
+                                    </ul>
                                 </div>
                             </div>
-                            <!--  /.container  -->
+                            <div class="col-md-6">
+                                <div class="menu_drop_list">
+                                    <ul>
+                                        <h3 class="text-left">Gaming</h3>
+                                        <li><a href="">Office Product</a></li>
+                                        <li><a href="">Office Productsss</a></li>
+                                        <li><a href="">Office Product</a></li>
+                                        <li><a href="">Office Productsss</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="menu_drop_list mt-4">
+                                    <ul>
+                                        <h3 class="text-left">Gaming</h3>
+                                        <li><a href="">Office Product</a></li>
+                                        <li><a href="">Office Productsss</a></li>
+                                        <li><a href="">Office Product</a></li>
+                                        <li><a href="">Office Productsss</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="menu_drop_list mt-4">
+                                    <ul>
+                                        <h3 class="text-left">Gaming</h3>
+                                        <li><a href="">Office Product</a></li>
+                                        <li><a href="">Office Productsss</a></li>
+                                        <li><a href="">Office Product</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/shop') }}">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/contact-us') }}">Contacts</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="checkout.html">
+                        Checkout
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="cart.html">
+                        Cart
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="contact.html">Contact Us
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-</section>
-<!-- Navigation Ends -->
+    <!-- Button trigger modal -->
+    <div class="mobile-menu d-lg-none d-md-block mr-4 position-absolute" data-toggle="modal"
+        data-target="#rightsidebarfilter">
+        <span><i class="fa fa-bars fa-2x text-light" aria-hidden="true"></i></span>
+    </div>
+    <!-- Button trigger modal -->
+</nav>
+<!--========================== HEADER END  --->
