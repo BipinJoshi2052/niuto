@@ -38,12 +38,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Vidaloka&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="css/bootstrap.minn.css" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.minn.css') }}" />
     <title>Niuto Store</title>
-    <link rel="stylesheet" href="css/slick.css" />
-    <link rel="stylesheet" href="css/slick-theme.css" />
-    <link rel="stylesheet" href="css/custom.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/slick.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/slick-theme.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}" />
     @yield('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -57,12 +57,12 @@
     @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
     'includes.footers.footer-style1')
 
-    <script type="text/javascript" src="js/jquery-3.3.1.minn.js"></script>
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script src="js/slick.js"></script>
-    <script src="js/font-awesom.js"></script>
-    <script src="js/main.js"></script>
+    <script type="text/javascript" src="{{ asset('frontend/assets/js/jquery-3.3.1.minn.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/slick.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/font-awesom.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
     @yield('script')
     

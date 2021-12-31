@@ -15,7 +15,7 @@
                     p-0
                   "
                             href="index.html">
-                            <img src="img/logo.png" alt="image" />
+                            <img src="{{ asset('frontend/assets/img/logo.png') }}" alt="image" />
                         </a>
                     </div>
                     <p class="text-white font-weight-normal">
