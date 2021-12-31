@@ -136,7 +136,7 @@ $categories = App\Models\Admin\Category::inRandomOrder()
 <nav class="header navbar navbar-expand-lg header-sticky">
     <div class="container">
         <div class="header-logo text-center d-flex">
-            <a class="navbar-brand text-white text-uppercase text-left p-0 mr-5" href=""><img src="img/logo.png"
+            <a class="navbar-brand text-white text-uppercase text-left p-0 mr-5" href=""><img src="{{ asset('frontend/assets/img/logo.png') }}"
                     class="img-fluid" alt="imageOriana Eatery" /></a>
             <!-- search start  -->
 
