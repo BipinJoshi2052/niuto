@@ -44,7 +44,7 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                         <!-- cart modal start  -->
                         <a href="" class="cart_mobile" data-toggle="modal" data-target="#exampleModal"><i
                                 class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <sup>1</sup></a>
+                            <sup id="total-menu-cart-product-count"></sup></a>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,39 +63,17 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                                         <div class="table-responsive px-md-3">
                                             <table class="table text-center mb-0">
                                                 <tbody class="" id="top-cart-product-template">
-                                                    <tr class="d-flex align-items-center">
-                                                        <th scope="row">
-                                                            <div class="cart_img">
-                                                                <img src="https://montechbd.com/shopist/demo/public/uploads/1619869340-h-250-tv2.png"
-                                                                    alt="image" />
-                                                            </div>
-                                                        </th>
-                                                        <td class="border-0">
-                                                            <h5 class="text-dark">Blue Diamond Almonds</h5>
-                                                            <h6 class="text-dark">Rs233</h6>
-                                                        </td>
-                                                        <td class="border-0">
-                                                            <a href="" class="gray_title"><i class="fa fa-trash-o"
-                                                                    aria-hidden="true"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                   
                                                     
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="modal-footer d-flex flex-column align-items-end">
-                                        <div class="cart_top_total">
-                                            <h6 class="text-dark mr-1">Total Rs233</h6>
+                                        <div class="cart_top_total" id="top-cart-product-total">
+                                            
                                         </div>
-                                        <div
-                                            class="
-                          top_cartmodal_btn
-                          d-flex
-                          justify-content-between
-                          align-items-center
-                          w-100
-                        ">
+                                        <div class="top_cartmodal_btn d-flex justify-content-between align-items-center w-100">
                                             <a href="cart.html" class="them_btn_new btn_cart_modal">View Cart</a>
                                             <a href="checkout.html" class="them_btn_new btn_cart_modal">Proceed
                                                 Checkout</a>

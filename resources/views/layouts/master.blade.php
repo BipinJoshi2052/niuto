@@ -622,7 +622,6 @@
             cartSession = '';
         }
         $(document).ready(function() {
-
             loginSuccessMessage = localStorage.getItem("loginSuccessMessage");
             if (loginSuccessMessage != null) {
                 toastr.success(loginSuccessMessage);
@@ -993,6 +992,7 @@
                     $('#event-loading').css('display', 'block');
                 },
                 success: function(data) {
+                    console.log(data);
                     $('#event-loading').css('display', 'none');
                     if (data.status == 'Success') {
                         total_price = 0;
@@ -1057,51 +1057,37 @@
                             if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i]
                                 .currency != null) {
                                 if (data.data[i].currency.symbol_position == 'left') {
-                                    qtyAmountRow = '<td class="px-4 py-3">' +
-                                        '<div class="head font-weight-bold">' +
-                                        name + ' x <span class="cart-quantity ">' + data.data[i].qty +
-                                        '</span>' +
-                                        '</div>' +
-                                        '<div class="price">' +
-                                        data.data[i].currency.code + ' ' + discount_price +
-                                        '</div>' +
-                                        '</td>';
-                                    deleteRow = '<td class="px-4 py-3">' +
-                                        '<span><i class="fa fa-trash" aria-hidden="true"   data-id=' + data
-                                        .data[i].product_id + ' data-combination-id=' + data.data[i]
-                                        .product_combination_id +
-                                        ' onclick="removeCartItem(this)"></i></span>' +
-                                        '</td>';
+                                    qtyAmountRow = '<td class="border-0">'+
+                                                            '<h5 class="text-dark">'+ name + 'x <span class="cart-quantity">'+ data.data[i].qty +'</span></h5>'+
+                                                            '<h6 class="text-dark">'+ data.data[i].currency.code + ' ' + discount_price +'</h6>'+
+                                                        '</td>';
+                                    deleteRow = '<td class="border-0">'+
+                                                '<a href="javascript:void(0);" data-id="'+ data.data[i].product_id +'" data-combination-id="'+ data.data[i].product_combination_id +'" onclick="removeCartItem(this)" class="gray_title">'+
+                                                '<i class="fa fa-trash-o" aria-hidden="true"></i></a>'+
+                                                '</td>';
                                 } else {
-                                    qtyAmountRow = '<td class="px-4 py-3">' +
-                                        '<div class="head font-weight-bold">' +
-                                        name + ' x <span class="cart-quantity ">' + data.data[i].qty +
-                                        '</span>' +
-                                        '</div>' +
-                                        '<div class="price">' +
-                                        discount_price + ' ' + data.data[i].currency.code +
-                                        '</div>' +
-                                        '</td>';
-                                    deleteRow = '<td class="px-4 py-3">' +
-                                        '<span><i class="fa fa-trash" aria-hidden="true"   data-id=' + data
-                                        .data[i].product_id + ' data-combination-id=' + data.data[i]
-                                        .product_combination_id +
-                                        ' onclick="removeCartItem(this)"></i></span>' +
-                                        '</td>';
+                                    qtyAmountRow = '<td class="border-0">'+
+                                                            '<h5 class="text-dark">'+ name + 'x <span class="cart-quantity">'+ data.data[i].qty +'</span></h5>'+
+                                                            '<h6 class="text-dark">'+ discount_price + ' ' + data.data[i].currency.code +'</h6>'+
+                                                        '</td>';
+                                    deleteRow = '<td class="border-0">'+
+                                                '<a href="javascript:void(0);" data-id="'+ data.data[i].product_id +'" data-combination-id="'+ data.data[i].product_combination_id +'" onclick="removeCartItem(this)" class="gray_title">'+
+                                                '<i class="fa fa-trash-o" aria-hidden="true"></i></a>'+
+                                                '</td>';
                                 }
                             }
 
                             total_price = total_price + (discount_price * data.data[i].qty);
-
-                            clone += '<tr>' +
-                                '<div class="item">' +
-                                '<td class="pr-4 py-3"><img src="{{ asset('/') }}' + imageSrc +
-                                '" class="img-fluid"></td>' +
-                                qtyAmountRow +
-                                deleteRow +
-                                '</div>' +
-                                '</tr>';
-
+                            
+                            clone += '<tr class="d-flex align-items-center">'+
+                                        '<th scope="row">'+
+                                            '<div class="cart_img">'+
+                                                '<img src="{{ asset('/') }}'+ imageSrc +'" alt="image">'+
+                                            '</div>'+
+                                        '</th>'+
+                                        qtyAmountRow +
+                                        deleteRow +
+                                    '</tr>';
                             $("#top-cart-product-template").html(clone);
 
                             currrency = data.data[i].currency;
@@ -1114,19 +1100,13 @@
                             }
                         }
                         if (data.data.length > 0) {
-                            totalRow += '<div class="total-amount pt-3 text-center">' +
-                                'Total : <span class="font-weight-bold">' +
-                                total_price +
-                                '</span>' +
-                                '</div>';
+                            totalRow += '<h6 class="text-dark mr-1">'+ total_price +'</h6>';
                             $("#total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-total").html(totalRow);
-                            $('#nav-cart > div > div > div').eq(2).show();
                         } else {
                             $("#total-menu-cart-product-count").html(data.data.length);
-                            $("#top-cart-product-template").html('<tr><td>No Items</td></tr>');
+                            $("#top-cart-product-template").html('<tr><td class="text-dark">No Items</td></tr>');
                             $("#top-cart-product-total").html('');
-                            $('#nav-cart > div > div > div').eq(2).hide();
                         }
                     } else {
                         toastr.error('{{ trans('response.some_thing_went_wrong') }}');
@@ -1474,7 +1454,7 @@
 
     <script>
         $(document).ajaxStop(function() {
-            myFunction();
+            // myFunction();
         });
 
         $(document).on('keyup', '#search-input', function() {
