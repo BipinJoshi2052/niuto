@@ -111,7 +111,7 @@
                                         aria-hidden="true"></i></span>My Cart
                                 <span class="mx-2"><i class="fa fa-shopping-bag"
                                         aria-hidden="true"></i></span>
-                                <sup class="cart-items text-white">2</sup>
+                                <sup class="cart-items text-white" id="mobile-total-menu-cart-product-count"></sup>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -119,7 +119,7 @@
                                 <span class="nav-indication mr-2"><i class="fa fa-eercast"
                                         aria-hidden="true"></i></span>Wishlist
                                 <span class="mx-2"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-                                <sup class="cart-items text-white">2</sup>
+                                <sup class="cart-items text-white wishlist-count"></sup>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -533,12 +533,19 @@
                         </li>
                     </ul>
                 </div>
-                <div class="modal-footer py-3">
-                    <a class="w-50 text-center" href="under-construction.html">
+                <div class="modal-footer without-auth-login py-3">
+                    <a class="w-50 text-center" href="{{ url('/login') }}">
                         <span class="mr-2"><i class="fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
-                    <a class="w-50 text-center" href="under-construction.html">
+                    <a class="w-50 text-center" href="{{ url('/register') }}">
                         <span class="mr-2"><i class="fa fa-paper-plane"
                                 aria-hidden="true"></i></span>Register</a>
+                </div>
+                <div class="modal-footer auth-login py-3">
+                    <a class="w-50 text-center log_out" href="javascript:void(0);">
+                        <span class="mr-2"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Logout</a>
+                    <a class="w-50 text-center" href="{{ url('/profile') }}">
+                        <span class="mr-2"><i class="fa fa-user"
+                                aria-hidden="true"></i></span>Profile</a>
                 </div>
             </div>
         </div>
@@ -1102,9 +1109,10 @@
                         if (data.data.length > 0) {
                             totalRow += '<h6 class="text-dark mr-1">'+ total_price +'</h6>';
                             $("#total-menu-cart-product-count").html(data.data.length);
+                            $("#mobile-total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-total").html(totalRow);
                         } else {
-                            $("#total-menu-cart-product-count").html(data.data.length);
+                            $("#mobile-total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-template").html('<tr><td class="text-dark">No Items</td></tr>');
                             $("#top-cart-product-total").html('');
                         }

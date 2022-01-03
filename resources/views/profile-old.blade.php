@@ -9,109 +9,118 @@
 @section('content')
 
 <!-- Breadcrumbs -->
-<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
+<section id="breadcrumbs" class="py-3">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 m-auto">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item font-weight-bold">
-                <a href="{{ url('/') }}"
-                  ><span><i class="fa fa-home" aria-hidden="true"></i></span>
-                  HOME</a
-                >
-              </li>
-              <li
-                class="breadcrumb-item font-weight-bold"
-                aria-current="page"
-              >
-                <a href="" class="text-dark">Dashboard Profile</a>
-              </li>
-            </ol>
-          </nav>
+        <div class="row">
+            <div class="col-12">
+                <ul class="m-0 p-0 d-flex align-items-center text-white">
+                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                    <li class="">Profile</li>
+                </ul>
+            </div>
+            <div class="col-12 mt-3">
+                <h2 class="text-white">Profile</h2>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 <!-- Breadcrumbs Ends -->
-
-
 <!-- Profile -->
 <section id="profile-wrapper" class="py-3">
     <div class="container">
-      <div class="row py-xl-5 py-md-3 py-0">
-        <div class="col-lg-3 col-12 mb-xl-0 mb-lg-0 mb-3">
-          @include('includes.user-dashboard')
-        </div>
-        <div class="col-xl-9 col-lg-9 col-md-12 col-12">
-          <div class="profile-side-detail-edit">
-            <div class="dashboard-content">
-              <div class="submit-section">
-                <h4 class="font-weight-bold mb-3">Account</h4>
-                <form method="post" id="profileForm">
-                <div class="form-row">
-                  <div class="form-group col-md-6 mb-4">
-                    <label>First Name</label>
-                    <input type="text" class="form-control" value="" id="first_name" name="first_name" placeholder="First Name">
-                  </div>
-                  <div class="form-group col-md-6 mb-4">
-                    <label>Last Name</label>
-                    <input type="text" class="form-control" value="" id="last_name" name="last_name" placeholder="Last Name">
-                  </div>
-                  <div class="form-group col-md-6 mb-4">
-                    <label>Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      value="" id="email" name="email"
-                    >
-                  </div>
-                  <div class="form-group col-md-6 mb-4">
-                    <label>Phone</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="" id="phone" name="phone">
-                  </div>
-                  <div class="form-group col-md-6 mb-4">
-                    <label>Gender</label>
-                    <select name="gender" class="form-control" id="gender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="" id="address" name="address"
-                    >
-                  </div>
-                  <div class="form-group col-md-6 mb-4">
-                    <label>Date of Birth</label>
-                    <input
-                      type="text"
-                      class="form-control datepicker"
-                      value="" id="dob" name="dob" autocomplete="off" readonly
-                    />
-                  </div>
-                    <input type="hidden" class="form-control" id="addres_id">
+        <div class="row py-xl-5 py-md-3 py-0">
+            @include('includes.side-menu')
+            <div class="col-xl-9 col-lg-9 col-md-11 col-10 mt-xl-0 mt-md-0 mt-3">
+                <div class="row">
+                    <div class="col-10">
+                        <ul class="nav mb-3 d-flex justify-content-between" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active font-weight-bold p-0 head-info text-dark" id="pills-1-tab" data-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="true">Profile Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  edit text-white" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false"><span class="mr-2"><i class="fa fa-pencil" aria-hidden="true"></i></span>Edit</a>
+                            </li>
+                        </ul>
+                        <div class="profile-side-detail-edit">
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                                    <div class="dashboard-content d-flex justify-content-around align-items-center h-100">
+                                        {{-- <div class="dashboard-profile-image mr-3">
+                                            <img src="frontend/assets/images/profile.jpg" class="tab-profile-img img-fluid">
+                                        </div> --}}
+                                        <ul class="w-100 mb-0">
+                                            <li>
+                                                Name <span id="liName">
+                                                    {{-- Ram Shrestha --}}
+                                                </span>
+                                            </li>
+                                            <li>
+                                                Contact <span id="liPhone">
+                                                    {{-- +123 90 --}}
+                                                </span>
+                                            </li>
+                                            <li>
+                                                Email <span id="liEmail">
+                                                    {{-- ram@gmail.com --}}
+                                                </span>
+                                            </li>
+                                            <li>
+                                                Address <span id="liAddress">
+                                                    {{-- Kathmandu, Nepal --}}
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                                    <form id="profileForm" method="post">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 col-12">
+                                                <label for="first_name">First Name</label>
+                                                <input type="text" class="form-control" placeholder="First Name" id="first_name" name="first_name">
+                                            </div>
+                                            <div class="form-group col-md-6 col-12">
+                                                <label for="last_name">Last Name</label>
+                                                <input type="text" class="form-control" placeholder="Last Name" id="last_name" name="last_name">
+                                            </div>
+                                            <div class="form-group col-md-6 col-12">
+                                                <label for="phone">Phone</label>
+                                                <input type="number" class="form-control" placeholder="" id="phone" name="phone">
+                                            </div>
+                                            <div class="form-group col-md-6 col-12">
+                                                <label for="gender">Email</label>
+                                                <select class="form-control" id="gender" name="gender">
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6 col-12">
+                                                <label for="dob">DOB</label>
+                                                <input type="text" class="form-control datepicker" id="dob" name="dob" autocomplete="off" readonly>
+                                            </div>
+                                            {{-- <div class="form-group col-12">
+                                                <label for="image">Upload Profile Image</label>
+                                                <input type="file" class="form-control-file" id="uploadprofileimage">
+                                            </div> --}}
+                                            <div class="form-group col-md-12 col-12">
+                                                <input type="hidden" class="form-control" id="addres_id">
                                                 <input type="hidden" class="form-control" id="method">
-                  <div class="form-group col-12 mx-auto text-center">
-                    <button type="submit" class="w-25 theme_btn btn_tr"
-                      >Save</a
-                    >
-                  </div>
-                @php
-                    getSetting()['is_deliveryboyapp_purchased'] = 0;
-                @endphp
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                            @php
+                                                getSetting()['is_deliveryboyapp_purchased'] = 0;
+                                            @endphp
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </form>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 <!-- Profile Ends -->
 
 @endsection
@@ -132,9 +141,9 @@
     customerId = $.trim(localStorage.getItem("customerId"));
 
     $(document).ready(function(){
-        // $('.datepicker').datepicker({
-        //     format: 'yyyy-mm-dd',
-        // });
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+        });
         getProfile();
     });
 
@@ -152,9 +161,10 @@
             beforeSend: function() {},
             success: function(data) {
                 if (data.status == 'Success') {
+                    $("#liName").html(data.data.customer_first_name + ' ' + data.data.customer_last_name);
+                    $("#liEmail").html(data.data.customer_email);
                     $("#profileForm").find("#first_name").val(data.data.customer_first_name);
                     $("#profileForm").find("#last_name").val(data.data.customer_last_name);
-                    $("#profileForm").find("#email").val(data.data.customer_email);
                 }
             },
             error: function(data) {},
@@ -172,7 +182,7 @@
             },
             beforeSend: function() {},
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 if (data.status == 'Success') {
                     if(data.data != null && data.data != 'null' && data.data != ''){
                         $("#profileForm").find("#gender").val(data.data[0].gender);

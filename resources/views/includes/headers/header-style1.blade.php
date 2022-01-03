@@ -12,37 +12,57 @@ $categories = App\Models\Admin\Category::inRandomOrder()
             <div class="top-social-icon">
                 <ul class="mb-0">
                     <li>
-                        <a href="wishlist.html" class="wishlist_mobile"><i class="fa fa-heart-o"
-                                aria-hidden="true"></i><span class="font-weight-normal">Wishlist</span></a>
+                        <a href="{{ url('/wishlist') }}" class="wishlist_mobile"><i class="fa fa-heart-o"
+                                aria-hidden="true"></i><span class="font-weight-normal">Wishlist</span>
+                                <sup class="wishlist-count"></sup>
+                        </a>
                         <!-- user login start  -->
                         <div class="dropdown user_login_mobile">
-                            <button
-                                class="
-                    pb-0
-                    btn
-                    bg-transparent
-                    dropdown-toggle
-                    pt-0
-                    font-weight-normal
-                  "
+                            <button class="pb-0 btn bg-transparent dropdown-toggle pt-0 font-weight-normal"
                                 type="button" data-toggle="dropdown">
-                                <i class="fa fa-user-o" aria-hidden="true"></i> My Account
+                                <i class="fa fa-user-o" aria-hidden="true"></i> <span class="welcomeUsername">My Account</span>
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu without-auth-login" id="profilenavId" hidden>
                                 <li>
-                                    <a href="login.html" class="font-weight-normal"><span class="pr-2"><i
+                                    <a href="{{ url('/login') }}" class="font-weight-normal"><span class="pr-2"><i
                                                 class="fa fa-user" aria-hidden="true"></i></span>
                                         Login</a>
                                 </li>
                                 <li>
-                                    <a href="register.html" class="font-weight-normal"><span class="pr-2"><i
+                                    <a href="{{ url('/register') }}" class="font-weight-normal"><span class="pr-2"><i
                                                 class="fa fa-sign-in" aria-hidden="true"></i></span>Sign Up</a>
+                                </li>
+                            </ul>
+                            <ul class="dropdown-menu auth-login" id="profilenavId" hidden>
+                                <li>
+                                    <a href="" class="font-weight-normal"><span class="pr-2"><i
+                                                class="fa fa-user" aria-hidden="true"></i></span>
+                                        Profile</a>
+                                </li>
+                                <li>
+                                    <a href="" class="font-weight-normal"><span class="pr-2"><i
+                                                class="fa fa-heart" aria-hidden="true"></i></span>
+                                        Wishlist</a>
+                                </li>
+                                <li>
+                                    <a href="" class="font-weight-normal"><span class="pr-2"><i
+                                                class="fa fa-sort" aria-hidden="true"></i></span>
+                                        Order Status</a>
+                                </li>
+                                <li>
+                                    <a href="" class="font-weight-normal"><span class="pr-2"><i
+                                                class="fa fa-sort" aria-hidden="true"></i></span>
+                                        Change Password</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-weight-normal log_out"><span class="pr-2"><i
+                                                class="fa fa-sign-out" aria-hidden="true"></i></span>Logout</a>
                                 </li>
                             </ul>
                         </div>
                         <!-- cart modal start  -->
-                        <a href="" class="cart_mobile" data-toggle="modal" data-target="#exampleModal"><i
+                        <a href="{{ url('/cart') }}" class="cart_mobile" data-toggle="modal" data-target="#exampleModal"><i
                                 class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <sup id="total-menu-cart-product-count"></sup></a>
                         <!-- Modal -->
@@ -207,7 +227,7 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold text-left text-lg-center" href="contact.html">Contact Us
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="{{ url('/contact-us') }}">Contact Us
                     </a>
                 </li>
             </ul>
