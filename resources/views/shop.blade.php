@@ -1,4 +1,8 @@
 @extends('layouts.master')
+@section('style')
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap-slider.min.css') }}" />
+    
+@endsection
 @section('content')
 
     @include(isset(getSetting()['shop']) ? 'includes.shop.shop-'.getSetting()['shop'] : 'includes.shop.shop-style1')
@@ -14,6 +18,8 @@
     </style>
 @endsection
 @section('script')
+    <script type="text/javascript" src="{{ asset('frontend/assets/js/bootstrap-slider.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('frontend/assets/js/isotope.pkgd.min.js') }}"></script>
     <script>
         var language_id = localStorage.getItem('languageId');
         var attribute_id = [];
@@ -78,10 +84,9 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    $('#event-loading').css('display', 'block');
+                    $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    $('#event-loading').css('display', 'none');
                     if (data.status == 'Success') {
                         if (data.meta.last_page < page) {
                             $('.load-more-products').attr('disabled', true);
@@ -136,7 +141,7 @@
                                 if (data.data[i].product_discount_price == '' || data.data[i].product_discount_price == null || data.data[i].product_discount_price == 'null') {
                                     priceSymbol = data.data[i].product_price_symbol;
                                 } else {
-                                    priceSymbol = data.data[i].product_discount_price_symbol + '<span>' + data.data[i].product_price_symbol + '</span>';
+                                    priceSymbol = data.data[i].product_discount_price_symbol + '<span class="price-through">' + data.data[i].product_price_symbol + '</span>';
                                 }
                             } else {
                                 if (data.data[i].product_combination != null && data.data[i].product_combination != 'null' && data.data[i].product_combination != '') {
@@ -207,6 +212,9 @@
                             $("#" + appendTo).append(clone);
                         }
                     }
+                },
+                complete: function(){
+                    $('#loading').css('display', 'none');
                 },
                 error: function(data) {},
             });
@@ -301,7 +309,7 @@
                                 if (data.data[i].product_discount_price == '' || data.data[i].product_discount_price == null || data.data[i].product_discount_price == 'null') {
                                     priceSymbol = data.data[i].product_price_symbol;
                                 } else {
-                                    priceSymbol = data.data[i].product_discount_price_symbol + '<span>' + data.data[i].product_price_symbol + '</span>';
+                                    priceSymbol = data.data[i].product_discount_price_symbol + '<span class="price-through">' + data.data[i].product_price_symbol + '</span>';
                                 }
                             } else {
                                 if (data.data[i].product_combination != null && data.data[i].product_combination != 'null' && data.data[i].product_combination != '') {

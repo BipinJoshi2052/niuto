@@ -45,6 +45,13 @@
     <link rel="stylesheet" href="{{ asset('assets/toastr/toastr.min.css') }}">
     @yield('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        .price-through{
+            text-decoration: line-through;
+            font-size: 0.9rem;
+            padding: 6px;
+        }
+    </style>
 </head>
 
 <body>
@@ -52,6 +59,10 @@
     'includes.headers.header-style1')
 
     @yield('content')
+
+    <div id="loading">
+        <img src="{{ asset('loader/ajax-loader.gif') }}" class="d-none" alt="">
+    </div>
 
     <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
     @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
@@ -63,7 +74,7 @@
     <script src="{{ asset('frontend/assets/js/slick.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/font-awesom.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/toastr/toastr.min.js') }}"></script>
     @yield('script')
     
     <!-- Mobile Nav -->

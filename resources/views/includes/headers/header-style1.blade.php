@@ -62,7 +62,7 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                                     <div class="modal-body mb-0 pb-0">
                                         <div class="table-responsive px-md-3">
                                             <table class="table text-center mb-0">
-                                                <tbody class="">
+                                                <tbody class="" id="top-cart-product-template">
                                                     <tr class="d-flex align-items-center">
                                                         <th scope="row">
                                                             <div class="cart_img">
@@ -71,30 +71,15 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                                                             </div>
                                                         </th>
                                                         <td class="border-0">
-                                                            <h5>Blue Diamond Almonds</h5>
-                                                            <h6>Rs233</h6>
+                                                            <h5 class="text-dark">Blue Diamond Almonds</h5>
+                                                            <h6 class="text-dark">Rs233</h6>
                                                         </td>
                                                         <td class="border-0">
                                                             <a href="" class="gray_title"><i class="fa fa-trash-o"
                                                                     aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr class="d-flex align-items-center">
-                                                        <th scope="row">
-                                                            <div class="cart_img">
-                                                                <img src="https://montechbd.com/shopist/demo/public/uploads/1619869340-h-250-tv2.png"
-                                                                    alt="image" />
-                                                            </div>
-                                                        </th>
-                                                        <td class="border-0">
-                                                            <h5>Blue Diamond Almonds</h5>
-                                                            <h6>Rs233</h6>
-                                                        </td>
-                                                        <td class="border-0">
-                                                            <a href="" class="gray_title"><i class="fa fa-trash-o"
-                                                                    aria-hidden="true"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
