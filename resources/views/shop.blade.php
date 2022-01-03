@@ -108,6 +108,7 @@
                         var priceSymbol = '';
                         var cartLink = '';
                         for (i = 0; i < data.data.length; i++) {
+                            console.log(data);
                             if (data.data[i].product_gallary != null) {
                                 if (data.data[i].product_gallary.detail != null) {
                                     imgSrc = data.data[i].product_gallary.detail[0].gallary_path;
@@ -144,33 +145,64 @@
                             }
 
                             if (data.data[i].product_type == 'simple') {
-                                cartLink = '<li><a href="javascript:void(0)" data-tip="Add to Cart" onclick="addToCart(this)" data-id=' + data.data[i].product_id + ' data-type=' + data.data[i].product_type + '><i class="fa fa-shopping-cart"></i></a></li>';
-                                wishList = '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>';
+                                cartLink = '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="'+ data.data[i].product_id +'" data-type="'+ data.data[i].product_type +'" tabindex="0"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>';
+                                wishList = '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="'+ data.data[i].product_id +'" data-type="'+ data.data[i].product_type +'"><i class="fa fa-heart" aria-hidden="true"></i></a>';
+                                // cartLink = '<li><a href="javascript:void(0)" data-tip="Add to Cart" onclick="addToCart(this)" data-id=' + data.data[i].product_id + ' data-type=' + data.data[i].product_type + '><i class="fa fa-shopping-cart"></i></a></li>';
+                                // wishList = '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>';
                             } else {
-                                cartLink = '<li><a href="product/' + data.data[i].product_id + '/' + data.data[i].product_slug + '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>';
+                                cartLink = cartLink = '<a href="product/' + data.data[i].product_id + '/' + data.data[i].product_slug + '" tabindex="0"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>';
+                                // cartLink = '<li><a href="product/' + data.data[i].product_id + '/' + data.data[i].product_slug + '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>';
                                 wishList = '';
                             }
 
-                            clone = '<div class="col-md-4 col-sm-6 mt-3">' +
-                                '<div class="product-grid-item">' +
-                                    '<div class="product-grid-image">' +
-                                        '<a href="' + href + '"><img class="pic-1 img-fluid" src="{{ asset('/') }}' + imgSrc + '"></a>' +
-                                        '<ul class="social">' +
-                                            wishList +
-                                            cartLink +
-                                        '</ul>' +
-                                    '</div>' +
-                                    '<div class="product-content">' +
-                                        '<h4 class="title mt-2"><a href="' + href + '">' + title + '</a></h4>' +
-                                        '<div class="price">' +
-                                            priceSymbol +
-                                        '</div>' +
-                                        '<a class="add-to-cart" href="javascript:void(0)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" onclick="addToCart(this)">ADD TO CART</a><br />' +
-                                        // '<div class="fb-share-button" data-href="{{ url('') }}/product/' + data.data[i].product_id + '/' + data.data[i].product_slug + '" data-layout="button_count"></div>' +
-                                        // '<a target="_blank" class="btn btn-primary btn-sm my-2" href="https://www.facebook.com/sharer/sharer.php?u={{ url('') }}/product/' + data.data[i].product_id + '/' + data.data[i].product_slug + '.com&display=popup"> <i class="fa fa-facebook-square mx-1"></i> Share </a>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>';
+                            // clone = '<div class="col-md-4 col-sm-6 mt-3">' +
+                            //     '<div class="product-grid-item">' +
+                            //         '<div class="product-grid-image">' +
+                            //             '<a href="' + href + '"><img class="pic-1 img-fluid" src="{{ asset('/') }}' + imgSrc + '"></a>' +
+                            //             '<ul class="social">' +
+                            //                 wishList +
+                            //                 cartLink +
+                            //             '</ul>' +
+                            //         '</div>' +
+                            //         '<div class="product-content">' +
+                            //             '<h4 class="title mt-2"><a href="' + href + '">' + title + '</a></h4>' +
+                            //             '<div class="price">' +
+                            //                 priceSymbol +
+                            //             '</div>' +
+                            //             '<a class="add-to-cart" href="javascript:void(0)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" onclick="addToCart(this)">ADD TO CART</a><br />' +
+                            //             // '<div class="fb-share-button" data-href="{{ url('') }}/product/' + data.data[i].product_id + '/' + data.data[i].product_slug + '" data-layout="button_count"></div>' +
+                            //             // '<a target="_blank" class="btn btn-primary btn-sm my-2" href="https://www.facebook.com/sharer/sharer.php?u={{ url('') }}/product/' + data.data[i].product_id + '/' + data.data[i].product_slug + '.com&display=popup"> <i class="fa fa-facebook-square mx-1"></i> Share </a>' +
+                            //         '</div>' +
+                            //     '</div>' +
+                            // '</div>';
+                            clone = '<div class="col-md-4 col-12">'+
+                                        '<div class="item_block bg-white position-relative p-3 mb-3">'+
+                                           '<div class="img_block">'+
+                                            '<a href="'+ href +'"><img src="{{ asset('/') }}' + imgSrc + '"  alt="img" class="img-fluid"></a>'+
+                                           '</div>'+
+                                           '<div class="content_block pb-3">'+
+                                              '<small>Lotions and Creams</small>'+
+                                              '<h4>' + title + '</h4>'+
+                                              '<span class="">'+ priceSymbol +'</span>'+
+                                           '</div>'+
+                                           '<div class="wish_list_block">'+
+                                                wishList +
+                                           '</div>'+
+                                           '<div class="icon_group">'+
+                                              '<div class="cart_blocks">'+
+                                                 cartLink +
+                                              '</div>'+
+                                              '<div class="cart_block">'+
+                                                 '<a href="'+ href +'" tabindex="0">'+
+                                                 '<i class="fa fa-eye" aria-hidden="true"></i></a>'+
+                                              '</div>'+
+                                              '<div class="cart_blockss">'+
+                                                 '<a href="" tabindex="0">'+
+                                                 '<i class="fa fa-exchange" aria-hidden="true"></i></a>'+
+                                              '</div>'+
+                                           '</div>'+
+                                        '</div>'+
+                                    '</div>';
 
                             $("#" + appendTo).append(clone);
                         }
