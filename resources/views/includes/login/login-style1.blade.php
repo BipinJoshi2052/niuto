@@ -1,22 +1,74 @@
-<!-- Breadcrumbs -->
-<!-- <section id="breadcrumbs" class="py-3">
+<!-- Login Start -->
+<section id="register" class="py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ul class="m-0 p-0 d-flex align-items-center text-white">
-                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    <li class="">About Us</li>
-                </ul>
+      <div class="row">
+        <div class="col-lg-8 col-12 m-auto">
+          <div class="row no-gutters">
+            <div class="col-md-7 m-auto">
+              <div class="contact-form bg_register m-auto p-5">
+                <h1 class="font-weight-bold text-center text-white">Login</h1>
+
+                <form action="dashboard.html">
+                  <div class="form-group mb-4">
+                    <input type="text" class="form-control bg-transparent border-top-0 border-left-0 border-right-0 rounded-0 border_button_form" id="loginEmail"
+                      placeholder="Username or Email...."/>
+                  </div>
+
+                  <div class="form-group mb-4">
+                    <input type="password" class="form-control bg-transparent border-top-0 border-left-0 border-right-0 rounded-0 border_button_form" id="loginPassword"
+                      placeholder="Password"/>
+                  </div>
+                  {{-- <div class="form-check mb-4">
+                    <input type="checkbox" class="form-check-input text-white" id="exampleCheck1"
+                    />
+                    <label class="form-check-label text-white w-100 d-md-flex justify-content-between d-block" for="exampleCheck1">
+                        Remember Me
+                      <span class="">Lost Your Password?</span>
+                    </label>
+                  </div> --}}
+
+                  <div class="text-center btn_groups-single product_detail__bg m-auto w-50">
+                    <button type="button" id="loginAccount" class="btn product_detail__bg py-1 text-light">
+                      LOGIN
+                    </button>
+                  </div>
+                </form>
+                <h6 class="text-white font-weight-bold text-center mb-0 py-4">
+                  LOGIN WITH SOCIAL NETWORKING
+                </h6>
+                <div class="social-icon-footer">
+                  <ul class="d-flex justify-content-around">
+                    <li class="facebook_bg register_button">
+                      <a href="" class="text-white">
+                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    </li>
+                    <li class="twitter_bg register_button">
+                      <a href="" class="text-white"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="google_bg register_button">
+                      <a href="" class="text-white"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="linkedin_bg register_button">
+                      <a href="" class="text-white"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+
+                <a class="text-white font-weight-bold text-right d-block w-100" href="{{ url('/register') }}">REGISTER</a>
+              </div>
             </div>
-            <div class="col-12 mt-3">
-                <h2 class="text-white">About Us</h2>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</section> -->
-<!-- Breadcrumbs Ends -->
+  </section>
+<!-- End Login -->
+
+
+
 <!-- Login Us -->
-<section id="login-register-wrapper" class="p-4">
+{{-- <section id="login-register-wrapper" class="p-4">
     <div class="container">
         <div class="login-register-form p-xl-5 p-lg-5 p-md-2 p-0">
             <div class="row position-relative">
@@ -38,9 +90,7 @@
                             <div class="row my-2">
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        {{-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                        Remember me --}}
+                                       
                                     </label>
                                     </div>
                                 </div>
@@ -77,5 +127,5 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- Login Us Ends -->

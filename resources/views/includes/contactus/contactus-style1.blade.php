@@ -1,76 +1,116 @@
-<!-- Breadcrumbs -->
-<section id="breadcrumbs" class="py-3">
-    <div class="container">
+<div id="contact-page-wrapper" class="">
+    <section id="breadcrumb_item" class="pb-0 breadcrumb">
+      <div class="container">
         <div class="row">
-            <div class="col-12">
-                <ul class="m-0 p-0 d-flex align-items-center text-white">
-                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    <li class="">Contact Us</li>
-                </ul>
-            </div>
-            <div class="col-12 mt-3">
-                <h2 class="text-white">Contact Us</h2>
-            </div>
+          <div class="col-md-12 m-auto">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item font-weight-bold">
+                  <a href="#">Home</a>
+                </li>
+                <li
+                  class="breadcrumb-item font-weight-bold"
+                  aria-current="page"
+                >
+                  Contact
+                </li>
+              </ol>
+            </nav>
+          </div>
         </div>
-    </div>
-</section>
-<!-- Breadcrumbs Ends -->
-<!-- Contact Us -->
-<section id="contact-us-wrapper" class="p-4">
-    <div class="container">
-        <div class="row padding px-xl-5 px-lg-5 px-md-4">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                <!-- CONTACT INFO -->
-                <div class="contact-info d-flex flex-column justify-content-center h-100 text-white">
-                    <div class="title mb-3">
-                        <h1 class="contact-us-heading">Love To Hear From You</h1>
-
-                        <p class="pt-3"></p>
-
-                    </div>
-                    <div class="address-info">
-                        <ul>
-                            <li class="p-2">
-                                <p class="m-0"><i class="fa fa-map-marker mr-1" aria-hidden="true"></i><span> {{ getSetting()['address'] ?? 'Kathmandu, Nepal' }}</span></p>
-                            </li>
-                            <li class="p-2">
-                                <p class="m-0"><i class="fa fa-envelope mr-1" aria-hidden="true"></i> <a href="mailto:{{ getSetting()['email'] ?? '' }}"><span> {{ getSetting()['email'] ?? '' }}</span></a></p>
-                            </li>
-                            <li class="p-2">
-                                <p class="m-0"><i class="fa fa-phone mr-1" aria-hidden="true"></i><a href="tel:{{ getSetting()['phone_number'] ?? '' }}">{{ getSetting()['phone_number'] }}</a></a></p>
-                            </li>
-                        </ul>
-                    </div>
+      </div>
+    </section>
+    <div id="contact-wrapper" class="padding">
+      <div class="container">
+        <div class="title-description-wrapper mb-4">
+          <div class="title text-center mb-3">
+            <h1 class="font-weight-bold">Ready to Get Started ?</h1>
+          </div>
+          <div class="discription text-center w-75 m-auto">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
+            accusantium incidunt earum deserunt, tempore eos repudiandae
+            consectetur ad expedita.
+          </div>
+        </div>
+        <form id="contactusForm" class="mt-5 mb-2">
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-12 order-xl-1 order-md-2 order-2">
+              <div class="contact-form">
+                <div class="form-group">
+                  <input
+                    type="text" id="first_name"
+                    class="form-control"
+                    placeholder="First Name"
+                    value=""
+                  />
                 </div>
+                <div class="form-group">
+                  <input
+                    type="text" id="last_name"
+                    class="form-control"
+                    placeholder="Last Name"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="email"
+                    class="form-control"
+                    placeholder="Your Email"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="phone"
+                    class="form-control"
+                    placeholder="Your Phone Number"
+                    value=""
+                  />
+                </div>
+                <div class="form-group">
+                  <textarea
+                    id="message"
+                    class="form-control"
+                    placeholder="Your Message"
+                    style="width: 100%; height: 150px"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                  <!-- <a href="#" class="btn mt-4">OUR SERVICES</a> -->
+                </div>
+              </div>
             </div>
-            <div class="col-xl-5 col-lg-6 col-md-6 col-12 m-auto">
-                <!-- CONTACT FORM HERE -->
-                <form class="p-4" id="contactusForm">
-                    <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" id="first_name" class="form-control">
-                    </div> 
-                    <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" id="last_name" class="form-control">
-                    </div>  
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="text" id="phone" class="form-control" placeholder="Phone">
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" class="form-control " rows="4" placeholder="Your Message"></textarea>
-                    </div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="px-5">Send</button>
-                    </div>
-                </form>
+            <div
+              class="
+                col-xl-6 col-lg-6 col-md-12 col-12
+                order-xl-2 order-md-1 order-1
+              "
+            >
+              <div class="contact-img text-center">
+                <img
+                  src="https://www.lyra.com/in/wp-content/uploads/sites/8/2020/01/Difference-betwee-mobile-payment-and-mobile-commerce.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
             </div>
-        </div>
+          </div>
+        </form>
+      </div>
     </div>
-</section>
-<!-- Contact Us Ends -->
+    <div class="location-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56522.299158869304!2d85.30192792654009!3d27.69740520177342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1620992118229!5m2!1sen!2snp"
+        style="border: 0"
+        allowfullscreen="true"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+  <!-- End Contact -->
