@@ -5,127 +5,713 @@ $categories = App\Models\Admin\Category::inRandomOrder()
     ->get();
 ?>
 
-{{-- {{ dd($categories) }} --}}
-<!-- Breadcrumbs -->
-<section id="breadcrumbs" class="py-3">
+<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ul class="m-0 p-0 d-flex align-items-center text-white">
-                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    <li class="">Shop</li>
-                </ul>
-            </div>
-            <div class="col-12 mt-3">
-                <h2 class="text-white">Shop</h2>
-            </div>
-        </div>
+       <div class="row">
+          <div class="col-md-12 m-auto">
+             <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                   <li class="breadcrumb-item font-weight-bold">
+                      <a href="index.html"
+                         ><span><i class="fa fa-home" aria-hidden="true"></i></span>
+                      HOME</a
+                         >
+                   </li>
+                   <li
+                      class="breadcrumb-item font-weight-bold"
+                      aria-current="page"
+                      >
+                      <a href="product.html" class="text-dark">PRODUCTS</a>
+                   </li>
+                </ol>
+             </nav>
+          </div>
+       </div>
     </div>
-</section>
-<!-- Breadcrumbs Ends -->
-<!-- Product Listing  -->
-<section id="product-listing-page" class="py-5">
+ </section>
+ <!--========================== PRODUCTS START  --->
+ <section id="products" class="section_bg padding">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-3 col-lg-3 col-12">
-                <div class="left-side-wrapper px-4 py-4 d-lg-block d-none">
-                    <div class="card-wrapper mb-2">
-                        <div class="card-group-item">
-                            <div class="card-head">
-                                <h6 class=" title font-weight-bold">By Categories </h6>
-                            </div>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                    @foreach ($categories as $category)
-                                        <label class="">
-                                            <a class="text-muted" href="shop?category={{ $category->id }}" style="text-decoration: none;">
-                                                <span class="form-check-label">
-                                                    {{ $category->detail[0]->category_name }}
-                                                </span>
-                                            </a>
-                                        </label>
-                                    @endforeach
-                                </div>
-                                <!-- card-body.// -->
-                            </div>
-                        </div>
-                        <!-- card-group-item.// -->
-                    </div>
-                    <!-- card.// -->
-                    {{-- <div class="card-wrapper mb-2">
-                        <div class="card-group-item">
-                            <div class="card-head">
-                                <h6 class="title font-weight-bold">By Brands </h6>
-                            </div>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                    <form>
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-label">
-                                                Brand 1
-                                            </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-label">
-                                                Brand 2
-                                            </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-label">
-                                                Brand 3
-                                            </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                    </form>
-                                </div>
-                                <!-- card-body.// -->
-                            </div>
-                        </div>
-                        <!-- card-group-item.// -->
-                        <!-- card-group-item.// -->
-                    </div> --}}
-                    <!-- card.// -->
-                    <div class="card-wrapper mb-2">
-                        <div class="card-group-item">
-                            <div class="card-head">
-                                <h6 class="title font-weight-bold">By Price Range </h6>
-                            </div>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label>Min</label>
-                                            <input type="number" class="form-control" id="minRs" autocomplete="off">
-                                        </div>
-                                        <div class="form-group col-md-6 text-right">
-                                            <label>Max</label>
-                                            <input type="number" class="form-control" id="maxRs" autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- card-body.// -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- card.// -->
+       <!-- Button trigger modal -->
+       <button type="button" class="button_list d-xl-none d-lg-none d-md-block mb-4" data-toggle="modal" data-target="#leftsidebarfilter">
+       Product Filter
+       <span class="ml-2">
+       <i class="fa fa-list" aria-hidden="true"></i>
+       </span>
+       </button>
+       <!-- Mobile Filter Ends -->
+       <div class="row">
+          <div class="col-md-3 d-md-block d-none">
+             <div class="row">
+                <div class="col-md-12">
+                   <ul class="bg-white border_one category_product">
+                      <div class="category_title">
+                         <h4 class="pl-4 font-weight-bold">
+                            <span class="pr-3"
+                               ><i class="fa fa-bars" aria-hidden="true"></i
+                               ></span>
+                            Categories
+                         </h4>
+                      </div>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Baby Product</a
+                            >
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                         </ul>
+                      </li>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Fruits and Vegetables
+                         </a>
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                         </ul>
+                      </li>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Baby Product</a
+                            >
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                         </ul>
+                      </li>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Electronic Accessories</a
+                            >
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                         </ul>
+                      </li>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Men's Fashion Third</a
+                            >
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                         </ul>
+                      </li>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Baby Product</a
+                            >
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                         </ul>
+                      </li>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Baby Product</a
+                            >
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                         </ul>
+                      </li>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Baby Product</a
+                            >
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                         </ul>
+                      </li>
+                      <li class="px-3 product_icon position-relative d-block">
+                         <a href="" class="sub_icon"
+                            ><span class="pr-2"
+                            ><i
+                            class="fa fa-hand-o-right text-dark"
+                            aria-hidden="true"
+                            ></i
+                            ></span>
+                         Baby Product</a
+                            >
+                         <ul class="sub_menu_list">
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Third</a
+                                  >
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Electronic Accessories
+                               </a>
+                            </li>
+                            <li>
+                               <a href="#">
+                               <span
+                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                                  ></span>
+                               Men's Fashion Third</a
+                                  >
+                            </li>
+                         </ul>
+                      </li>
+                   </ul>
                 </div>
-                <!-- Mobile Filter  -->
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary d-xl-none d-md-block " data-toggle="modal" data-target="#leftsidebarfilter">
-                    Product Filter
-                    <span class="ml-2"> 
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                    </span>
-                </button>
-                <!-- Mobile Filter Ends -->
-            </div>
+                <div class="col-md-12">
+                   <div
+                      class="
+                      price_rang_block
+                      border_one
+                      bg-white
+                      category_product
+                      mt-4
+                      "
+                      >
+                      <div class="category_title">
+                         <h4 class="pl-4 font-weight-bold">
+                            <span class="pr-3"></span>
+                            Our Brand
+                         </h4>
+                      </div>
+                      <div class="our_brand pt-3">
+                         <div class="our_brand_item">
+                            <img
+                               src="https://montechbd.com/shopist/demo/public/uploads/1616788177-h-80-nike.png"
+                               class="img-fluid"
+                               alt=""
+                               />
+                         </div>
+                         <div class="our_brand_item">
+                            <img
+                               src="https://montechbd.com/shopist/demo/public/uploads/1616788177-h-80-nike.png"
+                               class="img-fluid"
+                               alt=""
+                               />
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="col-md-12">
+                   <div
+                      class="
+                      price_rang_block
+                      border_one
+                      bg-white
+                      category_product
+                      mt-4 pb-3
+                      "
+                      >
+                      <div class="category_title">
+                         <h4 class="pl-4 font-weight-bold">
+                            <span class="pr-3"></span>
+                            Price Range
+                         </h4>
+                      </div>
+                      <div class="slider" id="range-slider">
+                      </div>
+                      <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
+                   </div>
+                </div>
+                <div class="col-md-12">
+                   <div
+                      class="
+                      price_rang_block
+                      border_one
+                      bg-white
+                      category_product
+                      mt-4"
+                      >
+                      <div class="category_title">
+                         <h4 class="pl-4 font-weight-bold">
+                            <span class="pr-3"></span>
+                            Select Colors
+                         </h4>
+                      </div>
+                      <div class="colors_block p-3">
+                         <label class="color_single"
+                            ><small class="round"></small>
+                         <span class=""> Red</span>
+                         <input type="checkbox" checked="checked" />
+                         <span class="checkmark"></span>
+                         </label>
+                         <label class="color_single">
+                         <small class="round bg-warning"></small>
+                         <span> Yellow</span>
+                         <input type="checkbox" />
+                         <span class="checkmark"></span>
+                         </label>
+                         <label class="color_single">
+                         <small class="round bg-primary"></small>
+                         <span>Blue</span>
+                         <input type="checkbox" />
+                         <span class="checkmark"></span>
+                         </label>
+                         <label class="color_single">
+                         <small class="round bg-success"></small>
+                         <span> Green</span>
+                         <input type="checkbox" />
+                         <span class="checkmark"></span>
+                         </label>
+                      </div>
+                   </div>
+                </div>
+                <div class="col-md-12">
+                   <div
+                      class="
+                      price_rang_block
+                      border_one
+                      bg-white
+                      category_product
+                      mt-4
+                      "
+                      >
+                      <div class="category_title">
+                         <h4 class="pl-4 font-weight-bold">
+                            <span class="pr-3"></span>
+                            Select Sizes
+                         </h4>
+                      </div>
+                      <div class="colors_block p-3">
+                         <label class="color_single"
+                         <span class=""> Small</span>
+                         <input type="checkbox" checked="checked" />
+                         <span class="checkmark"></span>
+                         </label>
+                         <label class="color_single">
+                         <span> Medium</span>
+                         <input type="checkbox" />
+                         <span class="checkmark"></span>
+                         </label>
+                         <label class="color_single">
+                         <span>Large</span>
+                         <input type="checkbox" />
+                         <span class="checkmark"></span>
+                         </label>
+                         <label class="color_single">
+                         <span> XL</span>
+                         <input type="checkbox" />
+                         <span class="checkmark"></span>
+                         </label>
+                         <label class="color_single">
+                         <span> XXL</span>
+                         <input type="checkbox" />
+                         <span class="checkmark"></span>
+                         </label>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-9">
             @include(isset(getSetting()['card_style']) ? 'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1")
-        </div>
+          </div>
+       </div>
     </div>
-</section>
-<!-- Product Listing Ends -->
+ </section>

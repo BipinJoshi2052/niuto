@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/slick-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/toastr/toastr.min.css') }}">
     @yield('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -52,16 +53,17 @@
 
     @yield('content')
 
+    <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
     @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
     'includes.footers.footer-style1')
 
-    <script type="text/javascript" src="{{ asset('frontend/assets/js/jquery-3.3.1.minn.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('frontend/assets/js/jquery-3.3.1.minn.js') }}"></script> --}}
     <script type="text/javascript" src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/slick.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/font-awesom.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-
+    <script src="{{ asset('assets/toastr.min.js') }}"></script>
     @yield('script')
     
     <!-- Mobile Nav -->
