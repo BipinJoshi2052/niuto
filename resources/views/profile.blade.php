@@ -71,28 +71,24 @@
                     <input
                       type="text"
                       class="form-control"
-                      value="" id="phone" name="phone">
+                      value="" id="phone" name="phone" id="phone">
                   </div>
                   <div class="form-group col-md-6 mb-4">
                     <label>Gender</label>
                     <select name="gender" class="form-control" id="gender">
+                        <option value="">Select Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="" id="address" name="address"
-                    >
                   </div>
-                  <div class="form-group col-md-6 mb-4">
+                  {{-- <div class="form-group col-md-6 mb-4">
                     <label>Date of Birth</label>
                     <input
                       type="text"
                       class="form-control datepicker"
                       value="" id="dob" name="dob" autocomplete="off" readonly
                     />
-                  </div>
+                  </div> --}}
                     <input type="hidden" class="form-control" id="addres_id">
                                                 <input type="hidden" class="form-control" id="method">
                   <div class="form-group col-12 mx-auto text-center">
@@ -104,6 +100,7 @@
                     getSetting()['is_deliveryboyapp_purchased'] = 0;
                 @endphp
                 </div>
+                <input type="hidden" id="method">
                 </form>
               </div>
             </div>
@@ -172,14 +169,11 @@
             },
             beforeSend: function() {},
             success: function(data) {
-                console.log(data);
                 if (data.status == 'Success') {
                     if(data.data != null && data.data != 'null' && data.data != ''){
                         $("#profileForm").find("#gender").val(data.data[0].gender);
                         $("#profileForm").find("#gender").trigger('change');
                         $("#profileForm").find("#dob").val(data.data[0].dob);
-                        $("#liPhone").html(data.data[0].phone);
-                        $("#liAddress").html(data.data[0].city + ', ' + data.data[0].country_id.country_name);
                         $("#profileForm").find("#phone").val(data.data[0].phone);
                         $("#profileForm").find("#method").val('put');
                         $("#profileForm").find("#addres_id").val(data.data[0].id);
@@ -215,10 +209,8 @@
                 clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
             },
             beforeSend: function() {
-                $('#event-loading').css('display', 'block');
             },
             success: function(data) {
-                $('#event-loading').css('display', 'none');
                 if (data.status == 'Success') {
                     toastr.success('{{ trans("profile-updated-successfully") }}');
                 }
@@ -227,7 +219,6 @@
                 }
             },
             error: function(data) {
-                $('#event-loading').css('display', 'none');
                 if(data.status == 422){
                     jQuery.each(data.responseJSON.errors, function(index, item) {
                         $("#"+index).parent().find('.invalid-feedback').css('display','block');
