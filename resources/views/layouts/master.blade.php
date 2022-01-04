@@ -931,8 +931,8 @@
             addToCartFun(product_id, product_combination_id, cartSession, qty);
         }
 
-        function addToCartFun(product_id, product_combination_id, cartSession, qty) {
-            console.log("qty= "+qty, "product_id ="+ product_id, "product_comb_id = "+product_combination_id);
+        function addToCartFun(product_id, product_combination_id, cartSession, qty, ik, len) {
+            console.log("i ="+ik, "len ="+len);
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&product_id=' + product_id +
                     '&qty=' + qty + '&product_combination_id=' + product_combination_id;
@@ -953,7 +953,6 @@
                     $('#event-loading').css('display', 'block');
                 },
                 success: function(data) {
-                    console.log(data);
                     $('#event-loading').css('display', 'none');
                     if (data.status == 'Success') {
                         if (loggedIn != '1') {
@@ -962,10 +961,20 @@
                         } else {
                             menuCart('');
                         }
-                        toastr.success('{{ trans('response.add-to-cart-success') }}')
+                        if(ik != null && len != null && ik==len - 1){
+                            toastr.success('Cart updated successfully');
+                        } else if(ik == null && len == null) {
+                            toastr.success('{{ trans('response.add-to-cart-success') }}');
+                        }
+                        
+                        
                     } else if (data.status == 'Error') {
-
-                        toastr.error('{{ trans('response.some_thing_went_wrong') }}');
+                        if(ik != null && len != null && ik==len - 1){
+                            toastr.error('{{ trans('response.some_thing_went_wrong') }}');
+                        } else if(ik == null && len == null) {
+                            toastr.error('{{ trans('response.some_thing_went_wrong') }}');
+                        }
+                        
                     }
                 },
                 error: function(data) {
@@ -977,6 +986,7 @@
 
                 },
             });
+
         }
 
         function menuCart(cartSession) {
