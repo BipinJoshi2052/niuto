@@ -282,26 +282,26 @@ $(document).ready(function () {
     },
   });
 
-  $(".decrease_").click(function () {
-    decreaseValue(this);
-  });
-  $(".increase_").click(function () {
-    increaseValue(this);
-  });
-  function increaseValue(_this) {
-    var value = parseInt($(_this).siblings("input#number").val(), 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    $(_this).siblings("input#number").val(value);
-  }
+  // $(".decrease_").click(function () {
+  //   decreaseValue(this);
+  // });
+  // $(".increase_").click(function () {
+  //   increaseValue(this);
+  // });
+  // function increaseValue(_this) {
+  //   var value = parseInt($(_this).siblings("input#number").val(), 10);
+  //   value = isNaN(value) ? 0 : value;
+  //   value++;
+  //   $(_this).siblings("input#number").val(value);
+  // }
 
-  function decreaseValue(_this) {
-    var value = parseInt($(_this).siblings("input#number").val(), 10);
-    value = isNaN(value) ? 0 : value;
-    value < 1 ? (value = 1) : "";
-    value--;
-    $(_this).siblings("input#number").val(value);
-  }
+  // function decreaseValue(_this) {
+  //   var value = parseInt($(_this).siblings("input#number").val(), 10);
+  //   value = isNaN(value) ? 0 : value;
+  //   value < 1 ? (value = 1) : "";
+  //   value--;
+  //   $(_this).siblings("input#number").val(value);
+  // }
 });
 // Product Detail color choose Js
 $(document).ready(function () {
@@ -375,15 +375,15 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $(".count").prop("disabled", true);
-  $(document).on("click", ".plus", function () {
-    $(".count").val(parseInt($(".count").val()) + 1);
-  });
-  $(document).on("click", ".minus", function () {
-    $(".count").val(parseInt($(".count").val()) - 1);
-    if ($(".count").val() == 0) {
-      $(".count").val(1);
-    }
-  });
+  // $(document).on("click", ".plus", function () {
+  //   $(".count").val(parseInt($(".count").val()) + 1);
+  // });
+  // $(document).on("click", ".minus", function () {
+  //   $(".count").val(parseInt($(".count").val()) - 1);
+  //   if ($(".count").val() == 0) {
+  //     $(".count").val(1);
+  //   }
+  // });
 });
 
 function toggleIcon(e) {
@@ -476,3 +476,18 @@ $("#range-slider").slider({
 });
 
 // Bootstrap Range Slider Js Ends
+
+
+
+function decreaseCartInput(thes){
+  var $_input_value = $(thes).val();
+  $(thes).val($_input_value - 1);
+  if($_input_value == 1){
+    $(thes).val(1);
+  }
+}
+
+function increaseCartInput(cart_input){
+  var $_input_value = $(cart_input).val();
+  $(cart_input).val(parseInt($_input_value) + 1);
+}

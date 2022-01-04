@@ -74,7 +74,7 @@ div#table_content span {
 	-ms-user-select: none;
 }
 
-div#table_content input {
+div#table_content input#input_cart_number {
 	border: 0;
 	width: 2%;
 }
@@ -85,9 +85,9 @@ input::-webkit-inner-spin-button {
 	margin: 0;
 }
 
-div#table_content input:disabled {
+/* div#table_content input:disabled {
 	background-color: white;
-}
+} */
 
 div#table_content .qty .count {
 	display: inline-block;
@@ -139,9 +139,9 @@ div#table_content .qty .plus {
 	color: var(--blue);
 }
 
-div#table_content input:disabled {
+/* div#table_content input#input_cart_number:disabled {
 	background-color: white;
-}
+} */
 
 div#table_content .qty {
 	background: white;

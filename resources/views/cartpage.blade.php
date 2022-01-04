@@ -114,7 +114,7 @@
             for (i = 0; i < len; i++) {
                 product_id = $(".cartItem-row").eq(i).attr('product_id');
                 qty = $(".cartItem-row").eq(i).find('.cartItem-qty').val();
-
+                console.log(qty);
                 product_type = $(".cartItem-row").eq(i).attr('product_type');
                 product_combination_id = '';
                 if (product_type == 'variable') {
