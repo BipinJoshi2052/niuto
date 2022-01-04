@@ -125,8 +125,7 @@
                     }
                     product_combination_id = $(".cartItem-row").eq(i).attr('product_combination_id');
                 }
-
-                addToCartFun(product_id, product_combination_id, cartSession, qty);
+                addToCartFun(product_id, product_combination_id, cartSession, qty, i, len);
             }
 
             cartItem(cartSession);
