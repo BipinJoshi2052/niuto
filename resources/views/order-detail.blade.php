@@ -8,141 +8,144 @@
 @extends('layouts.master')
 @section('content')
 
-<!-- Breadcrumbs -->
-<section id="breadcrumbs" class="py-3">
+<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ul class="m-0 p-0 d-flex align-items-center text-white">
-                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    <li class="">Order Detail</li>
-                </ul>
-            </div>
-            <div class="col-12 mt-3">
-                <h2 class="text-white">Order Detail</h2>
-            </div>
+      <div class="row">
+        <div class="col-md-12 m-auto">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item font-weight-bold">
+                <a href="{{ url('/') }}"
+                  ><span><i class="fa fa-home" aria-hidden="true"></i></span>
+                  HOME</a
+                >
+              </li>
+              <li
+                class="breadcrumb-item font-weight-bold"
+                aria-current="page"
+              >
+                <a href="javascript:void(0)" class="text-dark">Order Details</a>
+              </li>
+            </ol>
+          </nav>
         </div>
+      </div>
     </div>
-</section>
-<!-- Breadcrumbs Ends -->
+  </section>
 
-<!-- Profile -->
-<section id="profile-wrapper" class="py-3">
+  <section id="cart" class="padding section_bg">
     <div class="container">
-        <div class="row py-xl-5 py-md-3 py-0">
-            @include('includes.side-menu')
-            <div class="col-xl-9 col-lg-9 col-md-11 col-10 mt-xl-0 mt-md-0 mt-3">
-                <!-- Checkout -->
-                <section id="checkout-wrapper" class="py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div id="accordion" class="w-100">
-                                <!-- First Collapse -->
-                                <div class="card">
-                                    <div class="card-header p-0 bg-light" id="headingOne">
-                                        <h5 class="mb-0">
-                                            <div class="w-100 p-3" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Order#<span class="order-no"></span>
-                                            </div>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label class="text_gray">Order Status: <span class="order-status"></span></label><br/>
-                                                        <label class="text_gray">Order Date: <span class="order-date"></span></label><br/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="text_gray">Address: <span class="order-delivery-address"></span> </label><br/>
-                                                        <label class="text_gray">Address Detail: <span class="order-delivery-detail"></span> </label><br/>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- First Collapse Ends -->
-                                <!-- Second Collapse  -->
-                                <div class="card">
-                                    <div class="card-header p-0 bg-light" id="headingTwo">
-                                        <h5 class="mb-0">
-                                            <div class="collapsed p-3" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Order Items
-                                            </div>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <!-- Cart -->
-                                            <section id="cart-wrapper" class="py-3">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="shopping-cart">
-                                                            <div class="shopping-cart-table">
-                                                                <div class="table-responsive">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th class="cart-description item">Image</th>
-                                                                                <th class="cart-product-name item">Product Name</th>
-                                                                                <th class="cart-total last-item">Price</th>
-                                                                                <th class="cart-qty item">Quantity</th>
-                                                                                <th class="cart-romove item">Sub Total</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <!-- /thead -->
-                                                                        <tbody id="order-show-detaill">
-                                                                            {{-- <tr>
-                                                                                <td class="cart-image">
-                                                                                    <a class="entry-thumbnail" href="detail.html">
-                                                                                        <img src="frontend/assets/images/product-images/1 (1).jpg" class="img-fluid">
-                                                                                    </a>
-                                                                                </td>
-                                                                                <td class="cart-product-name-info">
-                                                                                    <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
-                                                                                    <div class="row">
-                                                                                        <div class="col-4">
-                                                                                            <div class="rating rateit-small"></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <!-- /.row -->
-                                                                                </td>
-                                                                                <td class="cart-product-quantity">
-                                                                                    <div class="quant-input">
-                                                                                        <input type="number" value="1">
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
-                                                                                </td>
-                                                                                <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a>
-                                                                                </td>
-                                                                            </tr> --}}
-                                                                        </tbody>
-                                                                        <!-- /tbody -->
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Cart Ends -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Second Collapse End -->
+      <div class="row">
+        <div class="col-lg-3 col-12 mb-xl-0 mb-lg-0 mb-3">
+          @include('includes.user-dashboard')
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12">
+            <div id="accordion" class="w-100">
+                <!-- First Collapse -->
+                <div class="card">
+                    <div class="card-header p-0 bg-light" id="headingOne">
+                        <h5 class="mb-0">
+                            <div class="w-100 p-3" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Order#<span class="order-no"></span>
                             </div>
+                        </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="text_gray">Order Status: <span class="order-status"></span></label><br/>
+                                        <label class="text_gray">Order Date: <span class="order-date"></span></label><br/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="text_gray">Address: <span class="order-delivery-address"></span> </label><br/>
+                                        <label class="text_gray">Address Detail: <span class="order-delivery-detail"></span> </label><br/>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </section>
-
+                </div>
+                <!-- First Collapse Ends -->
+                <!-- Second Collapse  -->
+                <div class="card">
+                    <div class="card-header p-0 bg-light" id="headingTwo">
+                        <h5 class="mb-0">
+                            <div class="collapsed p-3" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Order Items
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <!-- Cart -->
+                            <section id="cart-wrapper" class="py-3">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="shopping-cart">
+                                            <div class="shopping-cart-table">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="cart-description item">Image</th>
+                                                                <th class="cart-product-name item">Product Name</th>
+                                                                <th class="cart-total last-item">Price</th>
+                                                                <th class="cart-qty item">Quantity</th>
+                                                                <th class="cart-romove item">Sub Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <!-- /thead -->
+                                                        <tbody id="order-show-detaill">
+                                                            {{-- <tr>
+                                                                <td class="cart-image">
+                                                                    <a class="entry-thumbnail" href="detail.html">
+                                                                        <img src="frontend/assets/images/product-images/1 (1).jpg" class="img-fluid">
+                                                                    </a>
+                                                                </td>
+                                                                <td class="cart-product-name-info">
+                                                                    <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
+                                                                    <div class="row">
+                                                                        <div class="col-4">
+                                                                            <div class="rating rateit-small"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- /.row -->
+                                                                </td>
+                                                                <td class="cart-product-quantity">
+                                                                    <div class="quant-input">
+                                                                        <input type="number" value="1">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
+                                                                </td>
+                                                                <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a>
+                                                                </td>
+                                                            </tr> --}}
+                                                        </tbody>
+                                                        <!-- /tbody -->
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Cart Ends -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Second Collapse End -->
             </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
-<!-- Profile Ends -->
+  </section>
 
 @endsection
 @section('script')

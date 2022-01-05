@@ -8,89 +8,91 @@
 @extends('layouts.master')
 @section('content')
 
-<!-- Breadcrumbs -->
-<section id="breadcrumbs" class="py-3">
+<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ul class="m-0 p-0 d-flex align-items-center text-white">
-                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    <li class="">Order</li>
-                </ul>
-            </div>
-            <div class="col-12 mt-3">
-                <h2 class="text-white">Order</h2>
-            </div>
+      <div class="row">
+        <div class="col-md-12 m-auto">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item font-weight-bold">
+                <a href="{{ url('/') }}"
+                  ><span><i class="fa fa-home" aria-hidden="true"></i></span>
+                  HOME</a
+                >
+              </li>
+              <li
+                class="breadcrumb-item font-weight-bold"
+                aria-current="page"
+              >
+                <a href="javascript:void(0)" class="text-dark">Orders</a>
+              </li>
+            </ol>
+          </nav>
         </div>
+      </div>
     </div>
-</section>
-<!-- Breadcrumbs Ends -->
-<!-- Profile -->
-<section id="profile-wrapper" class="py-3">
+  </section>
+
+  <!--============================= CART PAGGE START  ============================ -->
+  <section id="cart" class="padding section_bg">
     <div class="container">
-        <div class="row py-xl-5 py-md-3 py-0">
-            @include('includes.side-menu')
-            <div class="col-xl-9 col-lg-9 col-md-11 col-10 mt-xl-0 mt-md-0 mt-3">
-                <section id="cart-wrapper" class="py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="shopping-cart">
-                                <div class="shopping-cart-table">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="cart-qty item">Order Id</th>
-                                                    <th class="cart-qty item">Order Date</th>
-                                                    <th class="cart-description item">Description</th>
-                                                    <th class="cart-description item">Status</th>
-                                                    <th class="cart-romove item"></th>
-                                                </tr>
-                                            </thead>
-                                            <!-- /thead -->
-                                            <tbody id="order-showw">
-                                                {{-- <tr>
-                                                    <td class="cart-image">
-                                                        <a class="entry-thumbnail" href="detail.html">
-                                                            <img src="frontend/assets/images/product-images/1 (1).jpg" class="img-fluid">
-                                                        </a>
-                                                    </td>
-                                                    <td class="cart-product-name-info">
-                                                        <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
-                                                        <div class="row">
-                                                            <div class="col-4">
-                                                                <div class="rating rateit-small"></div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- /.row -->
-                                                    </td>
-                                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
-                                                    </td>
-                                                    <td class="cart-product-quantity">
-                                                        <div class="quant-input">
-                                                            <input type="number" value="1">
-                                                        </div>
-                                                    </td>
-                                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
-                                                    </td>
-                                                    <td class="romove-item"><a href="#" title="cancel" class="icon"><i
-                                                    class="fa fa-trash-o"></i></a>
-                                                    </td>
-                                                </tr> --}}
-                                            </tbody>
-                                            <!-- /tbody -->
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+      <div class="row">
+        <div class="col-lg-3 col-12 mb-xl-0 mb-lg-0 mb-3">
+          @include('includes.user-dashboard')
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive px-md-3 pb-md-3">
+                <table class="table text-center">
+                  <thead class="table_cart mibile_one table_header_padding text-white">
+                    <tr>
+                      <th scope="col" class="th_first font-weight-normal">
+                        Date
+                      </th>
+                      <th scope="col" class="th_first font-weight-normal">
+                        Order ID
+                      </th>
+                      <th scope="col" class="font-weight-normal">Total</th>
+                      <th scope="col" class="font-weight-normal">Status</th>
+                      <th scope="col" class="font-weight-normal"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="box_sha" id="order-showw">
+                    {{-- <tr>
+                      <td class="cart_td gray_title">
+                        <div class="product_des">
+                          <h3>#123456</h3>
                         </div>
-                    </div>
-                </section>
+                      </td>
+                      <td class="cart_td gray_title">
+                        <div class="product_des">
+                          <h3>6/24/2021</h3>
+                        </div>
+                      </td>
+                      <td class="gray_title">$ 25</td>
+                      <td class="cart-product-order-date">
+                        <span class="bg-success text-white px-3 py-2"
+                          >Delivered</span
+                        >
+                      </td>
+                      <td>
+                        <a href="" class="wishlist_cart_btn view_btn"
+                          ><i class="fa fa-eye" aria-hidden="true"></i
+                        ></a>
+                      </td>
+                    </tr> --}}
+                  </tbody>
+                </table>
+                <div class="row"></div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
-<!-- Profile Ends -->
+  </section>
+  <!--============================= CART PAGGE END  ============================ -->
 
 @endsection
 @section('script')
@@ -134,21 +136,26 @@
             beforeSend: function() {},
             success: function(data) {
                 if (data.status == 'Success') {
+                    // console.log(data);
                     $("#order-show").html('');
                     for (i = 0; i < data.data.length; i++) {
                         order = data.data[i].order_date.split('T');
                         if (data.data[i].currency != null && data.data[i].currency != 'null' && data.data[i].currency != '') {
                             if (data.data[i].currency.symbol_position == 'left') {
+                                // console.log('hello');
                                 price = (data.data[i].order_price * +data.data[i].currency.exchange_rate);
                                 price = data.data[i].currency.code +' '+ price;
                             } else {
+                                // console.log('Hiiii');
                                 price = (data.data[i].order_price * +data.data[i].currency.exchange_rate);
                                 price = price +' '+ data.data[i].currency.code;
                             }
                         } else {
                             price = data.data[i].order_price;
                         }
-                        orderStatus = data.data[i].order_status === 'Pending' ? data.data[i].order_status + ' / <button type="button" class="btn btn-primary mx-1" onClick="cancelStatus(' + data.data[i].order_id + ')"> Cancel Order</button>' : data.data[i].order_status;
+
+                        orderStatus = data.data[i].order_status === 'Pending' ? data.data[i].order_status + ' / <span class="bg-danger text-white px-3 py-2" onClick="cancelStatus(' + data.data[i].order_id + ')">Cancel Order</span>' : '<span class="bg-success text-white px-3 py-2">'+ data.data[i].order_status +'</span>';
+                        // orderStatus = data.data[i].order_status === 'Pending' ? data.data[i].order_status + ' / <button type="button" class="btn btn-primary mx-1" onClick="cancelStatus(' + data.data[i].order_id + ')"> Cancel Order</button>' : data.data[i].order_status;
                         if (data.data[i].order_detail != null && data.data[i].order_detail != 'null' && data.data[i].order_detail != '') {
                             if (data.data[i].order_detail[0].product != null && data.data[i].order_detail[0].product != 'null' && data.data[i].order_detail[0].product != '') {
                                 if (data.data[i].order_detail[0].product.product_type == 'variable') {
@@ -173,27 +180,27 @@
                                 }
                             }
                         }
-                        tBodyRow = '<tr>' +
-                            '<td class="cart-product-grand-total"><span class="cart-grand-total-price">' + data.data[i].order_id + '</span></td>' +
-                            '<td class="cart-product-grand-total"><span class="cart-grand-total-price">' + order[0] + '</span></td>' +
-                            '<td class="cart-product-name-info">' +
-                                '<h4 class="cart-product-description"><a href="/orders/' + data.data[i].order_id + '">' + name + '</a></h4>' +
-                                '<div class="row justify-content-center">' +
-                                    '<div class="col-12">' +
-                                        '<div class="rating rateit-small">' + price + '</div>' +
-                                    '</div>' +
-                                    '<div class="col-12">' +
-                                        '<div class="rating rateit-small">' + data.data[i].order_notes + '</div>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</td>' +
-                            '<td class="cart-product-grand-total">' + orderStatus + '</td>' +
-                            '<td class="romove-item">' +
-                                '<a href="/orders/'+data.data[i].order_id+'" title="cancel" class="icon">' +
-                                    '<button type="button" class="btn btn-primary mx-1"> <i class="fa fa-eye"></i> View Detail</button>' +
-                                '</a>' +
-                            '</td>' +
-                        '</tr>';
+                        tBodyRow = '<tr>'+
+                                        '<td class="cart_td gray_title">'+
+                                        '  <div class="product_des">'+
+                                        '    <h3>'+ data.data[i].order_id +'</h3>'+
+                                        '  </div>'+
+                                        '</td>'+
+                                        '<td class="cart_td gray_title">'+
+                                        '  <div class="product_des">'+
+                                        '    <h3>'+ order[0] +'</h3>'+
+                                        '  </div>'+
+                                        '</td>'+
+                                        '<td class="gray_title">'+ price +'</td>'+
+                                        '<td class="cart-product-order-date">'+
+                                        ' '+ orderStatus +' '+
+                                        '</td>'+
+                                        '<td>'+
+                                        '  <a href="/orders/'+ data.data[i].order_id +'" class="wishlist_cart_btn view_btn">'+
+                                        '  <i class="fa fa-eye" aria-hidden="true"></i>'+
+                                        '  </a>'+
+                                        '</td>'+
+                                    '</tr>';
                         $("#order-showw").append(tBodyRow);
                     }
                 }

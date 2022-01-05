@@ -74,7 +74,7 @@ div#table_content span {
 	-ms-user-select: none;
 }
 
-div#table_content input {
+div#table_content input#input_cart_number {
 	border: 0;
 	width: 2%;
 }
@@ -85,9 +85,9 @@ input::-webkit-inner-spin-button {
 	margin: 0;
 }
 
-div#table_content input:disabled {
+/* div#table_content input:disabled {
 	background-color: white;
-}
+} */
 
 div#table_content .qty .count {
 	display: inline-block;
@@ -139,9 +139,9 @@ div#table_content .qty .plus {
 	color: var(--blue);
 }
 
-div#table_content input:disabled {
+/* div#table_content input#input_cart_number:disabled {
 	background-color: white;
-}
+} */
 
 div#table_content .qty {
 	background: white;
@@ -3013,4 +3013,28 @@ div#contact-page-wrapper .location-map iframe {
 
 .footer-logo img{
 	height: 100px!important;
+}
+ul#profilenavId i{
+	color: black;
+}
+
+button.theme_btn.btn_tr {
+    background-color: var(--blue);
+    padding: 0.6rem;
+    color: var(--white);
+    font-size: 1.3rem;
+    border: 1px solid var(--green_one);
+    transition: 0.4s;
+    letter-spacing: 1px;
+    border: 1px solid;
+    width: 100%;
+    display: block;
+    text-align: center;
+    border-radius: 0.2rem;
+}
+
+button.w-25.theme_btn.btn_tr:hover {
+    background-color: transparent;
+    color: var(--black_light);
+    border: 1px solid;
 }

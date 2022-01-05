@@ -114,7 +114,7 @@
             for (i = 0; i < len; i++) {
                 product_id = $(".cartItem-row").eq(i).attr('product_id');
                 qty = $(".cartItem-row").eq(i).find('.cartItem-qty').val();
-
+                console.log(qty);
                 product_type = $(".cartItem-row").eq(i).attr('product_type');
                 product_combination_id = '';
                 if (product_type == 'variable') {
@@ -125,8 +125,7 @@
                     }
                     product_combination_id = $(".cartItem-row").eq(i).attr('product_combination_id');
                 }
-
-                addToCartFun(product_id, product_combination_id, cartSession, qty);
+                addToCartFun(product_id, product_combination_id, cartSession, qty, i, len);
             }
 
             cartItem(cartSession);

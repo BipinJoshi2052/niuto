@@ -39,6 +39,7 @@
         success: function(data) {
             $('#event-loading').css('display', 'none');
             if (data.status == 'Success') {
+                $("#contactusForm")[0].reset();
                 toastr.success('{{ trans("response.contact-form-success") }}');
             }
             else{

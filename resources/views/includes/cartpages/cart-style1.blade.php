@@ -1,114 +1,105 @@
-<!-- Breadcrumbs -->
-<section id="breadcrumbs" class="py-3">
+<!--========================== BREADCRUMB START  --->
+<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ul class="m-0 p-0 d-flex align-items-center text-white">
-                    <li class="font-weight-bold">{{ trans('lables.bread-crumb-home') }}</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    <li class="">Cart</li>
-                </ul>
-            </div>
-            <div class="col-12 mt-3">
-                <h2 class="text-white">Cart</h2>
-            </div>
-        </div>
+       <div class="row">
+          <div class="col-md-12 m-auto">
+             <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                   <li class="breadcrumb-item font-weight-bold"><a href="{{ url('/') }}"><span><i class="fa fa-home" aria-hidden="true"></i></span> HOME</a></li>
+                   <li class="breadcrumb-item font-weight-bold " aria-current="page"><a href="javascript:void(0)" class="text-dark">CART</a></li>
+                </ol>
+             </nav>
+          </div>
+       </div>
     </div>
-</section>
-<!-- Breadcrumbs Ends -->
-<!-- Cart -->
-<section id="cart-wrapper" class="py-3">
+ </section>
+ <!--============================= CART PAGGE START  ============================ -->
+ <section id="cart" class="padding section_bg ">
     <div class="container">
-        <div class="row">
-            <div class="shopping-cart">
-                <div class="shopping-cart-table">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="cart-description item">Image</th>
-                                    <th class="cart-product-name item">Product Name</th>
-                                    <th class="cart-total last-item">Price</th>
-                                    <th class="cart-qty item">Quantity</th>
-                                    <th class="cart-total last-item">Total</th>
-                                    <th class="cart-romove item">Remove</th>
-                                </tr>
-                            </thead>
-                            <!-- /thead -->
-                            <tbody id="cartItem-product-show">
-                                {{-- <tr>
-                                    <td class="cart-image">
-                                        <a class="entry-thumbnail" href="detail.html">
-                                            <img src="frontend/assets/images/product-images/1 (1).jpg" class="img-fluid">
-                                        </a>
-                                    </td>
-                                    <td class="cart-product-name-info">
-                                        <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="rating rateit-small"></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.row -->
-                                    </td>
-                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
-                                    </td>
-                                    <td class="cart-product-quantity">
-                                        <div class="quant-input">
-                                            <input type="number" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
-                                    </td>
-                                    <td class="romove-item"><a href="#" title="cancel" class="icon"><i
-                                    class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr> --}}
-                            </tbody>
-                            <!-- /tbody -->
-                        </table>
-                        <div class="d-flex justify-content-around align-items-center w-100 my-3 flex-wrap">
-                            <form class="coupon-field d-flex ">
-                                <input type="text" placeholder="Apply Coupon Code" class="mr-2 coupon_code">
-                                <button type="button" class="btn btn-success" onclick="couponCartItem()" id="coupon-code">{{ trans('lables.cart-page-apply') }}</button>
-                            </form>
-                            <div class="total-amount font-weight-bold mt-xl-0 mt-md-0 mt-2">
-                                <a href="shop">
-                                    <button type="button" class="btn btn-success">
-                                        {{ trans('lables.cart-page-continue-shopping') }}</button>
-                                </a>
-                                <button type="button" class="btn btn-success" onclick="updateCartItem()">{{ 
-                                trans('lables.cart-page-update-cart') }}</button>
+       <div class="row">
+          <div class="col-md-9">
+             <div id="table_content" class="table-responsive  px-md-3 pb-md-3 ">
+                <table class="table text-center">
+                   <thead class="table_cart mibile_one table_header_padding text-white">
+                      <tr>
+                         <th scope="col" class="th_first font-weight-normal">Product Image</th>
+                         <th scope="col" class="product_content font-weight-normal">Product Name</th>
+                         <th scope="col" class="font-weight-normal">Price</th>
+                         <th scope="col" class="font-weight-normal">Quantity</th>
+                         <th scope="col" class="font-weight-normal">Total</th>
+                         <th scope="col" class="font-weight-normal">Remove</th>
+                      </tr>
+                   </thead>
+                   <tbody class="box_sha" id="cartItem-product-show">
+                      {{-- <tr>
+                         <th scope="row">
+                            <div class="cart_imgss">
+                               <img src="https://montechbd.com/shopist/demo/public/uploads/1619869340-h-250-tv2.png" alt="">
                             </div>
-                        </div>
-                    </div>
+                         </th>
+                         <td class="cart_td gray_title">
+                            <div class="product_des">
+                               <h3>Blue Diamond Almonds</h3>
+                            </div>
+                         </td>
+                         <td class="gray_title">$ 25</td>
+                         <td class="gray_title">
+                            <div class="qty">
+                               <span class="minus">-</span>
+                               <input type="number" class="count" name="qty" value="1">
+                               <span class="plus">+</span>
+                            </div>
+                         </td>
+                         <td class="gray_title">$2</td>
+                         <td class="gray_title"><a href="" class="gray_title"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                      </tr> --}}
+                   </tbody>
+                </table>
+                
+                <div class="row">
+                  <div class="d-flex justify-content-around align-items-center w-100 my-3 flex-wrap">
+                     <form class="coupon-field d-flex ">
+                         <input type="text" placeholder="Apply Coupon Code" class="mr-2 coupon_code form-control">
+                         <button type="button" class="btn btn-success" onclick="couponCartItem()" id="coupon-code">{{ trans('lables.cart-page-apply') }}</button>
+                     </form>
+                     <div class="total-amount font-weight-bold mt-xl-0 mt-md-0 mt-2">
+                         <a href="shop">
+                             <button type="button" class="btn btn-success">
+                                 {{ trans('lables.cart-page-continue-shopping') }}</button>
+                         </a>
+                         <button type="button" class="btn btn-success" onclick="updateCartItem()">{{ 
+                         trans('lables.cart-page-update-cart') }}</button>
+                     </div>
+                 </div>
                 </div>
-                <div class="d-flex flex-wrap justify-content-center align-items-center text-center">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-12 my-3 ">
-                        <div class="cart-summary sub_border_shadow p-xl-4 p-lg-4 p-md-3 p-3 text-left">
-                            <strong class="cart_text mb-3 d-block font-weight-bold">Cart Summary</strong>
-                            <div class="cart-price d-flex justify-content-between mb-2">
-                                <h6 class="">Sub Total</h6>
-                                <span class="cart_text caritem-subtotal"></span>
-                            </div>
-                            <div class="cart-price d-flex justify-content-between mb-2">
-                                <h6 class="">{{ trans('lables.cart-page-discount') }}</h6>
-                                <span class="cart_text caritem-discount-coupon"></span>
-                            </div>
-                            <hr>
-                            <div class="cart-price d-flex justify-content-between mb-2">
-                                <h6 class="">Grand Total</h6>
-                                <span class="cart_text caritem-grandtotal"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-12 my-3">
-                        <a href="{{url('/checkout')}}">
-                            <button type="button" class="btn btn-success">Proceed Checkout</button>
-                        </a>
-                    </div>
+             </div>
+          </div>
+          <div class="col-md-3 m-auto">
+             <div class="cart-summary border_one p-3">
+                <strong class="green_one_text mb-4 d-block">CART TOTALS</strong>
+                <div class="cart-price d-flex justify-content-between">
+                   <h6 class="">Sub Total</h6>
+                   <h6 class="green_one_text">$ 200</h6>
                 </div>
-            </div>
-        </div>
+                <div class="cart-price d-flex justify-content-between mt-2">
+                   <!-- <h6 class="">Shipping Cost</h6> -->
+                   <!-- <h6 class="green_one_text">$ 0</h6> -->
+                </div>
+                <div class="cart-price d-flex justify-content-between  mt-2"">
+                   <h6 class="">Discount</h6>
+                   <h6 class="green_one_text">$ 0</h6>
+                </div>
+                <hr class="m-0 p-0">
+                <div class="cart-price d-flex justify-content-between  mt-2"">
+                   <h6 class="">Grand Total</h6>
+                   <h6 class="green_one_text">$ 200</h6>
+                </div>
+             </div>
+             <div class="btn_wrapper mt-4">
+                <a href="{{ url('/checkout') }}" class="theme_btn btn_tr ">Checkout</a>
+             </div>
+          </div>
+       </div>
     </div>
-</section>
-<!-- Cart Ends -->
+ </section>
+ <!--============================= CART PAGGE END  ============================ -->
