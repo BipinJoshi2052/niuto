@@ -978,127 +978,133 @@
             </div>
         </section>
         <!--============================= FACILITIES  END ============================ -->
-    </div>
-
-    {{-- <!-- Product Listing  -->
-    <section id="product-listing-wrapper">
-        <div class="container">
-            <div class="product-lists padding">
-                <div class="row" id="product-list-section">
-                    <div class="col-12">
-                        <div class="heading d-flex justify-content-between align-items-center mb-5 flex-wrap">
-                            <div class="head">
-                                <h2 class="font-weight-bold">Shop All New Imports</h2>
-                                <p>THERE'S SOMETHING FOR EVERYONE</p>
-                            </div>
-                            <div class="navigator">
-                                <a href="/shop">See all</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Product Listing Ends -->
-    <!-- Categories -->
-    <section id="categories-wrapper" class="py-3">
-        <div class="container">
-            <div class="row py-4">
-                <div class="col-12">
-                    <div class="heading d-flex justify-content-between align-items-center mb-5 flex-wrap">
-                        <div class="head">
-                            <h2 class="font-weight-bold">Choose your Categories</h2>
-                            <p>More than 10 categories to choose from</p>
-                        </div>
-                        <div class="navigator">
-                            <a href="/shop">See all</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slick-slider-category w-100" id="category-section">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Categories Ends -->
-    <!-- Feature Product Listing Slider -->
-    <section id="feature-product-slider-wrapper" class="bg-light">
-        <div class="container">
-            <div class="product-lists padding">
+        <!--=============================FOOTER START  ============================ -->
+        <footer id="footer" class="footer-bg-color position-relative padding_top pt-5" style="--r1: 130%; --r2: 71.5%">
+            <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="heading d-flex justify-content-between align-items-center mb-5 flex-wrap">
-                            <div class="head">
-                                <h2 class="font-weight-bold">Featured Products</h2>
-                                <!-- <p>THERE'S SOMETHING FOR EVERYONE</p> -->
+                    <div class="col-lg-4 col-12">
+                        <div class="footer-logo-box text_white">
+                            <div class="header-logo">
+                                <a class="
+                                    footer-logo
+                                    navbar-brand
+                                    text-white
+                                    font-weight-bold
+                                    text-uppercase
+                                    font-weight-bolder
+                                    mb-4
+                                    p-0
+                                "
+                                    href="index.html">
+                                    <img src="img/logo.png" alt="image" />
+                                </a>
                             </div>
-                            <div class="navigator">
-                                <a href="/shop">See all</a>
-                            </div>
+                            <p class="text-white font-weight-normal">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Sequi, quia accusantium eum aperiam ea eaque ab dignissimos
+                                totam pariatur debitis corporis laborum earum illo alias
+                                cumque harum quasi, rem commodi.
+                            </p>
+                            <ul class="d-flex">
+                                <li class="logo-bg">
+                                    <a href="https://www.facebook.com" class="text-white"><i class="fa fa-facebook"
+                                            aria-hidden="true"></i></a>
+                                </li>
+                                <li class="feature_in_bg ml-3">
+                                    <a href="https://www.instagram.com" class="text-white"=""=""><i
+                                            class="fa fa-instagram" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="logo-bg ml-3">
+                                    <a href="https://www.google.com" class="text-white"=""=""><i
+                                            class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="logo-bg ml-3">
+                                    <a href="https://np.linkedin.com" class="text-white"=""=""><i
+                                            class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="slick-slider-product w-100" id="featured-product-section">
+                    <div class="col-lg-2 col-6">
+                        <div class="footer-title text_white footer_after">
+                            <h4 class="mb-2 mb-md-4 text-white">Quick Links</h4>
+                            <ul class="text-white">
+                                <li class="mb-2">
+                                    <a href="index.html" class="text-white">Home</a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="product.html" class="text-white">Products</a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="checkout.html" class="text-white">Checkout</a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="cart.html" class="text-white">Cart</a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="blog.html" class="text-white">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <div class="footer-title text_white footer_after">
+                            <h4 class="text-white mb-2 mb-md-4">Links</h4>
+                            <ul>
+                                <li class="mb-2">
+                                    <a href="" class="text-white">Links 1</a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="" class="text-white">Links 2</a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="" class="text-white">Links 3</a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="" class="text-white">Links 4</a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="" class="text-white">Links 5</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12 mt-4 mt-lg-0">
+                        <div class="footer-title text_white footer_after">
+                            <h4 class="text-white mb-2 mb-md-4">Find Us</h4>
+                            <ul>
+                                <li class="text-white mb-2">
+                                    <span class="pr-3"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i></span>Kathmandu, Nepal
+                                </li>
+                                <li class="text-white mb-2">
+                                    <a href="tel:+61283870907, +61452145677" class="text-light"><span
+                                            class="pr-3"><i class="fa fa-phone"
+                                                aria-hidden="true"></i></span>
+                                        +61283870907, +61452145677</a>
+                                </li>
+                                <li>
+                                    <a href="mailto:niuto@gmail.com" class="text-white"><span
+                                            class="pr-3"><i class="fa fa-envelope-square"
+                                                aria-hidden="true"></i></span>niuto@gmail.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12 text-center pb-3 pt-2">
+                        <p class="mb-0 text-white text-center font-weight-normal">
+                            Copyright All Right Reserved 2021.
+                            <span class="testimonial-title">Power by NEXT NEPAL </span>
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Feature Product Listing Slider Ends -->
-    <!-- Latest Product Listing  -->
-    <section id="latest-product-listing-wrapper">
-        <div class="container">
-            <div class="product-lists padding">
-                <div class="row" id="latest-product-section">
-                    <div class="col-12">
-                        <div class="heading d-flex justify-content-between align-items-center mb-5 flex-wrap">
-                            <div class="head">
-                                <h2 class="font-weight-bold">Latest Products</h2>
-                                <p>Winter New Arrivals</p>
-                            </div>
-                            <div class="navigator">
-                                <a href="/shop">See all</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Latest Product Listing Ends -->
-    <!-- Ads -->
-    <section id="ads">
-        <div class="content position-relative text-center">
-            <img src="{{ asset('frontend/assets/images/product-images/1 (3).jpg') }}" class="img-fluid">
-            <div class="discription m-auto text-white p-xl-5 p-lg-5 p-md-3 p-3">
-                <h1 class="font-weight-bold text-uppercase">This is Us</h1>
-                <p>Discover all your demands.</p>
-            </div>
-        </div>
-    </section>
-    <!-- Ads Ends -->
-    <!-- Blogs -->
-    <section id="reviews-wrapper" class="bg-light">
-        <div class="container">
-            <div class="row padding">
-                <div class="col-12">
-                    <div class="heading d-flex justify-content-between align-items-center mb-5 flex-wrap">
-                        <div class="head">
-                            <h2 class="font-weight-bold">Blogs</h2>
-                        </div>
-                        <div class="navigator">
-                            <a href="{{ url('/blog') }}">See all</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 blog-list">
-                    <div class="row justify-content-center" id="blog-section">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Blogs Ends --> --}}
+        </footer>
+        <!--=============================FOOTER END  ============================ -->
+    </div>
 
     @foreach (homePageBuilderJson() as $template)
         @if (!$template['skip'] && $template['display'])
@@ -1175,6 +1181,7 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
+                    // console.log(data);
                     if (data.status == 'Success') {
                         for (i = 0; i < data.data.length; i++) {
 
@@ -1215,8 +1222,8 @@
                                     'null') {
                                     productCardPrice = data.data[i].product_price_symbol;
                                 } else {
-                                    productCardPrice = data.data[i].product_discount_price_symbol + '<span>' +
-                                        data.data[i].product_price_symbol + '</span>';
+                                    productCardPrice = data.data[i].product_discount_price_symbol + ' <b>' +
+                                        data.data[i].product_price_symbol + '</b>';
                                 }
                             } else {
                                 if (data.data[i].product_combination != null && data.data[i]
@@ -1226,31 +1233,35 @@
                             }
                             switch (appendTo) {
                                 case 'product-list-section':
-                                    product =
-                                        '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
-                                        '<div class="product-grid-item">' +
-                                        '<div class="product-grid-image">' +
+                                    product = '<div class="item_block bg-white position-relative p-3">' +
+                                        '<div class="img_block">' +
                                         '<a href="' + href + '">' +
-                                        '<img class="pic-1 img-fluid" src="' + imgSrc + '">' +
-                                        '</a>' +
-                                        '<ul class="social">' +
-                                        '<!-- <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li> -->' +
-                                        '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>' +
-                                        '<li><a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>' +
-                                        '</ul>' +
+                                        '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
                                         '</div>' +
-                                        '<div class="product-content">' +
-                                        '<h4 class="title mt-2"><a href="' + href + '">' + title + '</a></h4>' +
-                                        '<div class="price">' +
-                                        productCardPrice +
+                                        '<div class="content_block pb-3">' +
+                                        '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                        '</small>' +
+                                        '<h4>' + title + '</h4>' +
+                                        '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
-                                        '<a class="add-to-cart" href="javascript:void(0)" onclick="buyNow(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '">Buy Now</a>' +
+                                        '<div class="wish_list_block">' +
+                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="dis_block">' +
+                                        '<h5>New</h5>' +
+                                        '</div>' +
+                                        '<div class="icon_group">' +
+                                        '<div class="cart_blocks">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="cart_block">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="cart_blockss">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
@@ -1326,6 +1337,7 @@
 
                             $("#" + appendTo).append(product);
                         }
+                        $(".slick_sliders").slick();
 
 
                         if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
