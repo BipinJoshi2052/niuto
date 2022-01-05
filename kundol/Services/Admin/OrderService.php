@@ -33,9 +33,9 @@ class OrderService
                 $totalPrice = $totalPrice + (($data->prices - $data->discounts) * $data->qty);
                 $qtyValidation = new AvailableQty;
                 $qtyValidation = $qtyValidation->availableQty($data->product_id, $data->product_combination_id, $data->qty);
-                if (!$qtyValidation) {
-                    return $this->errorResponseArray('Out of Stock!', 422, $data);
-                }
+                // if (!$qtyValidation) {
+                //     return $this->errorResponseArray('Out of Stock!', 422, $data);
+                // }
             } else {
                 $totalPrice = $totalPrice + ($data->prices - $data->discounts);
             }
