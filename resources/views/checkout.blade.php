@@ -78,6 +78,14 @@
                             <td class="text_gray">$20</td>
                          </tr> --}}
                       </tbody>
+                      <tfoot>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="text_gray" colspan="3"></td>
+                            <td class="text_gray">Total</td>
+                            <td class="text_gray caritem-grandtotal">0</td>
+                         </tr>
+                      </tfoot>
                    </table>
                 </div>
                 <!-- table end  -->
@@ -259,6 +267,7 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
+                    console.log('chekout page');
                     if (data.status == 'Success') {
                         $("#cartItem-product-show2").html('');
                         total_price = 0;
@@ -374,7 +383,7 @@
                                             '<a href="javascript:void(0)" class="fa fa-trash-o text-danger cartItem-remove" onclick="removeCartItem(this)" data-id="'+ data.data[i].product_id +'" data-combination-id="'+ data.data[i].product_combination_id +'"></a>'+
                                             '</td>'+
                                         '</tr>';
-
+                            console.log('Hey checkout');
                             $("#cartItem-product-show2").append(tbodyRow);
 
                             if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i].currency != null) {
@@ -395,6 +404,13 @@
                                 }
                             }
                         }
+                        // tfootData = '<tr>'+
+                        //                 '<th scope="row"></th>'+
+                        //                 '<td class="text_gray" colspan="3"></td>'+
+                        //                 '<td class="text_gray">Total</td>'+
+                        //                 '<td class="text_gray">$20</td>'+
+                        //             '</tr>';
+                        // $("#cartItem-product-show2").append(tfootData);
 
                         $('.total_by_weight').val(total_weight);
                         couponCart = $.trim(localStorage.getItem("couponCart"));

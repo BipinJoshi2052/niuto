@@ -242,7 +242,7 @@
                     }
 
                     if(data.data.length == 0){
-                        $("#wishlist-show").html('<p class="text-center">No data in your wishlist</p>');
+                        $("#table_content").html('<p style="font-weight:600; font-size:20px;">No data in your wishlist</p>');
                     }
                 }
             },
