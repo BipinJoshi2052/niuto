@@ -113,7 +113,6 @@
                         var priceSymbol = '';
                         var cartLink = '';
                         for (i = 0; i < data.data.length; i++) {
-                            console.log(data);
                             if (data.data[i].product_gallary != null) {
                                 if (data.data[i].product_gallary.detail != null) {
                                     imgSrc = data.data[i].product_gallary.detail[0].gallary_path;

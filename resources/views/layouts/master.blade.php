@@ -27,6 +27,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="icon" type="image/png" ref="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
+    {{-- <link rel="icon" type="image/png"
+        href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}"> --}}
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1009,7 +1013,7 @@
                     $('#event-loading').css('display', 'block');
                 },
                 success: function(data) {
-                    
+                    console.log(data.data.length);
                     $('#event-loading').css('display', 'none');
                     if (data.status == 'Success') {
                         total_price = 0;
@@ -1122,9 +1126,11 @@
                             $("#mobile-total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-total").html(totalRow);
                         } else {
+                            console.log("Im here")
                             $("#mobile-total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-template").html('<tr><td class="text-dark">No Items</td></tr>');
                             $("#top-cart-product-total").html('');
+                            $("#total-menu-cart-product-count").html(0);
                         }
                     } else {
                         toastr.error('{{ trans('response.some_thing_went_wrong') }}');
@@ -1489,7 +1495,7 @@
         }
     </script>
 
-    @yield('script')
+    
 
     <script>
         $(document).ajaxStop(function() {
