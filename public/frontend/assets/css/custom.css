@@ -3010,6 +3010,10 @@ div#contact-page-wrapper .location-map iframe {
 
 /*=================================================== COMPARE END  */
 
+
+.footer-logo img{
+	height: 100px!important;
+}
 ul#profilenavId i{
 	color: black;
 }
@@ -3032,5 +3036,20 @@ button.theme_btn.btn_tr {
 button.w-25.theme_btn.btn_tr:hover {
     background-color: transparent;
     color: var(--black_light);
+    border: 1px solid;
+}
+
+
+section#checkout .btn_groups-single button.confirmButton {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 15px 25px;
+    border: 1px solid;
+    transition: .3s;
+}
+
+section#checkout .btn_groups-single button.confirmButton:hover {
+    background-color: transparent;
+    color: var(--blue);
     border: 1px solid;
 }
