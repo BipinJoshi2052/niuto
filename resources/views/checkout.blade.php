@@ -82,6 +82,18 @@
                         <tr>
                             <th scope="row"></th>
                             <td class="text_gray" colspan="3"></td>
+                            <td class="text_gray">Subtotal</td>
+                            <td class="text_gray caritem-subtotal">0</td>
+                         </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="text_gray" colspan="3"></td>
+                            <td class="text_gray">Shipping</td>
+                            <td class="text_gray shipping-tax">0</td>
+                         </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="text_gray" colspan="3"></td>
                             <td class="text_gray">Total</td>
                             <td class="text_gray caritem-grandtotal">0</td>
                          </tr>
@@ -238,7 +250,9 @@
                     productSkus += '>' + $(this).attr('product_sku');
                 }
             });
+            console.log($('.caritem-grandtotal').html())
             var total = $('.caritem-grandtotal').html().split(' ').slice(-1)[0];
+            console.log(total);
             $('#esewaForm input[name="amt"]').val(total);
             var tax = 0;
             var servChrg = 0;
@@ -249,6 +263,7 @@
 
 
         function cartItem(cartSession) {
+            console.log('Hello chekout page')
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&language_id=' + languageId +
                     '&currency=' + localStorage.getItem("currency");
