@@ -8,176 +8,219 @@
 @extends('layouts.master')
 @section('content')
 
-<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
+<!-- Breadcrumbs -->
+<section id="breadcrumbs" class="py-3">
     <div class="container">
-       <div class="row">
-          <div class="col-md-12 m-auto">
-             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                   <li class="breadcrumb-item font-weight-bold">
-                      <a href="{{ url('/') }}"
-                         ><span><i class="fa fa-home" aria-hidden="true"></i></span>
-                      HOME</a
-                         >
-                   </li>
-                   <li
-                      class="breadcrumb-item font-weight-bold"
-                      aria-current="page"
-                      >
-                      <a href="javascript:void(0)" class="text-dark">CHECKOUT</a>
-                   </li>
-                </ol>
-             </nav>
-          </div>
-       </div>
-    </div>
- </section>
- <!--========================== CHECKOUT START  --->
- <section id="checkout" class="padding">
-    <div class="container">
-       <div class="checkout-wrapper box_shado px-4 pt-4">
-          <div class="row">
-             <div class="col-xl-12">
-                <div class="my-car-title d-flex mb-3">
-                   <div class="my-cart-number">1</div>
-                   <div class="my-cart-order">
-                      <h4>Order Summary</h4>
-                   </div>
-                </div>
-                <!-- table start  -->
-                <div id="table_content" class="table-responsive-lg">
-                   <table class="table border_new">
-                      <thead>
-                         <tr class="text-center">
-                            <th class="font-weight-bold text-dark">Product Image</th>
-                            <th class="font-weight-bold text-dark t-cart">Product</th>
-                            <th class="font-weight-bold text-dark">Price</th>
-                            <th class="font-weight-bold text-dark">Quantity</th>
-                            <th class="font-weight-bold text-dark">Total</th>
-                         </tr>
-                      </thead>
-                      <tbody class="text-center" id="cartItem-product-show2">
-                         {{-- <tr class="text-center">
-                            <td class="border_trhee">
-                               <div class="img-block">
-                                  <img src="https://montechbd.com/shopist/demo/public/uploads/1619866402-h-250-7-front-f.jpg" alt="">
-                               </div>
-                            </td>
-                            <td>
-                               <div class="d-flex flex-column w-100">
-                                  <div class="head w-100">Blue Diamond Almonds</div>
-                               </div>
-                            </td>
-                            <td class="text_gray">$20</td>
-                            <td class="text_gray">
-                               <div class="qty">
-                                  <input type="number" class="" name="qty" value="1">
-                               </div>
-                            </td>
-                            <td class="text_gray">$0</td>
-                            <td class="text_gray">$20</td>
-                         </tr> --}}
-                      </tbody>
-                   </table>
-                </div>
-                <!-- table end  -->
-             </div>
-             <div class="col-xl-12">
-                <div class="my-car-title d-flex mb-3 mt-4">
-                   <div class="my-cart-number">2</div>
-                   <div class="my-cart-order">
-                      <h4>Shipping Information</h4>
-                   </div>
-                </div>
-                <form>
-                   <div class="row">
-                      <div class="col-md-6">
-                         <label for="" class="text_gray mt-3">First Name</label>
-                         <input type="text" class="form-control w-100" id="delivery_first_name">
-                      </div>
-                      <div class="col-md-6">
-                         <label for="" class="text_gray mt-3">Last Name</label>
-                         <input type="text" class="form-control w-100" id="delivery_last_name">
-                      </div>
-                      <div class="col-md-6">
-                         <label for="" class="text_gray mt-3">Address</label>
-                         <input type="text" class="form-control w-100" id="delivery_street_aadress">
-                      </div>
-                      <div class="col-md-6">
-                         <label for="" class="text_gray mt-3">City</label>
-                         <input type="text" class="form-control w-100" id="delivery_city">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="" class="text_gray mt-3">Country</label>
-                        <select class="form-control w-100" id="delivery_country" onchange="states1()"></select>
-                      </div>
-                      <div class="col-md-6">
-                         <label for="" class="text_gray mt-3">State</label>
-                         <select class="form-control" id="delivery_state"></select>
-                      </div>
-                      <div class="col-md-6">
-                         <label for="" class="text_gray mt-3">Postal Code</label>
-                         <input type="text" class="form-control w-100" placeholder="5468" id="delivery_postcode">
-                      </div>
-                      <div class="col-md-6">
-                         <label for="" class="text_gray mt-3">Phone Number</label>
-                         <input type="text" class="form-control w-100" placeholder="" id="delivery_phone">
-                      </div>
-                   </div>
-                </form>
-             </div>
-             <div class="col-md-12">
-                <div class="my-car-title d-flex mt-5">
-                   <div class="my-cart-number">3</div>
-                   <div class="my-cart-order">
-                      <h4>Payment Information</h4>
-                   </div>
-                </div>
-                <div class="my-cart-payment">
-                   <ul class="mb-0 py-4">
-                    @foreach($payment_method_default as $payment_methods)
-                      <li>
-                         <span class="d-flex justify-content-start justify-content-lg-center align-items-center">
-                            <input type="radio" id="inlineCheckbox{{ $payment_methods->id }}" name="customRadio" class="payment_method otherPayment" {{ old('customRadio', ($loop->first ? 'checked' : '')) }} value="{{ $payment_methods->payment_method }}">
-                            <h5 class="font-weigth-normal mb-0 otherPayment">{{ ucwords(str_replace('_', ' ', $payment_methods->payment_method)) }}</h5>
-                         </span>
-                      </li>
-                    @endforeach
-                   </ul>
-                </div>
-             </div>
-             <div class="col-md-12">
-                <div class="my-car-title d-flex mb-3">
-                   <div class="my-cart-number">4</div>
-                   <div class="my-cart-order">
-                      <h4>Confirm Order</h4>
-                   </div>
-                </div>
-                <div class="btn_groups-single large-btn my-5 rounded-0">
-                   <button type="button" class="btn-purpal createOrder confirmButton">Confirm</button>
-                </div>
-             </div>
-             <div class="row" hidden>
-                <form action="https://uat.esewa.com.np/epay/main" method="POST" id="esewaForm" class="my-3 mx-auto">
-                    <input value="10" name="tAmt" type="hidden">
-                    <input value="10" name="amt" type="hidden">
-                    <input value="0" name="txAmt" type="hidden">
-                    <input value="0" name="psc" type="hidden">
-                    <input value="0" name="pdc" type="hidden">
-                    <input value="EPAYTEST" name="scd" type="hidden">
-                    <input value="" name="pid" type="hidden">
-                    <input value="{{ route('esewa-verify') }}?q=su" type="hidden" name="su">
-                    <input value="{{ route('esewa-verify') }}?q=fu" type="hidden" name="fu">
-                    <button type="submit" class="btn btn-success esewaButton" id="esewaButton">Confirm Payment</button>
-                </form>
+        <div class="row">
+            <div class="col-12">
+                <ul class="m-0 p-0 d-flex align-items-center text-white">
+                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                    <li class="">Checkout</li>
+                </ul>
             </div>
-          </div>
-       </div>
+            <div class="col-12 mt-3">
+                <h2 class="text-white">Checkout</h2>
+            </div>
+        </div>
     </div>
- </section>
- <!--========================== CHECKOUT END  --->
+</section>
+<!-- Breadcrumbs Ends -->
+<!-- Checkout -->
+<section id="checkout-wrapper" class="py-3">
+    <div class="container">
+        <div class="row">
+            <div id="accordion" class="w-100">
+                <!-- First Collapse -->
+                <div class="card">
+                    <div class="card-header p-0 bg-light" id="headingOne">
+                        <h5 class="mb-0">
+                            <div class="w-100 p-3" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Order Summary
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <!-- Cart -->
+                            <section id="cart-wrapper" class="py-3">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="shopping-cart">
+                                            <div class="shopping-cart-table">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="cart-description item">Image</th>
+                                                                <th class="cart-product-name item">Product Name</th>
+                                                                <th class="cart-total last-item">Price</th>
+                                                                <th class="cart-qty item">Quantity</th>
+                                                                <th class="cart-total last-item">Total</th>
+                                                                <th class="cart-romove item">Remove</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <!-- /thead -->
+                                                        <tbody id="cartItem-product-show2">
+                                                            {{-- <tr>
+                                                                <td class="cart-image">
+                                                                    <a class="entry-thumbnail" href="detail.html">
+                                                                        <img src="frontend/assets/images/product-images/1 (3).jpg" class="img-fluid">
+                                                                    </a>
+                                                                </td>
+                                                                <td class="cart-product-name-info">
+                                                                    <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
+                                                                    <div class="row">
+                                                                        <div class="col-4">
+                                                                            <div class="rating rateit-small"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="cart-product-quantity">
+                                                                    <div class="quant-input">
+                                                                        <input type="number" value="1">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
+                                                                </td>
+                                                                <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a>
+                                                                </td>
+                                                            </tr> --}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Cart Ends -->
+                        </div>
+                    </div>
+                </div>
+                <!-- First Collapse Ends -->
+                <!-- Second Collapse  -->
+                <div class="card">
+                    <div class="card-header p-0 bg-light" id="headingTwo">
+                        <h5 class="mb-0">
+                            <div class="collapsed p-3" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Shipping Information
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="" class="text_gray">First Name</label>
+                                        <input type="text" class="form-control w-100" placeholder="First name" id="delivery_first_name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="text_gray">Last Name</label>
+                                        <input type="text" class="form-control w-100" placeholder="Last name" id="delivery_first_name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="text_gray mt-3">Address</label>
+                                        <input type="text" class="form-control w-100" placeholder="Nepal" id="delivery_street_aadress">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="text_gray mt-3">City</label>
+                                        <input type="text" class="form-control w-100" placeholder="Nepal" id="delivery_city">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="text_gray mt-3">Country</label>
+                                        <select class="form-control w-100" id="delivery_country" onchange="states1()"></select>
+                                        {{-- <input type="text" class="form-control w-100" placeholder="Nepal"> --}}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="text_gray mt-3">State</label>
+                                        <select class="form-control" id="delivery_state"></select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="text_gray mt-3">Postal Code</label>
+                                        <input type="text" class="form-control w-100" placeholder="" id="delivery_postcode">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="text_gray mt-3">Number</label>
+                                        <input type="text" class="form-control w-100" placeholder="" id="delivery_phone">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Second Collapse End -->
+                <!-- Third Collapse  -->
+                <div class="card">
+                    <div class="card-header p-0 bg-light" id="headingThree">
+                        <h5 class="mb-0">
+                            <div class="collapsed p-3" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Payment Option
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row">
+                                @foreach ($payment_method_default as $payment_methods)
+                                    <div class="col-3">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="inlineCheckbox{{ $payment_methods->id }}" name="customRadio" class="custom-control-input payment_method otherPayment" {{ $loop->first ? 'checked' : '' }} value="{{ $payment_methods->payment_method }}">
+                                            <label class="custom-control-label otherPayment" for="inlineCheckbox{{ $payment_methods->id }}">{{ ucwords(str_replace('_', ' ', $payment_methods->payment_method)) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="radio" name="customRadio" class="custom-control-input payment_method esewaRadio" id="esewaRadio" value="esewa">
+                                        <label class="custom-control-label esewaRadio" for="esewaRadio">Esewa</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Third Collapse End -->
+            </div>
 
-{{-- <input type="hidden" class="total_by_weight" /> --}}
+            <div class="d-flex justify-content-around w-100 my-1">
+                <div class="total-amount font-weight-bold">
+                    {{ trans('lables.checkout-subtotal') }} : <span class="caritem-subtotal">0</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around w-100 my-1">
+                <div class="total-amount font-weight-bold">
+                    {{ trans('lables.checkout-discount') }} : <span class="caritem-discount-coupon">0</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around w-100 my-1">
+                <div class="total-amount font-weight-bold">
+                    {{ trans('lables.checkout-shipping') }} : <span class="shipping-tax">0</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around w-100 my-1">
+                <div class="total-amount font-weight-bold">
+                    {{ trans('lables.checkout-total') }} : <span class="caritem-grandtotal">0</span>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success my-3 mx-auto createOrder confirmButton">Confirm Payment</button>
+        </div>
+        <div class="row" hidden>
+            <form action="https://uat.esewa.com.np/epay/main" method="POST" id="esewaForm" class="my-3 mx-auto">
+                <input value="10" name="tAmt" type="hidden">
+                <input value="10" name="amt" type="hidden">
+                <input value="0" name="txAmt" type="hidden">
+                <input value="0" name="psc" type="hidden">
+                <input value="0" name="pdc" type="hidden">
+                <input value="EPAYTEST" name="scd" type="hidden">
+                <input value="" name="pid" type="hidden">
+                <input value="{{ route('esewa-verify') }}?q=su" type="hidden" name="su">
+                <input value="{{ route('esewa-verify') }}?q=fu" type="hidden" name="fu">
+                <button type="submit" class="btn btn-success esewaButton" id="esewaButton">Confirm Payment</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<input type="hidden" class="total_by_weight" />
 
 @endsection
 @section('script')
@@ -326,54 +369,31 @@
                             if ($.trim(data.data[i].category_detail[0].category_detail) != '' && $.trim(data.data[i].category_detail[0].category_detail) != 'null' && $.trim(data.data[i].category_detail[0].category_detail) != null) {
                                 categoryName = data.data[i].category_detail[0].category_detail.detail[0].name;
                             }
-                            // tbodyRow = '<tr class="cartItem-row" product_combination_id="' + data.data[i].product_combination_id + '" product_id="' + data.data[i].product_id + '" product_type="' + data.data[i].product_type + '" product_sku="' + data.data[i].product_slug + '">' +
-                            //     '<td class="cart-image">' +
-                            //         '<img src="' + imgSrc + '" class="img-fluid cartItem-image">' +
-                            //     '</td>' +
-                            //     '<td class="cart-product-name-info">' +
-                            //         '<h4 class="cart-product-description cartItem-name">' + itemName + '</h4>' +
-                            //         '<div class="row">' +
-                            //             '<div class="col-4">' +
-                            //                 '<div class="rating rateit-small"></div>' +
-                            //             '</div>' +
-                            //         '</div>' +
-                            //     '</td>' +
-                            //     '<td class="cart-product-grand-total"><span class="cart-grand-total-price">' + cartItemPrice + '</span>' +
-                            //     '</td>' +
-                            //     '<td class="cart-product-quantity">' +
-                            //         '<div class="quant-input">' +
-                            //             '<input type="text" value="' + itemQty + '" class="cartItem-qty" id="' + itemQtyId + '" readonly>' +
-                            //         '</div>' +
-                            //     '</td>' +
-                            //     '<td class="cart-product-grand-total"><span class="cart-grand-total-price">' + cartItemTotal + '</span>' +
-                            //     '</td>' +
-                            //     '<td class="romove-item">' +
-                            //         '<a href="javascript:void(0)" title="cancel" class="icon cartItem-remove" onclick="removeCartItem(this)" data-id="' + data.data[i].product_id + '" data-combination-id="' + data.data[i].product_combination_id + '"><i class="fa fa-trash-o"></i></a>' +
-                            //     '</td>' +
-                            // '</tr>';
-
-                            tbodyRow = '<tr class="text-center cartItem-row" product_combination_id="'+ data.data[i].product_combination_id +'" product_id="'+ data.data[i].product_id +'" product_type="'+ data.data[i].product_type +'" product_sku="'+ data.data[i].product_slug +'">'+
-                                            '<td class="border_trhee">'+
-                                            '   <div class="img-block">'+
-                                            '      <img src="'+ imgSrc +'" alt="">'+
-                                            '   </div>'+
-                                            '</td>'+
-                                            '<td>'+
-                                            '   <div class="d-flex flex-column w-100">'+
-                                            '      <div class="head w-100">'+ itemName +'</div>'+
-                                            '   </div>'+
-                                            '</td>'+
-                                            '<td class="text_gray">'+ cartItemPrice +'</td>'+
-                                            '<td class="text_gray">'+
-                                            '   <div class="">'+
-                                            '     '+ itemQty +' '+
-                                            '   </div>'+
-                                            '</td>'+
-                                            '<td class="text_gray">'+ cartItemTotal +'</td>'+
-                                            '<td class="remove-item">'+
-                                            '<a href="javascript:void(0)" class="fa fa-trash-o text-danger cartItem-remove" onclick="removeCartItem(this)" data-id="'+ data.data[i].product_id +'" data-combination-id="'+ data.data[i].product_combination_id +'"></a>'+
-                                            '</td>'+
-                                        '</tr>';
+                            tbodyRow = '<tr class="cartItem-row" product_combination_id="' + data.data[i].product_combination_id + '" product_id="' + data.data[i].product_id + '" product_type="' + data.data[i].product_type + '" product_sku="' + data.data[i].product_slug + '">' +
+                                '<td class="cart-image">' +
+                                    '<img src="' + imgSrc + '" class="img-fluid cartItem-image">' +
+                                '</td>' +
+                                '<td class="cart-product-name-info">' +
+                                    '<h4 class="cart-product-description cartItem-name">' + itemName + '</h4>' +
+                                    '<div class="row">' +
+                                        '<div class="col-4">' +
+                                            '<div class="rating rateit-small"></div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</td>' +
+                                '<td class="cart-product-grand-total"><span class="cart-grand-total-price">' + cartItemPrice + '</span>' +
+                                '</td>' +
+                                '<td class="cart-product-quantity">' +
+                                    '<div class="quant-input">' +
+                                        '<input type="text" value="' + itemQty + '" class="cartItem-qty" id="' + itemQtyId + '" readonly>' +
+                                    '</div>' +
+                                '</td>' +
+                                '<td class="cart-product-grand-total"><span class="cart-grand-total-price">' + cartItemTotal + '</span>' +
+                                '</td>' +
+                                '<td class="romove-item">' +
+                                    '<a href="javascript:void(0)" title="cancel" class="icon cartItem-remove" onclick="removeCartItem(this)" data-id="' + data.data[i].product_id + '" data-combination-id="' + data.data[i].product_combination_id + '"><i class="fa fa-trash-o"></i></a>' +
+                                '</td>' +
+                            '</tr>';
 
                             $("#cartItem-product-show2").append(tbodyRow);
 

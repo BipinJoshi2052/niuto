@@ -8,88 +8,96 @@
 @extends('layouts.master')
 @section('content')
 
-<!-- Breadcrumbs -->
-<section id="breadcrumbs" class="py-3">
+<!--========================== HEADER END  --->
+<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ul class="m-0 p-0 d-flex align-items-center text-white">
-                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    <li class="">WishList</li>
-                </ul>
-            </div>
-            <div class="col-12 mt-3">
-                <h2 class="text-white">WishList</h2>
-            </div>
+      <div class="row">
+        <div class="col-md-12 m-auto">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item font-weight-bold">
+                <a href="{{ url('/') }}"
+                  ><span><i class="fa fa-home" aria-hidden="true"></i></span>
+                  HOME</a
+                >
+              </li>
+              <li
+                class="breadcrumb-item font-weight-bold"
+                aria-current="page"
+              >
+                <a href="javascript:void(0)" class="text-dark">Wishlist</a>
+              </li>
+            </ol>
+          </nav>
         </div>
+      </div>
     </div>
-</section>
-<!-- Breadcrumbs Ends -->
-<!-- Profile -->
-<section id="profile-wrapper" class="py-3">
+  </section>
+  <!--============================= WISHLIST PAGGE START  ============================ -->
+  <section id="cart" class="padding section_bg wishlist_page">
     <div class="container">
-        <div class="row py-xl-5 py-md-3 py-0">
-            @include('includes.side-menu')
-            <div class="col-xl-9 col-lg-9 col-md-11 col-10 mt-xl-0 mt-md-0 mt-3">
-                <section id="cart-wrapper" class="py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="shopping-cart">
-                                <div class="shopping-cart-table">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="cart-description item">Image</th>
-                                                    <th class="cart-product-name item">Product Name</th>
-                                                    <th class="cart-qty item">Quantity</th>
-                                                    <th class="cart-romove item"></th>
-                                                </tr>
-                                            </thead>
-                                            <!-- /thead -->
-                                            <tbody id="wishlist-show">
-                                                {{-- <tr>
-                                                    <td class="cart-image">
-                                                        <a class="entry-thumbnail" href="detail.html">
-                                                            <img src="frontend/assets/images/product-images/1 (1).jpg" class="img-fluid">
-                                                        </a>
-                                                    </td>
-                                                    <td class="cart-product-name-info">
-                                                        <h4 class="cart-product-description"><a href="detail.html">Yoga Mat</a></h4>
-                                                        <div class="row">
-                                                            <div class="col-4">
-                                                                <div class="rating rateit-small"></div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- /.row -->
-                                                    </td>
-                                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
-                                                    </td>
-                                                    <td class="cart-product-quantity">
-                                                        <div class="quant-input">
-                                                            <input type="number" value="1">
-                                                        </div>
-                                                    </td>
-                                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span>
-                                                    </td>
-                                                    <td class="romove-item"><a href="#" title="cancel" class="icon"><i
-                                                    class="fa fa-trash-o"></i></a>
-                                                    </td>
-                                                </tr> --}}
-                                            </tbody>
-                                            <!-- /tbody -->
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      <div class="row">
+        <div class="col-lg-3 col-12 mb-xl-0 mb-lg-0 mb-3">
+          @include('includes.user-dashboard')
+        </div>
+        <div class="col-md-9">
+          <div id="table_content" class="table-responsive p-md-3 p-2">
+            <table class="table text-center">
+              <thead class="table_cart mibile_one table_header_padding text-white">
+                <tr>
+                  <th scope="col" class="th_first font-weight-normal">
+                    Product Image
+                  </th>
+                  <th scope="col" class="product_content font-weight-normal">
+                    Product
+                  </th>
+                  <th scope="col" class="font-weight-normal">Quantity</th>
+                  <th scope="col" class="font-weight-normal">Total</th>
+
+                  <th scope="col" class="font-weight-normal"></th>
+                  <th scope="col" class="font-weight-normal"></th>
+                </tr>
+              </thead>
+              <tbody class="box_sha" id="wishlist-show">
+                {{-- <tr>
+                  <th scope="row">
+                    <div class="cart_img">
+                      <img src="https://montechbd.com/shopist/demo/public/uploads/1619869340-h-250-tv2.png" alt="">
                     </div>
-                </section>
-            </div>
+                  </th>
+                  <td class="cart_td gray_title">
+                    <div class="product_des">
+                      <h3>Blue Diamond Almonds</h3>
+                    </div>
+                  </td>
+                  <td class="gray_title">
+                    <div class="qty">
+                      <span class="minus">-</span>
+                      <input type="number" class="count" name="qty" value="1">
+                      <span class="plus">+</span>
+                    </div>
+                  </td>
+                  <td class="gray_title">$ 25</td>
+
+                  <td class="gray_title">
+                    <a href="" class="wishlist_cart_btn cart_button">
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                  <td class="gray_title">
+                    <a href="" class="wishlist_cart_btn remove_btn">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                </tr> --}}
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
-</section>
-<!-- Profile Ends -->
+  </section>
+  <!--============================= WISHLIST PAGGE END  ============================ -->
  
 @endsection
 @section('script')
@@ -135,7 +143,6 @@
             },
             beforeSend: function() {},
             success: function(data) {
-                // // console.log(data);
                 if (data.status == 'Success') {
                     $("#wishlist-show").html('');
                     for (i = 0; i < data.data.length; i++) {
@@ -163,42 +170,79 @@
                             desc = data.data[i].products.detail[0].desc;
                         }
 
+                        wishlistProductPrice = data.data[i].products.product_price_symbol;
                         if (data.data[i].product_type == 'simple') {
+                            console.log('simple');
                             if (data.data[i].product_discount_price == '' || data.data[i].product_discount_price == null || data.data[i].product_discount_price == 'null') {
                                 wishlistProductPrice = data.data[i].product_price_symbol;
                             } else {
                                 wishlistProductPrice = data.data[i].product_discount_price_symbol + '<span>' +data.data[i].product_price_symbol + '</span>';
                             }
                         } else {
+                            
                             if (data.data[i].product_combination != null && data.data[i].product_combination != 'null' && data.data[i].product_combination != '') {
                                 wishlistProductPrice = data.data[i].product_combination[0].product_price_symbol;
                             }
                         }
-                        tbodyRow = '<tr data-row="wishlistRows">' +
-                            '<td class="cart-image">' +
-                                '<a class="entry-thumbnail" href="' + href + '">' +
-                                    '<img src="' + imgSrc + '" class="img-fluid">' +
-                                '</a>' +
-                            '</td>' +
-                            '<td class="cart-product-name-info">' +
-                                '<h4 class="cart-product-description"><a href="' + href + '">' + title + '</a></h4>' +
-                                '<div class="row">' +
-                                    '<div class="col-4">' +
-                                        '<div class="rating rateit-small"></div>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</td>' +
-                            '<td class="cart-product-quantity">' +
-                                '<div class="quant-input">' +
-                                    '<input type="number" value="1" class="wishlistProductQty">' +
-                                '</div>' +
-                            '</td>' +
-                            '<td class="romove-item">' +
-                                '<button type="button" class="btn btn-primary mx-1" onclick="addToCart(this)" data-id="' + data.data[i].products.product_id + '" data-type="' + data.data[i].products.product_type + '"><i class="fa fa-shopping-bag"> </i> Add To Cart</button>' +
-                                '<button type="button" class="btn btn-primary mx-1" onclick="removeWishlist(this)" data-id="' + data.data[i].wishlist + '"><i class="fa fa-trash-o"></i> Remove</button>' +
-                            '</td>' +
-                        '</tr>';
+                        // tbodyRow = '<tr data-row="wishlistRows">' +
+                        //     '<td class="cart-image">' +
+                        //         '<a class="entry-thumbnail" href="' + href + '">' +
+                        //             '<img src="' + imgSrc + '" class="img-fluid">' +
+                        //         '</a>' +
+                        //     '</td>' +
+                        //     '<td class="cart-product-name-info">' +
+                        //         '<h4 class="cart-product-description"><a href="' + href + '">' + title + '</a></h4>' +
+                        //         '<div class="row">' +
+                        //             '<div class="col-4">' +
+                        //                 '<div class="rating rateit-small"></div>' +
+                        //             '</div>' +
+                        //         '</div>' +
+                        //     '</td>' +
+                        //     '<td class="cart-product-quantity">' +
+                        //         '<div class="quant-input">' +
+                        //             '<input type="number" value="1" class="wishlistProductQty">' +
+                        //         '</div>' +
+                        //     '</td>' +
+                        //     '<td class="romove-item">' +
+                        //         '<button type="button" class="btn btn-primary mx-1" onclick="addToCart(this)" data-id="' + data.data[i].products.product_id + '" data-type="' + data.data[i].products.product_type + '"><i class="fa fa-shopping-bag"> </i> Add To Cart</button>' +
+                        //         '<button type="button" class="btn btn-primary mx-1" onclick="removeWishlist(this)" data-id="' + data.data[i].wishlist + '"><i class="fa fa-trash-o"></i> Remove</button>' +
+                        //     '</td>' +
+                        // '</tr>';
+                        tbodyRow = '<tr data-row="wishlistRows">'+
+                                    '<th scope="row">'+
+                                    '  <div class="cart_img">'+
+                                    '    <img src="'+ imgSrc +'" alt="">'+
+                                    '  </div>'+
+                                    '</th>'+
+                                    '<td class="cart_td gray_title cart-product-name-info">'+
+                                    '  <div class="product_des">'+
+                                    '    <h3>'+ title +'</h3>'+
+                                    '  </div>'+
+                                    '</td>'+
+                                    '<td class="gray_title cart-product-quantity">'+
+                                    '  <div class="qty">'+
+                                    '    <span class="minus" onclick="decreaseCartInput($(this).next())">-</span>'+
+                                    '    <input type="number" class="count wishlistProductQty" name="qty" value="1">'+
+                                    '    <span class="plus" onclick="increaseCartInput($(this).prev())">+</span>'+
+                                    '  </div>'+
+                                    '</td>'+
+                                    '<td class="gray_title">'+ wishlistProductPrice +'</td>'+
+                                    '<td class="gray_title">'+
+                                    '  <a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].products.product_id + '" data-type="' + data.data[i].products.product_type + '" class="wishlist_cart_btn cart_button">'+
+                                    '      <i class="fa fa-cart-plus" aria-hidden="true"></i>'+
+                                    '  </a>'+
+                                    '</td>'+
+                                    '<td class="gray_title">'+
+                                    '  <a href="javascript:void(0)" class="wishlist_cart_btn remove_btn" onclick="removeWishlist(this)" data-id="' + data.data[i].wishlist + '">'+
+                                    '      <i class="fa fa-trash-o" aria-hidden="true"></i>'+
+                                    '  </a>'+
+                                    '</td>'+
+                                '</tr>';
                         $("#wishlist-show").append(tbodyRow);
+                    }
+
+                    if(data.data.length == 0){
+                        $("#wishlist-show").html('<p class="text-center">No data in your wishlist</p>');
                     }
                 }
             },
