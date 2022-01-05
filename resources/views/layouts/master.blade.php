@@ -25,10 +25,12 @@
 
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" ref="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
-    <link rel="icon" type="image/png"
-        href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
+    {{-- <link rel="icon" type="image/png"
+        href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}"> --}}
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

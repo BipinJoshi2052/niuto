@@ -3010,6 +3010,10 @@ div#contact-page-wrapper .location-map iframe {
 
 /*=================================================== COMPARE END  */
 
+
+.footer-logo img{
+	height: 100px!important;
+}
 ul#profilenavId i{
 	color: black;
 }
