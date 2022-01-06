@@ -4,6 +4,7 @@ namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Admin\UnitDetail as UnitDetailResource;
+use App\Models\Admin\UnitDetail;
 
 class Unit extends JsonResource
 {
