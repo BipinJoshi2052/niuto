@@ -1,10 +1,10 @@
 <?php
-$categories = App\Models\Admin\Category::inRandomOrder()
+$categories = App\Models\Admin\Category::where('parent_id', null)
     ->with('detail')
+    ->with('subcategory')
     ->take(9)
     ->get();
 ?>
-{{-- {{ dd($categories) }} --}}
 <section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
     <div class="container">
        <div class="row">
@@ -12,7 +12,7 @@ $categories = App\Models\Admin\Category::inRandomOrder()
              <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                    <li class="breadcrumb-item font-weight-bold">
-                      <a href="index.html"
+                      <a href="{{ url('/') }}"
                          ><span><i class="fa fa-home" aria-hidden="true"></i></span>
                       HOME</a
                          >
@@ -21,7 +21,7 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                       class="breadcrumb-item font-weight-bold"
                       aria-current="page"
                       >
-                      <a href="product.html" class="text-dark">PRODUCTS</a>
+                      <a href="javascript:void(0)" class="text-dark">PRODUCTS</a>
                    </li>
                 </ol>
              </nav>
@@ -54,64 +54,28 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                          </h4>
                       </div>
                       @foreach($categories as $k => $category)
-                      <li class="px-3 product_icon position-relative d-block">
-                        <a href="/shop?category={{ $category->id }}" class="sub_icon">
-                            <span class="pr-2">
-                                 <i class="fa fa-hand-o-right text-dark" aria-hidden="true"></i>
-                            </span>
-                            {{ $category->detail[0]->category_name }}
-                        </a>
-                         {{-- <ul class="sub_menu_list">
-                            <li>
-                               <a href="#">
-                               <span
-                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
-                                  ></span>
-                               Men's Third</a
-                                  >
-                            </li>
-                            <li>
-                               <a href="#">
-                               <span
-                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
-                                  ></span>
-                               Electronic Accessories
-                               </a>
-                            </li>
-                            <li>
-                               <a href="#">
-                               <span
-                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
-                                  ></span>
-                               Men's Fashion Third</a
-                                  >
-                            </li>
-                            <li>
-                               <a href="#">
-                               <span
-                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
-                                  ></span>
-                               Men's Third</a
-                                  >
-                            </li>
-                            <li>
-                               <a href="#">
-                               <span
-                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
-                                  ></span>
-                               Electronic Accessories
-                               </a>
-                            </li>
-                            <li>
-                               <a href="#">
-                               <span
-                                  ><i class="fa fa-angle-right" aria-hidden="true"></i
-                                  ></span>
-                               Men's Fashion Third</a
-                                  >
-                            </li>
-                         </ul> --}}
-                      </li>
+                        <li class="px-3 product_icon position-relative d-block">
+                          <a href="/shop?category={{ $category->id }}" class="sub_icon">
+                              <span class="pr-2">
+                                   <i class="fa fa-hand-o-right text-dark" aria-hidden="true"></i>
+                              </span>
+                              {{ $category->detail[0]->category_name }}
+                          </a>
+                          @if(!$category->subcategory->isEmpty())
+                              <ul class="sub_menu_list">
+                                 @foreach($category->subcategory as $sub => $subcat)
+                                    <li>
+                                       <a href="/shop?category={{ $subcat->id }}">
+                                       <span>
+                                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                       </span>
+                                          {{ $subcat->detail[0]->category_name }}
+                                       </a>
+                                    </li>
+                                 @endforeach
+                              </ul>
+                          @endif
+                        </li>
                       @endforeach
                    </ul>
                 </div>

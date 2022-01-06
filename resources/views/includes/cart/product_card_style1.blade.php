@@ -1,15 +1,3 @@
-{{-- <div class="col-xl-9 col-lg-9 col-12">
-    <div class="row" id="shop_page_product_card">
-    </div>
-    <div class="container">
-        <div class="pagination justify-content-between ">
-
-        </div>
-    </div>
-</div> --}}
-
-
-
 <div class="row" id="shop_page_product_card">
     {{-- <div class="col-md-4 col-12">
        <div class="item_block bg-white position-relative p-3 mb-3">
@@ -50,14 +38,15 @@
           </div>
        </div>
     </div> --}}
-    {{-- <div class="col-md-12 text-center">
-       <div class="pagination pt-5">
-          <a href="#">&laquo;</a>
-          <a href="#">1</a>
-          <a href="#" class="active">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">&raquo;</a>
-       </div>
-    </div> --}}
+    
  </div>
+ <div class="col-md-12 text-center">
+   <div class="pagination pt-5">
+      {{-- <a href="#">&laquo;</a>
+      <a href="#">1</a>
+      <a href="#" class="active">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">&raquo;</a> --}}
+   </div>
+</div>

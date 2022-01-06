@@ -87,26 +87,47 @@
                     $('#loading').css('display', 'block');
                 },
                 success: function(data) {
+                    console.log(data.meta);
                     if (data.status == 'Success') {
-                        if (data.meta.last_page < page) {
-                            $('.load-more-products').attr('disabled', true);
-                            $('.load-more-products').html('No More Items');
-                            return
+                        var links = '';
+                        var page_meta_label = '';
+                        for(meta = 0; meta < data.meta.links.length; meta++){
+                            var page_meta_next_page = getURLParameter(data.meta.links[meta].url, 'page');
+                            // var page_meta_next_page = getURLParameter(data.meta.links[meta].url, 'page') != null ? getURLParameter(data.meta.links[meta].url, 'page') : '#' ;
+                            // console.log(page_meta_next_page);
+                            var page_meta_url = data.meta.links[meta].url;
+                            // var page_meta_url = data.meta.links[meta].url != null ? data.meta.links[meta].url : '#';
+                            var page_meta_active = data.meta.links[meta].active == true ? 'active' : '';
+                            if(data.meta.links[meta].label == '&laquo; Previous'){
+                                page_meta_label = '&laquo;';
+                            } else if(data.meta.links[meta].label == 'Next &raquo;') {
+                                page_meta_label = '&raquo;';
+                            } else {
+                                page_meta_label = data.meta.links[meta].label;
+                            }
+                            links +=  '<a href="'+ page_meta_next_page +'" class="load-product-link '+ page_meta_active +'" data-to="'+ data.meta.to +'" data-total="'+ data.meta.total +'">'+ page_meta_label +'</a>';
+                            // links +=  '<a href="'+ page_meta_url +'" class="'+ page_meta_active +'">'+ page_meta_label +'</a>';
                         }
-                        var pagination =
-                            '<label for="staticEmail" class="col-form-label">Showing From <span class="showing_record">' +
-                            data.meta.to + '</span>&nbsp;of&nbsp;<span class="showing_total_record">' + data
-                            .meta.total + '</span>&nbsp;results.</label>';
-                        var nextPage = parseInt(data.meta.current_page) + 1;
-                        pagination += '<div class="col-12 col-sm-6">';
-                        pagination += '<ul class="loader-page mt-0">';
-                        pagination += '<li class="loader-page-item">';
-                        pagination += '<button class="load-more-products btn btn-secondary" data-page="' + nextPage + '">Load More</button>';
-                        pagination += '</li>';
-                        pagination += '</ul>';
-                        pagination += '</div>';
+                        // if (data.meta.last_page < page) {
+                        //     $('.load-more-products').attr('disabled', true);
+                        //     $('.load-more-products').html('No More Items');
+                        //     return
+                        // }
+                        // var pagination =
+                        //     '<label for="staticEmail" class="col-form-label">Showing From <span class="showing_record">' +
+                        //     data.meta.to + '</span>&nbsp;of&nbsp;<span class="showing_total_record">' + data
+                        //     .meta.total + '</span>&nbsp;results.</label>';
+                        // var nextPage = parseInt(data.meta.current_page) + 1;
+                        // pagination += '<div class="col-12 col-sm-6">';
+                        // pagination += '<ul class="loader-page mt-0">';
+                        // pagination += '<li class="loader-page-item">';
+                        // pagination += '<button class="load-more-products btn btn-secondary" data-page="' + nextPage + '">Load More</button>';
+                        // pagination += '</li>';
+                        // pagination += '</ul>';
+                        // pagination += '</div>';
 
-                        $('.pagination').html(pagination);
+                        // $('.pagination').html(pagination);
+                        $('.pagination').html(links);
                         var clone = '';
                         var imgSrc = '';
                         var imgAlt = '';
@@ -179,7 +200,7 @@
                             //         '</div>' +
                             //     '</div>' +
                             // '</div>';
-                            clone = '<div class="col-md-4 col-12">'+
+                            clone += '<div class="col-md-4 col-12">'+
                                         '<div class="item_block bg-white position-relative p-3 mb-3">'+
                                            '<div class="img_block">'+
                                             '<a href="'+ href +'"><img src="{{ asset('/') }}' + imgSrc + '"  alt="img" class="img-fluid"></a>'+
@@ -207,8 +228,8 @@
                                            '</div>'+
                                         '</div>'+
                                     '</div>';
-
-                            $("#" + appendTo).append(clone);
+                                $("#" + appendTo).html(clone);
+                            
                         }
                     }
                 },
@@ -474,7 +495,22 @@
         $(document).on('click', '.load-more-products', function() {
             var pageToLoad = $(this).attr('data-page');
             fetchProduct(pageToLoad);
-        })
+        });
+
+
+
+        $(document).on('click', '.load-product-link', function(e){
+            e.preventDefault();
+            var dataToLoadFrom = $(this).attr('href');
+            var dataTo = $(this).data('to');
+            var dataTotal = $(this).data('total');
+            if(dataToLoadFrom != 'null' && dataToLoadFrom != null && dataToLoadFrom != 'undefined'){
+                fetchProduct(dataToLoadFrom);
+            }
+            
+        });
+
+        
 
         $(document).on('keyup', '#minRs, #maxRs', function() {
             if($('#minRs').val() != '' && $('#maxRs').val() != ''){
