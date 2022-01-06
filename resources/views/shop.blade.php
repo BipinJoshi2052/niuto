@@ -186,7 +186,7 @@
                                            '</div>'+
                                            '<div class="content_block pb-3">'+
                                               '<small>Lotions and Creams</small>'+
-                                              '<h4>' + title + '</h4>'+
+                                              '<a href="'+ href +'"><h4>' + title + '</h4></a>'+
                                               '<span class="">'+ priceSymbol +'</span>'+
                                            '</div>'+
                                            '<div class="wish_list_block">'+

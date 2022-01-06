@@ -1,208 +1,283 @@
-<!-- Product Detail  -->
-<section id="product-detail-wrapper" class="py-3">
+  <!--========================== DETAIL START  --->
+  <section id="product_detail" class="section_bg padding">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-5 col-lg-5 col-md-6 col-12">
-                <div class="product-carousel">
-                    <!-- Swiper and EasyZoom plugins start -->
-                    <div class="swiper-container gallery-top" style="height: 400px">
-                        <div class="swiper-wrapper" id="top-gallery">
-                            {{-- <div class="swiper-slide easyzoom easyzoom--overlay">
-                                <a href="frontend/assets/images/product-images/1 (1).jpg">
-                                    <img src="frontend/assets/images/product-images/1 (1).jpg" alt="" />
-                                </a>
-                            </div> --}}
-                        </div>
-                        <!-- Add Arrows -->
-                        <div class="swiper-button-next swiper-button-white"></div>
-                        <div class="swiper-button-prev swiper-button-white"></div>
-                    </div>
-                    <div class="swiper-container gallery-thumbs">
-                        <div class="swiper-wrapper" id="thumb-gallery">
-                            {{-- <div class="swiper-slide">
-                                <img src="frontend/assets/images/product-images/1 (1).jpg" alt="" />
-                            </div> --}}
-                        </div>
-                    </div>
-                    <!-- Swiper and EasyZoom plugins end -->
-                </div>
+      <div class="row no-gutters">
+        <div class="col-md-6 _boxzoom d-md-block d-flex flex-column-reverse">
+          <div class="zoom-thumb">
+            <ul class="piclist" id="side-gallery">
+              
+            </ul>
+          </div>
+          <div class="_product-images">
+            <div class="picZoomer" id="zoomGallery">
+              {{-- <img class="my_img" src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|140:140,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|220:220,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|540:540" alt="product"> --}}
             </div>
-            <div class="col-xl-7 col-lg-7 col-md-6 col-12">
-                <div class="d-flex justify-content-center h-100 product-detail flex-column">
-                    <div class="about mb-3">
-                        <div class="d-flex flex-row align-items-center mb-2">
-                            <h1 class="font-weight-bold m-0" id="pro-title">
-                                {{-- AUDIRECT BEAM3 PRO --}}
-                            </h1>
-                        </div>
-                        <div class="rating-wrapper mb-2">
-                            <div class="p-ratings display-rating">
-                                <i class="fa fa-star orange"></i>
-                                <i class="fa fa-star orange"></i>
-                                <i class="fa fa-star b1b1b1"></i>
-                                <i class="fa fa-star b1b1b1"></i>
-                                <i class="fa fa-star b1b1b1"></i>
-                            </div>
-                        </div>
-                        <div class="product-price d-flex ">
-                            <div class="first-price mr-2" id="cut-product-card-price"></div>
-                            <div class="second-price" id="product-card-price"></div>
-                        </div>
-                    </div>
-                    <form class="product-types">
-                        <div class="form-row">
-                            {{-- <div class="form-group col-md-4">
-                                <label>Size</label>
-                                <select id="size" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                            </div> --}}
-                            <div class="form-group col-md-4">
-                                <div class="quantity mb-3">
-                                    <label>Quantity</label>
-                                    <div>
-                                        <input type="number" value="1" min="1" id="quantity-input" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    {{-- <div class="color-wrapper">
-                        <h5>Color</h5>
-                        <div class="my-color mb-3">
-                            <label class="radio m-0">
-                                <input type="radio" name="gender" value="MALE" checked="" />
-                                <span class="red"></span>
-                            </label>
-                            <label class="radio m-0">
-                                <input type="radio" name="gender" value="FEMALE" />
-                                <span class="blue"></span>
-                            </label>
-                            <label class="radio m-0">
-                                <input type="radio" name="gender" value="FEMALE" />
-                                <span class="green"></span>
-                            </label>
-                            <label class="radio m-0">
-                                <input type="radio" name="gender" value="FEMALE" />
-                                <span class="orange"></span>
-                            </label>
-                        </div>
-                    </div> --}}
-                    <div class="mt-2">
-                        <h5>Description</h5>
-                        <p class="pro-desc">
-                            {{-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est
-                            tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo
-                            gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id
-                            nulla. --}}
-                        </p>
-                        <button type="button" id="add-to-cart">
-                            Add to Cart
-                        </button>
-                        <button type="button" id="add-to-wishlist">
-                            Add to WishList
-                        </button>
-                        <button type="button" id="buyNow">
-                            Buy Now
-                        </button>
-                        <div id="share"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 mt-2">
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        {{-- <a class="nav-item nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab"
-                            aria-controls="first" aria-selected="true">About This Product</a> --}}
-                        <a class="nav-item nav-link" id="second-tab" data-toggle="tab" href="#second" role="tab"
-                            aria-controls="second" aria-selected="false">Reviews (<span class="review-count">0</span>) </a>
-                    </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
-                    {{-- <div class="tab-pane fade show active p-3 w-75" id="first" role="tabpanel"
-                        aria-labelledby="first-tab">
-                        <p class="pro-desc">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
-                            non praesentium corrupti illum, repudiandae adipisci, fuga nesciunt deserunt ipsam inventore ad
-                            fugit beatae necessitatibus maiores mollitia rem officiis tenetur!
-                            Corrupti.
-                        </p>
-                        <div class="table-responsive mt-4">
-                            <table class="table">
-                                <h4>Yoga Matt</h4>
-                                <tbody>
-                                    <tr>
-                                        <th>Model</th>
-                                        <td>Mx 12345</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Color</th>
-                                        <td>Purple</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Material</th>
-                                        <td>Woolen</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Length</th>
-                                        <td>9ft</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> --}}
-                    <div class="tab-pane fade p-3" id="second" role="tabpanel" aria-labelledby="second-tab">
-                        <span id="review-rating-show">
-                            <!-- User Comments -->
-                            {{-- <div class="col-xl-8 col-lg-8 col-12 comments-content p-4 my-3 bg-light">
-                                <h5 class="mb-2">By Joe John</h5>
-                                <div class="p-ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i> </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                                <small class="review-date">March 26, 2017</small>
-                            </div> --}}
-                            <!-- User Comments Ends -->
-                        </span>
-                        <div class="col-xl-8 col-lg-8 col-12 blog-comment bg-light px-xl-5 px-2 py-4">
-                            <div class="col-12 mb-4 text-center">
-                                <h2 class="font-weight-bold mb-xl-4 mb-md-3 mb-2">Add a comment</h2>
-                            </div>
-                            <div class="col-xl-12">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="d-flex justify-content-center mb-2">
-                                                <select class="form-control" id="prodRating" required>
-                                                    <option value=''>Select</option>
-                                                    <option value='1'>1</option>
-                                                    <option value='2'>2</option>
-                                                    <option value='3'>3</option>
-                                                    <option value='4'>4</option>
-                                                    <option value='5'>5</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 my-md-5 my-4">
-                                            <div class="col-text-area d-flex justify-content-center">
-                                                <textarea class="w-100 p-3 border-0 rounded-0" placeholder="Add Comment" id="prodComment"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="button-wrapper mx-auto mb-3">
-                                            <button type="submit" class="btn-cus px-5" id="reviewSend">Send</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col-md-6">
+          <div class="_product-detail-content">
+            <p class="_p-name" id="pro-title"></p>
+            <div class="star_block">
+              <span><i class="fa fa-star" aria-hidden="true"></i></span>
+              <span><i class="fa fa-star" aria-hidden="true"></i></span>
+              <span><i class="fa fa-star" aria-hidden="true"></i></span>
+              <span><i class="fa fa-star" aria-hidden="true"></i></span>
+            </div>
+            <div class="_p-price-box">
+              <div class="p-list">
+                <span>
+                  M.R.P. : <del id="cut-product-card-price">  </del>
+                </span>
+                <span class="price" id="product-card-price"> </span>
+              </div>
+              <div class="_p-add-cart">
+                <div class="_p-qty">
+                  <h5>Add Quantity</h5>
+                  <div class="quantity_input">
+                    <div class="value-button decrease_" id="" onclick="decreaseCartInput($(this).next())" value="Decrease Value">
+                      -
+                    </div>
+                    <input type="number" id="quantity-input" value="1" />
+                    <div class="value-button increase_" id="" value="Increase Value" onclick="increaseCartInput($(this).prev())">
+                      +
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="product_detail_color">
+                <div class="image-size-wrapper">
+                  <div class="image-select mb-3">
+                    <h5>Color</h5>
+                    <div class="select-image-size">
+                      <div class="imagesize">
+                        <img
+                          src="https://st.depositphotos.com/1017986/2626/i/600/depositphotos_26263587-stock-photo-man-in-blank-t-shirt.jpg"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="imagesize imagesize-active">
+                        <img
+                          src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|140:140,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|220:220,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|540:540"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="imagesize">
+                        <img
+                          src="https://www.rushordertees.com/design/ZoomImage.php?src=NTUyMTM2Mw_f&style=RT2000&colorCode=WHT&x=240&y=300&width=880&height=880&scale=1.7&watermark=false&autoInvertDesign=true"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="imagesize image-size">
+                        <img
+                          src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|140:140,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|220:220,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|540:540"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="imagesize image-size">
+                        <img
+                          src="https://www.rushordertees.com/design/ZoomImage.php?src=NTUyMTM2Mw_f&style=RT2000&colorCode=WHT&x=240&y=300&width=880&height=880&scale=1.7&watermark=false&autoInvertDesign=true"
+                          class="img-fluid"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="size-wrapper">
+                <div class="size-select mb-3">
+                  <h5>Size</h5>
+                  <div class="select-size">
+                    <div class="size">S</div>
+                    <div class="size-active">M</div>
+                    <div class="size">L</div>
+                    <div class="size">XL</div>
+                  </div>
+                </div>
+              </div>
+              <div class="_p-features">
+                <span> Description About this product:- </span>
+                <p class="pro-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+                    deserunt adipisci facilis.
+                </p>
+              </div>
+              {{-- <form action="" method="post" accept-charset="utf-8"> --}}
+                <ul class="spe_ul"></ul>
+                <div class="_p-qty-and-cart">
+                  <div class="_p-add-cart d-md-block d-flex">
+                    <button type="button" id="buyNow" class="btn-theme btn buy-btn" tabindex="0">
+                      <i class="fa fa-shopping-cart"></i> Buy Now
+                    </button>
+                    <button type="button" class="btn-theme btn btn-success" id="add-to-cart" tabindex="0">
+                      <i class="fa fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button type="button" class="btn-theme btn btn-success" id="add-to-wishlist" tabindex="0">
+                      <i class="fa fa-heart"></i> Add to Wishlist
+                    </button>
+                    {{-- <input type="hidden" name="pid" value="18" />
+                    <input type="hidden" name="price" value="850" />
+                    <input type="hidden" name="url" value="" /> --}}
+                  </div>
+                </div>
+              {{-- </form> --}}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
-<!-- Product Detail Ends -->
+  </section>
+
+  <!--========================== DETAIL END  --->
+  <!--========================== TAB START  --->
+  <section id="product_tab" class="padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 m-auto">
+          <div class="tabs bg_section">
+            <div class="tab-button-outer">
+              <ul id="tab-button">
+                <li><a href="#tab01">Reviews (9)</a></li>
+                <li><a href="#tab02">Additional Information</a></li>
+              </ul>
+            </div>
+            <div class="tab-select-outer">
+              <select id="tab-select" class="tab_mobile">
+                <option value="#tab01"><h1>Reviews (9)</h1></option>
+                <option value="#tab02">Additional Information</option>
+              </select>
+            </div>
+
+            <div id="tab01" class="tab-contents">
+              <h4 class="pt-2">User Comment</h4>
+              <div class="card border-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="user_product">
+                        <img
+                          src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                          class="img img-rounded img-fluid"
+                        />
+                      </div>
+                      <p
+                        class="
+                          text-secondary text-md-center text-left
+                          pt-md-0 pt-3
+                        "
+                      >
+                        15 Minutes Ago
+                      </p>
+                    </div>
+                    <div class="col-md-10">
+                      <div class="clearfix"></div>
+                      <p>
+                        Lorem Ipsum is simply dummy text of the pr make but
+                        also the leap into electronic typesetting, remaining
+                        essentially unchanged. It was popularised in the 1960s
+                        with the release of Letraset sheets containing Lorem
+                        Ipsum passages, and more recently with desktop
+                        publishing software like Aldus PageMaker including
+                        versions of Lorem Ipsum.
+                      </p>
+                      <p>
+                        <a
+                          class="
+                            float-right
+                            btn_reply btn-outline-primary
+                            ml-2
+                            mb-md-0 mb-3
+                          "
+                        >
+                          <i class="fa fa-reply"></i> Reply</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card card-inner">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <div class="user_product">
+                            <img
+                              src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                              class="img img-rounded img-fluid"
+                            />
+                          </div>
+                          <p class="text-secondary text-center">
+                            15 Minutes Ago
+                          </p>
+                        </div>
+                        <div class="col-md-10">
+                          <p>
+                            <a
+                              href="https://maniruzzaman-akash.blogspot.com/p/contact.html"
+                              ><strong>Maniruzzaman Akash</strong></a
+                            >
+                          </p>
+                          <p>
+                            Lorem Ipsum is simply dummy text of the pr make
+                            but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was
+                            popularised in the 1960s with the release of
+                            Letraset sheets containing Lorem Ipsum passages,
+                            and more recently with desktop publishing software
+                            like Aldus PageMaker including versions of Lorem
+                            Ipsum.
+                          </p>
+                          <p>
+                            <a
+                              class="
+                                float-right
+                                btn_reply btn-outline-primary
+                                ml-2
+                              "
+                            >
+                              <i class="fa fa-reply"></i> Reply</a
+                            >
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form>
+                <label>
+                  <p class="label-txt">ENTER YOUR EMAIL</p>
+                  <input type="text" class="input" />
+                  <div class="line-box">
+                    <div class="line"></div>
+                  </div>
+                </label>
+                <label>
+                  <p class="label-txt">ENTER YOUR NAME</p>
+                  <input type="text" class="input" />
+                  <div class="line-box">
+                    <div class="line"></div>
+                  </div>
+                </label>
+                <label>
+                  <p class="label-txt">ENTER YOUR PASSWORD</p>
+                  <input type="text" class="input" />
+                  <div class="line-box">
+                    <div class="line"></div>
+                  </div>
+                </label>
+                <button type="submit">submit</button>
+              </form>
+            </div>
+            <div id="tab02" class="tab-contents">
+              <div class="tab-pane fade show active p-3 w-md-75 w-100 mx-auto pro-desc"
+                id="first"
+                role="tabpanel"
+                aria-labelledby="first-tab">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--========================== TAB END  --->

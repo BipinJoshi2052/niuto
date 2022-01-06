@@ -36,7 +36,7 @@
         $('#second-tab').click();
         $("#share").jsSocials({
             url: '{{ url('/') }}',
-            text: "Sharma Acoustic",
+            text: "Niuto",
             showLabel: false,
             shareIn: 'popup',
             showCount: "inside",
@@ -75,8 +75,9 @@
             success: function(data) {
                 if (data.status == 'Success') {
                     var clone = '';
-                    var topGal = '';
+                    var sideGal = '';
                     var thumbGal = '';
+                    var img_str = '';
                     $('#add-to-wishlist').attr('data-id', data.data.product_id);
                     $('#add-to-wishlist').attr('onclick', 'addWishlist(this)');
                     $('#add-to-wishlist').attr('data-type', data.data.product_type);
@@ -88,59 +89,50 @@
                     $('#buyNow').attr('data-type', data.data.product_type);
                     if (data.data.product_gallary_detail != null && data.data.product_gallary_detail.length > 0) {
                         for (var g = 0; g < data.data.product_gallary_detail.length; g++) {
+                            
                             prodGalDetGalName = data.data.product_gallary_detail[g].gallary_name;
-                            topGal += '<div class="swiper-slide easyzoom easyzoom--overlay">' +
-                                '<a href="{{ asset('/') }}gallary/large' + prodGalDetGalName + '">' +
-                                    '<img src="{{ asset('/') }}gallary/large' + prodGalDetGalName + '" alt="" />' +
-                                '</a>' +
-                            '</div>';
-                            thumbGal += '<div class="swiper-slide">' +
-                                '<img src="{{ asset('/') }}gallary/large' + prodGalDetGalName + '" alt="" />' +
-                            '</div>';
+                            sideGal += '<li>'+
+                                            '<img src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
+                                        '</li>';
+                            if(g == 0){
+                                dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
+            
+                                showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
+                            }
+                            if(g == 3){
+                                break;
+                            }
                         }
                         if(data.data.product_combination){
                             for (loop = 0; loop < data.data.product_combination.length; loop++) {
                                 if (data.data.product_combination[loop].gallary != null) {
-                                    topGal += '<div class="swiper-slide easyzoom easyzoom--overlay">' +
-                                        '<a href="{{ asset('/') }}gallary/large' + prodGalDetGalName + '">' +
-                                            '<img src="{{ asset('/') }}gallary/large' + prodGalDetGalName + '" alt="" />' +
-                                        '</a>' +
-                                    '</div>';
-                                    thumbGal += '<div class="swiper-slide">' +
-                                        '<img src="{{ asset('/') }}gallary/large' + prodGalDetGalName + '" alt="" />' +
-                                    '</div>';
+                                    sideGal +=  '<li>'+
+                                                    '<img src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
+                                                '</li>';
+                                    if(loop == 0){
+                                        dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
+                                        showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
+                                    }
+                                }
+                                if(loop == 3){
+                                    break;
                                 }
                             }
                         }
                     } else {
                         if(data.data.product_gallary != null){
-                            // // console.log(data.data.product_gallary.gallary_name);
-                            topGal += '<div class="swiper-slide easyzoom easyzoom--overlay">' +
-                                '<a href="{{ asset("/") }}gallary/' + data.data.product_gallary.gallary_name + '">' +
-                                    '<img src="{{ asset("/") }}gallary/' + data.data.product_gallary.gallary_name + '" alt="" />' +
-                                '</a>' +
-                            '</div>';
-                            thumbGal += '<div class="swiper-slide">' +
-                                '<img src="{{ asset("/") }}gallary/' + data.data.product_gallary.gallary_name + '" alt="" />' +
-                            '</div>';
+                            sideGal +=  '<li>'+
+                                            '<img src="{{ asset("/")}}gallary/' + data.data.product_gallary.gallary_name + ' " alt="">'+
+                                        '</li>';
+                            dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
+                            showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
                         }
                     }
-                    $('#top-gallery').html(topGal);
-                    $('#thumb-gallery').html(thumbGal);
-                    productDetailInit();
+                    console.log(showImg);
+                    $('#side-gallery').html(sideGal);
+                    $('#zoomGallery').html(showImg);
+                    zoomGalleryPicker();
 
-                    // if (data.data.category != null) {
-                    //     if (data.data.category[0].category_detail != null) {
-                    //         if (data.data.category[0].category_detail.detail != null) {
-                    //             clone.querySelector(".product-detail-section-cateogory-link").setAttribute(
-                    //                 'href', "/shop");
-
-                    //             clone.querySelector(".product-detail-section-cateogory-link").innerHTML =
-                    //                 data.data.category[0].category_detail.detail[0].name;
-
-                    //         }
-                    //     }
-                    // }
 
                     if (data.data.detail != null) {
                         $("#pro-title").html(data.data.detail[0].title);
@@ -159,46 +151,6 @@
                             if (data.data.product_combination != null) {
                                 $("#product-card-price").html(data.data.product_combination[0].product_price_symbol);
                         }
-                        // if (data.data.attribute != null) {
-                        //     var combination = '';
-                        //     var attribute = data.data.attribute
-                        //     for (var a = 0; a < attribute.length; a++) {
-
-                        //         if (attribute[a].attributes != null) {
-
-                        //             if (attribute[a].attributes.detail != null) {
-
-                        //                 combination += '<div class="color-selection">';
-                        //                 combination += '<h4><b>' + attribute[a].attributes.detail[0].name +
-                        //                     '</b></h4>';
-                        //                 combination += '</div>';
-                        //             }
-                        //             combination += '<ul class="variations">';
-                        //             if (attribute[a].variations != null) {
-                        //                 for (var v = 0; v < attribute[a].variations
-                        //                     .length; v++) {
-                        //                     combination +=
-                        //                         '<li class="btn size-btn variation_list_item attribute_' +
-                        //                         attribute[a].attributes.detail[0].name.split(' ').join(
-                        //                             '_') + '_div  ' + attribute[a].variations[v]
-                        //                         .product_variation.detail[0].name + '-' + attribute[a]
-                        //                         .attributes.detail[0].name.split(' ').join('_') +
-                        //                         '" data-attribute-id="' + attribute[a].attributes
-                        //                         .attribute_id + '" data-attribute-name="' + attribute[a]
-                        //                         .attributes.detail[0].name + '" data-variation-id="' +
-                        //                         attribute[a].variations[v]
-                        //                         .product_variation.id + '" data-variation-name="' +
-                        //                         attribute[a].variations[v]
-                        //                         .product_variation.detail[0].name + '">' + attribute[a]
-                        //                         .variations[v]
-                        //                         .product_variation.detail[0].name + '</li>';
-                        //                 }
-                        //             }
-                        //             combination += '</ul>';
-                        //         }
-                        //         clone.querySelector(".pro-options").innerHTML = combination;
-                        //     }
-                        // }
 
                     }
                     if (data.data.reviews !== null) {
@@ -404,30 +356,66 @@
                             }
                         }
 
-                        clone = '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
-                            '<div class="product-grid-item">' +
-                                '<div class="product-grid-image">' +
-                                    '<a href="' + href + '">' +
-                                        '<img class="pic-1 img-fluid" src="' +imgSrc + '">' +
-                                    '</a>' +
-                                    '<ul class="social">' +
-                                        '<!-- <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li> -->' +
-                                        '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>' +
-                                        '<li><a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>' +
-                                    '</ul>' +
-                                    // '<span class="product-new-label font-weight-bold">New</span>' +
-                                    // '<span class="product-discount-label">-10%</span>' +
-                                '</div>' +
-                                '<div class="product-content">' +
-                                    '<h4 class="title mt-2"><a href="' + href + '">Product Name</a></h4>' +
-                                    '<div class="price">' +
-                                        price +
-                                        // '<span>' + cutPrice + '</span>' +
-                                    '</div>' +
-                                    '<a class="add-to-cart" href=javascript:void(0)" onclick="buyNow(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '">Buy Now</a>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>';
+                        // clone = '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
+                        //     '<div class="product-grid-item">' +
+                        //         '<div class="product-grid-image">' +
+                        //             '<a href="' + href + '">' +
+                        //                 '<img class="pic-1 img-fluid" src="' +imgSrc + '">' +
+                        //             '</a>' +
+                        //             '<ul class="social">' +
+                        //                 '<!-- <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li> -->' +
+                        //                 '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>' +
+                        //                 '<li><a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>' +
+                        //             '</ul>' +
+                        //             // '<span class="product-new-label font-weight-bold">New</span>' +
+                        //             // '<span class="product-discount-label">-10%</span>' +
+                        //         '</div>' +
+                        //         '<div class="product-content">' +
+                        //             '<h4 class="title mt-2"><a href="' + href + '">Product Name</a></h4>' +
+                        //             '<div class="price">' +
+                        //                 price +
+                        //                 // '<span>' + cutPrice + '</span>' +
+                        //             '</div>' +
+                        //             '<a class="add-to-cart" href=javascript:void(0)" onclick="buyNow(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '">Buy Now</a>' +
+                        //         '</div>' +
+                        //     '</div>' +
+                        // '</div>';
+
+
+                        clone = '<div class="col-md-3 col-sm-6 col-12">'+
+                                    '<div class="item_block bg-white position-relative p-3 mb-md-0 mb-3">'+
+                                    '  <div class="img_block">'+
+                                    '    <a href="'+ href +'">'+
+                                    '      <img src="'+ imgSrc +'" alt="img" class="img-fluid">'+
+                                    '  </a>'+
+                                    '  </div>'+
+                                    '  <div class="content_block pb-3">'+
+                                    '    <small>Lotions and Creams</small>'+
+                                    '    <a href="'+ href +'"><h4>'+ title +'</h4></a>'+
+                                    '    <span class="">'+ price +'</span>'+
+                                    '  </div>'+
+                                    '  <div class="wish_list_block">'+
+                                    '    <a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '"><i class="fa fa-heart" aria-hidden="true"></i></a>'+
+                                    '  </div>'+
+                                    '  <div class="dis_block">'+
+                                    // '    <h5>Sale</h5>'+
+                                    '  </div>'+
+                                    '  <div class="icon_group">'+
+                                    '    <div class="cart_blocks">'+
+                                    '      <a href="javascript:void(0)" tabindex="0" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '">'+
+                                    '        <i class="fa fa-cart-plus" aria-hidden="true"></i></a>'+
+                                    '    </div>'+
+                                    '    <div class="cart_block">'+
+                                    '      <a href="'+ href +'" tabindex="0">'+
+                                    '        <i class="fa fa-eye" aria-hidden="true"></i></a>'+
+                                    '    </div>'+
+                                    '    <div class="cart_blockss">'+
+                                    '      <a href="" tabindex="0">'+
+                                    '        <i class="fa fa-exchange" aria-hidden="true"></i></a>'+
+                                    '    </div>'+
+                                    '  </div>'+
+                                    '</div>'+
+                                '</div>';
                         
                         $("#featured-product").append(clone);
                     }
@@ -571,6 +559,83 @@
             error: function(data) {
                 // console.log(data);
             },
+        });
+    }
+
+    function zoomGalleryPicker(){
+        (function ($) {
+            $.fn.picZoomer = function (options) {
+              var opts = $.extend({}, $.fn.picZoomer.defaults, options),
+                $this = this,
+                $picBD = $('<div class="picZoomer-pic-wp"></div>')
+                  .css({ width: opts.picWidth + "px", height: opts.picHeight + "px" })
+                  .appendTo($this),
+                $pic = $this.children("img").addClass("picZoomer-pic").appendTo($picBD),
+                $cursor = $(
+                  '<div class="picZoomer-cursor"><i class="f-is picZoomCursor-ico"></i></div>'
+                ).appendTo($picBD),
+                cursorSizeHalf = { w: $cursor.width() / 2, h: $cursor.height() / 2 },
+                $zoomWP = $(
+                  '<div class="picZoomer-zoom-wp"><img src="" alt="" class="picZoomer-zoom-pic"></div>'
+                ).appendTo($this),
+                $zoomPic = $zoomWP.find(".picZoomer-zoom-pic"),
+                picBDOffset = { x: $picBD.offset().left, y: $picBD.offset().top };
+            
+              opts.zoomWidth = opts.zoomWidth || opts.picWidth;
+              opts.zoomHeight = opts.zoomHeight || opts.picHeight;
+              var zoomWPSizeHalf = { w: opts.zoomWidth / 2, h: opts.zoomHeight / 2 };
+            
+              $zoomWP.css({
+                width: opts.zoomWidth + "px",
+                height: opts.zoomHeight + "px",
+              });
+              $zoomWP.css(
+                opts.zoomerPosition || { top: 0, left: opts.picWidth + 30 + "px" }
+              );
+          
+              $zoomPic.css({
+                width: opts.picWidth * opts.scale + "px",
+                height: opts.picHeight * opts.scale + "px",
+              });
+          
+              $picBD
+                .on("mouseenter", function (event) {
+                  $cursor.show();
+                  $zoomWP.show();
+                  $zoomPic.attr("src", $pic.attr("src"));
+                })
+                .on("mouseleave", function (event) {
+                  $cursor.hide();
+                  $zoomWP.hide();
+                })
+                .on("mousemove", function (event) {
+                  var x = event.pageX - picBDOffset.x,
+                    y = event.pageY - picBDOffset.y;
+                
+                  $cursor.css({
+                    left: x - cursorSizeHalf.w + "px",
+                    top: y - cursorSizeHalf.h + "px",
+                  });
+                  $zoomPic.css({
+                    left: -(x * opts.scale - zoomWPSizeHalf.w) + "px",
+                    top: -(y * opts.scale - zoomWPSizeHalf.h) + "px",
+                  });
+                });
+              return $this;
+            };
+            $.fn.picZoomer.defaults = {
+              picHeight: 460,
+              scale: 2.5,
+              zoomerPosition: { top: "0", left: "380px" },
+            
+              zoomWidth: 400,
+              zoomHeight: 460,
+            };
+        })(jQuery);
+        $(".picZoomer").picZoomer();
+          $(".piclist li").on("click", function (event) {
+            var $pic = $(this).find("img");
+            $(".picZoomer-pic").attr("src", $pic.attr("src"));
         });
     }
 </script>

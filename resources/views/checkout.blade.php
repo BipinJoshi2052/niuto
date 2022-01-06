@@ -24,6 +24,153 @@
                         </ol>
                     </nav>
                 </div>
+
+                <!-- table start  -->
+                <div id="table_content" class="table-responsive-lg">
+                   <table class="table border_new">
+                      <thead>
+                         <tr class="text-center">
+                            <th class="font-weight-bold text-dark">Product Image</th>
+                            <th class="font-weight-bold text-dark t-cart">Product</th>
+                            <th class="font-weight-bold text-dark">Price</th>
+                            <th class="font-weight-bold text-dark">Quantity</th>
+                            <th class="font-weight-bold text-dark">Total</th>
+                         </tr>
+                      </thead>
+                      <tbody class="text-center" id="cartItem-product-show2">
+                         {{-- <tr class="text-center">
+                            <td class="border_trhee">
+                               <div class="img-block">
+                                  <img src="https://montechbd.com/shopist/demo/public/uploads/1619866402-h-250-7-front-f.jpg" alt="">
+                               </div>
+                            </td>
+                            <td>
+                               <div class="d-flex flex-column w-100">
+                                  <div class="head w-100">Blue Diamond Almonds</div>
+                               </div>
+                            </td>
+                            <td class="text_gray">$20</td>
+                            <td class="text_gray">
+                               <div class="qty">
+                                  <input type="number" class="" name="qty" value="1">
+                               </div>
+                            </td>
+                            <td class="text_gray">$0</td>
+                            <td class="text_gray">$20</td>
+                         </tr> --}}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="text_gray" colspan="3"></td>
+                            <td class="text_gray">Subtotal</td>
+                            <td class="text_gray caritem-subtotal">0</td>
+                         </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="text_gray" colspan="3"></td>
+                            <td class="text_gray">Shipping</td>
+                            <td class="text_gray shipping-tax">0</td>
+                         </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="text_gray" colspan="3"></td>
+                            <td class="text_gray">Total</td>
+                            <td class="text_gray caritem-grandtotal">0</td>
+                         </tr>
+                      </tfoot>
+                   </table>
+                </div>
+                <!-- table end  -->
+             </div>
+             <div class="col-xl-12">
+                <div class="my-car-title d-flex mb-3 mt-4">
+                   <div class="my-cart-number">2</div>
+                   <div class="my-cart-order">
+                      <h4>Shipping Information</h4>
+                   </div>
+                </div>
+                <form>
+                   <div class="row">
+                      <div class="col-md-6">
+                         <label for="" class="text_gray mt-3">First Name</label>
+                         <input type="text" class="form-control w-100" id="delivery_first_name">
+                      </div>
+                      <div class="col-md-6">
+                         <label for="" class="text_gray mt-3">Last Name</label>
+                         <input type="text" class="form-control w-100" id="delivery_last_name">
+                      </div>
+                      <div class="col-md-6">
+                         <label for="" class="text_gray mt-3">Address</label>
+                         <input type="text" class="form-control w-100" id="delivery_street_aadress">
+                      </div>
+                      <div class="col-md-6">
+                         <label for="" class="text_gray mt-3">City</label>
+                         <input type="text" class="form-control w-100" id="delivery_city">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="" class="text_gray mt-3">Country</label>
+                        <select class="form-control w-100" id="delivery_country" onchange="states1()"></select>
+                      </div>
+                      <div class="col-md-6">
+                         <label for="" class="text_gray mt-3">State</label>
+                         <select class="form-control" id="delivery_state"></select>
+                      </div>
+                      <div class="col-md-6">
+                         <label for="" class="text_gray mt-3">Postal Code</label>
+                         <input type="text" class="form-control w-100" placeholder="5468" id="delivery_postcode">
+                      </div>
+                      <div class="col-md-6">
+                         <label for="" class="text_gray mt-3">Phone Number</label>
+                         <input type="text" class="form-control w-100" placeholder="" id="delivery_phone">
+                      </div>
+                   </div>
+                </form>
+             </div>
+             <div class="col-md-12">
+                <div class="my-car-title d-flex mt-5">
+                   <div class="my-cart-number">3</div>
+                   <div class="my-cart-order">
+                      <h4>Payment Information</h4>
+                   </div>
+                </div>
+                <div class="my-cart-payment">
+                   <ul class="mb-0 py-4">
+                    @foreach($payment_method_default as $payment_methods)
+                      <li>
+                         <span class="d-flex justify-content-start justify-content-lg-center align-items-center">
+                            <input type="radio" id="inlineCheckbox{{ $payment_methods->id }}" name="customRadio" class="payment_method otherPayment" {{ old('customRadio', ($loop->first ? 'checked' : '')) }} value="{{ $payment_methods->payment_method }}">
+                            <h5 class="font-weigth-normal mb-0 otherPayment">{{ ucwords(str_replace('_', ' ', $payment_methods->payment_method)) }}</h5>
+                         </span>
+                      </li>
+                    @endforeach
+                   </ul>
+                </div>
+             </div>
+             <div class="col-md-12">
+                <div class="my-car-title d-flex mb-3">
+                   <div class="my-cart-number">4</div>
+                   <div class="my-cart-order">
+                      <h4>Confirm Order</h4>
+                   </div>
+                </div>
+                <div class="btn_groups-single large-btn my-5 rounded-0">
+                   <button type="button" class="btn-purpal createOrder confirmButton">Confirm</button>
+                </div>
+             </div>
+             <div class="row" hidden>
+                <form action="https://uat.esewa.com.np/epay/main" method="POST" id="esewaForm" class="my-3 mx-auto">
+                    <input value="10" name="tAmt" type="hidden">
+                    <input value="10" name="amt" type="hidden">
+                    <input value="0" name="txAmt" type="hidden">
+                    <input value="0" name="psc" type="hidden">
+                    <input value="0" name="pdc" type="hidden">
+                    <input value="EPAYTEST" name="scd" type="hidden">
+                    <input value="" name="pid" type="hidden">
+                    <input value="{{ route('esewa-verify') }}?q=su" type="hidden" name="su">
+                    <input value="{{ route('esewa-verify') }}?q=fu" type="hidden" name="fu">
+                    <button type="submit" class="btn btn-success esewaButton" id="esewaButton">Confirm Payment</button>
+                </form>
             </div>
         </div>
     </section>
@@ -248,7 +395,9 @@
                     productSkus += '>' + $(this).attr('product_sku');
                 }
             });
+            console.log($('.caritem-grandtotal').html())
             var total = $('.caritem-grandtotal').html().split(' ').slice(-1)[0];
+            console.log(total);
             $('#esewaForm input[name="amt"]').val(total);
             var tax = 0;
             var servChrg = 0;
@@ -259,6 +408,7 @@
 
 
         function cartItem(cartSession) {
+            console.log('Hello chekout page')
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&language_id=' + languageId +
                     '&currency=' + localStorage.getItem("currency");
