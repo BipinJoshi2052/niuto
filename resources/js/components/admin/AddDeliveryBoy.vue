@@ -761,7 +761,7 @@ export default {
               this.fetchproducts();
             }
           })
-          .catch((err) => // console.log(err))
+          .catch((err) => console.log(err))
           .finally(() => (this.$parent.loading = false));
       }
     },
