@@ -29,6 +29,13 @@
         >
       </li>
       <li class="mb-md-3 mb-2 p-2">
+        <a href="{{ url('/shipping-address') }}"
+          ><span class="mr-2"
+            ><i class="fa fa-sort" aria-hidden="true"></i></span
+          >Shipping Address</a
+        >
+      </li>
+      <li class="mb-md-3 mb-2 p-2">
         <a href="{{ url('/cart') }}"
           ><span class="mr-2"
             ><i
