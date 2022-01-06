@@ -154,7 +154,7 @@
                                 @if(isset(getSetting()['is_deliveryboyapp_purchased']) && getSetting()['is_deliveryboyapp_purchased'] == '1')
                                 <div class="form-group col-md-6">
                                     <label for=""> {{ trans('lables.shipping-address-latlong') }}</label>
-                                    <input type="text" class="form-control" data-toggle="modal" data-target="#mapModal" name="location"
+                                    <input type="text" class="form-control" name="location"
                                     id="location" aria-describedby="addressHelp" placeholder="{{ trans('lables.shipping-address-latlong') }}">
                                     <div class="invalid-feedback">
                                         

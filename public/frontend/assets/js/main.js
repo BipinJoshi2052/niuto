@@ -251,6 +251,7 @@ function closeSearch() {
 $(document).ready(function () {
   $(".picZoomer").picZoomer();
   $(".piclist li").on("click", function (event) {
+    alert('Hey');
     var $pic = $(this).find("img");
     $(".picZoomer-pic").attr("src", $pic.attr("src"));
   });

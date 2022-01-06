@@ -8,53 +8,69 @@
 @extends('layouts.master')
 @section('content')
     
-<!-- Breadcrumbs -->
-<section id="breadcrumbs" class="py-3">
+<!--========================== HEADER END  --->
+<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ul class="m-0 p-0 d-flex align-items-center text-white">
-                    <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    <li class="">Change Password</li>
-                </ul>
-            </div>
-            <div class="col-12 mt-3">
-                <h2 class="text-white">Change Password</h2>
-            </div>
-        </div>
+       <div class="row">
+          <div class="col-md-12 m-auto">
+             <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                   <li class="breadcrumb-item font-weight-bold">
+                      <a href=""
+                         ><span><i class="fa fa-home" aria-hidden="true"></i></span>
+                      HOME</a
+                         >
+                   </li>
+                   <li
+                      class="breadcrumb-item font-weight-bold"
+                      aria-current="page"
+                      >
+                      <a href="cart.html" class="text-dark">Wishlist</a>
+                   </li>
+                </ol>
+             </nav>
+          </div>
+       </div>
     </div>
-</section>
-<!-- Breadcrumbs Ends -->
-<!-- Cart -->
-<section id="password-wrapper" class="py-3">
+ </section>
+ <!--============================= CHANGE PASSWORD PAGGE START  ============================ -->
+ <section id="change-password-wrapper" class="py-3">
     <div class="container">
-        <div class="row py-xl-5 py-md-3 py-0">
-            @include('includes.side-menu')
-            <div class="col-xl-5 col-lg-5 col-md-11 col-10 mt-xl-0 mt-md-0 mt-3">
-                <div class="change-password">
-                    <form method="post" id="changePassForm">
-                        <div class="form-group">
-                            <label class="info-title" for="old_password">Old Password <span>*</span></label>
-                            <input type="password" class="form-control unicase-form-control text-input" id="old_password" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="new_password">New Password <span>*</span></label>
-                            <input type="password" class="form-control unicase-form-control text-input" id="new_password" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="confirm_password">Confirm Password <span>*</span></label>
-                            <input type="password" class="form-control unicase-form-control text-input" id="confirm_password">
-                        </div>
-                        <div class="radio outer-xs">
-                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+       <div class="row py-xl-5 py-md-3 py-0">
+          <div class="col-lg-3 col-12 mb-xl-0 mb-lg-0 mb-3">
+             @include('includes.user-dashboard')
+          </div>
+          <div class="col-xl-7 col-lg-7 col-md-12 col-12">
+             <div class="change-password dashboard-content">
+                <form method="POST" id="changePassForm">
+                   <div class="form-group">
+                      <label class="info-title" for="exampleInputPassword1">Old Password <span>*</span></label>
+                      <input type="password" class="form-control unicase-form-control text-input" id="old_password" autocomplete="off">
+                   </div>
+                   <div class="form-group">
+                      <label class="info-title" for="exampleInputPassword1">New Password <span>*</span></label>
+                      <input type="password" class="form-control unicase-form-control text-input" id="new_password" autocomplete="off">
+                   </div>
+                   <div class="form-group">
+                      <label class="info-title" for="exampleInputPassword1">Confirm Password <span>*</span></label>
+                      <input type="password" class="form-control unicase-form-control text-input" id="confirm_password" autocomplete="off">
+                   </div>
+                   <div class="form-group d-flex justify-content-between align-items-center">
+                      <div class="form-group col-12 pl-0 text-center d-flex justify-content-between align-items-center">
+                         {{-- <a href="checkout.html" class="w-25 theme_btn btn_tr">Save</a> --}}
+                         <button type="submit" class="w-25 theme_btn btn_tr">Save</button>
+                         {{-- <a href="#" class="forgot-password"
+                            >Forgot your Password?</a
+                            > --}}
+                      </div>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
     </div>
-</section>
-<!-- Cart Ends -->
+ </section>
+ <!--============================= CHANGE PASSWORD PAGGE END  ============================ -->
 
 @endsection
 @section('script')

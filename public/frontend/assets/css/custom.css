@@ -3053,3 +3053,17 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     color: var(--blue);
     border: 1px solid;
 }
+
+
+._p-qty input#quantity-input {
+    text-align: center;
+    border: none;
+    border-top: 1px solid var(--blue);
+    border-bottom: 1px solid var(--blue);
+    margin: 0px;
+    width: 40px;
+    height: 35px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+

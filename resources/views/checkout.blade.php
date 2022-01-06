@@ -2,48 +2,37 @@
     loggedIn = localStorage.getItem("customerLoggedin");
     if (loggedIn != '1') {
         localStorage.setItem("loginErrorMessage", "Please Login!!!");
-        window.location.href = "{{url('/login')}}";
+        window.location.href = "{{ url('/login') }}";
     }
+    languageId = $.trim(localStorage.getItem("languageId"));
+    cartSession = $.trim(localStorage.getItem("cartSession"));
+    if (cartSession == null || cartSession == 'null') {
+        cartSession = '';
+    }
+    customerToken = $.trim(localStorage.getItem("customerToken"));
+    customerId = $.trim(localStorage.getItem("customerId"));
+    cartItem(cartSession);
 </script>
 @extends('layouts.master')
 @section('content')
 
-<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
-    <div class="container">
-       <div class="row">
-          <div class="col-md-12 m-auto">
-             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                   <li class="breadcrumb-item font-weight-bold">
-                      <a href="{{ url('/') }}"
-                         ><span><i class="fa fa-home" aria-hidden="true"></i></span>
-                      HOME</a
-                         >
-                   </li>
-                   <li
-                      class="breadcrumb-item font-weight-bold"
-                      aria-current="page"
-                      >
-                      <a href="javascript:void(0)" class="text-dark">CHECKOUT</a>
-                   </li>
-                </ol>
-             </nav>
-          </div>
-       </div>
-    </div>
- </section>
- <!--========================== CHECKOUT START  --->
- <section id="checkout" class="padding">
-    <div class="container">
-       <div class="checkout-wrapper box_shado px-4 pt-4">
-          <div class="row">
-             <div class="col-xl-12">
-                <div class="my-car-title d-flex mb-3">
-                   <div class="my-cart-number">1</div>
-                   <div class="my-cart-order">
-                      <h4>Order Summary</h4>
-                   </div>
+    <section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 m-auto">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item font-weight-bold">
+                                <a href="{{ url('/') }}"><span><i class="fa fa-home" aria-hidden="true"></i></span>
+                                    HOME</a>
+                            </li>
+                            <li class="breadcrumb-item font-weight-bold" aria-current="page">
+                                <a href="javascript:void(0)" class="text-dark">CHECKOUT</a>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
+
                 <!-- table start  -->
                 <div id="table_content" class="table-responsive-lg">
                    <table class="table border_new">
@@ -79,6 +68,18 @@
                          </tr> --}}
                       </tbody>
                       <tfoot>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="text_gray" colspan="3"></td>
+                            <td class="text_gray">Subtotal</td>
+                            <td class="text_gray caritem-subtotal">0</td>
+                         </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="text_gray" colspan="3"></td>
+                            <td class="text_gray">Shipping</td>
+                            <td class="text_gray shipping-tax">0</td>
+                         </tr>
                         <tr>
                             <th scope="row"></th>
                             <td class="text_gray" colspan="3"></td>
@@ -179,13 +180,179 @@
                     <button type="submit" class="btn btn-success esewaButton" id="esewaButton">Confirm Payment</button>
                 </form>
             </div>
-          </div>
-       </div>
-    </div>
- </section>
- <!--========================== CHECKOUT END  --->
+        </div>
+    </section>
+    <!--========================== CHECKOUT START  --->
+    <section id="checkout" class="padding">
+        <div class="container">
+            <div class="checkout-wrapper box_shado px-4 pt-4">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="my-car-title d-flex mb-3">
+                            <div class="my-cart-number">1</div>
+                            <div class="my-cart-order">
+                                <h4>Order Summary</h4>
+                            </div>
+                        </div>
+                        <!-- table start  -->
+                        <div id="table_content" class="table-responsive-lg">
+                            <table class="table border_new">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th class="font-weight-bold text-dark">Product Image</th>
+                                        <th class="font-weight-bold text-dark t-cart">Product</th>
+                                        <th class="font-weight-bold text-dark">Price</th>
+                                        <th class="font-weight-bold text-dark">Quantity</th>
+                                        <th class="font-weight-bold text-dark">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center" id="cartItem-product-show2">
+                                    {{-- <tr class="text-center">
+                                        <td class="border_trhee">
+                                            <div class="img-block">
+                                                <img src="https://montechbd.com/shopist/demo/public/uploads/1619866402-h-250-7-front-f.jpg"
+                                                    alt="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column w-100">
+                                                <div class="head w-100">Blue Diamond Almonds</div>
+                                            </div>
+                                        </td>
+                                        <td class="text_gray">$20</td>
+                                        <td class="text_gray">
+                                            <div class="qty">
+                                                <input type="number" class="" name="qty" value="1">
+                                            </div>
+                                        </td>
+                                        <td class="text_gray">$0</td>
+                                        <td class="text_gray">$20</td>
+                                    </tr> --}}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td class="text_gray" colspan="3"></td>
+                                        <td class="text_gray">Sub Total</td>
+                                        <td class="text_gray caritem-subtotal">0</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td class="text_gray" colspan="3"></td>
+                                        <td class="text_gray">Total</td>
+                                        <td class="text_gray caritem-grandtotal">0</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- table end  -->
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="my-car-title d-flex mb-3 mt-4">
+                            <div class="my-cart-number">2</div>
+                            <div class="my-cart-order">
+                                <h4>Shipping Information</h4>
+                            </div>
+                        </div>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="" class="text_gray mt-3">First Name</label>
+                                    <input type="text" class="form-control w-100" id="delivery_first_name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="text_gray mt-3">Last Name</label>
+                                    <input type="text" class="form-control w-100" id="delivery_last_name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="text_gray mt-3">Address</label>
+                                    <input type="text" class="form-control w-100" id="delivery_street_aadress">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="text_gray mt-3">City</label>
+                                    <input type="text" class="form-control w-100" id="delivery_city">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="text_gray mt-3">Country</label>
+                                    <select class="form-control w-100" id="delivery_country" onchange="states1()"></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="text_gray mt-3">State</label>
+                                    <select class="form-control" id="delivery_state"></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="text_gray mt-3">Postal Code</label>
+                                    <input type="text" class="form-control w-100" placeholder="5468" id="delivery_postcode">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="text_gray mt-3">Phone Number</label>
+                                    <input type="text" class="form-control w-100" placeholder="" id="delivery_phone">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="my-car-title d-flex mt-5">
+                            <div class="my-cart-number">3</div>
+                            <div class="my-cart-order">
+                                <h4>Payment Information</h4>
+                            </div>
+                        </div>
+                        <div class="my-cart-payment">
+                            <ul class="mb-0 py-4">
+                                @foreach ($payment_method_default as $payment_methods)
+                                    <li>
+                                        <span class="d-flex justify-content-start justify-content-lg-center align-items-center">
+                                            <input type="radio" id="inlineCheckbox{{ $payment_methods->id }}"
+                                                name="customRadio" class="payment_method"
+                                                {{ old('customRadio', $loop->first ? 'checked' : '') }}
+                                                value="{{ $payment_methods->payment_method }}">
+                                            <label class="my-auto" for="inlineCheckbox{{ $payment_methods->id }}">
+                                                <h5 class="font-weigth-normal mb-0">
+                                                    {{ ucwords(str_replace('_', ' ', $payment_methods->payment_method)) }}
+                                                </h5>
+                                            </label>
+                                        </span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="my-car-title d-flex mb-3">
+                            <div class="my-cart-number">4</div>
+                            <div class="my-cart-order">
+                                <h4>Confirm Order</h4>
+                            </div>
+                        </div>
+                        <div class="btn_groups-single large-btn my-5 rounded-0">
+                            <button type="button" class="btn-purpal createOrder confirmButton">Confirm</button>
+                        </div>
+                        <div hidden>
+                            <form action="" method="POST" id="esewaForm"
+                                class="my-3 mx-auto">
+                                <input value="10" name="tAmt" type="hidden">
+                                <input value="10" name="amt" type="hidden">
+                                <input value="0" name="txAmt" type="hidden">
+                                <input value="0" name="psc" type="hidden">
+                                <input value="0" name="pdc" type="hidden">
+                                <input value="" name="scd" type="hidden">
+                                <input value="" name="pid" type="hidden">
+                                <input value="{{ route('esewa-verify') }}?q=su" type="hidden" name="su">
+                                <input value="{{ route('esewa-verify') }}?q=fu" type="hidden" name="fu">
+                                <div class="btn_groups-single large-btn my-5 rounded-0">
+                                    <button type="submit" class="btn-purpal esewaButton confirmButton" id="esewaButton">Confirm Esewa</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--========================== CHECKOUT END  --->
 
-{{-- <input type="hidden" class="total_by_weight" /> --}}
+    {{-- <input type="hidden" class="total_by_weight" /> --}}
 
 @endsection
 @section('script')
@@ -209,36 +376,21 @@
             } else {
                 cartItem(cartSession);
             }
-
-            // $('#cartItem-product-show2 > tr')
-            // $('#esewaForm input[name=amt]').val(total);
-
-            $('.otherPayment').on('click', function(){
-                if($('#esewaRadio').is(':checked') == false){
-                    $('#esewaForm').parent().attr('hidden', true);
-                    $('.confirmButton').attr('hidden', false);
-                }
-            });
-
-            $('.esewaRadio').on('click', function(){
-                if($('#esewaRadio').is(':checked')){
-                    $('#esewaForm').parent().attr('hidden', false);
-                    $('.confirmButton').attr('hidden', true);
-                }
-            });
         });
 
-        $(document).ajaxStop(function () {
+        $(document).ajaxStop(function() {
             var d = new Date();
             var productSkus = d.getTime();
-            $.each($('#cartItem-product-show2 > tr'), function(){
-                if(productSkus == ''){
+            $.each($('#cartItem-product-show2 > tr'), function() {
+                if (productSkus == '') {
                     productSkus += $(this).attr('product_sku');
-                }else{
+                } else {
                     productSkus += '>' + $(this).attr('product_sku');
                 }
             });
+            console.log($('.caritem-grandtotal').html())
             var total = $('.caritem-grandtotal').html().split(' ').slice(-1)[0];
+            console.log(total);
             $('#esewaForm input[name="amt"]').val(total);
             var tax = 0;
             var servChrg = 0;
@@ -249,6 +401,7 @@
 
 
         function cartItem(cartSession) {
+            console.log('Hello chekout page')
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&language_id=' + languageId +
                     '&currency=' + localStorage.getItem("currency");
@@ -267,7 +420,9 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    console.log('chekout page');
+                    if(data.data.length == 0){
+                        window.location.href = "{{ url('/shop') }}";
+                    }
                     if (data.status == 'Success') {
                         $("#cartItem-product-show2").html('');
                         total_price = 0;
@@ -276,18 +431,23 @@
                         for (i = 0; i < data.data.length; i++) {
                             if (data.data[i].product_type == 'variable') {
                                 for (k = 0; k < data.data[i].combination.length; k++) {
-                                    if (data.data[i].product_combination_id == data.data[i].combination[k].product_combination_id) {
-                                        total_weight += parseInt(data.data[i].product_weight) * parseInt(data.data[i].qty);
+                                    if (data.data[i].product_combination_id == data.data[i].combination[k]
+                                        .product_combination_id) {
+                                        total_weight += parseInt(data.data[i].product_weight) * parseInt(data
+                                            .data[i].qty);
                                         if (data.data[i].combination[k].gallary != null) {
-                                            imgSrc = '/gallary/' + data.data[i].combination[k].gallary.gallary_name;
+                                            imgSrc = '/gallary/' + data.data[i].combination[k].gallary
+                                                .gallary_name;
                                             imgAlt = data.data[i].combination[k].gallary.gallary_name;
                                             name = data.data[i].product_detail[0].title;
                                             for (loop = 0; loop < data.data[i].product_combination
                                                 .length; loop++) {
                                                 if (data.data[i].product_combination[loop].length - 1 == loop) {
-                                                    name += data.data[i].product_combination[loop].variation.detail[0].name;
+                                                    name += data.data[i].product_combination[loop].variation
+                                                        .detail[0].name;
                                                 } else {
-                                                    name += data.data[i].product_combination[loop].variation.detail[0].name + '-';
+                                                    name += data.data[i].product_combination[loop].variation
+                                                        .detail[0].name + '-';
                                                 }
                                             }
                                         }
@@ -295,13 +455,17 @@
                                     } else {}
                                 }
                             } else {
-                                total_weight += parseInt(data.data[i].product_weight) * parseInt(data.data[i].qty);
-                                if (data.data[i].product_gallary != null && $.trim(data.data[i].product_gallary) != '') {
-                                    if (data.data[i].product_gallary.detail != null && $.trim(data.data[i].product_gallary.detail) != '') {
+                                total_weight += parseInt(data.data[i].product_weight) * parseInt(data.data[i]
+                                    .qty);
+                                if (data.data[i].product_gallary != null && $.trim(data.data[i]
+                                    .product_gallary) != '') {
+                                    if (data.data[i].product_gallary.detail != null && $.trim(data.data[i]
+                                            .product_gallary.detail) != '') {
                                         imgSrc = data.data[i].product_gallary.detail[2].gallary_path;
                                     }
                                 }
-                                if (data.data[i].product_detail != null && $.trim(data.data[i].product_detail) != '') {
+                                if (data.data[i].product_detail != null && $.trim(data.data[i]
+                                    .product_detail) != '') {
                                     imgAlt = data.data[i].product_detail[0].title;
                                     itemName = data.data[i].product_detail[0].title;
                                 }
@@ -332,7 +496,9 @@
                             total_price = total_price + (discount_price * data.data[i].qty);
 
 
-                            if ($.trim(data.data[i].category_detail[0].category_detail) != '' && $.trim(data.data[i].category_detail[0].category_detail) != 'null' && $.trim(data.data[i].category_detail[0].category_detail) != null) {
+                            if ($.trim(data.data[i].category_detail[0].category_detail) != '' && $.trim(data
+                                    .data[i].category_detail[0].category_detail) != 'null' && $.trim(data.data[
+                                    i].category_detail[0].category_detail) != null) {
                                 categoryName = data.data[i].category_detail[0].category_detail.detail[0].name;
                             }
                             // tbodyRow = '<tr class="cartItem-row" product_combination_id="' + data.data[i].product_combination_id + '" product_id="' + data.data[i].product_id + '" product_type="' + data.data[i].product_type + '" product_sku="' + data.data[i].product_slug + '">' +
@@ -361,46 +527,56 @@
                             //     '</td>' +
                             // '</tr>';
 
-                            tbodyRow = '<tr class="text-center cartItem-row" product_combination_id="'+ data.data[i].product_combination_id +'" product_id="'+ data.data[i].product_id +'" product_type="'+ data.data[i].product_type +'" product_sku="'+ data.data[i].product_slug +'">'+
-                                            '<td class="border_trhee">'+
-                                            '   <div class="img-block">'+
-                                            '      <img src="'+ imgSrc +'" alt="">'+
-                                            '   </div>'+
-                                            '</td>'+
-                                            '<td>'+
-                                            '   <div class="d-flex flex-column w-100">'+
-                                            '      <div class="head w-100">'+ itemName +'</div>'+
-                                            '   </div>'+
-                                            '</td>'+
-                                            '<td class="text_gray">'+ cartItemPrice +'</td>'+
-                                            '<td class="text_gray">'+
-                                            '   <div class="">'+
-                                            '     '+ itemQty +' '+
-                                            '   </div>'+
-                                            '</td>'+
-                                            '<td class="text_gray">'+ cartItemTotal +'</td>'+
-                                            '<td class="remove-item">'+
-                                            '<a href="javascript:void(0)" class="fa fa-trash-o text-danger cartItem-remove" onclick="removeCartItem(this)" data-id="'+ data.data[i].product_id +'" data-combination-id="'+ data.data[i].product_combination_id +'"></a>'+
-                                            '</td>'+
-                                        '</tr>';
-                            console.log('Hey checkout');
+                            tbodyRow = '<tr class="text-center cartItem-row" product_combination_id="' + data
+                                .data[i].product_combination_id + '" product_id="' + data.data[i].product_id +
+                                '" product_type="' + data.data[i].product_type + '" product_sku="' + data.data[
+                                    i].product_slug + '">' +
+                                '<td class="border_trhee">' +
+                                '   <div class="img-block">' +
+                                '      <img src="' + imgSrc + '" alt="">' +
+                                '   </div>' +
+                                '</td>' +
+                                '<td>' +
+                                '   <div class="d-flex flex-column w-100">' +
+                                '      <div class="head w-100">' + itemName + '</div>' +
+                                '   </div>' +
+                                '</td>' +
+                                '<td class="text_gray">' + cartItemPrice + '</td>' +
+                                '<td class="text_gray">' +
+                                '   <div class="">' +
+                                '     ' + itemQty + ' ' +
+                                '   </div>' +
+                                '</td>' +
+                                '<td class="text_gray">' + cartItemTotal + '</td>' +
+                                '<td class="remove-item">' +
+                                '<a href="javascript:void(0)" class="fa fa-trash-o text-danger cartItem-remove" onclick="removeCartItem(this)" data-id="' +
+                                data.data[i].product_id + '" data-combination-id="' + data.data[i]
+                                .product_combination_id + '"></a>' +
+                                '</td>' +
+                                '</tr>';
                             $("#cartItem-product-show2").append(tbodyRow);
 
-                            if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i].currency != null) {
+                            if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i]
+                                .currency != null) {
                                 if (data.data[i].currency.symbol_position == 'left') {
                                     $(".caritem-subtotal").html(data.data[i].currency.code + ' ' + total_price);
                                     $(".caritem-subtotal").attr('price', total_price);
-                                    $(".caritem-subtotal").attr('currency-position', data.data[i].currency.symbol_position);
+                                    $(".caritem-subtotal").attr('currency-position', data.data[i].currency
+                                        .symbol_position);
                                     $(".caritem-subtotal").attr('currency-code', data.data[i].currency.code);
-                                    $(".caritem-subtotal").attr('price-symbol', data.data[i].currency.code + ' ' + total_price);
-                                    $(".caritem-grandtotal").html(data.data[i].currency.code + ' ' + total_price.toFixed(2));
+                                    $(".caritem-subtotal").attr('price-symbol', data.data[i].currency.code +
+                                        ' ' + total_price);
+                                    $(".caritem-grandtotal").html(data.data[i].currency.code + ' ' + total_price
+                                        .toFixed(2));
                                     $(".shipping-tax").attr('data-price', '0');
                                 } else {
                                     $(".caritem-subtotal").html(total_price + ' ' + data.data[i].currency.code);
                                     $(".caritem-subtotal").attr('price', total_price);
                                     $(".shipping-tax").attr('data-price', '0');
-                                    $(".caritem-subtotal").attr('price-symbol', data.data[i].currency.code + ' ' + total_price);
-                                    $(".caritem-grandtotal").html(total_price.toFixed(2) + ' ' + data.data[i].currency.code);
+                                    $(".caritem-subtotal").attr('price-symbol', data.data[i].currency.code +
+                                        ' ' + total_price);
+                                    $(".caritem-grandtotal").html(total_price.toFixed(2) + ' ' + data.data[i]
+                                        .currency.code);
                                 }
                             }
                         }
@@ -436,7 +612,8 @@
             }
 
             if (loggedIn == '1') {
-                url = "{{ url('') }}" + '/api/client/cart/delete?session_id=' + cartSession + '&product_id=' + product_id +
+                url = "{{ url('') }}" + '/api/client/cart/delete?session_id=' + cartSession + '&product_id=' +
+                    product_id +
                     '&product_combination_id=' + product_combination_id + '&language_id=' + languageId;
             } else {
                 url = "{{ url('') }}" + '/api/client/cart/guest/delete?session_id=' + cartSession + '&product_id=' +
@@ -562,6 +739,7 @@
         $(document).ready(function() {
             getCustomerAdress();
             countries();
+            states1();
         });
 
         function getCustomerAdress() {
@@ -625,11 +803,14 @@
                         for (i = 0; i < data.data.length; i++) {
                             selected = '';
                             if ($.trim($("#billing_country_hidden").val()) != '' && $.trim($(
-                                    "#billing_country_hidden").val()) == data.data[i].country_id) {
-                                selected = 'selected';
-                                $("#billing_country_hidden").val('');
+                                "#billing_country_hidden").val()) == data.data[i].country_id) {
+                                    selected = 'selected';
+                                    $("#billing_country_hidden").val('');
                             }
-
+                            if(data.data[i].country_name == 'Nepal'){
+                                selected = 'selected';
+                            }
+                            
                             html += '<option value="' + data.data[i].country_id + '" ' + selected + '>' + data
                                 .data[i].country_name + '</option>';
                         }
@@ -706,6 +887,8 @@
                                 $("#delivery_country_hidden").val('');
                             } else if (data.data[i].country_id == country) {
                                 selected = 'selected';
+                            } else if (data.data[i].country_name == 'Nepal'){
+                                selected = 'selected';
                             }
                             html += '<option value="' + data.data[i].country_id + '" ' + selected + '>' + data
                                 .data[i].country_name + '</option>';
@@ -727,6 +910,10 @@
         function states1() {
 
             country_id = $("#delivery_country").val() ? $("#delivery_country").val() : country;
+            if(!country){
+                country_id = 149;
+            }
+
             if (country_id == '') {
                 $("#delivery_state").html('');
                 return;
@@ -884,19 +1071,48 @@
 
         $(".payment_method").click(function() {
             payment_method = $.trim($(".payment_method:checked").val());
+            if(payment_method == 'esewa'){
+                $('#esewaForm').parent().attr('hidden', false);
+                $('.createOrder').attr('hidden', true);
+                $.ajax({
+                    type: 'post',
+                    data: {
+                        'payment_method': payment_method,
+                    },
+                    url: '{{ url("") }}' + '/api/client/esewaMerchant',
+                    headers: {
+                        'Authorization': 'Bearer ' + customerToken,
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                        clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                    },
+                    beforeSend: function() {},
+                    success: function(response) {
+                        $("#esewaForm").attr('action', response.ESEWA_URL);
+                        $('#esewaForm input[name="scd"]').val(response.ESEWA_MERCHANT_ID);
+                    }
+                });
+                $(".stripe_payment").addClass('d-none');
+                $(".bank_transfer").addClass('d-none');
+            }
             if (payment_method == 'stripe' || payment_method == 'paypal') {
+                $('#esewaForm').parent().attr('hidden', true);
+                $('.createOrder').attr('hidden', false);
                 $(".stripe_payment").removeClass('d-none');
                 $(".bank_transfer").addClass('d-none');
                 return;
             }
             if (payment_method == 'banktransfer') {
+                $('#esewaForm').parent().attr('hidden', true);
+                $('.createOrder').attr('hidden', false);
                 $(".bank_transfer").removeClass('d-none');
                 $(".stripe_payment").addClass('d-none');
             }
-            if(payment_method == 'cod'){
+            if(payment_method == 'cash_on_delivery'){
+                $('#esewaForm').parent().attr('hidden', true);
+                $('.createOrder').attr('hidden', false);
                 $(".stripe_payment").addClass('d-none');
                 $(".bank_transfer").addClass('d-none');
-
             }
             
         });
@@ -912,10 +1128,10 @@
             createOrder();
         });
 
-        function createOrder(){
+        function createOrder() {
             locations = '';
             billing_first_name = $("#delivery_first_name").val();
-            if(billing_first_name == ''){
+            if (billing_first_name == '') {
                 $("#collapseOne").removeClass('show');
                 $("#collapseTwo").addClass('show');
                 toastr.error('First Name is empty. Fill the required data.');
@@ -923,7 +1139,7 @@
                 return false;
             }
             billing_last_name = $("#delivery_last_name").val();
-            if(billing_last_name == ''){
+            if (billing_last_name == '') {
                 $("#collapseOne").removeClass('show');
                 $("#collapseTwo").addClass('show');
                 toastr.error('Last Name is empty. Fill the required data.');
@@ -931,7 +1147,7 @@
                 return false;
             }
             billing_street_aadress = $("#delivery_street_aadress").val();
-            if(billing_street_aadress == ''){
+            if (billing_street_aadress == '') {
                 $("#collapseOne").removeClass('show');
                 $("#collapseTwo").addClass('show');
                 toastr.error('Address is empty. Fill the required data.');
@@ -939,7 +1155,7 @@
                 return false;
             }
             billing_country = $("#delivery_country").val();
-            if(billing_country == ''){
+            if (billing_country == '') {
                 $("#collapseOne").removeClass('show');
                 $("#collapseTwo").addClass('show');
                 toastr.error('Country is empty. Fill the required data.');
@@ -947,7 +1163,7 @@
                 return false;
             }
             billing_state = $("#delivery_state").val();
-            if(billing_state == ''){
+            if (billing_state == '') {
                 $("#collapseOne").removeClass('show');
                 $("#collapseTwo").addClass('show');
                 toastr.error('State is empty. Fill the required data.');
@@ -955,7 +1171,7 @@
                 return false;
             }
             billing_city = $("#delivery_city").val();
-            if(billing_city == ''){
+            if (billing_city == '') {
                 $("#collapseOne").removeClass('show');
                 $("#collapseTwo").addClass('show');
                 toastr.error('City is empty. Fill the required data.');
@@ -963,7 +1179,7 @@
                 return false;
             }
             billing_postcode = $("#delivery_postcode").val();
-            if(billing_postcode == ''){
+            if (billing_postcode == '') {
                 $("#collapseOne").removeClass('show');
                 $("#collapseTwo").addClass('show');
                 toastr.error('Post Code  is empty. Fill the required data.');
@@ -971,7 +1187,7 @@
                 return false;
             }
             billing_phone = $("#delivery_phone").val();
-            if(billing_phone == ''){
+            if (billing_phone == '') {
                 $("#collapseOne").removeClass('show');
                 $("#collapseTwo").addClass('show');
                 toastr.error('Phone is empty. Fill the required data.');
@@ -999,7 +1215,7 @@
             if (payment_method == '') {
                 toastr.error('Select Payment Method');
                 return;
-            }else if(payment_method == 'cash_on_delivery'){
+            } else if (payment_method == 'cash_on_delivery') {
                 payment_method = 'cod';
             }
 
@@ -1045,11 +1261,11 @@
                 success: function(data) {
                     // console.log(data);
                     if (data.status == 'Success') {
-                        if(payment_method == 'esewa'){
+                        if (payment_method == 'esewa') {
                             pid = $('#esewaForm input[name=pid]').val() + '?' + data.data.order_id;
                             $('#esewaForm input[name=pid]').val(pid);
                             $('#esewaForm').submit();
-                        }else if(payment_method == 'cod'){
+                        } else if (payment_method == 'cod') {
                             window.location.href = "{{ url('/thankyou') }}";
                         }
                     } else if (data.status == 'Error') {
@@ -1224,10 +1440,12 @@
                 }
                 total = +sub_price + +total_tax_price - +couponCart;
             }
+            currencyCode = $(".caritem-subtotal").attr('currency-code') ? $(".caritem-subtotal").attr('currency-code') : '';
+            totalP = total ? total.toFixed(2) : 0;
             if ($.trim($(".caritem-subtotal").attr('currency-position')) == 'left') {
-                $(".caritem-grandtotal").html($(".caritem-subtotal").attr('currency-code') + ' ' + total.toFixed(2));
+                $(".caritem-grandtotal").html(currencyCode + ' ' + totalP);
             } else {
-                $(".caritem-grandtotal").html(total.toFixed(2) + ' ' + $(".caritem-subtotal").attr('currency-code'));
+                $(".caritem-grandtotal").html(totalP + ' ' + currencyCode);
             }
         }
     </script>
