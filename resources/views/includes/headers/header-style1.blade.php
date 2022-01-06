@@ -1,9 +1,8 @@
 <?php
-$categories = App\Models\Admin\Category::inRandomOrder()
+$categories = App\Models\Admin\Category::where('parent_id', null)
     ->with('detail')
-    ->whereHas('my_products')
-    ->with('my_products')
-    ->take(8)
+    ->with('subcategory')
+    ->take(9)
     ->get();
 ?>
 <header class="section-header top-header-bg">
@@ -36,22 +35,22 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                             </ul>
                             <ul class="dropdown-menu auth-login" id="profilenavId" hidden>
                                 <li>
-                                    <a href="" class="font-weight-normal"><span class="pr-2"><i
+                                    <a href="{{ url('/profile') }}" class="font-weight-normal"><span class="pr-2"><i
                                                 class="fa fa-user" aria-hidden="true"></i></span>
                                         Profile</a>
                                 </li>
                                 <li>
-                                    <a href="" class="font-weight-normal"><span class="pr-2"><i
+                                    <a href="{{ url('/wishlist') }}" class="font-weight-normal"><span class="pr-2"><i
                                                 class="fa fa-heart" aria-hidden="true"></i></span>
                                         Wishlist</a>
                                 </li>
                                 <li>
-                                    <a href="" class="font-weight-normal"><span class="pr-2"><i
+                                    <a href="{{ url('/orders') }}" class="font-weight-normal"><span class="pr-2"><i
                                                 class="fa fa-sort" aria-hidden="true"></i></span>
                                         Order Status</a>
                                 </li>
                                 <li>
-                                    <a href="" class="font-weight-normal"><span class="pr-2"><i
+                                    <a href="{{ url('/change-password') }}" class="font-weight-normal"><span class="pr-2"><i
                                                 class="fa fa-sort" aria-hidden="true"></i></span>
                                         Change Password</a>
                                 </li>
@@ -119,13 +118,24 @@ $categories = App\Models\Admin\Category::inRandomOrder()
 <nav class="header navbar navbar-expand-lg header-sticky">
     <div class="container">
         <div class="header-logo text-center d-flex">
-            <a class="navbar-brand text-white text-uppercase text-left p-0 mr-5" href=""><img src="{{ asset('frontend/assets/img/logo.png') }}"
-                    class="img-fluid" alt="imageOriana Eatery" /></a>
+            <a class="navbar-brand text-white text-uppercase text-left p-0 mr-5" href=""><img src="{{ isset(getSetting()['site_logo']) ? getSetting()['site_logo'] : asset('01-logo.png') }}"
+                alt="{{ isset(getSetting()['site_name']) ? getSetting()['site_name'] : 'Logo' }}"
+                    class="img-fluid" /></a>
             <!-- search start  -->
 
             <div class="searchbar d-none d-md-block">
-                <input class="search_input" type="text" name="" placeholder="Search..." />
+                <input class="search_input" type="text" placeholder="Search" id="search-input" autocomplete="off" />
                 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+
+                <div class="dropdown searchBox w-100" id="searchBox">
+                    <ul class="dropdown-menu" style="width: 100%; overflow-y: auto; max-height: 400px; min-height:auto">
+                        <a href="" style="text-decoration: none;">
+                            <li class="dropdown-item">
+                                <img class="img-thumbnail" height="100px" src="https://dummyimage.com/150x100/000/fff"> India
+                            </li>
+                        </a>
+                    </ul>
+                </div>
             </div>
 
             <!-- search end  -->
@@ -152,10 +162,10 @@ $categories = App\Models\Admin\Category::inRandomOrder()
         <div class="collapse navbar-collapse" id="main_nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold text-left text-lg-center" href="index.html">Home</a>
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold text-left text-lg-center" href="about.html">About Us</a>
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="{{ url('/shop') }}">Shop</a>
                 </li>
                 <li class="nav-item position-relative">
                     <a class="
@@ -164,64 +174,37 @@ $categories = App\Models\Admin\Category::inRandomOrder()
                 font-weight-bold
                 text-left text-lg-center
               "
-                        href="product.html">Products
+                        href="product.html">Category
                     </a>
                     <div class="menu_drop_down">
                         <div class="row">
+                            @foreach ($categories as $k => $category)
                             <div class="col-md-6">
                                 <div class="menu_drop_list">
                                     <ul>
-                                        <h3 class="text-left">Gaming</h3>
-                                        <li><a href="">Office Product</a></li>
-                                        <li><a href="">Office Productsss</a></li>
-                                        <li><a href="">Office Product</a></li>
-                                        <li><a href="">Office Productsss</a></li>
+                                        <a href="/shop?category={{ $category->id }}">
+                                            <h3 class="text-left">{{ $category->detail[0]->category_name }}</h3>
+                                        </a>
+                                        @foreach ($category->subcategory as $sub => $subcat)
+                                        @if (!$category->subcategory->isEmpty())
+                                            <li><a href="/shop?category={{ $subcat->id }}">{{ $subcat->detail[0]->category_name }}</a></li>
+                                        @endif
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="menu_drop_list">
-                                    <ul>
-                                        <h3 class="text-left">Gaming</h3>
-                                        <li><a href="">Office Product</a></li>
-                                        <li><a href="">Office Productsss</a></li>
-                                        <li><a href="">Office Product</a></li>
-                                        <li><a href="">Office Productsss</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="menu_drop_list mt-4">
-                                    <ul>
-                                        <h3 class="text-left">Gaming</h3>
-                                        <li><a href="">Office Product</a></li>
-                                        <li><a href="">Office Productsss</a></li>
-                                        <li><a href="">Office Product</a></li>
-                                        <li><a href="">Office Productsss</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="menu_drop_list mt-4">
-                                    <ul>
-                                        <h3 class="text-left">Gaming</h3>
-                                        <li><a href="">Office Product</a></li>
-                                        <li><a href="">Office Productsss</a></li>
-                                        <li><a href="">Office Product</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold text-left text-lg-center" href="checkout.html">
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="{{ url('/checkout') }}">
                         Checkout
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold text-left text-lg-center" href="cart.html">
+                    <a class="nav-link font-weight-bold text-left text-lg-center" href="{{ url('/cart') }}">
                         Cart
                     </a>
                 </li>
