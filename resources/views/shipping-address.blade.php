@@ -1,215 +1,195 @@
+<script>
+    loggedIn = localStorage.getItem("customerLoggedin");
+    if (loggedIn != '1') {
+        localStorage.setItem("loginErrorMessage", "Please Login!!!");
+        window.location.href = "{{ url('/login') }}";
+    }
+</script>
 @extends('layouts.master')
 @section('content')
 
-
-<!--Shipping Content -->
-
-<div class="container-fuild">
-    <nav aria-label="breadcrumb">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">{{ trans('lables.bread-crumb-home') }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ trans('lables.shipping-address') }}</li>
-            </ol>
-        </div>
-    </nav>
-</div>
-<section class="pro-content">
-
-    <section class="shipping-content">
+    <!-- Breadcrumbs -->
+    <section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-3">
-
-                    <div class="heading">
-                        <h2>
-                            {{ trans('lables.shipping-address-my-account') }}
-                        </h2>
-                        <hr>
-                    </div>
-                    @include('includes.side-menu')
-                </div>
-                <div class="col-12 col-lg-9 ">
-                    <div class="heading">
-                        <h2>
-                            {{ trans('lables.shipping-address') }}
-                        </h2>
-                        <hr>
-                    </div>
-
-                    <table class="table shipping-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">{{ trans('lables.shipping-address-default') }}</th>
-                                <th scope="col">{{ trans('lables.shipping-address-first-name') }}</th>
-                                <th scope="col">{{ trans('lables.shipping-address-last-name') }}</th>
-                                <th scope="col">{{ trans('lables.shipping-address-country-state-city') }}</th>
-                                <th scope="col" class="d-none d-md-block">{{ trans('lables.shipping-address-action') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody id="shipping-address-listing-show">
-
-                        </tbody>
-                    </table>
-
-                    <template id="shipping-address-listing-template">
-                        <tr class="shipping-address-listing-id">
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input shipping-address-listing-is-default" name="radiobtn" type="radio">
-                                </div>
-                            </td>
-                            <td>
-                                <label class="form-check-label shipping-address-listing-first-name">
-                                </label>
-                            </td>
-                            <td>
-                                <label class="form-check-label shipping-address-listing-last-name">
-                                </label>
-                            </td>
-                            <td>
-                                <label class="form-check-label shipping-address-listing-country-state-city">
-                                </label>
-                            </td>
-
-                            <td class="edit-tag">
-                                <ul>
-                                    <li><a href="javascript:void(0)" class="shipping-address-listing-edit-btn"> <i class="fas fa-pen"></i> Edit</a></li>
-                                    <li><a href="javascript:void(0)" class="shipping-address-listing-delete-btn"> <i class="fas fa-trash-alt"></i> Remove</a></li>
-                                </ul>
-
-                            </td>
-                        </tr>
-                    </template>
-                    <div class="heading mt-4">
-                        <h2>
-                            {{ trans('lables.shipping-address-add') }}
-                        </h2>
-                        <hr>
-                    </div>
-
-                    <div class="main-form">
-                        <form id="shippingAddressForm">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="">{{ trans('lables.shipping-address-first-name') }}</label>
-                                    <input type="text" class="form-control" id="first_name" placeholder="{{ trans('lables.shipping-address-first-name') }}">
-                                    <div class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">{{ trans('lables.shipping-address-last-name') }}</label>
-                                    <input type="text" class="form-control" id="last_name" placeholder="{{ trans('lables.shipping-address-last-name') }}">
-                                    <div class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-
-                                <div class="form-group col-md-6">
-                                    <label for=""> {{ trans('lables.shipping-address-stret-address') }}</label>
-                                    <input type="text" class="form-control" id="street_address" placeholder="{{ trans('lables.shipping-address-stret-address') }}">
-                                    <div class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                                <div class="form-group select-control col-md-6">
-                                    <label for=""> {{ trans('lables.shipping-address-country') }}</label>
-                                    <select class="form-control " id="country_id" onchange="states()">
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-
-                                <div class="form-group select-control col-md-6">
-                                    <label for="">{{ trans('lables.shipping-address-state') }}</label>
-                                    <select class="form-control " id="state_id">
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                                <div class="form-group select-control col-md-6">
-                                    <label for=""> {{ trans('lables.shipping-address-city') }}</label>
-                                    <input type="text" class="form-control " id="city" placeholder="{{ trans('lables.shipping-address-city') }}"/>
-                                    <div class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-
-                                <div class="form-group col-md-6">
-                                    <label for=""> {{ trans('lables.shipping-address-postal-code') }}</label>
-                                    <input type="text" class="form-control" id="postcode" placeholder="{{ trans('lables.shipping-address-postal-code') }}">
-                                    <div class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                                @if(isset(getSetting()['is_deliveryboyapp_purchased']) && getSetting()['is_deliveryboyapp_purchased'] == '1')
-                                <div class="form-group col-md-6">
-                                    <label for=""> {{ trans('lables.shipping-address-latlong') }}</label>
-                                    <input type="text" class="form-control" name="location"
-                                    id="location" aria-describedby="addressHelp" placeholder="{{ trans('lables.shipping-address-latlong') }}">
-                                    <div class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                                @endif
-                            </div>
-
-                            <input type="hidden" class="form-control" id="method">
-                            <input type="hidden" class="form-control" id="country_id_hidden">
-                            <input type="hidden" class="form-control" id="state_id_hidden">
-                            <input type="hidden" class="form-control" id="addres_id">
-                            <input type="hidden" class="form-control" id="gender">
-                            <input type="hidden" class="form-control" id="dob">
-                            <input type="hidden" class="form-control" id="phone">
-                            <button type="submit" class="btn btn-secondary swipe-to-top">{{ trans('lables.shipping-address-add-address') }}</button>
-                        </form>
-                    </div>
-                    <!-- ............the end..... -->
+                <div class="col-md-12 m-auto">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item font-weight-bold">
+                                <a href="{{ url('/') }}"><span><i class="fa fa-home" aria-hidden="true"></i></span>
+                                    HOME</a>
+                            </li>
+                            <li class="breadcrumb-item font-weight-bold" aria-current="page">
+                                <a href="" class="text-dark">Shipping Address</a>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
     </section>
-</section>
-<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-modal="true">
+    <!-- Breadcrumbs Ends -->
 
-    <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
-        <div class="modal-content">
-            <div class="modal-body">
 
-                <div class="container">
-                    <div class="row align-items-center">
-
-                        <div class="form-group">
-                            <input type="text" id="pac-input" name="address_address" class="form-control map-input">
-                        </div>
-                        <div id="address-map-container" style="width:100%;height:400px; ">
-                            <div style="width: 100%; height: 100%" id="map"></div>
+    <!-- Profile -->
+    <section id="profile-wrapper" class="py-3">
+        <div class="container">
+            <div class="row py-xl-5 py-md-3 py-0">
+                <div class="col-lg-3 col-12 mb-xl-0 mb-lg-0 mb-3">
+                    @include('includes.user-dashboard')
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-12 col-12">
+                    <div class="profile-side-detail-edit">
+                        <div class="dashboard-content">
+                            <div class="submit-section">
+                                <h4 class="font-weight-bold mb-3">{{ trans('lables.shipping-address') }}</h4>
+                                <table class="table shipping-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">{{ trans('lables.shipping-address-default') }}</th>
+                                            <th scope="col">{{ trans('lables.shipping-address-first-name') }}</th>
+                                            <th scope="col">{{ trans('lables.shipping-address-last-name') }}</th>
+                                            <th scope="col">{{ trans('lables.shipping-address-country-state-city') }}</th>
+                                            <th scope="col" class="d-none d-md-block">{{ trans('lables.shipping-address-action') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="shipping-address-listing-show">
+            
+                                    </tbody>
+                                </table>
+            
+                                <template id="shipping-address-listing-template">
+                                    <tr class="shipping-address-listing-id">
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input shipping-address-listing-is-default" name="radiobtn" type="radio">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="form-check-label shipping-address-listing-first-name">
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="form-check-label shipping-address-listing-last-name">
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="form-check-label shipping-address-listing-country-state-city">
+                                            </label>
+                                        </td>
+            
+                                        <td class="edit-tag">
+                                            <ul>
+                                                <li><a href="javascript:void(0)" class="shipping-address-listing-edit-btn"> <i class="fas fa-pen"></i> Edit</a></li>
+                                                <li><a href="javascript:void(0)" class="shipping-address-listing-delete-btn"> <i class="fas fa-trash-alt"></i> Remove</a></li>
+                                            </ul>
+            
+                                        </td>
+                                    </tr>
+                                </template>
+                                <div class="heading mt-4">
+                                    <h2>
+                                        {{ trans('lables.shipping-address-add') }}
+                                    </h2>
+                                    <hr>
+                                </div>
+            
+                                <div class="main-form">
+                                    <form id="shippingAddressForm">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">{{ trans('lables.shipping-address-first-name') }}</label>
+                                                <input type="text" class="form-control" id="first_name" placeholder="{{ trans('lables.shipping-address-first-name') }}">
+                                                <div class="invalid-feedback">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">{{ trans('lables.shipping-address-last-name') }}</label>
+                                                <input type="text" class="form-control" id="last_name" placeholder="{{ trans('lables.shipping-address-last-name') }}">
+                                                <div class="invalid-feedback">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+            
+                                            <div class="form-group col-md-6">
+                                                <label for=""> {{ trans('lables.shipping-address-stret-address') }}</label>
+                                                <input type="text" class="form-control" id="street_address" placeholder="{{ trans('lables.shipping-address-stret-address') }}">
+                                                <div class="invalid-feedback">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="form-group select-control col-md-6">
+                                                <label for=""> {{ trans('lables.shipping-address-country') }}</label>
+                                                <select class="form-control " id="country_id" onchange="states()">
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+            
+                                            <div class="form-group select-control col-md-6">
+                                                <label for="">{{ trans('lables.shipping-address-state') }}</label>
+                                                <select class="form-control " id="state_id">
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="form-group select-control col-md-6">
+                                                <label for=""> {{ trans('lables.shipping-address-city') }}</label>
+                                                <input type="text" class="form-control " id="city" placeholder="{{ trans('lables.shipping-address-city') }}"/>
+                                                <div class="invalid-feedback">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+            
+                                            <div class="form-group col-md-6">
+                                                <label for=""> {{ trans('lables.shipping-address-postal-code') }}</label>
+                                                <input type="text" class="form-control" id="postcode" placeholder="{{ trans('lables.shipping-address-postal-code') }}">
+                                                <div class="invalid-feedback">
+                                                    
+                                                </div>
+                                            </div>
+                                            @if(isset(getSetting()['is_deliveryboyapp_purchased']) && getSetting()['is_deliveryboyapp_purchased'] == '1')
+                                            <div class="form-group col-md-6">
+                                                <label for=""> {{ trans('lables.shipping-address-latlong') }}</label>
+                                                <input type="text" class="form-control" name="location"
+                                                id="location" aria-describedby="addressHelp" placeholder="{{ trans('lables.shipping-address-latlong') }}">
+                                                <div class="invalid-feedback">
+                                                    
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+            
+                                        <input type="hidden" class="form-control" id="method">
+                                        <input type="hidden" class="form-control" id="country_id_hidden">
+                                        <input type="hidden" class="form-control" id="state_id_hidden">
+                                        <input type="hidden" class="form-control" id="addres_id">
+                                        <input type="hidden" class="form-control" id="gender">
+                                        <input type="hidden" class="form-control" id="dob">
+                                        <input type="hidden" class="form-control" id="phone">
+                                        <div class="form-group col-12 mx-auto text-center">
+                                            <button type="submit" class="w-25 theme_btn btn_tr">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- ............the end..... -->
+                            </div>
                         </div>
                     </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
                 </div>
             </div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-primary" onclick="setUserLocation()"><i
-                        class="fas fa-location-arrow"></i></button>
-                <button type="button" class="btn btn-secondary" onclick="saveAddress()">Save</button>
-            </div>
         </div>
-    </div>
-</div>
-
+    </section>
+    <!-- Profile Ends -->
 @endsection
 @section('script')
 <script>
