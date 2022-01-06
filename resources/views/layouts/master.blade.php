@@ -54,6 +54,16 @@
             font-size: 0.9rem;
             padding: 6px;
         }
+
+        #loading{
+            position: absolute;
+            z-index:999999;
+            top: 60%;
+            left: 50%;
+            opacity: 0.7;
+            background-color: #fff;
+
+        }
     </style>
 </head>
 
@@ -61,11 +71,13 @@
     @include(isset(getSetting()['header_style']) ? 'includes.headers.header-'.getSetting()['header_style'] :
     'includes.headers.header-style1')
 
+
+    <div id="loading" style="display: none;">
+        <img src="{{ asset('loader/ajax-loader.gif') }}" alt="">
+    </div>
     @yield('content')
 
-    <div id="loading">
-        <img src="{{ asset('loader/ajax-loader.gif') }}" class="d-none" alt="">
-    </div>
+    
 
     <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
     @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
@@ -1570,6 +1582,12 @@
             $('#searchBox').removeClass('show');
             $('#searchBox > ul').removeClass('show');
         });
+
+
+        function loaderOnLoad()
+        {
+            $("#loading").css('display', 'none');
+        }
     </script>
     
     @yield('script')

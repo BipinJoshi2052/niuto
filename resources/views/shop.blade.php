@@ -55,9 +55,8 @@
             var category = "{{ isset($_GET['category']) ? $_GET['category'] : '' }}";
             var varations = "{{ isset($_GET['variation_id']) ? $_GET['variation_id'] : '' }}";
             var price_range = "{{ isset($_GET['price']) ? $_GET['price'] : '' }}";
-
             var url = "{{ url('') }}" + '/api/client/products?page=' + page + '&limit=' + limit +
-                '&getDetail=1&language_id=' + language_id + '&currency=' + localStorage.getItem("currency");
+                '&getDetail=1&getCategory=1&language_id=' + language_id + '&currency=' + localStorage.getItem("currency");
 
             if (category != "")
                 url += "&productCategories=" + category;
@@ -84,10 +83,11 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
+                    // alert('Helo');
                     $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    console.log(data.meta);
+                    console.log(data);
                     if (data.status == 'Success') {
                         var links = '';
                         var page_meta_label = '';
@@ -206,7 +206,7 @@
                                             '<a href="'+ href +'"><img src="{{ asset('/') }}' + imgSrc + '"  alt="img" class="img-fluid"></a>'+
                                            '</div>'+
                                            '<div class="content_block pb-3">'+
-                                              '<small>Lotions and Creams</small>'+
+                                              '<small>'+ data.data[i].category[0].category_detail.detail[0].name +'</small>'+
                                               '<a href="'+ href +'"><h4>' + title + '</h4></a>'+
                                               '<span class="">'+ priceSymbol +'</span>'+
                                            '</div>'+
@@ -234,7 +234,7 @@
                     }
                 },
                 complete: function(){
-                    $('#loading').css('display', 'none');
+                    // $('#loading').css('display', 'none');
                 },
                 error: function(data) {},
             });

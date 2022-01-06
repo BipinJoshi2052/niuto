@@ -40,6 +40,7 @@
     </div> --}}
     
  </div>
+ @include('includes.loader')
  <div class="col-md-12 text-center">
    <div class="pagination pt-5">
       {{-- <a href="#">&laquo;</a>
