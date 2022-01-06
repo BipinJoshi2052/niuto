@@ -75,4 +75,10 @@ class Category extends Model
     {
         return $this->belongsToMany("App\Models\Admin\Product", "product_category");
     }
+
+
+    public function subcategory()
+    {
+        return $this->hasMany('App\Models\Admin\Category', "parent_id", "id")->with('detail');
+    }
 }
