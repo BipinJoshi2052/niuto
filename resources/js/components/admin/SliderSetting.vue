@@ -409,7 +409,7 @@ export default {
                         }
 
                     })
-                    .catch(err => // console.log(err))
+                    .catch(err => console.log(err))
                     .finally(() => (this.$parent.loading = false));
             }
         },

@@ -4,6 +4,14 @@
         localStorage.setItem("loginErrorMessage", "Please Login!!!");
         window.location.href = "{{ url('/login') }}";
     }
+    languageId = $.trim(localStorage.getItem("languageId"));
+    cartSession = $.trim(localStorage.getItem("cartSession"));
+    if (cartSession == null || cartSession == 'null') {
+        cartSession = '';
+    }
+    customerToken = $.trim(localStorage.getItem("customerToken"));
+    customerId = $.trim(localStorage.getItem("customerId"));
+    cartItem(cartSession);
 </script>
 @extends('layouts.master')
 @section('content')
@@ -147,15 +155,16 @@
                             <ul class="mb-0 py-4">
                                 @foreach ($payment_method_default as $payment_methods)
                                     <li>
-                                        <span
-                                            class="d-flex justify-content-start justify-content-lg-center align-items-center">
+                                        <span class="d-flex justify-content-start justify-content-lg-center align-items-center">
                                             <input type="radio" id="inlineCheckbox{{ $payment_methods->id }}"
-                                                name="customRadio" class="payment_method otherPayment"
+                                                name="customRadio" class="payment_method"
                                                 {{ old('customRadio', $loop->first ? 'checked' : '') }}
                                                 value="{{ $payment_methods->payment_method }}">
-                                            <h5 class="font-weigth-normal mb-0 otherPayment">
-                                                {{ ucwords(str_replace('_', ' ', $payment_methods->payment_method)) }}
-                                            </h5>
+                                            <label class="my-auto" for="inlineCheckbox{{ $payment_methods->id }}">
+                                                <h5 class="font-weigth-normal mb-0">
+                                                    {{ ucwords(str_replace('_', ' ', $payment_methods->payment_method)) }}
+                                                </h5>
+                                            </label>
                                         </span>
                                     </li>
                                 @endforeach
@@ -172,22 +181,23 @@
                         <div class="btn_groups-single large-btn my-5 rounded-0">
                             <button type="button" class="btn-purpal createOrder confirmButton">Confirm</button>
                         </div>
-                    </div>
-                    <div class="row" hidden>
-                        <form action="https://uat.esewa.com.np/epay/main" method="POST" id="esewaForm"
-                            class="my-3 mx-auto">
-                            <input value="10" name="tAmt" type="hidden">
-                            <input value="10" name="amt" type="hidden">
-                            <input value="0" name="txAmt" type="hidden">
-                            <input value="0" name="psc" type="hidden">
-                            <input value="0" name="pdc" type="hidden">
-                            <input value="EPAYTEST" name="scd" type="hidden">
-                            <input value="" name="pid" type="hidden">
-                            <input value="{{ route('esewa-verify') }}?q=su" type="hidden" name="su">
-                            <input value="{{ route('esewa-verify') }}?q=fu" type="hidden" name="fu">
-                            <button type="submit" class="btn btn-success esewaButton" id="esewaButton">Confirm
-                                Payment</button>
-                        </form>
+                        <div hidden>
+                            <form action="" method="POST" id="esewaForm"
+                                class="my-3 mx-auto">
+                                <input value="10" name="tAmt" type="hidden">
+                                <input value="10" name="amt" type="hidden">
+                                <input value="0" name="txAmt" type="hidden">
+                                <input value="0" name="psc" type="hidden">
+                                <input value="0" name="pdc" type="hidden">
+                                <input value="" name="scd" type="hidden">
+                                <input value="" name="pid" type="hidden">
+                                <input value="{{ route('esewa-verify') }}?q=su" type="hidden" name="su">
+                                <input value="{{ route('esewa-verify') }}?q=fu" type="hidden" name="fu">
+                                <div class="btn_groups-single large-btn my-5 rounded-0">
+                                    <button type="submit" class="btn-purpal esewaButton confirmButton" id="esewaButton">Confirm Esewa</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,23 +229,6 @@
             } else {
                 cartItem(cartSession);
             }
-
-            // $('#cartItem-product-show2 > tr')
-            // $('#esewaForm input[name=amt]').val(total);
-
-            $('.otherPayment').on('click', function() {
-                if ($('#esewaRadio').is(':checked') == false) {
-                    $('#esewaForm').parent().attr('hidden', true);
-                    $('.confirmButton').attr('hidden', false);
-                }
-            });
-
-            $('.esewaRadio').on('click', function() {
-                if ($('#esewaRadio').is(':checked')) {
-                    $('#esewaForm').parent().attr('hidden', false);
-                    $('.confirmButton').attr('hidden', true);
-                }
-            });
         });
 
         $(document).ajaxStop(function() {
@@ -277,6 +270,9 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
+                    if(data.data.length == 0){
+                        window.location.href = "{{ url('/shop') }}";
+                    }
                     if (data.status == 'Success') {
                         $("#cartItem-product-show2").html('');
                         total_price = 0;
@@ -593,6 +589,7 @@
         $(document).ready(function() {
             getCustomerAdress();
             countries();
+            states1();
         });
 
         function getCustomerAdress() {
@@ -656,11 +653,14 @@
                         for (i = 0; i < data.data.length; i++) {
                             selected = '';
                             if ($.trim($("#billing_country_hidden").val()) != '' && $.trim($(
-                                    "#billing_country_hidden").val()) == data.data[i].country_id) {
-                                selected = 'selected';
-                                $("#billing_country_hidden").val('');
+                                "#billing_country_hidden").val()) == data.data[i].country_id) {
+                                    selected = 'selected';
+                                    $("#billing_country_hidden").val('');
                             }
-
+                            if(data.data[i].country_name == 'Nepal'){
+                                selected = 'selected';
+                            }
+                            
                             html += '<option value="' + data.data[i].country_id + '" ' + selected + '>' + data
                                 .data[i].country_name + '</option>';
                         }
@@ -737,6 +737,8 @@
                                 $("#delivery_country_hidden").val('');
                             } else if (data.data[i].country_id == country) {
                                 selected = 'selected';
+                            } else if (data.data[i].country_name == 'Nepal'){
+                                selected = 'selected';
                             }
                             html += '<option value="' + data.data[i].country_id + '" ' + selected + '>' + data
                                 .data[i].country_name + '</option>';
@@ -758,6 +760,10 @@
         function states1() {
 
             country_id = $("#delivery_country").val() ? $("#delivery_country").val() : country;
+            if(!country){
+                country_id = 149;
+            }
+
             if (country_id == '') {
                 $("#delivery_state").html('');
                 return;
@@ -915,21 +921,50 @@
 
         $(".payment_method").click(function() {
             payment_method = $.trim($(".payment_method:checked").val());
+            if(payment_method == 'esewa'){
+                $('#esewaForm').parent().attr('hidden', false);
+                $('.createOrder').attr('hidden', true);
+                $.ajax({
+                    type: 'post',
+                    data: {
+                        'payment_method': payment_method,
+                    },
+                    url: '{{ url("") }}' + '/api/client/esewaMerchant',
+                    headers: {
+                        'Authorization': 'Bearer ' + customerToken,
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                        clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                    },
+                    beforeSend: function() {},
+                    success: function(response) {
+                        $("#esewaForm").attr('action', response.ESEWA_URL);
+                        $('#esewaForm input[name="scd"]').val(response.ESEWA_MERCHANT_ID);
+                    }
+                });
+                $(".stripe_payment").addClass('d-none');
+                $(".bank_transfer").addClass('d-none');
+            }
             if (payment_method == 'stripe' || payment_method == 'paypal') {
+                $('#esewaForm').parent().attr('hidden', true);
+                $('.createOrder').attr('hidden', false);
                 $(".stripe_payment").removeClass('d-none');
                 $(".bank_transfer").addClass('d-none');
                 return;
             }
             if (payment_method == 'banktransfer') {
+                $('#esewaForm').parent().attr('hidden', true);
+                $('.createOrder').attr('hidden', false);
                 $(".bank_transfer").removeClass('d-none');
                 $(".stripe_payment").addClass('d-none');
             }
-            if (payment_method == 'cod') {
+            if(payment_method == 'cash_on_delivery'){
+                $('#esewaForm').parent().attr('hidden', true);
+                $('.createOrder').attr('hidden', false);
                 $(".stripe_payment").addClass('d-none');
                 $(".bank_transfer").addClass('d-none');
-
             }
-
+            
         });
 
 
@@ -1255,10 +1290,12 @@
                 }
                 total = +sub_price + +total_tax_price - +couponCart;
             }
+            currencyCode = $(".caritem-subtotal").attr('currency-code') ? $(".caritem-subtotal").attr('currency-code') : '';
+            totalP = total ? total.toFixed(2) : 0;
             if ($.trim($(".caritem-subtotal").attr('currency-position')) == 'left') {
-                $(".caritem-grandtotal").html($(".caritem-subtotal").attr('currency-code') + ' ' + total.toFixed(2));
+                $(".caritem-grandtotal").html(currencyCode + ' ' + totalP);
             } else {
-                $(".caritem-grandtotal").html(total.toFixed(2) + ' ' + $(".caritem-subtotal").attr('currency-code'));
+                $(".caritem-grandtotal").html(totalP + ' ' + currencyCode);
             }
         }
     </script>

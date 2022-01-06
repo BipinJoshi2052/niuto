@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\PaymentMethod;
+use App\Models\Admin\PaymentMethodSetting;
 use App\Models\Web\Order;
 use Illuminate\Http\Request;
 
@@ -25,5 +27,11 @@ class PaymentVerification extends Controller
             ];
         }
         return redirect('/thankyou')->with('result', $result);
+    }
+
+    public function esewaMerchant(Request $request){
+        $id = PaymentMethod::where('payment_method', $request->payment_method)->pluck('id')->first();
+        $esewaData = PaymentMethodSetting::where('payment_method_id', $id)->pluck('value', 'key');
+        return response()->json($esewaData);
     }
 }

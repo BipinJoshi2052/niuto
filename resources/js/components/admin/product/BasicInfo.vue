@@ -369,7 +369,7 @@ export default {
             this.$emit("setGallaryIdInChild", this.gallary_detail_id);
           }
         })
-        .catch(err => // console.log(err))
+        .catch(err => console.log(err))
 
 
         this.gallary_detail_path.splice(index,1);
