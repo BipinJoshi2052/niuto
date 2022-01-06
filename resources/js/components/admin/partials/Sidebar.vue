@@ -2902,7 +2902,7 @@ export default {
           // console.log(responseData, "setting ");
           this.setting = responseData;
         })
-        .finally(() => // console.log("working"));
+        .finally(() => console.log("working"));
     },
   },
   mounted() {
