@@ -303,7 +303,7 @@
     })
 
     function fetchRelatedProduct() {
-        var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
+        var url = "{{ url('') }}" + '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
         var appendTo = 'related';
         $.ajax({
             type: 'get',
@@ -390,7 +390,7 @@
                                     '  </a>'+
                                     '  </div>'+
                                     '  <div class="content_block pb-3">'+
-                                    '    <small>Lotions and Creams</small>'+
+                                    '    <small>'+ data.data[i].category[0].category_detail.detail[0].name +'</small>'+
                                     '    <a href="'+ href +'"><h4>'+ title +'</h4></a>'+
                                     '    <span class="">'+ price +'</span>'+
                                     '  </div>'+
