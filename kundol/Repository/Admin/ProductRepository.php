@@ -5,6 +5,7 @@ namespace App\Repository\Admin;
 use App\Contract\Admin\ProductInterface;
 use App\Http\Resources\Admin\Product as ProductResource;
 use App\Models\Admin\AvailableQty;
+use App\Models\Admin\Category;
 use App\Models\Admin\Language;
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductGallaryDetail;
@@ -74,7 +75,9 @@ class ProductRepository implements ProductInterface
             if (isset($_GET['productCategories']) && $_GET['productCategories'] != '') {
 
                 $productCategory = explode(',', $_GET['productCategories']);
-                // dd($productCategory);
+                
+                $childCategory = Category::where('parent_id', $productCategory)->pluck('id')->toArray();
+                $productCategory = array_merge($productCategory, $childCategory);
                 $product = $product->whereHas('category', function ($query) use ($productCategory) {
                     $query->whereIn('product_category.category_id', $productCategory);
                 });

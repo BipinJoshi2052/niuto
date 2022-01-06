@@ -98,13 +98,13 @@
                             data.meta.to + '</span>&nbsp;of&nbsp;<span class="showing_total_record">' + data
                             .meta.total + '</span>&nbsp;results.</label>';
                         var nextPage = parseInt(data.meta.current_page) + 1;
-                        pagination += '<div class="col-12 col-sm-6">';
-                        pagination += '<ul class="loader-page mt-0">';
-                        pagination += '<li class="loader-page-item">';
+                        // pagination += '<div class="col-12 col-sm-6">';
+                        // pagination += '<ul class="loader-page mt-0">';
+                        // pagination += '<li class="loader-page-item">';
                         pagination += '<button class="load-more-products btn btn-secondary" data-page="' + nextPage + '">Load More</button>';
-                        pagination += '</li>';
-                        pagination += '</ul>';
-                        pagination += '</div>';
+                        // pagination += '</li>';
+                        // pagination += '</ul>';
+                        // pagination += '</div>';
 
                         $('.pagination').html(pagination);
                         var clone = '';
