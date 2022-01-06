@@ -24,6 +24,9 @@ Route::get('contact-us-email', function () {
     $data = ['first_name' => 'Umar', 'last_name' => 'Aslam', 'email' => 'umar@abc.com', 'message' => 'lorem ipsum', 'phone' => ''];
     return (new ContactUs($data))->render();
 });
+Route::get('test', function () {
+    return 'hello';
+});
 
 // Route::get('install', function () {
 

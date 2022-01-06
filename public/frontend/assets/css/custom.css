@@ -3010,6 +3010,10 @@ div#contact-page-wrapper .location-map iframe {
 
 /*=================================================== COMPARE END  */
 
+
+.footer-logo img{
+	height: 100px!important;
+}
 ul#profilenavId i{
 	color: black;
 }
@@ -3050,6 +3054,7 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     border: 1px solid;
 }
 
+
 ._p-qty input#quantity-input {
     text-align: center;
     border: none;
@@ -3061,3 +3066,4 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     font-size: 14px;
     box-sizing: border-box;
 }
+

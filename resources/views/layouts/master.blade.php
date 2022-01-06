@@ -25,10 +25,12 @@
 
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" ref="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
-    <link rel="icon" type="image/png"
-        href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
+    {{-- <link rel="icon" type="image/png"
+        href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}"> --}}
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,7 +78,6 @@
     <script src="{{ asset('frontend/assets/js/font-awesom.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/toastr/toastr.min.js') }}"></script>
-    @yield('script')
     
     <!-- Mobile Nav -->
     <div class="modal fade" id="rightsidebarfilter" tabindex="-1" role="dialog"
@@ -1011,7 +1012,6 @@
                     $('#event-loading').css('display', 'block');
                 },
                 success: function(data) {
-                    console.log(data.data.length);
                     $('#event-loading').css('display', 'none');
                     if (data.status == 'Success') {
                         total_price = 0;
@@ -1249,6 +1249,7 @@
         });
 
         function cartItem(cartSession) {
+            console.log('master');
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&language_id=' + languageId +
                     '&currency=' + localStorage.getItem("currency");
@@ -1564,6 +1565,8 @@
             $('#searchBox > ul').removeClass('show');
         });
     </script>
+    
+    @yield('script')
 </body>
 
 </html>
