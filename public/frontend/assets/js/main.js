@@ -1,3 +1,6 @@
+$(document).ajaxStop(function() {
+  loaderOnLoad();
+});
 $(document).ready(function () {
   if ($("body").hasClass(".js-range-slider")) {
     console.log('asdfasdf');

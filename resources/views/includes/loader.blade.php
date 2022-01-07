@@ -1,3 +1,3 @@
-<div id="loading" style="display: none;">
+<div id="section-loading" style="display: none;">
     <img src="{{ asset('loader/ajax-loader.gif') }}" alt="">
 </div>
