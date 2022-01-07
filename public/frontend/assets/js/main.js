@@ -1,3 +1,6 @@
+$(document).ajaxStop(function() {
+  loaderOnLoad();
+});
 $(document).ready(function () {
   $(".js-range-slider").ionRangeSlider({
     skin: "round",

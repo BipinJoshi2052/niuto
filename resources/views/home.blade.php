@@ -1055,7 +1055,7 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
                     if (data.status == 'Success') {
                         for (i = 0; i < data.data.length; i++) {
 
@@ -1217,7 +1217,7 @@
                         if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
                             getSliderSettings(appendTo);
                     }
-                    appendTo == 'featured-product-section' ? productListInit() : '';
+                    // appendTo == 'featured-product-section' ? productListInit() : '';
                 },
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
@@ -1413,7 +1413,7 @@
                                 '</div>';
                         });
                         $('#slider-section').html(sliderSection);
-                        slickInit();
+                        // slickInit();
                     }
                 },
                 error: function(data) {
@@ -1452,7 +1452,7 @@
                                 '</div>';
                         });
                         $('#category-section').html(category);
-                        categorySlickInit();
+                        // categorySlickInit();
                     }
                 },
                 error: function(data) {

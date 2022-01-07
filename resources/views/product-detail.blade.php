@@ -303,7 +303,7 @@
     })
 
     function fetchRelatedProduct() {
-        var url = "{{ url('') }}" + '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
+        var url = "{{ url('') }}" + '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
         var appendTo = 'related';
         $.ajax({
             type: 'get',
