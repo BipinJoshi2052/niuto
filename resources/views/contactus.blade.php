@@ -17,6 +17,7 @@
         email = $.trim($("#email").val());
         phone = $.trim($("#phone").val());
         message = $.trim($("#message").val());
+        var interval = null;
 
         $.ajax({
         type: 'post',
@@ -35,10 +36,20 @@
         },
         beforeSend: function() {
             $('#event-loading').css('display', 'block');
+            $('.contact-btn').attr('disabled','disabled');
+            
+            i = 0;
+                interval = setInterval(function() {
+                    i = ++i % 4;
+                    $(".contact-btn").html("Sending Message"+Array(i+1).join("."));
+                }, 200);
         },
         success: function(data) {
             $('#event-loading').css('display', 'none');
             if (data.status == 'Success') {
+                clearInterval(interval);
+                $(".contact-btn").html("Message Sent");
+                // $('.contact-btn').removeAttr('disabled');
                 $("#contactusForm")[0].reset();
                 toastr.success('{{ trans("response.contact-form-success") }}');
             }
@@ -48,6 +59,9 @@
         },
         error: function(data) {
             $('#event-loading').css('display', 'none');
+            clearInterval(interval);
+            $(".contact-btn").html("Submit");
+            $('.contact-btn').removeAttr('disabled');
             if(data.responseJSON.errors){
                 var err = '';
                 $.each(data.responseJSON.errors, function(i, e){

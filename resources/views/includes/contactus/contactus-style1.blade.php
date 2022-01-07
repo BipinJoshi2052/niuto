@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item font-weight-bold">
-                  <a href="#">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li
                   class="breadcrumb-item font-weight-bold"
@@ -79,7 +79,7 @@
                   ></textarea>
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" class="btn btn-primary contact-btn">
                     Submit
                   </button>
                   <!-- <a href="#" class="btn mt-4">OUR SERVICES</a> -->
