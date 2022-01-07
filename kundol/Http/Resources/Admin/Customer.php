@@ -5,6 +5,7 @@ namespace App\Http\Resources\Admin;
 use App\Http\Resources\Admin\Gallary as GallaryResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Web\CustomerAddressBook as CustomerAddressBookResource;
+use App\Models\Admin\Gallary;
 
 class Customer extends JsonResource
 {
@@ -16,7 +17,7 @@ class Customer extends JsonResource
             'customer_last_name' => $this->last_name,
             'customer_email' => $this->email,
             'customer_hash' => $this->hash,
-            'customer_avatar' => new GallaryResource($this->whenLoaded('gallary')),
+            'customer_avatar' => (new GallaryResource($this->whenLoaded('gallary')) == '') ? new GallaryResource($this->whenLoaded('gallary')) : Gallary::where('id', $this->id)->pluck('name')->first(),
             'is_seen' => $this->is_seen,
             'customer_status' => $this->status,
             'customer_address' => CustomerAddressBookResource::collection($this->customer_address_book),

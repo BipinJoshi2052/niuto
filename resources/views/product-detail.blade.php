@@ -128,7 +128,6 @@
                             showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
                         }
                     }
-                    console.log(showImg);
                     $('#side-gallery').html(sideGal);
                     $('#zoomGallery').html(showImg);
                     zoomGalleryPicker();
@@ -151,43 +150,38 @@
                             if (data.data.product_combination != null) {
                                 $("#product-card-price").html(data.data.product_combination[0].product_price_symbol);
                         }
-
                     }
                     if (data.data.reviews !== null) {
                         $(".review-count").html(data.data.reviews.length);
-                            rating = '';
-                            sum = 0;
-                            for(review = 0; review < data.data.reviews.length; review++){
-                                sum = +sum + +data.data.reviews[review].rating;
-                            }
-                            cur_rating = (sum / data.data.reviews.length);
-                            cur_rating = Math.round(cur_rating);
-                            if(cur_rating == 1){
-                                rating = '<i class="fa fa-star orange"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i>';
-                            }
-                            else if(cur_rating == 2){
-                                rating = '<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i>';
-                            }
-                            else if(cur_rating == 3){
-                                rating = '<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i>';
-                            }
-                            else if(cur_rating == 4){
-                                rating = '<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star b1b1b1"></i>';
-                            }
-                            else if(cur_rating == 5){
-                                rating = '<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i>';
-                            }
-                            else{
-                                rating = '<i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i>';
-                            }
-
-                            $(".display-rating").innerHTML = rating;
+                        rating = '';
+                        sum = 0;
+                        for(review = 0; review < data.data.reviews.length; review++){
+                            sum = +sum + +data.data.reviews[review].rating;
+                        }
+                        cur_rating = (sum / 5);
+                        cur_rating = cur_rating * 100;
+                        rating = '<div class="rating">' +
+                            '<div class="rating-upper" style="width: ' + cur_rating + '%">' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                            '</div>' +
+                            '<div class="rating-lower">' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                            '</div>' +
+                        '</div>';
+                        $("#display-rating").html(rating);
                     }
 
                     if (data.data.rating !== null) {
                         // clone.querySelector(".rating").innerHTML = data.data.rating;
                     }
-
 
                     $("." + appendTo).append(clone);
                     getProductReview();
@@ -518,6 +512,7 @@
     });
 
     function getProductReview() {
+        console.log('getProdctReview');
         var url = "{{ url('') }}" + '/api/client/review?product_id={{ $product }}&customer=1';
         $.ajax({
             type: 'get',
@@ -530,27 +525,50 @@
             },
             beforeSend: function() {},
             success: function(data) {
+                console.log(data);
                 if (data.status == 'Success') {
                     $("#review-rating-show").html('');
                     for (review = 0; review < data.data.length; review++) {
-                        if (data.data[review].rating == '5') {
-                            rating = '<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i>';
-                        } else if (data.data[review].rating == '4') {
-                            rating = '<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star b1b1b1"></i>';
-                        } else if (data.data[review].rating == '3') {
-                            rating = '<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i>';
-                        } else if (data.data[review].rating == '2') {
-                            rating = '<i class="fa fa-star orange"></i><i class="fa fa-star orange"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i>';
-                        } else if (data.data[review].rating == '1') {
-                            rating = '<i class="fa fa-star orange"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i><i class="fa fa-star b1b1b1"></i>';
-                        }
-                        span = '<div class="col-xl-8 col-lg-8 col-12 comments-content p-4 my-3 bg-light">' +
-                            '<h5 class="mb-2">By ' + data.data[review].customer.customer_first_name + ' ' + data.data[review].customer.customer_last_name + '</h5>' +
-                            '<div class="p-ratings">' +
-                                rating +
+                        cur_rating = (data.data[review].rating / 5);
+                        cur_rating = cur_rating * 100;
+                        image = (data.data[review].customer.customer_avatar || data.data[review].customer.customer_avatar == '') ? '{{ url("/") }}/gallary/' + data.data[review].customer.customer_avatar : 'https://image.ibb.co/jw55Ex/def_face.jpg';
+                        console.log(image);
+                        span = '<div class="row">' +
+                            '<div class="col-md-2">' +
+                                '<div class="user_product">' +
+                                    '<img src="' + image + '" class="img img-rounded img-fluid" />' +
+                                '</div>' +
+                                '<p class="text-secondary text-md-center text-left pt-md-0 pt-3">' +
+                                    data.data[review].customer.customer_first_name + ' ' + data.data[review].customer.customer_last_name +
+                                '</p>' +
+                                '<p class="text-secondary text-md-center text-left pt-md-0 pt-3">' +
+                                    data.data[review].date +
+                                '</p>' +
                             '</div>' +
-                            '<p>' + data.data[review].comment + '</p>' +
-                            '<small class="review-date">' + data.data[review].date + '</small>' +
+                            '<div class="col-md-10">' +
+                                '<div class="clearfix"></div>' +
+                                '<p>' +
+                                    '<div class="rating">' +
+                                        '<div class="rating-upper" id="product-rating" style="width: ' + cur_rating + '%">' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                        '</div>' +
+                                        '<div class="rating-lower">' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                            '<span><i class="fa fa-star" aria-hidden="true"></i></span>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</p>' +
+                                '<p>' +
+                                    data.data[review].comment +
+                                '</p>' +
+                            '</div>' +
                         '</div>';
                         $("#review-rating-show").append(span);
                     }
