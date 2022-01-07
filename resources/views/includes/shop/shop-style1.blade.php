@@ -125,7 +125,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                                         <div class="colors_block p-3">
                                             @foreach($attribute->variation as $atvkey => $variation)
                                                 <label class="color_single">
-                                                <small class="round"></small>
+                                                <small class="round" style="background-color: {{ $variation->variation_detail[0]->name }}"></small>
                                                 <span class=""> {{ $variation->variation_detail[0]->name }}</span>
                                                 <input type="checkbox" name="variation[]" class="variation-filter" value="{{ $variation->variation_detail[0]->variation_id }}" data-attribute-id="{{ $attribute->id }}" data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
                                                 <span class="checkmark"></span>
