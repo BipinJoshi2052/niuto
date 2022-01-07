@@ -95,6 +95,7 @@ class IndexController extends Controller
         ->join('product_detail AS t2', 't2.product_id', '=', 't1.id')
         ->join('gallary AS t3', 't3.id', '=', 't1.gallary_id')
         ->where('t2.title', 'like', '%' . $request->name . '%')
+        ->where('t1.deleted_at', null)
         ->where('t2.language_id', 1)->get();
         return response()->json($products);
     }

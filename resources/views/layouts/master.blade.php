@@ -1527,7 +1527,7 @@
                         name: name
                     },
                     success: function(response) {
-                        // console.log(response)
+                        console.log(response)
                         if (response.length > 0) {
                             $('#searchBox > ul').html('');
                             var results = '';
@@ -1540,11 +1540,12 @@
                                     '<li class="dropdown-item">' +
                                     '<img class="img-thumbnail" src="{{ asset('/gallary') }}/' +
                                     e.gallary_name +
-                                    '" style="width: 150px; height: 100px;"> ' + e.title +
+                                    '" style="width: 70px; height: 60px;"> ' + e.title +
                                     ' (Rs. ' + newPrice + ')' +
                                     '</li>' +
                                     '</a>';
                             });
+                            console.log(results);
                             $('#searchBox > ul').html(results);
                             $('#searchBox').addClass('show');
                             $('#searchBox > ul').addClass('show');
@@ -1559,8 +1560,9 @@
                     }
                 });
             } else {
-                $('#searchBox').html('');
-                $('#searchBox').prop('hidden', true);
+                $('#searchBox > ul').html('');
+                $('#searchBox').removeClass('show');
+                $('#searchBox > ul').removeClass('show');
             }
         });
 
