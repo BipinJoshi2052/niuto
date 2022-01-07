@@ -55,26 +55,27 @@
             padding: 6px;
         }
 
-        #loading{
-            position: absolute;
+        #section-loading{
             z-index:999999;
-            top: 60%;
-            left: 50%;
-            opacity: 0.7;
-            background-color: #fff;
-
+            text-align: center;
         }
+        #loading {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                z-index: 99999;
+            }
     </style>
 </head>
 
 <body>
     @include(isset(getSetting()['header_style']) ? 'includes.headers.header-'.getSetting()['header_style'] :
     'includes.headers.header-style1')
+    <div id="loading" style="background: #fff url('{{ asset('loader/ajax-loader.gif') }}') no-repeat center;"></div>
 
-
-    <div id="loading" style="display: none;">
+    {{-- <div id="loading" style="display: none;">
         <img src="{{ asset('loader/ajax-loader.gif') }}" alt="">
-    </div>
+    </div> --}}
     @yield('content')
 
     
@@ -1513,9 +1514,7 @@
     
 
     <script>
-        $(document).ajaxStop(function() {
-            // myFunction();
-        });
+        
 
         $(document).on('keyup', '#search-input', function() {
             var name = $(this).val();

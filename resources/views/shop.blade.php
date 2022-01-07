@@ -84,7 +84,7 @@
                 },
                 beforeSend: function() {
                     // alert('Helo');
-                    $('#loading').css('display', 'block');
+                    $('#section-loading').css('display', 'block');
                 },
                 success: function(data) {
                     console.log(data);
@@ -234,7 +234,7 @@
                     }
                 },
                 complete: function(){
-                    // $('#loading').css('display', 'none');
+                    $('#section-loading').css('display', 'none');
                 },
                 error: function(data) {},
             });
