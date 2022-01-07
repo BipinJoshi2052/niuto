@@ -672,6 +672,14 @@
             // }
         });
 
+
+        $(document).ready(function(){
+            if(localStorage.cartSession == ''){
+                $("#total-menu-cart-product-count").html(0);
+                $("#mobile-total-menu-cart-product-count").html(0);
+            }
+        });
+
         function getSliderSettings(className) {
             jQuery(document).ready(function() {
                 (function(jQuery) {
@@ -728,6 +736,7 @@
 
         function getWishlist() {
             if (loggedIn != '1') {
+                $(".wishlist-count").html(0);
                 return;
             }
 
