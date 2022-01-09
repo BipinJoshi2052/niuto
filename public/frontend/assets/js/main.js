@@ -25,7 +25,7 @@ window.addEventListener("scroll", function () {
 });
 function helloFunction()
 {
-  alert('hello hi');
+  alert('hello hi asdasdg');
 }
 // $(document).ready(function () {
 //   $(".your-class").slick({
