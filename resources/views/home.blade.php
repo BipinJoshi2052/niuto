@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="section_title">
                     <h1 class="mb-5 position-relative font-weight-bold">
-                        Products List Test
+                        Products List ehr
                     </h1>
                 </div>
                 <div class="row">
