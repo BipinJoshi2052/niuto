@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma Acoustic</title>
+    <!-- Bootstrap link Starts -->
+    <link rel="stylesheet" href="frontend/assets/bootstrap-4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="frontend/assets/bootstrap-4.3.1/css/bootstrap.min.css.map">
+    <!-- Bootstrap link Ends -->
+    <!-- Font Awesome Link Starts -->
+    <link rel="stylesheet" href="frontend/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- Font Awesome Link Ends -->
+    <!-- Slick Css -->
+    <link rel="stylesheet" href="frontend/assets/slick/slick.css">
+    <link rel="stylesheet" href="frontend/assets/slick/slick-theme.css">
+    <!-- Slick Css Ends-->
+    <!-- Custom Links -->
+    <!-- Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+    <!-- Font Link Ends -->
+    <link rel="stylesheet" href="https://k1ngzed.com/dist/swiper/swiper.min.css" />
+    <link rel="stylesheet" href="https://k1ngzed.com/dist/EasyZoom/easyzoom.css" />
+    <link rel="stylesheet" href="frontend/assets/css/style.css">
+    <link rel="stylesheet" href="frontend/assets/css/responsive.css">
+    <!-- Custom Links Ends -->
+</head>
+
+<body>
+    <!-- Whole Body Wrapper Starts -->
+    <section id="login-page-wrapper">
+        <!-- Navigation Starts -->
+        <section id="navigation-wrapper" class="sticky-top">
+            <div class="container">
+                <div class="nav-logo d-flex justify-content-between align-items-center">
+                    <div class="logo pr-xl-5 pr-md-3 pr-1">
+                        <a href="index.html">
+                            <img src="frontend/assets/images/logo/logo-image-lg.png" class="img-fluid" />
+                        </a>
+                    </div>
+                    <div class="search-nav m-auto w-50">
+                        <!-- Actual search box -->
+                        <div class="form-group has-search mb-0">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <input type="text" class="form-control" placeholder="Search" />
+                        </div>
+                    </div>
+                    <div class="cart-wishlist d-xl-block">
+                        <ul class="d-flex m-0">
+                            <li class="nav-item">
+                                <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal" data-target="#nav-cart">
+                                    <span class="mr-1"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span> Cart <sup class="cart-item-no text-white px-2">2</sup>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" href="under-construction.html">
+                                    <span class="mr-1"><i class="fa fa-heart-o" aria-hidden="true"></i></span> Wishlist <sup class="cart-item-no text-white px-2">2</sup>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="extra">
+                        <ul class="d-flex align-items-center justify-content-center mb-0 p-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle m-auto add-on" href="#" id="profilenav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-1"><i class="fa fa-user-o" aria-hidden="true"></i></span> Profile
+                                </a>
+                                <div class="profilenav-dropdown dropdown-menu p-0" aria-labelledby="profilenav">
+                                    <a class="dropdown-item" href="under-construction.html"> <span class="mr-2"><i class="fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
+                                    <a class="dropdown-item" href="under-construction.html"> <span class="mr-2"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>Register</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-light ">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                        <ul class="navbar-nav m-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle dropdown-custom" data-open="#item1" href="under-construction.html" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Products
+                        </a>
+                                <div id="item1" class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
+                                    <div class="container d-block">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 29</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 27</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 39</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 4</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 2</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 3</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 4</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                        </div>
+                                    </div>
+                                    <!--  /.container  -->
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle dropdown-custom" data-open="#item2" href="under-construction.html" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Categories
+                        </a>
+                                <div id="item2" class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
+                                    <div class="container d-block">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 2</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 3</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 4</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 2</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 3</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                            <div class="col-md-3">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link head font-weight-bold" href="under-construction.html">Heading 4</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="under-construction.html">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-3  -->
+                                        </div>
+                                    </div>
+                                    <!--  /.container  -->
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Title</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Title</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </section>
+        <!-- Navigation Ends -->
+        <!-- Breadcrumbs -->
+        <!-- <section id="breadcrumbs" class="py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="m-0 p-0 d-flex align-items-center text-white">
+                            <li class="font-weight-bold">Home</li><span class="mx-2"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                            <li class="">About Us</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <h2 class="text-white">About Us</h2>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <!-- Breadcrumbs Ends -->
+        <!-- Login Us -->
+        <section id="login-register-wrapper" class="p-4">
+            <div class="container">
+                <div class="login-register-form p-xl-5 p-lg-5 p-md-2 p-0">
+                    <div class="row position-relative">
+                        <div class="image w-100"><img src="frontend/assets/images/banner/1 (2).jpg" class="img-fluid"></div>
+                        <div class="col-xl-4 col-lg-6 col-md-8 position-absolute mx-auto form-wrapper">
+                            <form class="p-2">
+                                <div class="text-center">
+                                    <h1 class="font-weight-bold my-xl-4 my-md-3 my-4">Login</h1>
+                                    <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
+                                        <input type="text" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent" id="username" placeholder="Username">
+                                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
+                                        <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0
+                                                shadow-none bg-transparent" id="password" placeholder="Password">
+                                        <i class="fa fa-key" aria-hidden="true"></i>
+
+                                    </div>
+                                    <div class="row my-2">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                                Remember me
+                                            </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-xl-right text-lg-right text-center mt-xl-0 mt-lg-0 mt-2">
+                                            <a href="#">Forgot Password?</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase ">
+                                    Login
+                                </button>
+
+                                    <p class="text-center mt-4">
+                                        Don't have an account?
+                                        <span>
+                                        <a href="register-login.html">Register</a>
+                                    </span>
+
+                                    </p>
+                                    <div class="row mb-4 px-3 justify-content-center align-items-center">
+                                        <h6 class="mb-xl-0 mb-md-2 mb-2 mr-2">Sign in with</h6>
+                                        <div class="social-media d-flex justify-content-center h-100">
+                                            <div class="facebook text-center mr-3">
+                                                <a class="fa fa-facebook" aria-hidden="true"></a>
+                                            </div>
+                                            <div class="twitter text-center mr-3">
+                                                <a class="fa fa-twitter" aria-hidden="true"></a>
+                                            </div>
+                                            <div class="linkedin text-center mr-3">
+                                                <a class="fa fa-linkedin" aria-hidden="true"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Login Us Ends -->
+        <!-- Footer -->
+        <footer id="footer-wrapper" class="position-relative pt-5 pb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="footer-logo-box text-white">
+                            <div class="header-logo mb-3">
+                                <a class="" href="index.html"><img src="frontend/assets/images/logo/logo-footer.jpeg" class="img-fluid"></a>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta saepe tenetur nostrum maxime ratione quis perspiciatis facilis, laudantium ipsum commodi assumenda ad earum ex eaque possimus laboriosam. Doloremque, provident
+                                nostrum!
+                            </p>
+                            <ul class="d-flex pl-0">
+                                <li class="logo-bg ">
+                                    <a href="https://www.facebook.com" class="text-white"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="feature_in_bg ml-3">
+                                    <a href="https://www.instagram.com" class="text-white"=""=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="logo-bg ml-3">
+                                    <a href="https://www.google.com" class="text-white"=""=""><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="logo-bg ml-3">
+                                    <a href="https://np.linkedin.com" class="text-white"=""=""><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12 mt-2 mt-md-0">
+                        <div class="footer-title text_white footer_after">
+                            <h4 class="mb-3 mb-md-4 text-white">Let Us Help</h4>
+                            <ul class="text-white">
+                                <li class="mb-3">
+                                    <a href="" class="text-white">Home</a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="" class="text-white">About Us</a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="" class="text-white">Terms & Conditions</a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="" class="text-white">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12 mt-4 mt-lg-0">
+                        <div class="footer-title text_white footer_after">
+                            <h4 class="text-white mb-3 mb-md-4">Support</h4>
+                            <ul>
+                                <li class="mb-3">
+                                    <a href="" class="text-white">Contact Us</a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="" class="text-white">FAQs</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mt-4 mt-lg-0">
+                        <div class="footer-title text_white footer_after">
+                            <h4 class="text-white mb-3 mb-md-4">Find Us</h4>
+                            <ul>
+                                <li class="text-white mb-3"><span class="pr-3"><i class="fa fa-map-marker" aria-hidden="true"></i></span>Kathmandu, Nepal</li>
+                                <li class="text-white mb-3"><span class="pr-3"><i class="fa fa-phone" aria-hidden="true"></i></span>61421199011, +61283870907, +61452145677</li>
+                                <li class="text-white "><span class="pr-3"><i class="fa fa-envelope-square" aria-hidden="true"></i></span>abc@gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="mb-0 text-white text-center ">
+                            Copyright All Right Reserved 2021.
+                            <span class="testimonial-title">Next Nepal Pvt.Ltd</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer Ends -->
+
+    </section>
+    <!-- Whole Body Wrapper Ends -->
+    <!-- 1st Jquery Link Starts-->
+    <script src="frontend/assets/jquery-3.5.1/jquery-3.5.1.js "></script>
+    <!-- Jquery Link Ends-->
+    <!-- 2nd Popper Js Starts -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js " integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
+    <!-- Popper Js Ends -->
+    <!-- 3rd Bootstrap Js Link Starts -->
+    <script src="frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js "></script>
+    <script src="frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js.map "></script>
+    <!-- Bootstrap Js Link Ends -->
+    <!-- Slick Js -->
+    <script src="frontend/assets/slick/slick.min.js "></script>
+    <!-- Slick Js Ends-->
+    <!-- Custom Js Starts -->
+    <script src="https://k1ngzed.com/dist/swiper/swiper.min.js "></script>
+    <script src="https://k1ngzed.com/dist/EasyZoom/easyzoom.js "></script>
+    <script src="frontend/assets/js/main.js "></script>
+    <!-- Custom Js Ends -->
+    <!-- Nav Cart Popup -->
+    <!-- Modal -->
+    <div class="modal fade" id="nav-cart" tabindex="-1" role="dialog" aria-labelledby="navcartlabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title m-auto" id="navcartlabel"> <span class="mr-2"><i class="fa fa-opencart" aria-hidden="true"></i></span> Items List</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <div class="item">
+                                <td class="pr-4 py-3"><img src=" frontend/assets/images/product-images/1 (2).jpg " class="img-fluid"></td>
+                                <td class="px-4 py-3">
+                                    <div class="head font-weight-bold">
+                                        Beats Headphone x <span class="cart-quantity ">1</span>
+                                    </div>
+                                    <div class="price">
+                                        Rs 1000
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="item">
+                                <td class="pr-4 py-3"><img src=" frontend/assets/images/product-images/1 (1).jpg " class="img-fluid"></td>
+                                <td class="px-4 py-3">
+                                    <div class="head font-weight-bold">
+                                        Beats Headphone x <span class="cart-quantity ">1</span>
+                                    </div>
+                                    <div class="price">
+                                        Rs 1000
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="item">
+                                <td class="pr-4 py-3"><img src=" frontend/assets/images/product-images/1 (2).jpg " class="img-fluid"></td>
+                                <td class="px-4 py-3">
+                                    <div class="head font-weight-bold">
+                                        Beats Headphone x <span class="cart-quantity ">1</span>
+                                    </div>
+                                    <div class="price">
+                                        Rs 1000
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="item">
+                                <td class="pr-4 py-3"><img src=" frontend/assets/images/product-images/1 (1).jpg " class="img-fluid"></td>
+                                <td class="px-4 py-3">
+                                    <div class="head font-weight-bold">
+                                        Beats Headphone x <span class="cart-quantity ">1</span>
+                                    </div>
+                                    <div class="price">
+                                        Rs 1000
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                </td>
+                            </div>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer flex-column">
+                    <div class="total-amount pb-3 text-center d-block">
+                        Total : <span class="font-weight-bold">Rs 1500</span>
+                    </div>
+                    <button type="button" class="btn btn-primary m-auto">Proceed Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+    <!-- Nav Cart Popup -->
+    <!-- Mobile Filter Pop Up -->
+    <!-- Modal -->
+    <div class="modal fade " id="leftsidebarfilter " tabindex="-1 " role="dialog " aria-labelledby="leftsidebarfilterlabel " aria-hidden="true ">
+        <div class="modal-dialog " role="document ">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h5 class="modal-title " id="leftsidebarfilterlabel ">Product Filter</h5>
+                    <button type="button " class="close " data-dismiss="modal " aria-label="Close "><span aria-hidden="true ">&times;</span></button>
+                </div>
+                <div class="modal-body ">
+                    <div class="left-side-wrapper px-2 ">
+                        <div class="card-wrapper mb-2 ">
+                            <div class="card-group-item ">
+                                <div class="card-head ">
+                                    <h6 class=" title font-weight-bold ">By Categories </h6>
+                                </div>
+                                <div class="filter-content ">
+                                    <div class="card-body ">
+                                        <label class="form-check ">
+                                                    <input class="form-check-input " type="radio " name="exampleRadio " value=" ">
+                                                    <span class="form-check-label ">
+                                                        Heading 1
+                                                    </span>
+                                                </label>
+                                        <label class="form-check ">
+                                                    <input class="form-check-input " type="radio " name="exampleRadio " value=" ">
+                                                    <span class="form-check-label ">
+                                                        Heading 2
+                                                    </span>
+                                                </label>
+                                        <label class="form-check ">
+                                                    <input class="form-check-input " type="radio " name="exampleRadio " value=" ">
+                                                    <span class="form-check-label ">
+                                                        Heading 3
+                                                    </span>
+                                                </label>
+                                    </div>
+                                    <!-- card-body.// -->
+                                </div>
+                            </div>
+                            <!-- card-group-item.// -->
+                        </div>
+                        <!-- card.// -->
+                        <div class="card-wrapper mb-2 ">
+                            <div class="card-group-item ">
+                                <div class="card-head ">
+                                    <h6 class="title font-weight-bold ">By Brands </h6>
+                                </div>
+                                <div class="filter-content ">
+                                    <div class="card-body ">
+                                        <form>
+                                            <label class="form-check ">
+                                                        <input class="form-check-input " type="checkbox " value=" ">
+                                                        <span class="form-check-label ">
+                                                            Brand 1
+                                                        </span>
+                                                    </label>
+                                            <!-- form-check.// -->
+                                            <label class="form-check ">
+                                                        <input class="form-check-input " type="checkbox " value=" ">
+                                                        <span class="form-check-label ">
+                                                            Brand 2
+                                                        </span>
+                                                    </label>
+                                            <!-- form-check.// -->
+                                            <label class="form-check ">
+                                                        <input class="form-check-input " type="checkbox " value=" ">
+                                                        <span class="form-check-label ">
+                                                            Brand 3
+                                                        </span>
+                                                    </label>
+                                            <!-- form-check.// -->
+                                        </form>
+                                    </div>
+                                    <!-- card-body.// -->
+                                </div>
+                            </div>
+                            <!-- card-group-item.// -->
+                            <!-- card-group-item.// -->
+                        </div>
+                        <!-- card.// -->
+                        <div class="card-wrapper mb-2 ">
+                            <div class="card-group-item ">
+                                <div class="card-head ">
+                                    <h6 class="title font-weight-bold ">By Price Range </h6>
+                                </div>
+                                <div class="filter-content ">
+                                    <div class="card-body ">
+                                        <div class="form-row ">
+                                            <div class="form-group col-md-6 ">
+                                                <label>Min</label>
+                                                <input type="number " class="form-control " id="inputEmail4 " placeholder="$0 ">
+                                            </div>
+                                            <div class="form-group col-md-6 text-right ">
+                                                <label>Max</label>
+                                                <input type="number " class="form-control " placeholder="$1,0000 ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- card-body.// -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card.// -->
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button " class="btn btn-secondary mx-auto ">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Filter Pop Up Ends -->
+    <!-- Mobile Profile Nav Pop Up -->
+    <div class="modal fade" id="profilemobilenav" tabindex="-1" role="dialog" aria-labelledby="profilemobilenavtitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content h-100  border-0">
+                <!-- <div class="modal-header">
+                    <h5 class="modal-title" id="profilemobilenavtitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> -->
+                <div class="modal-body d-flex align-items-center h-100 p-0 ">
+                    <div class="dashboard-list2 p-xl-3 p-md-2 p-0 bg-white border-rounded">
+                        <ul>
+                            <li class="active mb-3 px-2 py-4">
+                                <a href="dashboard-profile.html" class="text-dark"><span class="mr-2"><i class="fa fa-user" aria-hidden="true"></i></span>Profile</a>
+                            </li>
+                            <li class="mb-3 px-2 py-4">
+                                <a href="dashboard-order-status.html" class="text-dark"><span class="mr-2"><i class="fa fa-sort" aria-hidden="true"></i></span>Order Status</a>
+                            </li>
+                            <li class="mb-3 px-2 py-4 ">
+                                <a href="dashboard-change-password.html" class="text-dark"><span class="mr-2"><i class="fa fa-lock" aria-hidden="true"></i></span>Change Password</a>
+                            </li>
+                            <li class="mb-3 px-2 py-4 ">
+                                <a href="index.html" class="text-dark"><span class="mr-2"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Profile Nav Pop Up Ends -->
+
+</body>
+
+</html>
