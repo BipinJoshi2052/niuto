@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
     @include(isset(getSetting()['slider_style']) ? 'includes.sliders.slider-'.getSetting()['slider_style'] :
     'includes.sliders.slider-style1')
 
@@ -14,8 +15,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="slick_slider">
-                            <div class="item_block bg-white position-relative p-3">
+                        <div class="slick_slider" id="product-list-section">
+                            {{-- <div class="item_block bg-white position-relative p-3">
                                 <div class="img_block">
                                     <a href="product.product.htmlhtml">
                                         <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
@@ -46,244 +47,8 @@
                                             <i class="fa fa-exchange" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.product.htmlhtml">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/6.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 </span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
+                            </div> --}}
 
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.product.htmlhtml">
-                                        <img src="https://demo.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/13/2018/10/13-min-300x300.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 </span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="dis_block">
-                                    <h5>New</h5>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.product.htmlhtml">
-                                        <img src="https://demo.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/13/2018/10/15-min-300x300.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 </span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.product.htmlhtml">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 </span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.product.htmlhtml">
-                                        <img src="https://demo.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/13/2018/10/15-min-300x300.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 </span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.product.htmlhtml">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 </span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.product.htmlhtml">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 </span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.product.htmlhtml">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 </span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -309,73 +74,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="category_list">
-                            <a href="">
-                                <div class="category_block bg-white">
-                                    <div class="category_img">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR7viQy82Ws8M7Jf0D3I_ypsZHrowMHhIU4A&usqp=CAU"
-                                            class="img-fluid W-100" alt="" />
-                                    </div>
-                                    <div class="category_content">
-                                        <h2 class="text-center">Gaming</h2>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="category_block bg-white">
-                                    <div class="category_img">
-                                        <img src="https://thumbs.dreamstime.com/b/beauty-fashion-model-girl-wearing-sunglasses-black-white-portrait-stylish-76060621.jpg"
-                                            class="img-fluid W-100" alt="" />
-                                    </div>
-                                    <div class="category_content">
-                                        <h2 class="text-center">Fashion</h2>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="category_block bg-white">
-                                    <div class="category_img">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR7viQy82Ws8M7Jf0D3I_ypsZHrowMHhIU4A&usqp=CAU"
-                                            class="img-fluid W-100" alt="" />
-                                    </div>
-                                    <div class="category_content">
-                                        <h2 class="text-center">Gaming</h2>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="category_block bg-white">
-                                    <div class="category_img">
-                                        <img src="https://media.istockphoto.com/photos/stack-of-baby-diapers-bottle-and-a-pacifier-picture-id473694938?k=20&m=473694938&s=612x612&w=0&h=Zq4zFdY6rrX3oR-9dK8YUoxuvXJAZt-d8xcRg1Fn7mM="
-                                            class="img-fluid W-100" alt="" />
-                                    </div>
-                                    <div class="category_content">
-                                        <h2 class="text-center">Baby Product</h2>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="category_block bg-white">
-                                    <div class="category_img">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR7viQy82Ws8M7Jf0D3I_ypsZHrowMHhIU4A&usqp=CAU"
-                                            class="img-fluid W-100" alt="" />
-                                    </div>
-                                    <div class="category_content">
-                                        <h2 class="text-center">Gaming</h2>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="category_block bg-white">
-                                    <div class="category_img">
-                                        <img src="https://thumbs.dreamstime.com/b/beauty-fashion-model-girl-wearing-sunglasses-black-white-portrait-stylish-76060621.jpg"
-                                            class="img-fluid W-100" alt="" />
-                                    </div>
-                                    <div class="category_content">
-                                        <h2 class="text-center">Fashion</h2>
-                                    </div>
-                                </div>
-                            </a>
+                        <div class="category_list" id="category-section">
+
                         </div>
                     </div>
                 </div>
@@ -393,276 +93,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="feature_slider">
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="dis_block">
-                                    <h5>New</h5>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/6.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
+                        <div class="latest_slider" id="latest-product-section">
 
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="dis_block">
-                                    <h5>New</h5>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/3.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_block bg-white position-relative p-3">
-                                <div class="img_block">
-                                    <a href="product.html">
-                                        <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/1.jpg"
-                                            alt="imageimg" class="img-fluid" /></a>
-                                </div>
-                                <div class="content_block pb-3">
-                                    <small>Lotions and Creams</small>
-                                    <h4>Moisture Body Lotion (250ml)</h4>
-                                    <span class="font-weight-bold">$10 <b>$125</b></span>
-                                </div>
-                                <div class="wish_list_block">
-                                    <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="icon_group">
-                                    <div class="cart_blocks">
-                                        <a href="">
-                                            <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_block">
-                                        <a href="">
-                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
-                                    <div class="cart_blockss">
-                                        <a href="">
-                                            <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -677,8 +109,9 @@
                         Discounted Products
                     </h1>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
+                <div class="row" id="featured-product-section">
+
+                    {{-- <div class="col-md-4">
                         <div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">
                             <div class="img_block">
                                 <a href="product.html">
@@ -711,75 +144,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">
-                            <div class="img_block">
-                                <a href="product.html">
-                                    <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/6.jpg"
-                                        alt="imageimg" class="img-fluid" /></a>
-                            </div>
-                            <div class="content_block pb-3">
-                                <small>Lotions and Creams</small>
-                                <h4>Moisture Body Lotion (250ml)</h4>
-                                <span class="">$10 </span>
-                            </div>
-                            <div class="wish_list_block">
-                                <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="dis_block">
-                                <h5>Sale</h5>
-                            </div>
-                            <div class="icon_group">
-                                <div class="cart_blocks">
-                                    <a href="" tabindex="0">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="cart_block">
-                                    <a href="" tabindex="0">
-                                        <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="cart_blockss">
-                                    <a href="" tabindex="0">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="item_block bg-white position-relative p-3">
-                            <div class="img_block">
-                                <a href="product.html">
-                                    <img src="https://demo2.madrasthemes.com/cartzilla/grocery/wp-content/uploads/sites/5/2020/03/14.jpg"
-                                        alt="imageimg" class="img-fluid" /></a>
-                            </div>
-                            <div class="content_block pb-3">
-                                <small>Lotions and Creams</small>
-                                <h4>Moisture Body Lotion (250ml)</h4>
-                                <span class="">$10 </span>
-                            </div>
-                            <div class="wish_list_block">
-                                <a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="dis_block">
-                                <h5>Sale</h5>
-                            </div>
-                            <div class="icon_group">
-                                <div class="cart_blocks">
-                                    <a href="" tabindex="0">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="cart_block">
-                                    <a href="" tabindex="0">
-                                        <i class="fa fa-eye" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="cart_blockss">
-                                    <a href="" tabindex="0">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> --}}
+
+
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -907,8 +274,8 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-4 col-12">
+                <div class="row" id="blog-section">
+                    {{-- <div class="col-md-4 col-12">
                         <div class="destination-block position-relative">
                             <div class="image-block">
                                 <img class="img-fluid w-100"
@@ -929,51 +296,9 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-12">
-                        <div class="destination-block position-relative">
-                            <div class="image-block">
-                                <img class="img-fluid w-100"
-                                    src="https://demo.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/13/2018/04/news-4-e1594817480976.jpg"
-                                    alt="image" />
-                            </div>
-                            <div class="content-block">
-                                <a href="">
-                                    <h2 class="text-dark mb-0">
-                                        Introducing Summer Dresses
-                                    </h2>
-                                </a>
-                                <p class="mb-0">
-                                    <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                        &nbsp;21-March 2021</span>
-                                    &nbsp; &nbsp;
-                                    <span><i class="fa fa-comment-o" aria-hidden="true"></i>&nbsp;Comments</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12">
-                        <div class="destination-block position-relative">
-                            <div class="image-block">
-                                <img class="img-fluid w-100"
-                                    src="https://montechbd.com/shopist/demo/public/uploads/1616786075-h-320-blog_big_02.jpg"
-                                    alt="image" />
-                            </div>
-                            <div class="content-block">
-                                <a href="">
-                                    <h2 class="text-dark mb-0">
-                                        Introducing Summer Dresses
-                                    </h2>
-                                </a>
-                                <p class="mb-0">
-                                    <span><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                        &nbsp;21-March 2021</span>
-                                    &nbsp; &nbsp;
-                                    <span><i class="fa fa-comment-o" aria-hidden="true"></i>&nbsp;Comments</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    </div> --}}
+
+
                 </div>
             </div>
         </section>
@@ -992,7 +317,7 @@
         $(document).ready(function() {
             sliderMedia();
             categorySlider();
-
+            
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
@@ -1002,12 +327,14 @@
             var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
                 1 + '&currency=' + 1;
             appendTo = 'featured-product-section';
+            console.log('2nd append');
             fetchProduct(url, appendTo);
 
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'latest-product-section';
+            console.log('3rd append');
             fetchProduct(url, appendTo);
 
             blogNews();
@@ -1107,6 +434,7 @@
                             }
                             switch (appendTo) {
                                 case 'product-list-section':
+
                                     product = '<div class="item_block bg-white position-relative p-3">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
@@ -1139,85 +467,201 @@
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
-                                    if (i == 4) {
+
+
+
+
+                                    if (i == 6) {
                                         return false
                                     };
                                     break;
 
                                 case 'latest-product-section':
-                                    product =
-                                        '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
-                                        '<div class="product-grid-item">' +
-                                        '<div class="product-grid-image">' +
+                                    // product =
+                                    //     '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
+                                    //     '<div class="product-grid-item">' +
+                                    //     '<div class="product-grid-image">' +
+                                    //     '<a href="' + href + '">' +
+                                    //     '<img class="pic-1 img-fluid" src="' + imgSrc + '">' +
+                                    //     '</a>' +
+                                    //     '<ul class="social">' +
+                                    //     '<!-- <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li> -->' +
+                                    //     '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
+                                    //     data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                    //     '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>' +
+                                    //     '<li><a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
+                                    //     data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                    //     '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>' +
+                                    //     '</ul>' +
+                                    //     '</div>' +
+                                    //     '<div class="product-content">' +
+                                    //     '<h4 class="title mt-2"><a href="' + href + '">' + title + '</a></h4>' +
+                                    //     '<div class="price">' +
+                                    //     productCardPrice +
+                                    //     '</div>' +
+                                    //     '<a class="add-to-cart" href="javascript:void(0)" onclick="buyNow(this)" data-id="' +
+                                    //     data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                    //     '">Buy Now</a>' +
+                                    //     '</div>' +
+                                    //     '</div>' +
+                                    //     '</div>';
+
+                                    product = '<div class="item_block bg-white position-relative p-3">' +
+                                        '<div class="img_block">' +
                                         '<a href="' + href + '">' +
-                                        '<img class="pic-1 img-fluid" src="' + imgSrc + '">' +
-                                        '</a>' +
-                                        '<ul class="social">' +
-                                        '<!-- <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li> -->' +
-                                        '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>' +
-                                        '<li><a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>' +
-                                        '</ul>' +
+                                        '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
                                         '</div>' +
-                                        '<div class="product-content">' +
-                                        '<h4 class="title mt-2"><a href="' + href + '">' + title + '</a></h4>' +
-                                        '<div class="price">' +
-                                        productCardPrice +
+                                        '<div class="content_block pb-3">' +
+                                        '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                        '</small>' +
+                                        '<h4>' + title + '</h4>' +
+                                        '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
-                                        '<a class="add-to-cart" href="javascript:void(0)" onclick="buyNow(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '">Buy Now</a>' +
+                                        '<div class="wish_list_block">' +
+                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="dis_block">' +
+                                        '<h5>New</h5>' +
+                                        '</div>' +
+                                        '<div class="icon_group">' +
+                                        '<div class="cart_blocks">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="cart_block">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="cart_blockss">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
-                                    if (i == 8) {
+                                    if (i == 6) {
                                         return false
                                     };
                                     break;
-
                                 case 'featured-product-section':
-                                    product = '<div class="slick-item mx-3 ">' +
-                                        '<div class="product-grid-item">' +
-                                        '<div class="product-grid-image">' +
+                                    // product = '<div class="slick-item mx-3 ">' +
+                                    //     '<div class="product-grid-item">' +
+                                    //     '<div class="product-grid-image">' +
+                                    //     '<a href="' + href + '">' +
+                                    //     '<img class="pic-1 img-fluid" src="' + imgSrc + '">' +
+                                    //     '</a>' +
+                                    //     '<ul class="social">' +
+                                    //     '<!-- <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li> -->' +
+                                    //     '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
+                                    //     data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                    //     '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>' +
+                                    //     '<li><a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
+                                    //     data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                    //     '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>' +
+                                    //     '</ul>' +
+                                    //     '</div>' +
+                                    //     '<div class="product-content">' +
+                                    //     '<h4 class="title mt-2"><a href="' + href + '">' + title + '</a></h4>' +
+                                    //     '<div class="price">' +
+                                    //     productCardPrice +
+                                    //     '</div>' +
+                                    //     '<a class="add-to-cart" href="javascript:void(0)" onclick="buyNow(this)" data-id="' +
+                                    //     data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                    //     '">Buy Now</a>' +
+                                    //     '</div>' +
+                                    //     '</div>' +
+                                    //     '</div>';
+
+                                    product = '<div class="col-md-4">' +
+                                        '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
+                                        '<div class="img_block">' +
                                         '<a href="' + href + '">' +
-                                        '<img class="pic-1 img-fluid" src="' + imgSrc + '">' +
-                                        '</a>' +
-                                        '<ul class="social">' +
-                                        '<!-- <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li> -->' +
-                                        '<li><a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>' +
-                                        '<li><a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>' +
-                                        '</ul>' +
+                                        '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
                                         '</div>' +
-                                        '<div class="product-content">' +
-                                        '<h4 class="title mt-2"><a href="' + href + '">' + title + '</a></h4>' +
-                                        '<div class="price">' +
-                                        productCardPrice +
+                                        '<div class="content_block pb-3">' +
+                                        // '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                        // '</small>' +
+                                        '<h4>' + title + '</h4>' +
+                                        '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
-                                        '<a class="add-to-cart" href="javascript:void(0)" onclick="buyNow(this)" data-id="' +
-                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
-                                        '">Buy Now</a>' +
+                                        '<div class="wish_list_block">' +
+                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="dis_block">' +
+                                        '<h5>Sale</h5>' +
+                                        '</div>' +
+                                        '<div class="icon_group">' +
+                                        '<div class="cart_blocks">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="cart_block">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
+                                        '</div>' +
+                                        '<div class="cart_blockss">' +
+                                        '<a href="">' +
+                                        '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
+                                        '</div>' +
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
+
                                     break;
+
+
                             }
 
                             $("#" + appendTo).append(product);
                         }
-                        $(".slick_sliders").slick();
+                        
+                        $(".slick_slider").slick({
+                            dots: false,
+                            arrows: true,
+                            autoplay: true,
+                            autoplaySpeed: 3000,
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
 
+                            responsive: [{
+                                    breakpoint: 1399,
+                                    settings: {
+                                        slidesToShow: 4,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 1080,
+                                    settings: {
+                                        slidesToShow: 4,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 780,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                            ],
+                        });
 
-                        if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
-                            getSliderSettings(appendTo);
+                        
+                            
+
+                        // if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
+                        //     getSliderSettings(appendTo);
                     }
-                    // appendTo == 'featured-product-section' ? productListInit() : '';
+                    // appendTo == 'latest-product-section' ? productListInit() : '';
+
+                    console.log(appendTo == 'latest-product-section');
                 },
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
@@ -1337,23 +781,70 @@
                     if (data.status == 'Success') {
                         var blogSection = '';
                         $.each(data.data, function(i, e) {
-                            blogSection += '<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">' +
-                                '<div class="content">' +
-                                '<div class="image">' +
+                            // blogSection += '<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">' +
+                            //     '<div class="content">' +
+                            //     '<div class="image">' +
+                            //     '<img src="{{ asset('gallary') }}/' + e.gallary.gallary_name +
+                            //     '" class="img-fluid">' +
+                            //     '</div>' +
+                            //     '<div class="discription text-center p-3 m-auto bg-light">' +
+                            //     '<a href="/blog-detail/' + e.slug + '">' +
+                            //     '<h3 class="font-weight-bold">' +
+                            //     e.detail[0].name +
+                            //     '</h3>' +
+                            //     '</a>' +
+                            //     '<p>' + e.detail[0].description.replace(/<[^>]*>?/gm, '').substring(0,
+                            //         85) + '...</p>' +
+                            //     '</div>' +
+                            //     '</div>' +
+                            //     '</div>';
+
+                            blogSection += '<div class="col-md-4 col-12">' +
+                                '<div class="destination-block position-relative">' +
+                                '<div class="image-block">' +
                                 '<img src="{{ asset('gallary') }}/' + e.gallary.gallary_name +
-                                '" class="img-fluid">' +
+                                '" class="img-fluid w-100">' +
                                 '</div>' +
-                                '<div class="discription text-center p-3 m-auto bg-light">' +
+                                '<div class="content-block">' +
                                 '<a href="/blog-detail/' + e.slug + '">' +
-                                '<h3 class="font-weight-bold">' +
+                                '<h2 class="text-dark mb-0">' +
                                 e.detail[0].name +
-                                '</h3>' +
+                                '</h2>' +
                                 '</a>' +
-                                '<p>' + e.detail[0].description.replace(/<[^>]*>?/gm, '').substring(0,
-                                    85) + '...</p>' +
+                                // '<p>' + e.detail[0].description.replace(/<[^>]*>?/gm, '').substring(0,
+                                //     85) + '...</p>' +
+                                // '<span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> &nbsp; ' + e.detail[0].date + ' </span>' +
+                                // '&nbsp; &nbsp;' +
+                                // '<span><i class="fa fa-comment-o" aria-hidden="true"></i> ' + e.detail[0].name + ' </span>' +
+
+
+
                                 '</div>' +
                                 '</div>' +
                                 '</div>';
+
+                            //         blogSection += '<div class="col-md-4 col-12">' +
+                            // '<div class="destination-block position-relative">' +
+                            //     '<div class="image-block">' +
+                            //         '<img src="{{ asset('gallary') }}/' + e.gallary.gallary_name +
+                            //         '" class="img-fluid">' +
+                            //     '</div>' +
+                            //     '<div class="content-block">' +
+                            //         '<a href="/blog-detail/' + e.slug + '">' +
+                            //             '<h2 class="text-dark mb-0">' +
+                            //                 + e.detail[0].name + 
+                            //             '</h2>' +
+                            //             '</a>' +
+                            //         '<p class="mb-0">' +
+                            //             '<span><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                            //                 '</span>' +
+
+                            //             '<span><i class="fa fa-comment-o" aria-hidden="true"></i></span>' +
+                            //         '</p>' +
+                            //         '</div>' +
+                            //         '</div>' +
+                            //          '</div>';
+
                             if (i == 2) {
                                 return false;
                             }
@@ -1400,22 +891,40 @@
                     if (data.status == 'Success') {
                         var sliderSection = '';
                         $.each(data.data, function(i, e) {
-                            sliderSection += '<div class="slick-item">' +
+                            // sliderSection += '<div class="slick-item">' +
+                            //     '<img src="{{ asset('gallary') }}/' + e.gallary +
+                            //     '" class="img-fluid w-100">' +
+                            //     '<div class="discription">' +
+                            //     '<h1 class="font-weight-bold"> ' + e.slider_title + '</h1>' +
+                            //     '<div class="ban-content">' +
+                            //     '<p>' + e.slider_description + '</p>' +
+                            //     '</div>' +
+                            //     '<a href="' + e.slider_url + '" class="btn anchor-btn">Learn More</a>' +
+                            //     '</div>' +
+                            //     '</div>';
+
+                            sliderSection +=
+                                '<div class="slider_item position-relative">' +
                                 '<img src="{{ asset('gallary') }}/' + e.gallary +
-                                '" class="img-fluid w-100">' +
-                                '<div class="discription">' +
-                                '<h1 class="font-weight-bold"> ' + e.slider_title + '</h1>' +
-                                '<div class="ban-content">' +
-                                '<p>' + e.slider_description + '</p>' +
-                                '</div>' +
-                                '<a href="' + e.slider_url + '" class="btn anchor-btn">Learn More</a>' +
-                                '</div>' +
+                                '" class="d-block w-100 img-fluid" alt="image...">' +
                                 '</div>';
+
                         });
                         $('#slider-section').html(sliderSection);
-                        // slickInit();
+
+                        $(".your-class").slick({
+                            dots: true,
+                            arrows: true,
+                            autoplay: true,
+                            autoplaySpeed: 3000,
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }, 100);
+
                     }
+
                 },
+
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -1438,21 +947,73 @@
                     var category = '';
                     if (data.status == 'Success') {
                         $.each(data.data, function(i, e) {
-                            var icon = e.icon == 'fa' ? e.icon : 'fa fa-headphones';
-                            category += '<div class="slick-item mx-3">' +
-                                '<div class="content text-center bg-light">' +
-                                '<a href="/shop?category=' + e.id + '">' +
-                                '<div class="box m-auto"> <i class="' + icon +
-                                '" aria-hidden="true"></i></div>' +
-                                '<div class="title mt-3">' +
-                                '<h6 class="m-0">' + e.name + '</h6>' +
+
+                            // category += '<div class="slick-item mx-3">' +
+                            //     '<div class="content text-center bg-light">' +
+                            //     '<a href="/shop?category=' + e.id + '">' +
+                            //     '<div class="box m-auto"> <i class="' + icon +
+                            //     '" aria-hidden="true"></i></div>' +
+                            //     '<div class="title mt-3">' +
+                            //         '<img src="{{ asset('gallary') }}/' + e.gallary +
+                            //     '" class="img-fluid">' +
+                            //     '</div>' +
+                            //     '<h6 class="m-0">' + e.name + '</h6>' +
+                            //     '</div>' +
+                            //     '</a>' +
+                            //     '</div>' +
+                            //     '</div>';
+
+                            category += '<a href="">' +
+                                '<div class="category_block bg-white">' +
+                                '<div class="category_img">' +
+                                '<img src="{{ asset('gallary') }}/' + e.gallary +
+                                '" class="img-fluid W-100">' +
                                 '</div>' +
-                                '</a>' +
+                                '<div class="category_content">' +
+                                '<h2 class="text-center">' + e.name + '</h2>' +
                                 '</div>' +
-                                '</div>';
+                                '</div>' +
+                                '</a>';
+
                         });
                         $('#category-section').html(category);
-                        // categorySlickInit();
+                        $(".category_list").slick({
+                            dots: false,
+                            arrows: true,
+                            autoplay: true,
+                            autoplaySpeed: 3000,
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
+                            responsive: [{
+                                    breakpoint: 1399,
+                                    settings: {
+                                        slidesToShow: 4,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 1080,
+                                    settings: {
+                                        slidesToShow: 4,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 780,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                            ],
+                        });
                     }
                 },
                 error: function(data) {
@@ -1563,6 +1124,61 @@
                     $('#event-loading').css('display', 'none');
                 },
             });
+        }
+
+
+        // function slickInit(){
+        //     $(".your-class").slick({
+        //         dots: true,
+        //         arrows: true,
+        //         autoplay: true,
+        //         autoplaySpeed: 3000,
+        //         slidesToShow: 1,
+        //         slidesToScroll: 1,
+        //     });
+        // }
+    
+
+        function productListInit() {
+          
+            $(".latest_slider").slick({
+                dots: false,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                responsive: [{
+                        breakpoint: 1399,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 1080,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 780,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        },
+                    },
+                ],
+            });
+
         }
     </script>
 @endsection
