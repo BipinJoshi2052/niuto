@@ -23,6 +23,10 @@ window.addEventListener("scroll", function () {
   var header = document.querySelector(".header");
   header.classList.toggle("sticky-bar", window.scrollY > 50);
 });
+function helloFunction()
+{
+  alert('hello hi asdasdg');
+}
 // $(document).ready(function () {
 //   $(".your-class").slick({
 //     dots: true,
