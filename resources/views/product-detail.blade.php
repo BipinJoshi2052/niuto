@@ -156,16 +156,39 @@
                     if(data.data.product_type == 'variable'){
                         if(data.data.attribute && data.data.attribute.length > 0){
                             $.each(data.data.attribute, function(i, e){
+                                count = i != 0 ? i : '';
+                                variant += '<style>' +
+                                    '.size-wrapper' + count + ' .select-size' + count + ' {' +
+                                        'display: flex;' +
+                                    '}' +
+                                    '.size-wrapper' + count + ' .select-size' + count + ' .size {' +
+                                        'margin: 0 5px;' +
+                                        'border: 2px solid var(--blue);' +
+                                        'min-width: 32px;' +
+                                        'height: 32px;' +
+                                        'text-align: center;' +
+                                    '}' +
+                                    '.size-wrapper' + count + ' .select-size' + count + ' .size' + count + '-active {' +
+                                        'margin: 0 5px;' +
+                                        'background-color: var(--yellow);' +
+                                        'border: 2px solid var(--yellow);' +
+                                        'color: white;' +
+                                        'min-width: 32px;' +
+                                        'height: 32px;' +
+                                        'text-align: center;' +
+                                    '}' +
+                                '</style>';
+                                
                                 if(e.attributes.detail[0].name){
-                                    variant += '<div class="size-wrapper">';
-                                    variant += '<div class="size-select mb-3">';
+                                    variant += '<div class="size-wrapper' + count + '">';
+                                    variant += '<div class="size-select' + count + ' mb-3">';
                                     variant += '<h5>' + e.attributes.detail[0].name + '</h5>';
-                                    variant += '<div class="select-size">';
+                                    variant += '<div class="select-size' + count + '">';
                                     if(e.variations){
                                         $.each(e.variations, function(i, e){
                                             if(e.product_variation.detail[0].name){
                                                 active = i == 0 ? '-active' : '';
-                                                variant += '<div class="size' + active + '">' + e.product_variation.detail[0].name + '</div>';
+                                                variant += '<div class="size' + count + active + '">' + e.product_variation.detail[0].name + '</div>';
                                             }
                                         });
                                     }
