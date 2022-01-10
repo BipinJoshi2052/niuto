@@ -1,6 +1,16 @@
-$(document).ajaxStop(function() {
-  loaderOnLoad();
-});
+// $(document).ajaxStop(function() {
+//   loaderOnLoad();
+// });
+function showLoader(appendHtml){
+  var loadingHtml = `<div id="loading" style="display:block;">
+                      <img src="{{ asset('loader/ajax-loader.gif') }}" alt="">
+                    </div>`;
+  $("#"+appendHtml).append(loadingHtml);
+}
+
+function hideLoader(){
+  $("#loading").css("display", "none");
+}
 $(document).ready(function () {
   if ($("body").hasClass(".js-range-slider")) {
     console.log('asdfasdf');
