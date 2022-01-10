@@ -4,7 +4,19 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
     ->with('subcategory')
     ->take(9)
     ->get();
+$requestCategory = request()->category;
+if($requestCategory != null || $requestCategory != ''){
+    $breadCrumbCat = App\Models\Admin\Category::where("id", $requestCategory)->with('detail')->first();
+    if(!empty($breadCrumbCat->parent)){
+        $maincategory = $breadCrumbCat->parent->with('detail')->first();
+    } else {
+        $maincategory = '';
+    }
+} else {
+    $breadCrumbCat = '';
+}
 ?>
+
 <section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
     <div class="container">
         <div class="row">
@@ -15,9 +27,20 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                             <a href="{{ url('/') }}"><span><i class="fa fa-home" aria-hidden="true"></i></span>
                                 HOME</a>
                         </li>
-                        <li class="breadcrumb-item font-weight-bold" aria-current="page">
-                            <a href="javascript:void(0)" class="text-dark">PRODUCTS</a>
-                        </li>
+                        @if($maincategory = '')
+                            <li class="breadcrumb-item font-weight-bold" aria-current="page">
+                                <a href="/shop?category={{ $maincategory->id }}"  class="text-dark">{{ $maincategory->detail[0]->category_name }}</a>
+                            </li>
+                        @endif
+                        @if($breadCrumbCat != '')
+                            <li class="breadcrumb-item font-weight-bold" aria-current="page">
+                                <a href="javascript:void(0)" class="text-dark">{{ $breadCrumbCat->detail[0]->category_name }}</a>
+                            </li>
+                        @else
+                            <li class="breadcrumb-item font-weight-bold" aria-current="page">
+                                <a href="javascript:void(0)" class="text-dark">PRODUCTS</a>
+                            </li>
+                        @endif
                     </ol>
                 </nav>
             </div>

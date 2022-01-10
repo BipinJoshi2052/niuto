@@ -16,7 +16,7 @@
              <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                    <li class="breadcrumb-item font-weight-bold">
-                      <a href=""
+                      <a href="{{ url('/') }}"
                          ><span><i class="fa fa-home" aria-hidden="true"></i></span>
                       HOME</a
                          >
@@ -25,7 +25,7 @@
                       class="breadcrumb-item font-weight-bold"
                       aria-current="page"
                       >
-                      <a href="cart.html" class="text-dark">Wishlist</a>
+                      <a href="javascript:void(0)" class="text-dark">Wishlist</a>
                    </li>
                 </ol>
              </nav>
@@ -46,14 +46,17 @@
                    <div class="form-group">
                       <label class="info-title" for="exampleInputPassword1">Old Password <span>*</span></label>
                       <input type="password" class="form-control unicase-form-control text-input" id="old_password" autocomplete="off">
+                      <div class="text-danger require old_password"></div>
                    </div>
                    <div class="form-group">
                       <label class="info-title" for="exampleInputPassword1">New Password <span>*</span></label>
                       <input type="password" class="form-control unicase-form-control text-input" id="new_password" autocomplete="off">
+                      <div class="text-danger require new_password"></div>
                    </div>
                    <div class="form-group">
                       <label class="info-title" for="exampleInputPassword1">Confirm Password <span>*</span></label>
                       <input type="password" class="form-control unicase-form-control text-input" id="confirm_password" autocomplete="off">
+                      <div class="text-danger require confirm_password"></div>
                    </div>
                    <div class="form-group d-flex justify-content-between align-items-center">
                       <div class="form-group col-12 pl-0 text-center d-flex justify-content-between align-items-center">
@@ -110,22 +113,29 @@
                 clientsecret:"{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
             },
             beforeSend: function() {
-                $('#event-loading').css('display', 'block');
+                $('#section-loading').css('display', 'block');
             },
             success: function(data) {
-                $('#event-loading').css('display', 'none');
+               console.log(data);
+                $('#section-loading').css('display', 'none');
+            
                 if (data.status == 'Success') {
                     log_out();
                     // location.reload();
-                    toastr.success('{{ trans("password-changed-successfully") }}');
+                    toastr.success('{{ trans("response.password-changed-successfully") }}');
                 }
                 else if (data.status == 'Error') {
                     toastr.error('{{ trans("response.some_thing_went_wrong") }}');
                 }
             },
             error: function(response){
-                $('#event-loading').css('display', 'none');
-                toastr.error(response.responseJSON.message);
+               console.log(response);
+                $('#section-loading').css('display', 'none');
+                var error_html = '';
+                   $.each(response.responseJSON.errors, function(e, value){
+                     $("."+e).html(value[0]);
+                   });
+               //  toastr.error(response.responseJSON.message);
             }
         });
     });

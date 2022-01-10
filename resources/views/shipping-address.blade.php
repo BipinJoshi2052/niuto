@@ -79,7 +79,7 @@
                                         </td>
             
                                         <td class="edit-tag">
-                                            <ul>
+                                            <ul class="d-inline-flex">
                                                 <li><a href="javascript:void(0)" class="shipping-address-listing-edit-btn"> <i class="fas fa-pen"></i> Edit</a></li>
                                                 <li><a href="javascript:void(0)" class="shipping-address-listing-delete-btn"> <i class="fas fa-trash-alt"></i> Remove</a></li>
                                             </ul>
@@ -422,7 +422,7 @@
             beforeSend: function() {},
             success: function(data) {
                 if (data.status == 'Success') {
-                    toastr.success('{{ trans("address-book-updated") }}')
+                    toastr.success('{{ trans("response.address-book-updated") }}')
                 } else if (data.status == 'Error') {
                     toastr.error('{{ trans("response.some_thing_went_wrong") }}');
                 }
