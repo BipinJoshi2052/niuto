@@ -1,15 +1,17 @@
 $(document).ready(function () {
-  $(".js-range-slider").ionRangeSlider({
-    skin: "round",
-    step: 1,
-    type: "double",
-    grid: false,
-    min: 0,
-    max: 1000,
-    from: 200,
-    to: 800,
-    prefix: "$",
-  });
+  if($(".js-range-slider").length > 0){
+    $(".js-range-slider").ionRangeSlider({
+      skin: "round",
+      step: 1,
+      type: "double",
+      grid: false,
+      min: 0,
+      max: 1000,
+      from: 200,
+      to: 800,
+      prefix: "$",
+    });
+  }
 });
 $(".our_brand").slick({
   dots: false,

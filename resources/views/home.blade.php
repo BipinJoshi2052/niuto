@@ -15,7 +15,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        @include('includes.loader')
                         <div class="slick_slider" id="product-list-section">
                             {{-- <div class="item_block bg-white position-relative p-3">
                                 <div class="img_block">
@@ -75,7 +74,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        @include('includes.loader')
                         <div class="category_list" id="category-section">
 
                         </div>
@@ -95,7 +93,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        @include('includes.loader')
                         <div class="latest_slider" id="latest-product-section">
 
                         </div>
@@ -112,7 +109,6 @@
                         Discounted Products
                     </h1>
                 </div>
-                @include('includes.loader')
                 <div class="row" id="featured-product-section">
 
                     {{-- <div class="col-md-4">
@@ -277,7 +273,7 @@
                         </div>
                     </div>
                 </div>
-                @include('includes.loader')
+
                 <div class="row" id="blog-section">
                     {{-- <div class="col-md-4 col-12">
                         <div class="destination-block position-relative">
@@ -384,9 +380,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {
-                    $('.section-loading').css('display','block');
-                },
+                beforeSend: function() {},
                 success: function(data) {
                     // console.log(data);
                     if (data.status == 'Success') {
@@ -674,12 +668,8 @@
                         // productListInit();
                     }
                 },
-                complete:function()
-                {
-                    $('.section-loading').css('display', 'none');
-                },
                 error: function(data) {
-                    $('#section-loading').css('display', 'none');
+                    $('#event-loading').css('display', 'none');
                 },
             });
         }
@@ -693,9 +683,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {
-                    $('.section-loading').css('display','block');
-                },
+                beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success') {
                         // console.log(data,"final data");
@@ -776,10 +764,6 @@
                         $('#weekly-sale-first-div').html(htmlToRender);
                     }
                 },
-                complete:function()
-                {
-                    $('.section-loading').css('display', 'none');
-                },
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -797,9 +781,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {
-                    $('.section-loading').css('display','block');
-                },
+                beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success') {
                         var blogSection = '';
@@ -875,10 +857,6 @@
                         $('#blog-section').html(blogSection);
                     }
                 },
-                complete:function()
-                {
-                    $('.section-loading').css('display', 'none');
-                },
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -913,9 +891,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {
-                    $('.section-loading').css('display','block');
-                },
+                beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success') {
                         var sliderSection = '';
@@ -953,10 +929,7 @@
                     }
 
                 },
-                complete:function()
-                {
-                    $('.section-loading').css('display', 'none');
-                },
+
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -974,9 +947,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {
-                    $('.section-loading').css('display','block');
-                },
+                beforeSend: function() {},
                 success: function(data) {
                     var category = '';
                     if (data.status == 'Success') {
@@ -1050,10 +1021,6 @@
                         });
                     }
                 },
-                complete:function()
-                {
-                    $('.section-loading').css('display', 'none');
-                },
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -1103,9 +1070,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {
-                    $('.section-loading').css('display','block');
-                },
+                beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success') {
                         if (typeof data.data[0] !== 'undefined') {
@@ -1159,10 +1124,6 @@
                         }
                         $('.banner_div').css('display', 'block');
                     }
-                },
-                complete:function()
-                {
-                    $('.section-loading').css('display', 'none');
                 },
                 error: function(data) {
                     $('#event-loading').css('display', 'none');

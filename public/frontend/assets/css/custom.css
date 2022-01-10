@@ -416,9 +416,9 @@ span.pr-2.category_icon_img img {
     color: var(--black);
     border: 0;
     outline: 0;
-    background: none;
+    background: none;   
     width: 0;
-    caret-color: transparent;
+    caret-color: #000000;
     line-height: 46px;
     transition: width 0.4s linear;
     width: 303px;
@@ -1588,7 +1588,7 @@ footer#footer .button-footer .footer-btn {
 }
 
 
-}
+/* } */
 
 .our_brand-2 {
     height: 130px;
