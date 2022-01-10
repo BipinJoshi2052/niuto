@@ -29,7 +29,7 @@ return [
     'select-ratings' => 'Select Rating',
     'rating-saved-successfully' => 'Product rating save successfully!',
     'profile-updated-successfully' => 'Profile update successfully!',
-    'shipping-remove-successfully' => 'Shipping Remove Successfully!',
+    'shipping-remove-successfully' => 'Shipping Address Removed Successfully!',
     'shipping-add-successfully' => 'Shipping address save successfully!',
     'address-book-updated' => 'Address book update successfully!',
     'wishlist-remove' =>'Wishlist remove Successfully!',

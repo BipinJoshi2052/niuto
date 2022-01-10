@@ -79,7 +79,7 @@
                                         </td>
             
                                         <td class="edit-tag">
-                                            <ul>
+                                            <ul class="d-inline-flex">
                                                 <li><a href="javascript:void(0)" class="shipping-address-listing-edit-btn"> <i class="fas fa-pen"></i> Edit</a></li>
                                                 <li><a href="javascript:void(0)" class="shipping-address-listing-delete-btn"> <i class="fas fa-trash-alt"></i> Remove</a></li>
                                             </ul>
