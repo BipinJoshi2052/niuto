@@ -87,6 +87,7 @@
     
 
     <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
     'includes.footers.footer-style1')
 
