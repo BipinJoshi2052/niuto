@@ -100,6 +100,7 @@
                 </div>
             </div>
         </section>
+        
         <!--======================== FEATURE END  -->
         <!--======================== DISCOUNTED START  -->
         <section id="recommended" class="section_bg padding_button discounted_section">

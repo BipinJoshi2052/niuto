@@ -1606,6 +1606,14 @@
     </script>
     
     @yield('script')
+
+    <script>
+        
+        setTimeout(() => {
+            
+            $(".latest_slider").not('.slick-initialized').slick();
+            }, 1000);
+    </script>
 </body>
 
 </html>
