@@ -54,8 +54,8 @@
                     </li>
                   </ul>
                 </div>
-
-                <a class="text-white font-weight-bold text-right d-block w-100" href="{{ url('/register') }}">REGISTER</a>
+                  <p style="color: white" class="text-center mb-0">If you are new here, </p>
+                <a class="text-white font-weight-bold text-center d-block w-100 " href="{{ url('/register') }}">REGISTER</a>
               </div>
             </div>
           </div>

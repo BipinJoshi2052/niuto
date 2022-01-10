@@ -118,7 +118,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
 <nav class="header navbar navbar-expand-lg header-sticky">
     <div class="container">
         <div class="header-logo text-center d-flex">
-            <a class="navbar-brand text-white text-uppercase text-left p-0 mr-5" href=""><img src="{{ isset(getSetting()['site_logo']) ? getSetting()['site_logo'] : asset('01-logo.png') }}"
+            <a class="navbar-brand text-white text-uppercase text-left p-0 mr-5" href="/"><img src="{{ isset(getSetting()['site_logo']) ? getSetting()['site_logo'] : asset('01-logo.png') }}"
                 alt="{{ isset(getSetting()['site_name']) ? getSetting()['site_name'] : 'Logo' }}"
                     class="img-fluid" /></a>
             <!-- search start  -->
@@ -198,7 +198,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                     </div>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link font-weight-bold text-left text-lg-center" href="{{ url('/checkout') }}">
                         Checkout
                     </a>
@@ -207,7 +207,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                     <a class="nav-link font-weight-bold text-left text-lg-center" href="{{ url('/cart') }}">
                         Cart
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a class="nav-link font-weight-bold text-left text-lg-center" href="{{ url('/contact-us') }}">Contact Us

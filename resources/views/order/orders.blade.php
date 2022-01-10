@@ -4,8 +4,9 @@
       <nav aria-label="breadcrumb">
           <div class="container">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="url('/profile')">Profile</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ordeasdrs</li>
               </ol>
           </div>
         </nav>

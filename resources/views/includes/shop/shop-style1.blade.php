@@ -75,14 +75,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                         </ul>
                     </div>
                     <div class="col-md-12">
-                        <div
-                            class="
-                      price_rang_block
-                      border_one
-                      bg-white
-                      category_product
-                      mt-4
-                      ">
+                        <div class="price_rang_block border_one bg-white category_product mt-4">
                             <div class="category_title">
                                 <h4 class="pl-4 font-weight-bold">
                                     <span class="pr-3"></span>
@@ -102,109 +95,70 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div
-                            class="
-                      price_rang_block
-                      border_one
-                      bg-white
-                      category_product
-                      mt-4 pb-3
-                      ">
+                        <div class="price_rang_block border_one bg-white category_product mt-4 pb-3">
                             <div class="category_title">
                                 <h4 class="pl-4 font-weight-bold">
                                     <span class="pr-3"></span>
                                     Price Range
                                 </h4>
                             </div>
-                            <div class="slider" id="range-slider">
+                            <div class="slider price-slider" id="range-slider">
                             </div>
                             <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div
-                            class="
-                      price_rang_block
-                      border_one
-                      bg-white
-                      category_product
-                      mt-4">
-                            <div class="category_title">
-                                <h4 class="pl-4 font-weight-bold">
-                                    <span class="pr-3"></span>
-                                    Select Colors
-                                </h4>
-                            </div>
-                            <div class="colors_block p-3">
-                                <label class="color_single"><small class="round"></small>
-                                    <span class=""> Red</span>
-                                    <input type="checkbox" checked="checked" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="color_single">
-                                    <small class="round bg-warning"></small>
-                                    <span> Yellow</span>
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="color_single">
-                                    <small class="round bg-primary"></small>
-                                    <span>Blue</span>
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="color_single">
-                                    <small class="round bg-success"></small>
-                                    <span> Green</span>
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div
-                            class="
-                      price_rang_block
-                      border_one
-                      bg-white
-                      category_product
-                      mt-4
-                      ">
-                            <div class="category_title">
-                                <h4 class="pl-4 font-weight-bold">
-                                    <span class="pr-3"></span>
-                                    Select Sizes
-                                </h4>
-                            </div>
-                            <div class="colors_block p-3">
-                                <label class="color_single" <span class=""> Small</span>
-                                    <input type="checkbox" checked="checked" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="color_single">
-                                    <span> Medium</span>
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="color_single">
-                                    <span>Large</span>
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="color_single">
-                                    <span> XL</span>
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="color_single">
-                                    <span> XXL</span>
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach($data["attribute"] as $key => $attribute)
+                        @php
+                            $attribute_name = $attribute->attribute_detail[0]->name;
+                        @endphp
+                        @if($attribute_name == 'Color' || $attribute_name == "Size")
+                            <input type="hidden" value="{{ $attribute->id }}" name="attribute[]">
+                            @if($attribute_name == "Color" && !$attribute->variation->isEmpty())
+                                <div class="col-md-12">
+                                    <div class="price_rang_block border_one bg-white category_product mt-4">
+                                        <div class="category_title">
+                                            <h4 class="pl-4 font-weight-bold">
+                                                <span class="pr-3"></span>
+                                                Select Colors
+                                            </h4>
+                                        </div>
+                                        <div class="colors_block p-3">
+                                            @foreach($attribute->variation as $atvkey => $variation)
+                                                <label class="color_single">
+                                                <small class="round" style="background-color: {{ $variation->variation_detail[0]->name }}"></small>
+                                                <span class=""> {{ $variation->variation_detail[0]->name }}</span>
+                                                <input type="checkbox" name="variation[]" class="variation-filter" value="{{ $variation->variation_detail[0]->variation_id }}" data-attribute-id="{{ $attribute->id }}" data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
+                                                <span class="checkmark"></span>
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div> 
+                            @elseif($attribute_name == "Size" && !$attribute->variation->isEmpty())
+                                <div class="col-md-12">
+                                    <div class="price_rang_block border_one bg-white category_product mt-4">
+                                        <div class="category_title">
+                                            <h4 class="pl-4 font-weight-bold">
+                                                <span class="pr-3"></span>
+                                                Select Sizes
+                                            </h4>
+                                        </div>
+                                        <div class="colors_block p-3">
+                                            @foreach($attribute->variation as $atvkey => $variation)
+                                                <label class="color_single"> 
+                                                    <span class="">{{ $variation->variation_detail[0]->name }}</span>
+                                                    <input type="checkbox" name="variation[]" class="variation-filter" value="{{ $variation->variation_detail[0]->variation_id }}" data-attribute-id="{{ $attribute->id }}" data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @else
+                            @break
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-9">

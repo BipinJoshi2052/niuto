@@ -147,6 +147,13 @@ class ProductRepository implements ProductInterface
                     $query->whereIn('product_variation.variation_id', $variations);
                 });
             }
+            if (isset($_GET['my_variations']) && $_GET['my_variations'] != '') {
+                $my_variations = explode(',', $_GET['my_variations']);
+                // dd($variations);
+                $product = $product->whereHas('product_attribute.variation', function ($query) use ($my_variations) {
+                    $query->whereIn('product_variation.variation_id', $my_variations);
+                });
+            }
             // return $product->toSql();
             return $this->successResponse(ProductResource::collection($product->paginate($numOfResult)), 'Data Get Successfully!');
         } catch (Exception $e) {
