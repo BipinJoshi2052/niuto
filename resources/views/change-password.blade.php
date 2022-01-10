@@ -16,7 +16,7 @@
              <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                    <li class="breadcrumb-item font-weight-bold">
-                      <a href=""
+                      <a href="{{ url('/') }}"
                          ><span><i class="fa fa-home" aria-hidden="true"></i></span>
                       HOME</a
                          >
@@ -25,7 +25,7 @@
                       class="breadcrumb-item font-weight-bold"
                       aria-current="page"
                       >
-                      <a href="cart.html" class="text-dark">Wishlist</a>
+                      <a href="javascript:void(0)" class="text-dark">Wishlist</a>
                    </li>
                 </ol>
              </nav>
