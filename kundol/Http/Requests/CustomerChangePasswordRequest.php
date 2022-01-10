@@ -24,17 +24,26 @@ class CustomerChangePasswordRequest extends FormRequest
      */
     public function rules()
     {
-        $oldPasswordValidation = "'old_password' => 'required'";
+        $oldPasswordValidation = ['old_password' => 'required'];
         if($_POST['customerId']){
             $user = Customer::where('id', $_POST['customerId'])->first();
             if($user->provider && !$user->password){
                 $oldPasswordValidation = '';
             }
         }
-        return [
-            $oldPasswordValidation,
+        // dd($oldPasswordValidation);
+        $validation = [
             'new_password' => 'required|string|min:6|same:confirm_password',
             'confirm_password' => 'required',
         ];
+        if($oldPasswordValidation != ''){
+            $validation = array_merge($validation, $oldPasswordValidation);
+        }
+        return $validation;
+        // return [
+        //     $oldPasswordValidation,
+        //     'new_password' => 'required|string|min:6|same:confirm_password',
+        //     'confirm_password' => 'required',
+        // ];
     }
 }
