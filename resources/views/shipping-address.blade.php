@@ -422,7 +422,7 @@
             beforeSend: function() {},
             success: function(data) {
                 if (data.status == 'Success') {
-                    toastr.success('{{ trans("address-book-updated") }}')
+                    toastr.success('{{ trans("response.address-book-updated") }}')
                 } else if (data.status == 'Error') {
                     toastr.error('{{ trans("response.some_thing_went_wrong") }}');
                 }

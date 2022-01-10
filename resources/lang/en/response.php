@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'some_thing_went_wrong'=> 'some thing went wrong',
-    'please_login_first' => 'please Login first',
+    'some_thing_went_wrong'=> 'Some Thing Went Wrong',
+    'please_login_first' => 'Please Login First',
     'wishlist-add-success' => 'Product add on Wishlist Successfuly',
     'compare-add-success' => 'Product add no compare successfully!',
     'select-combination' => 'Select Combination',
@@ -32,6 +32,7 @@ return [
     'shipping-remove-successfully' => 'Shipping Remove Successfully!',
     'shipping-add-successfully' => 'Shipping address save successfully!',
     'address-book-updated' => 'Address book update successfully!',
-    'wishlist-remove' =>'Wishlist remove Successfully!'
+    'wishlist-remove' =>'Wishlist remove Successfully!',
+    'password-changed-successfully' => 'Password Changed Successfully',
 
 ];
