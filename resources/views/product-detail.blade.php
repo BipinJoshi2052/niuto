@@ -152,6 +152,31 @@
                                 $("#product-card-price").html(data.data.product_combination[0].product_price_symbol);
                         }
                     }
+                    var variant = '';
+                    if(data.data.product_type == 'variable'){
+                        if(data.data.attribute && data.data.attribute.length > 0){
+                            $.each(data.data.attribute, function(i, e){
+                                if(e.attributes.detail[0].name){
+                                    variant += '<div class="size-wrapper">';
+                                    variant += '<div class="size-select mb-3">';
+                                    variant += '<h5>' + e.attributes.detail[0].name + '</h5>';
+                                    variant += '<div class="select-size">';
+                                    if(e.variations){
+                                        $.each(e.variations, function(i, e){
+                                            if(e.product_variation.detail[0].name){
+                                                active = i == 0 ? '-active' : '';
+                                                variant += '<div class="size' + active + '">' + e.product_variation.detail[0].name + '</div>';
+                                            }
+                                        });
+                                    }
+                                    variant += '</div>';
+                                    variant += '</div>';
+                                    variant += '</div>';
+                                }
+                            })
+                        }
+                    }
+                    $('#variant').html(variant);
                     if (data.data.reviews !== null) {
                         $(".review-count").html(data.data.reviews.length);
                         rating = '';

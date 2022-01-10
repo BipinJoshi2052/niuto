@@ -322,6 +322,7 @@
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'product-list-section';
+            console.log('1st append');
             fetchProduct(url, appendTo);
 
             var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
@@ -338,37 +339,6 @@
             fetchProduct(url, appendTo);
 
             blogNews();
-
-            // var url = "{{ url('') }}" +
-            //     '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' + languageId +
-            //     '&topSelling=1&currency=' + 1;
-            // appendTo = 'tab_top_sales';
-            // fetchProduct(url, appendTo);
-
-            // var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
-            //     languageId + '&currency=' + 1;
-            // appendTo = 'tab_special_products';
-            // fetchProduct(url, appendTo);
-
-
-            // var url = "{{ url('') }}" +
-            //     '/api/client/products?limit=6&getCategory=1&getDetail=1&language_id=' + languageId +
-            //     '&sortBy=id&sortType=DESC&currency=' + 1;
-            // appendTo = 'weekly-sale';
-            // fetchProduct(url, appendTo);
-
-            // var url = "{{ url('') }}" +
-            //     '/api/client/products?limit=1&getCategory=1&getDetail=1&language_id=' + languageId +
-            //     '&topSelling=1&currency=' + 1;
-            // appendTo = 'weekly-sale-first-div';
-            // fetchFeaturedWeeklyProduct(url,appendTo)
-
-            // bannerMedia();
-            // cartSession = $.trim(localStorage.getItem("cartSession"));
-            // if (cartSession == null || cartSession == 'null') {
-            //     cartSession = '';
-            // }
-            // menuCart(cartSession);
         });
 
         function fetchProduct(url, appendTo) {
@@ -382,7 +352,7 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    // console.log(data);
+                    console.log(data);
                     if (data.status == 'Success') {
                         for (i = 0; i < data.data.length; i++) {
 
@@ -430,11 +400,13 @@
                                 if (data.data[i].product_combination != null && data.data[i]
                                     .product_combination != 'null' && data.data[i].product_combination != '') {
                                     productCardPrice = data.data[i].product_combination[0].product_price_symbol;
+                                } else {
+                                    productCardPrice = data.data[i].product_discount_price_symbol + ' <b>' +
+                                        data.data[i].product_price_symbol + '</b>';
                                 }
                             }
                             switch (appendTo) {
                                 case 'product-list-section':
-
                                     product = '<div class="item_block bg-white position-relative p-3">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +

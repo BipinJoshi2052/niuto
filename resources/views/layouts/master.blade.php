@@ -1282,7 +1282,6 @@
         });
 
         function cartItem(cartSession) {
-            console.log('master');
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&language_id=' + languageId +
                     '&currency=' + localStorage.getItem("currency");

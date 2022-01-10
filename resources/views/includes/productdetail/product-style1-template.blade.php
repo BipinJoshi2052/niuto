@@ -99,6 +99,7 @@
                                 </div>
                             </div>
                         </div>
+                        <span id="variant"></span>
                         <div class="_p-features">
                             <span> Description: </span>
                             <p class="pro-desc">
