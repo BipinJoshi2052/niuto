@@ -477,6 +477,7 @@
                                     break;
 
                                 case 'latest-product-section':
+                                    console.log('hi');
                                     // product =
                                     //     '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
                                     //     '<div class="product-grid-item">' +
@@ -660,8 +661,12 @@
                         //     getSliderSettings(appendTo);
                     }
                     // appendTo == 'latest-product-section' ? productListInit() : '';
-
-                    console.log(appendTo == 'latest-product-section');
+                    // console.log(appendTo);
+                    // console.log(appendTo == 'latest-product-section');
+                    if($("#latest-product-section").html() != ''){
+                        // alert('helo');
+                        // productListInit();
+                    }
                 },
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
@@ -1180,5 +1185,9 @@
             });
 
         }
+
+        $(document).ajaxStop(function(){
+            productListInit();
+        });
     </script>
 @endsection
