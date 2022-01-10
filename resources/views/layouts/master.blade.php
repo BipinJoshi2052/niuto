@@ -61,6 +61,7 @@
         }
         #loading {
                 position: fixed;
+                text-align: center;
                 width: 100%;
                 height: 100vh;
                 z-index: 99999;
@@ -71,7 +72,10 @@
 <body>
     @include(isset(getSetting()['header_style']) ? 'includes.headers.header-'.getSetting()['header_style'] :
     'includes.headers.header-style1')
-    <div id="loading" style="background: #fff url('{{ asset('loader/ajax-loader.gif') }}') no-repeat center;"></div>
+    <div id="loading" style="display:none;">
+        <img src="{{ asset('loader/ajax-loader.gif') }}" alt="">
+    </div>
+    {{-- <div id="loading" style="background: #fff url('{{ asset('loader/ajax-loader.gif') }}') no-repeat center; display:none;"></div> --}}
 
     {{-- <div id="loading" style="display: none;">
         <img src="{{ asset('loader/ajax-loader.gif') }}" alt="">
@@ -750,16 +754,16 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    $('#event-loading').css('display', 'block');
+                    // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                     if (data.status == 'Success') {
                         $(".wishlist-count").html(data.data.length);
                     }
                 },
                 error: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                 },
             });
         }
@@ -780,17 +784,17 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    $('#event-loading').css('display', 'block');
+                    // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                     if (data.status == 'Success') {
                         $(".wishlist-count").html(data.data.length);
                         toastr.success('Product added to wishlist')
                     }
                 },
                 error: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                 },
             });
         }
@@ -978,10 +982,10 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    $('#event-loading').css('display', 'block');
+                    // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                     if (data.status == 'Success') {
                         if (loggedIn != '1') {
                             localStorage.setItem("cartSession", data.data.session);
@@ -1006,7 +1010,7 @@
                     }
                 },
                 error: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                     if (data.responseJSON.status == 'Error') {
                         // toastr.error(data.responseJSON.message);
                         toastr.error('{{ trans('response.some_thing_went_wrong') }}');
@@ -1035,10 +1039,10 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    $('#event-loading').css('display', 'block');
+                    // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                     if (data.status == 'Success') {
                         total_price = 0;
                         currrency = '';
@@ -1161,7 +1165,7 @@
                     }
                 },
                 error: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                 },
             });
         }
@@ -1294,10 +1298,10 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    $('#event-loading').css('display', 'block');
+                    // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                     if (data.status == 'Success') {
                         $("#cartItem-product-show").html('');
                         const templ = document.getElementById("cartItem-Template");
@@ -1469,7 +1473,7 @@
                     }
                 },
                 error: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                 },
             });
         }
@@ -1500,7 +1504,7 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    $('#event-loading').css('display', 'block');
+                    // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
                     $('#event-loading').css('display', 'none');
@@ -1514,7 +1518,7 @@
                     }
                 },
                 error: function(data) {
-                    $('#event-loading').css('display', 'none');
+                    $('#loading').css('display', 'none');
                 },
             });
         }
