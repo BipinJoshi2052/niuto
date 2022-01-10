@@ -110,7 +110,9 @@
                 },
                 success: function(data) {
                     console.log(data);
-                    if (data.status == 'Success') {
+                    console.log(typeof(data));
+                    console.log(data.data.length);
+                    if (data.status == 'Success' && data.data.length > 0) {
                         var links = '';
                         var page_meta_label = '';
                         for(meta = 0; meta < data.meta.links.length; meta++){
@@ -253,6 +255,8 @@
                                 $("#" + appendTo).html(clone);
                             
                         }
+                    } else {
+                        $("#" + appendTo).html('<div class=text-center> <p style="width: 100%;padding-left: 22px;font-size: 20px;font-weight: 500;padding-top: 12px;">No data found</p> </div>');
                     }
                 },
                 complete: function(){
