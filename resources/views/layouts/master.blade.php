@@ -46,6 +46,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/jssocials/jssocials.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/jssocials/jssocials-theme-flat.css') }}">
     @yield('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
@@ -90,6 +92,7 @@
     <script src="{{ asset('frontend/assets/js/font-awesom.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('/assets/jssocials/jssocials.min.js') }}"></script>
     
     <!-- Mobile Nav -->
     <div class="modal fade" id="rightsidebarfilter" tabindex="-1" role="dialog"

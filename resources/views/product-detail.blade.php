@@ -73,6 +73,7 @@
             },
             beforeSend: function() {},
             success: function(data) {
+                console.log(data);
                 if (data.status == 'Success') {
                     var clone = '';
                     var sideGal = '';
@@ -512,7 +513,6 @@
     });
 
     function getProductReview() {
-        console.log('getProdctReview');
         var url = "{{ url('') }}" + '/api/client/review?product_id={{ $product }}&customer=1';
         $.ajax({
             type: 'get',
@@ -525,14 +525,19 @@
             },
             beforeSend: function() {},
             success: function(data) {
-                console.log(data);
                 if (data.status == 'Success') {
                     $("#review-rating-show").html('');
                     for (review = 0; review < data.data.length; review++) {
                         cur_rating = (data.data[review].rating / 5);
                         cur_rating = cur_rating * 100;
                         image = (data.data[review].customer.customer_avatar || data.data[review].customer.customer_avatar == '') ? '{{ url("/") }}/gallary/' + data.data[review].customer.customer_avatar : 'https://image.ibb.co/jw55Ex/def_face.jpg';
-                        console.log(image);
+                        if(data.data[review].comment){
+                            if(data.data[review].comment == null || data.data[review].comment == 'null'){
+                                comment = '';
+                            }else{
+                                comment = data.data[review].comment;
+                            }
+                        }
                         span = '<div class="row">' +
                             '<div class="col-md-2">' +
                                 '<div class="user_product">' +
@@ -566,7 +571,7 @@
                                     '</div>' +
                                 '</p>' +
                                 '<p>' +
-                                    data.data[review].comment +
+                                    comment +
                                 '</p>' +
                             '</div>' +
                         '</div>';

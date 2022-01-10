@@ -100,10 +100,10 @@
                             </div>
                         </div>
                         <div class="_p-features">
-                            <span> Description About this product:- </span>
+                            <span> Description: </span>
                             <p class="pro-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                                deserunt adipisci facilis.
+                                {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+                                deserunt adipisci facilis. --}}
                             </p>
                         </div>
                         {{-- <form action="" method="post" accept-charset="utf-8"> --}}
@@ -121,9 +121,10 @@
                                     <i class="fa fa-heart"></i> Add to Wishlist
                                 </button>
                                 {{-- <input type="hidden" name="pid" value="18" />
-<input type="hidden" name="price" value="850" />
-<input type="hidden" name="url" value="" /> --}}
+                                <input type="hidden" name="price" value="850" />
+                                <input type="hidden" name="url" value="" /> --}}
                             </div>
+                            <div id="share"></div>
                         </div>
                         {{-- </form> --}}
                     </div>
