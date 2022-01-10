@@ -15,7 +15,8 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                     <li class="px-3 product_icon position-relative d-block">
                       <a href="/shop?category={{ $category->id }}" class="sub_icon">
                           <span class="pr-2">
-                               <i class="fa fa-hand-o-right text-dark" aria-hidden="true"></i>
+                            
+                               <img src="{{ asset( '/gallary/' ).'/'.$category->icon->name }}" alt="{{ $category->icon->name }}" height="25px" width="25px">
                           </span>
                           {{ $category->detail[0]->category_name }}
                       </a>
@@ -37,7 +38,9 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                   @endforeach
                 </ul>
             </div>
+            
             <div class="col-lg-9 col-12">
+                @include('includes.loader') 
                 <div class="your-class" id="slider-section">
                     {{-- <div class="slider_item position-relative">
                         <img src="https://cyberstore.qodeinteractive.com/wp-content/uploads/2017/08/h5-slide-background-img-3.jpg"
