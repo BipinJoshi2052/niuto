@@ -11,7 +11,7 @@ $unactive = '';
 ?>
 <div class="dashboard-list py-lg-5 px-lg-3 d-lg-block auth-login">
     <div class="d-user-avater text-center mb-4">
-        <img src="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
+        <img src="{{ asset('images/noimage.png') }}"
             class="img-fluid avater user_avatar_in_profile" alt="profile-image" id="profile_img">
         <h5 class="user_name_in_profile">Muniraj</h5>
         <form>

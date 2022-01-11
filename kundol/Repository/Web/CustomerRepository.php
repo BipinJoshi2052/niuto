@@ -16,7 +16,10 @@ class CustomerRepository implements CustomerInterface
 
     public function show($customer)
     {
-        $customer->gallary_name = $customer->Gallary->name;
+        // dd($customer);
+        // var_dump('Hello');
+        // dd($customer->Gallary);
+        // $customer->gallary_name = $customer->Gallary[0]->name;
         try {
             return $this->successResponse(new CustomerResource($customer), 'Data Get Successfully!');
         } catch (Exception $e) {
