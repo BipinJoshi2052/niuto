@@ -73,7 +73,6 @@
             },
             beforeSend: function() {},
             success: function(data) {
-                console.log(data);
                 if (data.status == 'Success') {
                     var clone = '';
                     var sideGal = '';

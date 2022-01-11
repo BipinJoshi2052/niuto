@@ -2505,6 +2505,7 @@ section#checkout .text_gray {
     min-width: 32px;
     height: 32px;
     text-align: center;
+    cursor: pointer;
 }
 
 .size-wrapper .select-size .size-active {
@@ -2517,6 +2518,7 @@ section#checkout .text_gray {
     min-width: 32px;
     height: 32px;
     text-align: center;
+    cursor: pointer;
 }
 
 .star_block i.fa.fa-star {
