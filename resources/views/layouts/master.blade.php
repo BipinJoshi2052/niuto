@@ -1104,6 +1104,7 @@
                                     name = data.data[i].product_detail[0].title;
                                 }
                             }
+                            console.log(data);
 
                             if (data.data[i].discount_price > 0) {
                                 discount_price = data.data[i].discount_price;
