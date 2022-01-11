@@ -100,7 +100,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         @include('includes.loader')
-                        <div class="latest_slider" id="latest-product-section">
+                        <div class="latest_product_slider" id="latest-product-section">
                             
                         </div>
                     </div>
@@ -347,6 +347,7 @@
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'latest-product-section';
+            console.log(appendTo);
             // console.log('3rd append');
             fetchProduct(url, appendTo);
 
@@ -502,18 +503,18 @@
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
                                         '<h5>Sale</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
-                                        '<a href="">' +
+                                        '<a href="' + href + '"">' +
                                         '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_blockss">' +
@@ -575,18 +576,18 @@
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
                                         '<h5>New</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
-                                        '<a href="">' +
+                                        '<a href="' + href + '">' +
                                         '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_blockss">' +
@@ -640,18 +641,18 @@
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
                                         '<h5>New</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
-                                        '<a href="">' +
+                                        '<a href="' + href + '">' +
                                         '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_blockss">' +
@@ -1065,7 +1066,7 @@
                             //     '</div>' +
                             //     '</div>';
 
-                            category += '<a href="">' +
+                            category += '<a href="/shop?category=' + e.id + '">' +
                                 '<div class="category_block bg-white">' +
                                 '<div class="category_img">' +
                                 '<img src="{{ asset('gallary') }}/' + e.gallary +
@@ -1259,7 +1260,7 @@
 
         function productListInit() {
 
-            $(".latest_slider").slick({
+            $(".latest_product_slider").slick({
                 dots: false,
                 arrows: true,
                 autoplay: true,
@@ -1299,6 +1300,9 @@
 
         }
 
+        $(document).ajaxStop(function(){
+            productListInit();
+        });
      
     </script>
 @endsection
