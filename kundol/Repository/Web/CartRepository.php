@@ -6,6 +6,7 @@ use App\Contract\Web\CartInterface;
 use App\Http\Resources\Web\Cart as CartResource;
 use App\Models\Web\Cart;
 use App\Models\Admin\Language;
+use App\Models\Admin\Product;
 use App\Services\Admin\AvailableQty;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\Gate;
@@ -47,7 +48,6 @@ class CartRepository implements CartInterface
             $sql = $sql->productCategoryDetail($languageId)->availableQtys();
             $sql = $sql->paginate($numOfResult);
             $sql = $sql->unique();
-            // dd($sql);
             return $this->successResponse(CartResource::collection($sql), 'Data Get Successfully!');
         } catch (Exception $e) {
             return $this->errorResponse();
@@ -107,7 +107,7 @@ class CartRepository implements CartInterface
             // if($proQty){
             //     $parms['qty'] = $parms['qty'] + $proQty;
             // }
-
+            $product = Product::findOrFail($parms['product_id']);
             $sql = Cart::updateOrCreate(
                 [
                     'product_id' => $parms['product_id'],
@@ -118,6 +118,7 @@ class CartRepository implements CartInterface
                 ],
                 $parms
             );
+            $sql->discounts = $product->discount_price;
         } catch (Exception $e) {
             return $this->errorResponse();
         }
