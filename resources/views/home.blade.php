@@ -441,9 +441,9 @@
                             }
 
                             if (data.data[i].product_type == 'simple') {
-                                if (data.data[i].product_discount_price == '' || data.data[i]
-                                    .product_discount_price == null || data.data[i].product_discount_price ==
-                                    'null') {
+                                if (data.data[i].product_discount_price_symbol == '' || data.data[i]
+                                    .product_discount_price_symbol == null || data.data[i].product_discount_price_symbol ==
+                                    'null' || data.data[i].product_discount_price_symbol > 0 ) {
 
                                     productCardPrice = data.data[i].product_discount_price_symbol;
                                 } else {
