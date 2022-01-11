@@ -161,6 +161,8 @@ Route::group(['prefix' => 'client', 'middleware' => ['auth:customer-api', 'scope
     Route::post('change-password', 'API\Web\CustomerController@changePassword')->name('change-old-password');
     Route::resource('coupon', 'API\Web\CouponController')->except(['edit', 'show', 'create', 'update', 'destroy']);
     Route::post('add_comments', 'API\Web\OrderController@addOrderComments');
+
+    Route::post('/update-customer-profile-avatar', 'API\Web\ProfileController@updateUserProfileImage')->name("updateCustomerProfile");
 });
 
 Route::group(['prefix' => 'client', 'middleware' => ['checkClientCredentials']], function () {

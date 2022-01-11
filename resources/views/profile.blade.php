@@ -116,12 +116,59 @@
         customerToken = $.trim(localStorage.getItem("customerToken"));
         customerId = $.trim(localStorage.getItem("customerId"));
 
+        customerImage = localStorage.getItem("customerImage");
+
         $(document).ready(function() {
             // $('.datepicker').datepicker({
             //     format: 'yyyy-mm-dd',
             // });
             getProfile();
         });
+
+
+        function changeProfile() {
+            $("#prf-pic").click();
+        }
+
+        $("#prf-pic").change(function() {
+            if ($(this).val() != "") {
+                upload(this);
+                console.log($(this).val());
+            }
+        });
+
+        function upload(img) {
+            var form_data = new FormData();
+            form_data.append("file", img.files[0]);
+            form_data.append("_token", "{{ csrf_token() }}");
+            $.ajax({
+                url: "{{ route('updateCustomerProfile') }}",
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                data: form_data,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    // return true;
+                    // $("body").removeClass("loading");
+                    if (data.errors) {
+                        toastr.error(data.errors.file[0]);
+                    } else {
+                        $('#profile_img').attr('src', '{{ asset('gallary/') }}/' + data.profile_image);
+                        toastr.success(data.msg);
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                },
+            });
+        }
 
         function getProfile() {
             $.ajax({
@@ -136,10 +183,17 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
+                    console.log(data);
                     if (data.status == 'Success') {
                         $("#profileForm").find("#first_name").val(data.data.customer_first_name);
                         $("#profileForm").find("#last_name").val(data.data.customer_last_name);
                         $("#profileForm").find("#email").val(data.data.customer_email);
+                        $(".user_avatar_in_profile").attr('src', data.data.gallary_name);
+                        $(".user_name_in_profile").html(customerFname + ' ' + customerLname);
+                    } else {
+                        var imgsrc = "{{ asset('images/noimage.png') }}";
+                        $(".user_avatar_in_profile").attr('src', imgsrc);
+                        $(".user_name_in_profile").html('');
                     }
                 },
                 error: function(data) {},
@@ -197,7 +251,7 @@
                 beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success') {
-                        toastr.success('{{ trans('profile-updated-successfully') }}');
+                        toastr.success('{{ trans('response.profile-updated-successfully') }}');
                         localStorage.customerFname = data.data.customer_first_name;
                         localStorage.customerLname = data.data.customer_last_name;
                     } else if (data.status == 'Error') {
