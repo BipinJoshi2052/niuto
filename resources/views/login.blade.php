@@ -158,6 +158,8 @@
                 $('.section-loading').css('display', 'block');
             },
             success: function(data) {
+                console.log('login page');
+                console.log(data);
                 if(data.status == 'Success'){
                     $('.section-loading').css('display', 'none');
                     localStorage.setItem("loginSuccessMessage", "Welcome " + data.data.first_name + " " + data.data.last_name);
@@ -168,7 +170,9 @@
                     localStorage.setItem("customerFname",data.data.first_name);
                     localStorage.setItem("customerLname",data.data.last_name);
                     localStorage.setItem("cartSession",'');
-                    return true;
+                    localStorage.setItem("customerImage", data.user_gallary);
+                    
+                    // return true;
                     window.location.href = '/';
                 }
             },
