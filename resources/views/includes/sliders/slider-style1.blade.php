@@ -40,7 +40,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
             </div>
             
             <div class="col-lg-9 col-12">
-                @include('includes.loader') 
+                
                 <div class="your-class" id="slider-section">
                     {{-- <div class="slider_item position-relative">
                         <img src="https://cyberstore.qodeinteractive.com/wp-content/uploads/2017/08/h5-slide-background-img-3.jpg"

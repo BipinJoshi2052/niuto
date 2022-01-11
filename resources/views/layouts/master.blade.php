@@ -26,7 +26,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" type="image/png" ref="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
+    <link rel="icon" type="image/png"
+        ref="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
     {{-- <link rel="icon" type="image/png"
@@ -51,23 +52,25 @@
     @yield('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
-        .price-through{
+        .price-through {
             text-decoration: line-through;
             font-size: 0.9rem;
             padding: 6px;
         }
 
-        #section-loading{
-            z-index:999999;
+        .section-loading {
+            z-index: 999999;
             text-align: center;
         }
+
         #loading {
-                position: fixed;
-                text-align: center;
-                width: 100%;
-                height: 100vh;
-                z-index: 99999;
-            }
+            position: fixed;
+            text-align: center;
+            width: 100%;
+            height: 100vh;
+            z-index: 99999;
+        }
+
     </style>
 </head>
 
@@ -84,9 +87,10 @@
     </div> --}}
     @yield('content')
 
-    
+
 
     <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
     'includes.footers.footer-style1')
 
@@ -98,7 +102,7 @@
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('/assets/jssocials/jssocials.min.js') }}"></script>
-    
+
     <!-- Mobile Nav -->
     <div class="modal fade" id="rightsidebarfilter" tabindex="-1" role="dialog"
         aria-labelledby="rightsidebarfilterlabel" aria-hidden="true">
@@ -564,7 +568,8 @@
                 </div>
                 <div class="modal-footer auth-login py-3">
                     <a class="w-50 text-center log_out" href="javascript:void(0);">
-                        <span class="mr-2"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Logout</a>
+                        <span class="mr-2"><i class="fa fa-sign-out"
+                                aria-hidden="true"></i></span>Logout</a>
                     <a class="w-50 text-center" href="{{ url('/profile') }}">
                         <span class="mr-2"><i class="fa fa-user"
                                 aria-hidden="true"></i></span>Profile</a>
@@ -588,7 +593,7 @@
         }
 
         function getURLParameter(url, name) {
-            return (RegExp(name + '=' + '(.+?)(&|$)').exec(url)||[,null])[1];
+            return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
         }
     </script>
     <script>
@@ -680,8 +685,8 @@
         });
 
 
-        $(document).ready(function(){
-            if(localStorage.cartSession == ''){
+        $(document).ready(function() {
+            if (localStorage.cartSession == '') {
                 $("#total-menu-cart-product-count").html(0);
                 $("#mobile-total-menu-cart-product-count").html(0);
             }
@@ -967,7 +972,7 @@
         }
 
         function addToCartFun(product_id, product_combination_id, cartSession, qty, ik, len) {
-            console.log("i ="+ik, "len ="+len);
+            console.log("i =" + ik, "len =" + len);
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&product_id=' + product_id +
                     '&qty=' + qty + '&product_combination_id=' + product_combination_id;
@@ -996,20 +1001,20 @@
                         } else {
                             menuCart('');
                         }
-                        if(ik != null && len != null && ik==len - 1){
+                        if (ik != null && len != null && ik == len - 1) {
                             toastr.success('Cart updated successfully');
-                        } else if(ik == null && len == null) {
+                        } else if (ik == null && len == null) {
                             toastr.success('{{ trans('response.add-to-cart-success') }}');
                         }
-                        
-                        
+
+
                     } else if (data.status == 'Error') {
-                        if(ik != null && len != null && ik==len - 1){
+                        if (ik != null && len != null && ik == len - 1) {
                             toastr.error('{{ trans('response.some_thing_went_wrong') }}');
-                        } else if(ik == null && len == null) {
+                        } else if (ik == null && len == null) {
                             toastr.error('{{ trans('response.some_thing_went_wrong') }}');
                         }
-                        
+
                     }
                 },
                 error: function(data) {
@@ -1109,37 +1114,45 @@
                             if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i]
                                 .currency != null) {
                                 if (data.data[i].currency.symbol_position == 'left') {
-                                    qtyAmountRow = '<td class="border-0">'+
-                                                            '<h5 class="text-dark">'+ name + 'x <span class="cart-quantity">'+ data.data[i].qty +'</span></h5>'+
-                                                            '<h6 class="text-dark">'+ data.data[i].currency.code + ' ' + discount_price +'</h6>'+
-                                                        '</td>';
-                                    deleteRow = '<td class="border-0">'+
-                                                '<a href="javascript:void(0);" data-id="'+ data.data[i].product_id +'" data-combination-id="'+ data.data[i].product_combination_id +'" onclick="removeCartItem(this)" class="gray_title">'+
-                                                '<i class="fa fa-trash-o" aria-hidden="true"></i></a>'+
-                                                '</td>';
+                                    qtyAmountRow = '<td class="border-0">' +
+                                        '<h5 class="text-dark">' + name + 'x <span class="cart-quantity">' +
+                                        data.data[i].qty + '</span></h5>' +
+                                        '<h6 class="text-dark">' + data.data[i].currency.code + ' ' +
+                                        discount_price + '</h6>' +
+                                        '</td>';
+                                    deleteRow = '<td class="border-0">' +
+                                        '<a href="javascript:void(0);" data-id="' + data.data[i].product_id +
+                                        '" data-combination-id="' + data.data[i].product_combination_id +
+                                        '" onclick="removeCartItem(this)" class="gray_title">' +
+                                        '<i class="fa fa-trash-o" aria-hidden="true"></i></a>' +
+                                        '</td>';
                                 } else {
-                                    qtyAmountRow = '<td class="border-0">'+
-                                                            '<h5 class="text-dark">'+ name + 'x <span class="cart-quantity">'+ data.data[i].qty +'</span></h5>'+
-                                                            '<h6 class="text-dark">'+ discount_price + ' ' + data.data[i].currency.code +'</h6>'+
-                                                        '</td>';
-                                    deleteRow = '<td class="border-0">'+
-                                                '<a href="javascript:void(0);" data-id="'+ data.data[i].product_id +'" data-combination-id="'+ data.data[i].product_combination_id +'" onclick="removeCartItem(this)" class="gray_title">'+
-                                                '<i class="fa fa-trash-o" aria-hidden="true"></i></a>'+
-                                                '</td>';
+                                    qtyAmountRow = '<td class="border-0">' +
+                                        '<h5 class="text-dark">' + name + 'x <span class="cart-quantity">' +
+                                        data.data[i].qty + '</span></h5>' +
+                                        '<h6 class="text-dark">' + discount_price + ' ' + data.data[i].currency
+                                        .code + '</h6>' +
+                                        '</td>';
+                                    deleteRow = '<td class="border-0">' +
+                                        '<a href="javascript:void(0);" data-id="' + data.data[i].product_id +
+                                        '" data-combination-id="' + data.data[i].product_combination_id +
+                                        '" onclick="removeCartItem(this)" class="gray_title">' +
+                                        '<i class="fa fa-trash-o" aria-hidden="true"></i></a>' +
+                                        '</td>';
                                 }
                             }
 
                             total_price = total_price + (discount_price * data.data[i].qty);
-                            
-                            clone += '<tr class="d-flex align-items-center">'+
-                                        '<th scope="row">'+
-                                            '<div class="cart_img">'+
-                                                '<img src="{{ asset('/') }}'+ imageSrc +'" alt="image">'+
-                                            '</div>'+
-                                        '</th>'+
-                                        qtyAmountRow +
-                                        deleteRow +
-                                    '</tr>';
+
+                            clone += '<tr class="d-flex align-items-center">' +
+                                '<th scope="row">' +
+                                '<div class="cart_img">' +
+                                '<img src="{{ asset('/') }}' + imageSrc + '" alt="image">' +
+                                '</div>' +
+                                '</th>' +
+                                qtyAmountRow +
+                                deleteRow +
+                                '</tr>';
                             $("#top-cart-product-template").html(clone);
 
                             currrency = data.data[i].currency;
@@ -1152,14 +1165,15 @@
                             }
                         }
                         if (data.data.length > 0) {
-                            totalRow += '<h6 class="text-dark mr-1">'+ total_price +'</h6>';
+                            totalRow += '<h6 class="text-dark mr-1">' + total_price + '</h6>';
                             $("#total-menu-cart-product-count").html(data.data.length);
                             $("#mobile-total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-total").html(totalRow);
                         } else {
                             console.log("Im here")
                             $("#mobile-total-menu-cart-product-count").html(data.data.length);
-                            $("#top-cart-product-template").html('<tr><td class="text-dark">No Items</td></tr>');
+                            $("#top-cart-product-template").html(
+                            '<tr><td class="text-dark">No Items</td></tr>');
                             $("#top-cart-product-total").html('');
                             $("#total-menu-cart-product-count").html(0);
                         }
@@ -1417,28 +1431,37 @@
                             //     .product_combination_id + '"><i class="fa fa-trash-o"></i></a>' +
                             //     '</td>' +
                             //     '</tr>';
-                            tbodyRow = '<tr class="cartItem-row" product_combination_id="'+ data.data[i].product_combination_id +'" product_id="'+ data.data[i].product_id +'" product_type="'+ data.data[i].product_type +'">'+
-                                            '<th scope="row">'+
-                                            '   <div class="cart_imgss">'+
-                                            '      <img src="'+ imgSrc +'" alt="">'+
-                                            '   </div>'+
-                                            '</th>'+
-                                            '<td class="cart_td gray_title cart-product-name-info">'+
-                                            '   <div class="product_des">'+
-                                            '      <h3 class="cart-product-description cartItem-name">'+ itemName +'</h3>'+
-                                            '   </div>'+
-                                            '</td>'+
-                                            '<td class="gray_title cart-product-grand-total"><span class="cart-grand-total-price">'+ cartItemPrice +'</span></td>'+
-                                            '<td class="gray_title cart-product-quantity">'+
-                                            '   <div class="qty quant-input">'+
-                                            '      <span class="minus" onclick="decreaseCartInput($(this).next())">-</span>'+
-                                            '      <input type="number" class="count cartItem-qty cart_input_number" name="qty" value="'+ itemQty +'" id="input_cart_number">'+
-                                            '      <span class="plus" onclick="increaseCartInput($(this).prev())">+</span>'+
-                                            '   </div>'+
-                                            '</td>'+
-                                            '<td class="gray_title cart-product-grand-total"><span class="cart-grand-total-price">'+ cartItemTotal +'</span></td>'+
-                                            '<td class="gray_title remove-item"><a href="javascript:void(0)" class="gray_title cartItem-remove" onclick="removeCartItem(this)" data-id="'+ data.data[i].product_id +'" data-combination-id="'+ data.data[i].product_combination_id +'"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>'+
-                                        '</tr>';
+                            tbodyRow = '<tr class="cartItem-row" product_combination_id="' + data.data[i]
+                                .product_combination_id + '" product_id="' + data.data[i].product_id +
+                                '" product_type="' + data.data[i].product_type + '">' +
+                                '<th scope="row">' +
+                                '   <div class="cart_imgss">' +
+                                '      <img src="' + imgSrc + '" alt="">' +
+                                '   </div>' +
+                                '</th>' +
+                                '<td class="cart_td gray_title cart-product-name-info">' +
+                                '   <div class="product_des">' +
+                                '      <h3 class="cart-product-description cartItem-name">' + itemName +
+                                '</h3>' +
+                                '   </div>' +
+                                '</td>' +
+                                '<td class="gray_title cart-product-grand-total"><span class="cart-grand-total-price">' +
+                                cartItemPrice + '</span></td>' +
+                                '<td class="gray_title cart-product-quantity">' +
+                                '   <div class="qty quant-input">' +
+                                '      <span class="minus" onclick="decreaseCartInput($(this).next())">-</span>' +
+                                '      <input type="number" class="count cartItem-qty cart_input_number" name="qty" value="' +
+                                itemQty + '" id="input_cart_number">' +
+                                '      <span class="plus" onclick="increaseCartInput($(this).prev())">+</span>' +
+                                '   </div>' +
+                                '</td>' +
+                                '<td class="gray_title cart-product-grand-total"><span class="cart-grand-total-price">' +
+                                cartItemTotal + '</span></td>' +
+                                '<td class="gray_title remove-item"><a href="javascript:void(0)" class="gray_title cartItem-remove" onclick="removeCartItem(this)" data-id="' +
+                                data.data[i].product_id + '" data-combination-id="' + data.data[i]
+                                .product_combination_id +
+                                '"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>' +
+                                '</tr>';
                             $("#cartItem-product-show").append(tbodyRow);
 
                             // const temp1 = document.getElementById("cartItem-grandtotal-template");
@@ -1527,11 +1550,9 @@
         }
     </script>
 
-    
+
 
     <script>
-        
-
         $(document).on('keyup', '#search-input', function() {
             var name = $(this).val();
             if (name.length > 0) {
@@ -1599,13 +1620,20 @@
         });
 
 
-        function loaderOnLoad()
-        {
+        function loaderOnLoad() {
             $("#loading").css('display', 'none');
         }
     </script>
-    
+
     @yield('script')
+
+    <script>
+        
+        setTimeout(() => {
+            
+            $(".latest_slider").not('.slick-initialized').slick();
+            }, 1000);
+    </script>
 </body>
 
 </html>
