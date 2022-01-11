@@ -197,7 +197,7 @@
                 beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success') {
-                        toastr.success('{{ trans('profile-updated-successfully') }}');
+                        toastr.success('{{ trans('response.profile-updated-successfully') }}');
                         localStorage.customerFname = data.data.customer_first_name;
                         localStorage.customerLname = data.data.customer_last_name;
                     } else if (data.status == 'Error') {
