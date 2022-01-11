@@ -125,51 +125,6 @@
             getProfile();
         });
 
-
-        function changeProfile() {
-            $("#prf-pic").click();
-        }
-
-        $("#prf-pic").change(function() {
-            if ($(this).val() != "") {
-                upload(this);
-                console.log($(this).val());
-            }
-        });
-
-        function upload(img) {
-            var form_data = new FormData();
-            form_data.append("file", img.files[0]);
-            form_data.append("_token", "{{ csrf_token() }}");
-            $.ajax({
-                url: "{{ route('updateCustomerProfile') }}",
-                headers: {
-                    'Authorization': 'Bearer ' + customerToken,
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
-                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
-                },
-                data: form_data,
-                type: "POST",
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    // return true;
-                    // $("body").removeClass("loading");
-                    if (data.errors) {
-                        toastr.error(data.errors.file[0]);
-                    } else {
-                        $('#profile_img').attr('src', '{{ asset('gallary/') }}/' + data.profile_image);
-                        toastr.success(data.msg);
-                    }
-
-                },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText);
-                },
-            });
-        }
-
         function getProfile() {
             $.ajax({
                 type: 'get',
