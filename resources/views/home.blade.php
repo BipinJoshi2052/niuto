@@ -10,17 +10,12 @@
             <div class="container">
                 <div class="section_title">
                     <h1 class="mb-5 position-relative font-weight-bold">
-                        Featured Products
+                        Products List 
                     </h1>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-
-                        @include('includes.loader')
-                        <div class="slick_slider" id="featured-product-section">
-
-                       
-
+                        <div class="slick_slider" id="product-list-section">
                             {{-- <div class="item_block bg-white position-relative p-3">
                                 <div class="img_block">
                                     <a href="product.product.htmlhtml">
@@ -79,7 +74,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        @include('includes.loader')
                         <div class="category_list" id="category-section">
 
                         </div>
@@ -99,9 +93,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        @include('includes.loader')
                         <div class="latest_slider" id="latest-product-section">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -116,8 +109,7 @@
                         Discounted Products
                     </h1>
                 </div>
-                @include('includes.loader')
-                <div class="row" id="product-list-section">
+                <div class="row" id="featured-product-section">
 
                     {{-- <div class="col-md-4">
                         <div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">
@@ -168,7 +160,7 @@
         </section>
         <!--======================== DISCOUNTED END  -->
         <!--============================= TESTIMONIAL  START============================ -->
-        {{-- <section id="testimonial" class="section_bg position-relative">
+        <section id="testimonial" class="section_bg position-relative">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -266,7 +258,7 @@
                     </div>
                 </div>
             </div>
-        </section> --}}
+        </section>
 
         <!--============================= TESTIMONIAL  END ============================ -->
         <!--============================= FACILITIES  START ============================ -->
@@ -281,7 +273,7 @@
                         </div>
                     </div>
                 </div>
-                @include('includes.loader')
+
                 <div class="row" id="blog-section">
                     {{-- <div class="col-md-4 col-12">
                         <div class="destination-block position-relative">
@@ -325,29 +317,24 @@
         $(document).ready(function() {
             sliderMedia();
             categorySlider();
-
+            
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'product-list-section';
             fetchProduct(url, appendTo);
 
-
-            // var url = "{{ url('') }}" +
-            //     '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
-            //     '&sortBy=id&sortType=DESC&currency=' + 1;
-            var url = "{{ url('') }}" +
-                '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' +
+            var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
                 1 + '&currency=' + 1;
             appendTo = 'featured-product-section';
-            // console.log('2nd append');
+            console.log('2nd append');
             fetchProduct(url, appendTo);
 
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'latest-product-section';
-            // console.log('3rd append');
+            console.log('3rd append');
             fetchProduct(url, appendTo);
 
             blogNews();
@@ -393,15 +380,9 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-
-                beforeSend: function() {
-                    $('.section-loading').css('display', 'block');
-                },
-
                 beforeSend: function() {},
-
                 success: function(data) {
-                     console.log(data);
+                    // console.log(data);
                     if (data.status == 'Success') {
                         for (i = 0; i < data.data.length; i++) {
 
@@ -440,8 +421,7 @@
                                 if (data.data[i].product_discount_price == '' || data.data[i]
                                     .product_discount_price == null || data.data[i].product_discount_price ==
                                     'null') {
-                                       
-                                    productCardPrice = data.data[i].product_discount_price_symbol;
+                                    productCardPrice = data.data[i].product_price_symbol;
                                 } else {
                                     productCardPrice = data.data[i].product_discount_price_symbol + ' <b>' +
                                         data.data[i].product_price_symbol + '</b>';
@@ -452,52 +432,17 @@
                                     productCardPrice = data.data[i].product_combination[0].product_price_symbol;
                                 }
                             }
-                            // console.log(data);
                             switch (appendTo) {
                                 case 'product-list-section':
 
-                                    // product = '<div class="item_block bg-white position-relative p-3">' +
-                                    //     '<div class="img_block">' +
-                                    //     '<a href="' + href + '">' +
-                                    //     '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
-                                    //     '</div>' +
-                                    //     '<div class="content_block pb-3">' +
-                                    //     '<small>' + data.data[i].category[0].category_detail.detail[0].name +
-                                    //     '</small>' +
-                                    //     '<h4>' + title + '</h4>' +
-                                    //     '<span class="font-weight-bold">' + productCardPrice + '</span>' +
-                                    //     '</div>' +
-                                    //     '<div class="wish_list_block">' +
-                                    //     '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
-                                    //     '</div>' +
-                                    //     '<div class="dis_block">' +
-                                    //     '<h5>New</h5>' +
-                                    //     '</div>' +
-                                    //     '<div class="icon_group">' +
-                                    //     '<div class="cart_blocks">' +
-                                    //     '<a href="">' +
-                                    //     '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
-                                    //     '</div>' +
-                                    //     '<div class="cart_block">' +
-                                    //     '<a href="">' +
-                                    //     '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
-                                    //     '</div>' +
-                                    //     '<div class="cart_blockss">' +
-                                    //     '<a href="">' +
-                                    //     '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
-                                    //     '</div>' +
-                                    //     '</div>' +
-                                    //     '</div>';
-
-                                    product = '<div class="col-md-4">' +
-                                        '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
+                                    product = '<div class="item_block bg-white position-relative p-3">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
                                         '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
                                         '</div>' +
                                         '<div class="content_block pb-3">' +
-                                        // '<small>' + data.data[i].category[0].category_detail.detail[0].name +
-                                        // '</small>' +
+                                        '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                        '</small>' +
                                         '<h4>' + title + '</h4>' +
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
@@ -505,7 +450,7 @@
                                         '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
-                                        '<h5>Sale</h5>' +
+                                        '<h5>New</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
@@ -521,19 +466,17 @@
                                         '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '</div>' +
-                                        '</div>' +
                                         '</div>';
 
 
-                                    if (i == 3) {
+
+
+                                    if (i == 6) {
                                         return false
                                     };
                                     break;
 
-
                                 case 'latest-product-section':
-                                    // 
-                                    // console.log('hi');
                                     // product =
                                     //     '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
                                     //     '<div class="product-grid-item">' +
@@ -628,14 +571,15 @@
                                     //     '</div>' +
                                     //     '</div>';
 
-                                    product = '<div class="item_block bg-white position-relative p-3">' +
+                                    product = '<div class="col-md-4">' +
+                                        '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
                                         '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
                                         '</div>' +
                                         '<div class="content_block pb-3">' +
-                                        '<small>' + data.data[i].category[0].category_detail.detail[0].name +
-                                        '</small>' +
+                                        // '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                        // '</small>' +
                                         '<h4>' + title + '</h4>' +
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
@@ -643,7 +587,7 @@
                                         '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
-                                        '<h5>New</h5>' +
+                                        '<h5>Sale</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
@@ -659,8 +603,9 @@
                                         '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '</div>' +
+                                        '</div>' +
                                         '</div>';
-                                       
+
                                     break;
 
 
@@ -668,7 +613,7 @@
 
                             $("#" + appendTo).append(product);
                         }
-
+                        
                         $(".slick_slider").slick({
                             dots: false,
                             arrows: true,
@@ -708,23 +653,16 @@
                             ],
                         });
 
-
-
+                        
+                            
 
                         // if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
                         //     getSliderSettings(appendTo);
                     }
                     // appendTo == 'latest-product-section' ? productListInit() : '';
-                    // console.log(appendTo);
-                    // console.log(appendTo == 'latest-product-section');
-                    
+
+                    console.log(appendTo == 'latest-product-section');
                 },
-
-                complete: function() {
-                    $('.section-loading').css('display', 'none');
-                },
-
-
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -740,13 +678,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-
-                beforeSend: function() {
-                    $('.section-loading').css('display', 'block');
-                },
-
                 beforeSend: function() {},
-
                 success: function(data) {
                     if (data.status == 'Success') {
                         // console.log(data,"final data");
@@ -827,12 +759,6 @@
                         $('#weekly-sale-first-div').html(htmlToRender);
                     }
                 },
-
-                complete: function() {
-                    $('.section-loading').css('display', 'none');
-                },
-
-
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -850,13 +776,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-
-                beforeSend: function() {
-                    $('.section-loading').css('display', 'block');
-                },
-
                 beforeSend: function() {},
-
                 success: function(data) {
                     if (data.status == 'Success') {
                         var blogSection = '';
@@ -897,6 +817,8 @@
                                 // '&nbsp; &nbsp;' +
                                 // '<span><i class="fa fa-comment-o" aria-hidden="true"></i> ' + e.detail[0].name + ' </span>' +
 
+
+
                                 '</div>' +
                                 '</div>' +
                                 '</div>';
@@ -930,12 +852,6 @@
                         $('#blog-section').html(blogSection);
                     }
                 },
-
-                complete: function() {
-                    $('.section-loading').css('display', 'none');
-                },
-
-
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -970,13 +886,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-
-                beforeSend: function() {
-                    $('.section-loading').css('display', 'block');
-                },
-
                 beforeSend: function() {},
-
                 success: function(data) {
                     if (data.status == 'Success') {
                         var sliderSection = '';
@@ -1015,12 +925,6 @@
 
                 },
 
-                complete: function() {
-                    $('.section-loading').css('display', 'none');
-                },
-
-
-
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -1038,13 +942,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-
-                beforeSend: function() {
-                    $('.section-loading').css('display', 'block');
-                },
-
                 beforeSend: function() {},
-
                 success: function(data) {
                     var category = '';
                     if (data.status == 'Success') {
@@ -1118,11 +1016,6 @@
                         });
                     }
                 },
-
-                complete: function() {
-                    $('.section-loading').css('display', 'none');
-                },
-
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -1172,13 +1065,7 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-
-                beforeSend: function() {
-                    $('.section-loading').css('display', 'block');
-                },
-
                 beforeSend: function() {},
-
                 success: function(data) {
                     if (data.status == 'Success') {
                         if (typeof data.data[0] !== 'undefined') {
@@ -1233,11 +1120,6 @@
                         $('.banner_div').css('display', 'block');
                     }
                 },
-
-                complete: function() {
-                    $('.section-loading').css('display', 'none');
-                },
-
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -1255,10 +1137,10 @@
         //         slidesToScroll: 1,
         //     });
         // }
-
+    
 
         function productListInit() {
-
+          
             $(".latest_slider").slick({
                 dots: false,
                 arrows: true,
@@ -1298,7 +1180,5 @@
             });
 
         }
-
-     
     </script>
 @endsection

@@ -1170,7 +1170,7 @@
                             $("#mobile-total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-total").html(totalRow);
                         } else {
-                            console.log("Im here")
+                            // console.log("Im here")
                             $("#mobile-total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-template").html(
                             '<tr><td class="text-dark">No Items</td></tr>');
