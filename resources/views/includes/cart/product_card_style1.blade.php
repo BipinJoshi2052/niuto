@@ -1,4 +1,20 @@
-<div class="row" id="shop_page_product_card">
+<div class="row">
+   <form class="w-100 text-right"> 
+      <div class="form-block">
+         <label for="sorting" class="m-0">Sort by:</label>
+         <select class="custom-select w-25 mb-0 ml-3 sortBy">
+          <option value="">choose</option>
+          <option disabled><b>Price</b></option>
+          <option value="low-high" data-sort-by="price" data-sort-type="asc">Low To High</option>
+          <option value="high-to" data-sort-by="price" data-sort-type="desc">High To Low</option>
+          <option disabled><b>Name</b></option>
+          <option value="A-Z" data-sort-by="title" data-sort-type="asc">A-Z</option>
+          <option value="Z-A" data-sort-by="title" data-sort-type="desc">Z-A</option>
+      </select>
+      </div>
+  </form>
+</div>
+<div class="row mt-5" id="shop_page_product_card">
     {{-- <div class="col-md-4 col-12">
        <div class="item_block bg-white position-relative p-3 mb-3">
           <div class="img_block">
