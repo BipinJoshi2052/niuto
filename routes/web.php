@@ -51,7 +51,7 @@ Route::any('admin/{all}', function () {
     // });
     Route::get('/hyperpay', 'Web\IndexController@getcall');
 
-Route::group(['middleware' => ['general']], function () {
+Route::group(['middleware' => ['general','cache.headers:private;max_age=3600']], function () {
 
     Route::get('/', 'Web\IndexController@index');
 
