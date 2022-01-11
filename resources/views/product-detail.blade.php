@@ -156,39 +156,16 @@
                     if(data.data.product_type == 'variable'){
                         if(data.data.attribute && data.data.attribute.length > 0){
                             $.each(data.data.attribute, function(i, e){
-                                count = i != 0 ? i : '';
-                                variant += '<style>' +
-                                    '.size-wrapper' + count + ' .select-size' + count + ' {' +
-                                        'display: flex;' +
-                                    '}' +
-                                    '.size-wrapper' + count + ' .select-size' + count + ' .size {' +
-                                        'margin: 0 5px;' +
-                                        'border: 2px solid var(--blue);' +
-                                        'min-width: 32px;' +
-                                        'height: 32px;' +
-                                        'text-align: center;' +
-                                    '}' +
-                                    '.size-wrapper' + count + ' .select-size' + count + ' .size' + count + '-active {' +
-                                        'margin: 0 5px;' +
-                                        'background-color: var(--yellow);' +
-                                        'border: 2px solid var(--yellow);' +
-                                        'color: white;' +
-                                        'min-width: 32px;' +
-                                        'height: 32px;' +
-                                        'text-align: center;' +
-                                    '}' +
-                                '</style>';
-                                
                                 if(e.attributes.detail[0].name){
-                                    variant += '<div class="size-wrapper' + count + '">';
-                                    variant += '<div class="size-select' + count + ' mb-3">';
-                                    variant += '<h5>' + e.attributes.detail[0].name + '</h5>';
-                                    variant += '<div class="select-size' + count + '">';
+                                    variant += '<div class="size-wrapper variant-div">';
+                                    variant += '<div class="size-select mb-3">';
+                                    variant += '<h5 data-id="' + e.attributes.attribute_id + '">' + e.attributes.detail[0].name + '</h5>';
+                                    variant += '<div class="select-size">';
                                     if(e.variations){
                                         $.each(e.variations, function(i, e){
                                             if(e.product_variation.detail[0].name){
                                                 active = i == 0 ? '-active' : '';
-                                                variant += '<div class="size' + count + active + '">' + e.product_variation.detail[0].name + '</div>';
+                                                variant += '<div class="size' + active + '" data-id="' + e.product_variation.id + '">' + e.product_variation.detail[0].name + '</div>';
                                             }
                                         });
                                     }
@@ -200,6 +177,33 @@
                         }
                     }
                     $('#variant').html(variant);
+
+                    $(document).on('click', '.size', function() {
+                        $(this).removeClass().addClass('size-active');
+                        $(this).siblings().removeClass().addClass('size');
+                        variId = '';
+                        proComId = '';
+                        if($('.variant-div')){
+                            $.each($('.variant-div'), function(){
+                                variId += $(this).find('.size-active').data('id');
+                            });
+                        }
+                        if(data.data.product_combination){
+                            $.each(data.data.product_combination, function(i, e){
+                                var combinationVarId = '';
+                                $.each(e.combination, function(i, e){
+                                    combinationVarId += e.variation_id; 
+                                })
+                                
+                                if(variId == combinationVarId){
+                                    proComId = e.product_combination_id;
+                                    $('#product-card-price').html(e.product_price_symbol);
+                                    return false;
+                                }
+                            })
+                        }
+                    });
+
                     if (data.data.reviews !== null) {
                         $(".review-count").html(data.data.reviews.length);
                         rating = '';
@@ -243,6 +247,8 @@
             },
         });
     }
+
+
 
     $(document).on('click', '.variation_list_item', function() {
         var variation_name = $(this).attr('data-variation-name');

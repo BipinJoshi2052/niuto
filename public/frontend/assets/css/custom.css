@@ -2519,30 +2519,6 @@ section#checkout .text_gray {
     text-align: center;
 }
 
-.size-wrapper .select-size {
-    display: flex;
-}
-
-.size-wrapper .select-size .size {
-    margin: 0 5px;
-    border: 2px solid var(--blue);
-    min-width: 32px;
-    height: 32px;
-    text-align: center;
-}
-
-.size-wrapper .select-size .size-active {
-    /* padding: 3px 10px; */
-
-    margin: 0 5px;
-    background-color: var(--yellow);
-    border: 2px solid var(--yellow);
-    color: white;
-    min-width: 32px;
-    height: 32px;
-    text-align: center;
-}
-
 .star_block i.fa.fa-star {
     color: var(--yellow);
 }
