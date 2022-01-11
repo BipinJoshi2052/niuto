@@ -103,6 +103,7 @@ $unactive = '';
                     if (data.errors) {
                         toastr.error(data.errors.file[0]);
                     } else {
+                        localStorage.setItem('customerImage', '{{ asset('gallary/') }}/' + data.profile_image);
                         $('#profile_img').attr('src', '{{ asset('gallary/') }}/' + data.profile_image);
                         toastr.success(data.msg);
                     }
