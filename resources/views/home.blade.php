@@ -15,11 +15,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        
 
                         @include('includes.loader')
                         <div class="slick_slider" id="featured-product-section">
 
-                       
+
 
                             {{-- <div class="item_block bg-white position-relative p-3">
                                 <div class="img_block">
@@ -59,9 +60,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="full_banner">
-                            <img src="https://demo.xpeedstudio.com/marketov2/grocery/wp-content/uploads/sites/12/2018/10/ad-min.png"
-                                alt="image" class="img-fluid" />
+                        <div class="full_banner" id="banner-section">
+                            {{-- <img src="https://demo.xpeedstudio.com/marketov2/grocery/wp-content/uploads/sites/12/2018/10/ad-min.png"
+                                alt="image" class="img-fluid" /> --}}
                         </div>
                     </div>
                 </div>
@@ -101,7 +102,7 @@
                     <div class="col-md-12">
                         @include('includes.loader')
                         <div class="latest_product_slider" id="latest-product-section">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -158,9 +159,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="img_big_sale pt-md-5 pt-3">
-                            <img src="https://montechbd.com/shopist/demo/public/images/promo3.png" class="img-fluid"
-                                alt="image" />
+
+                        <div class="img_big_sale pt-md-5 pt-3" id="banner-section2">
+                            {{-- <img src="https://montechbd.com/shopist/demo/public/images/promo3.png" class="img-fluid"
+                                alt="image" /> --}}
                         </div>
                     </div>
                 </div>
@@ -325,7 +327,8 @@
         $(document).ready(function() {
             sliderMedia();
             categorySlider();
-
+            pageMedia();
+            pageMedia2();
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
@@ -347,7 +350,7 @@
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'latest-product-section';
-            console.log(appendTo);
+            // console.log(appendTo);
             // console.log('3rd append');
             fetchProduct(url, appendTo);
 
@@ -441,7 +444,7 @@
                                 if (data.data[i].product_discount_price == '' || data.data[i]
                                     .product_discount_price == null || data.data[i].product_discount_price ==
                                     'null') {
-                                       
+
                                     productCardPrice = data.data[i].product_discount_price_symbol;
                                 } else {
                                     productCardPrice = data.data[i].product_discount_price_symbol + ' <b>' +
@@ -503,14 +506,18 @@
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
                                         '<h5>Sale</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Cart">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
@@ -576,14 +583,18 @@
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
                                         '<h5>New</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Cart">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
@@ -641,14 +652,18 @@
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
                                         '<h5>New</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' + data.data[i].product_id + '" data-type="' + data.data[i].product_type + '" data-tip="Add to Cart">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
@@ -661,7 +676,7 @@
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
-                                       
+
                                     break;
 
 
@@ -718,7 +733,7 @@
                     // appendTo == 'latest-product-section' ? productListInit() : '';
                     // console.log(appendTo);
                     // console.log(appendTo == 'latest-product-section');
-                    
+
                 },
 
                 complete: function() {
@@ -1028,6 +1043,139 @@
             });
         }
 
+
+        function pageMedia() {
+            var sliderType = "{{ getSetting()['slider_style'] ? getSetting()['slider_style'] : '' }}";
+            if (sliderType == "style1") {
+                sliderType = 2;
+            }
+            if (sliderType == "style2") {
+                sliderType = 1;
+            }
+            if (sliderType == "style3") {
+                sliderType = 3;
+            }
+            if (sliderType == "style4") {
+                sliderType = 4;
+            }
+            if (sliderType == "style5") {
+                sliderType = 5;
+            }
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/slider?getLanguage=' + 1 +
+                    '&getSliderType=1&getSliderNavigation=1&getSliderGallary=1&limit=5&sortBy=id&sortType=DESC&sliderType=' +
+                    sliderType + '&language_id=' + 1,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+
+                beforeSend: function() {
+                    $('.section-loading').css('display', 'block');
+                },
+
+                beforeSend: function() {},
+
+                success: function(data) {
+                    if (data.status == 'Success') {
+                        var bannerSection = '';
+                       if(data.data[0])
+                       {
+                        bannerSection +=
+
+                            '<img src="{{ asset('gallary') }}/' + data.data[0].gallary +
+                            '" class="d-block w-100 img-fluid" alt="image...">';
+                        $('#banner-section').html(bannerSection);
+                       }
+                        
+
+
+                    }
+
+                },
+
+                complete: function() {
+                    $('.section-loading').css('display', 'none');
+                },
+
+
+
+                error: function(data) {
+                    $('#event-loading').css('display', 'none');
+                },
+            });
+        }
+
+        function pageMedia2() {
+            var sliderType = "{{ getSetting()['slider_style'] ? getSetting()['slider_style'] : '' }}";
+            if (sliderType == "style1") {
+                sliderType = 2;
+            }
+            if (sliderType == "style2") {
+                sliderType = 1;
+            }
+            if (sliderType == "style3") {
+                sliderType = 3;
+            }
+            if (sliderType == "style4") {
+                sliderType = 4;
+            }
+            if (sliderType == "style5") {
+                sliderType = 5;
+            }
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/slider?getLanguage=' + 1 +
+                    '&getSliderType=1&getSliderNavigation=1&getSliderGallary=1&limit=5&sortBy=id&sortType=DESC&sliderType=' +
+                    sliderType + '&language_id=' + 1,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+
+                beforeSend: function() {
+                    $('.section-loading').css('display', 'block');
+                },
+
+                beforeSend: function() {},
+
+                success: function(data) {
+                    // console.log(data);
+                    if (data.status == 'Success') {
+
+                        var bannerSection = '';
+                       if(data.data[1])
+                       {
+                        bannerSection +=
+
+                        '<img src="{{ asset('gallary') }}/' + data.data[1].gallary +
+                     '" class="d-block w-100 img-fluid" alt="image...">';
+                        $('#banner-section2').html(bannerSection);
+                       }
+                       
+
+
+                    }
+
+                },
+
+                complete: function() {
+                    $('.section-loading').css('display', 'none');
+                },
+
+
+
+                error: function(data) {
+                    $('#event-loading').css('display', 'none');
+                },
+            });
+        }
+
         function categorySlider() {
             $.ajax({
                 type: 'get',
@@ -1300,9 +1448,8 @@
 
         }
 
-        $(document).ajaxStop(function(){
+        $(document).ajaxStop(function() {
             productListInit();
         });
-     
     </script>
 @endsection
