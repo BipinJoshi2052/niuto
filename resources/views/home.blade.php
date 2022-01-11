@@ -19,7 +19,7 @@
                         @include('includes.loader')
                         <div class="slick_slider" id="featured-product-section">
 
-                        <div class="slick_slider" id="product-list-section">
+                       
 
                             {{-- <div class="item_block bg-white position-relative p-3">
                                 <div class="img_block">
@@ -79,6 +79,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        @include('includes.loader')
                         <div class="category_list" id="category-section">
 
                         </div>
@@ -98,8 +99,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        @include('includes.loader')
                         <div class="latest_slider" id="latest-product-section">
-
+                            
                         </div>
                     </div>
                 </div>
@@ -107,22 +109,17 @@
         </section>
         <!--======================== FEATURE END  -->
         <!--======================== DISCOUNTED START  -->
-        {{-- <section id="recommended" class="section_bg padding_button discounted_section">
+        <section id="recommended" class="section_bg padding_button discounted_section">
             <div class="container">
                 <div class="section_title">
                     <h1 class="mb-5 position-relative font-weight-bold">
                         Discounted Products
                     </h1>
-
-                </div> --}}
-        {{-- @include('includes.loader')
-                <div class="row" id="featured-product-section"> --}}
-
                 </div>
-                <div class="row" id="featured-product-section">
+                @include('includes.loader')
+                <div class="row" id="product-list-section">
 
-
-        {{-- <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">
                             <div class="img_block">
                                 <a href="product.html">
@@ -158,8 +155,8 @@
                     </div> --}}
 
 
-        {{-- </div> --}}
-        {{-- <div class="row">
+                </div>
+                <div class="row">
                     <div class="col-md-12">
                         <div class="img_big_sale pt-md-5 pt-3">
                             <img src="https://montechbd.com/shopist/demo/public/images/promo3.png" class="img-fluid"
@@ -168,10 +165,10 @@
                     </div>
                 </div>
             </div>
-        </section> --}}
+        </section>
         <!--======================== DISCOUNTED END  -->
         <!--============================= TESTIMONIAL  START============================ -->
-        <section id="testimonial" class="section_bg position-relative">
+        {{-- <section id="testimonial" class="section_bg position-relative">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -269,7 +266,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <!--============================= TESTIMONIAL  END ============================ -->
         <!--============================= FACILITIES  START ============================ -->
@@ -284,7 +281,7 @@
                         </div>
                     </div>
                 </div>
-
+                @include('includes.loader')
                 <div class="row" id="blog-section">
                     {{-- <div class="col-md-4 col-12">
                         <div class="destination-block position-relative">
@@ -443,7 +440,8 @@
                                 if (data.data[i].product_discount_price == '' || data.data[i]
                                     .product_discount_price == null || data.data[i].product_discount_price ==
                                     'null') {
-                                    productCardPrice = data.data[i].product_price_symbol;
+                                       
+                                    productCardPrice = data.data[i].product_discount_price_symbol;
                                 } else {
                                     productCardPrice = data.data[i].product_discount_price_symbol + ' <b>' +
                                         data.data[i].product_price_symbol + '</b>';
@@ -458,14 +456,48 @@
                             switch (appendTo) {
                                 case 'product-list-section':
 
-                                    product = '<div class="item_block bg-white position-relative p-3">' +
+                                    // product = '<div class="item_block bg-white position-relative p-3">' +
+                                    //     '<div class="img_block">' +
+                                    //     '<a href="' + href + '">' +
+                                    //     '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
+                                    //     '</div>' +
+                                    //     '<div class="content_block pb-3">' +
+                                    //     '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                    //     '</small>' +
+                                    //     '<h4>' + title + '</h4>' +
+                                    //     '<span class="font-weight-bold">' + productCardPrice + '</span>' +
+                                    //     '</div>' +
+                                    //     '<div class="wish_list_block">' +
+                                    //     '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                    //     '</div>' +
+                                    //     '<div class="dis_block">' +
+                                    //     '<h5>New</h5>' +
+                                    //     '</div>' +
+                                    //     '<div class="icon_group">' +
+                                    //     '<div class="cart_blocks">' +
+                                    //     '<a href="">' +
+                                    //     '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
+                                    //     '</div>' +
+                                    //     '<div class="cart_block">' +
+                                    //     '<a href="">' +
+                                    //     '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
+                                    //     '</div>' +
+                                    //     '<div class="cart_blockss">' +
+                                    //     '<a href="">' +
+                                    //     '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
+                                    //     '</div>' +
+                                    //     '</div>' +
+                                    //     '</div>';
+
+                                    product = '<div class="col-md-4">' +
+                                        '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
                                         '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
                                         '</div>' +
                                         '<div class="content_block pb-3">' +
-                                        '<small>' + data.data[i].category[0].category_detail.detail[0].name +
-                                        '</small>' +
+                                        // '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                        // '</small>' +
                                         '<h4>' + title + '</h4>' +
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
@@ -473,7 +505,7 @@
                                         '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
-                                        '<h5>New</h5>' +
+                                        '<h5>Sale</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
@@ -489,12 +521,11 @@
                                         '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '</div>' +
+                                        '</div>' +
                                         '</div>';
 
 
-
-
-                                    if (i == 6) {
+                                    if (i == 3) {
                                         return false
                                     };
                                     break;
@@ -629,7 +660,7 @@
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
-
+                                       
                                     break;
 
 
@@ -686,10 +717,7 @@
                     // appendTo == 'latest-product-section' ? productListInit() : '';
                     // console.log(appendTo);
                     // console.log(appendTo == 'latest-product-section');
-                    if ($("#latest-product-section").html() != '') {
-                        // alert('helo');
-                        // productListInit();
-                    }
+                    
                 },
 
                 complete: function() {
@@ -868,8 +896,6 @@
                                 // '<span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> &nbsp; ' + e.detail[0].date + ' </span>' +
                                 // '&nbsp; &nbsp;' +
                                 // '<span><i class="fa fa-comment-o" aria-hidden="true"></i> ' + e.detail[0].name + ' </span>' +
-
-
 
                                 '</div>' +
                                 '</div>' +
@@ -1273,8 +1299,6 @@
 
         }
 
-        $(document).ajaxStop(function() {
-            productListInit();
-        });
+     
     </script>
 @endsection
