@@ -602,7 +602,7 @@
             "debug": false,
             "newestOnTop": false,
             "progressBar": false,
-            "positionClass": "toast-bottom-center",
+            "positionClass": "toast-top-right",
             "preventDuplicates": false,
             "onclick": null,
             "showDuration": "300",
@@ -1115,26 +1115,26 @@
                             if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i]
                                 .currency != null) {
                                 if (data.data[i].currency.symbol_position == 'left') {
-                                    qtyAmountRow = '<td class="border-0">' +
+                                    qtyAmountRow = '<td class="border-0 cart-block-top">' +
                                         '<h5 class="text-dark">' + name + 'x <span class="cart-quantity">' +
                                         data.data[i].qty + '</span></h5>' +
                                         '<h6 class="text-dark">' + data.data[i].currency.code + ' ' +
                                         discount_price + '</h6>' +
                                         '</td>';
-                                    deleteRow = '<td class="border-0">' +
+                                    deleteRow = '<td class="border-0 cart-block-top">' +
                                         '<a href="javascript:void(0);" data-id="' + data.data[i].product_id +
                                         '" data-combination-id="' + data.data[i].product_combination_id +
                                         '" onclick="removeCartItem(this)" class="gray_title">' +
                                         '<i class="fa fa-trash-o" aria-hidden="true"></i></a>' +
                                         '</td>';
                                 } else {
-                                    qtyAmountRow = '<td class="border-0">' +
+                                    qtyAmountRow = '<td class="border-0 cart-block-top">' +
                                         '<h5 class="text-dark">' + name + 'x <span class="cart-quantity">' +
                                         data.data[i].qty + '</span></h5>' +
                                         '<h6 class="text-dark">' + discount_price + ' ' + data.data[i].currency
                                         .code + '</h6>' +
                                         '</td>';
-                                    deleteRow = '<td class="border-0">' +
+                                    deleteRow = '<td class="border-0 cart-block-top">' +
                                         '<a href="javascript:void(0);" data-id="' + data.data[i].product_id +
                                         '" data-combination-id="' + data.data[i].product_combination_id +
                                         '" onclick="removeCartItem(this)" class="gray_title">' +

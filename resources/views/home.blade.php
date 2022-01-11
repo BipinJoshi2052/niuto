@@ -15,7 +15,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        
+
 
                         @include('includes.loader')
                         <div class="slick_slider" id="featured-product-section">
@@ -405,7 +405,7 @@
                 beforeSend: function() {},
 
                 success: function(data) {
-                    // console.log(data);
+                    console.log(data);
                     if (data.status == 'Success') {
                         for (i = 0; i < data.data.length; i++) {
 
@@ -441,11 +441,14 @@
                             }
 
                             if (data.data[i].product_type == 'simple') {
-                                if (data.data[i].product_discount_price_symbol == '' || data.data[i]
-                                    .product_discount_price_symbol == null || data.data[i].product_discount_price_symbol ==
-                                    'null' || data.data[i].product_discount_price_symbol > 0 ) {
+                                if ((data.data[i].product_discount_price_symbol == '' || data.data[i]
+                                        .product_discount_price_symbol == null || data.data[i]
+                                        .product_discount_price_symbol ==
+                                        'null') && data.data[i].product_discount_price > 0) {
 
-                                    productCardPrice = data.data[i].product_discount_price_symbol;
+                                    productCardPrice = data.data[i].product_discount_price_symbol;x
+                                } else if (data.data[i].product_discount_price == 0) {
+                                    productCardPrice = data.data[i].product_price_symbol;
                                 } else {
                                     productCardPrice = data.data[i].product_discount_price_symbol + ' <b>' +
                                         data.data[i].product_price_symbol + '</b>';
@@ -1082,15 +1085,14 @@
                 success: function(data) {
                     if (data.status == 'Success') {
                         var bannerSection = '';
-                       if(data.data[0])
-                       {
-                        bannerSection +=
+                        if (data.data[0]) {
+                            bannerSection +=
 
-                            '<img src="{{ asset('gallary') }}/' + data.data[0].gallary +
-                            '" class="d-block w-100 img-fluid" alt="image...">';
-                        $('#banner-section').html(bannerSection);
-                       }
-                        
+                                '<img src="{{ asset('gallary') }}/' + data.data[0].gallary +
+                                '" class="d-block w-100 img-fluid" alt="image...">';
+                            $('#banner-section').html(bannerSection);
+                        }
+
 
 
                     }
@@ -1149,15 +1151,14 @@
                     if (data.status == 'Success') {
 
                         var bannerSection = '';
-                       if(data.data[1])
-                       {
-                        bannerSection +=
+                        if (data.data[1]) {
+                            bannerSection +=
 
-                        '<img src="{{ asset('gallary') }}/' + data.data[1].gallary +
-                     '" class="d-block w-100 img-fluid" alt="image...">';
-                        $('#banner-section2').html(bannerSection);
-                       }
-                       
+                                '<img src="{{ asset('gallary') }}/' + data.data[1].gallary +
+                                '" class="d-block w-100 img-fluid" alt="image...">';
+                            $('#banner-section2').html(bannerSection);
+                        }
+
 
 
                     }
@@ -1195,6 +1196,7 @@
                 beforeSend: function() {},
 
                 success: function(data) {
+                    
                     var category = '';
                     if (data.status == 'Success') {
                         $.each(data.data, function(i, e) {
