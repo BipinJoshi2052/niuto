@@ -16,7 +16,7 @@
 
 @include('includes.productdetail.related-product-section');
 
-@include(isset(getSetting()['card_style']) ? 'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1")
+{{-- @include(isset(getSetting()['card_style']) ? 'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1") --}}
 
 <input type="hidden" id="product_id" value="{{ $product }}" />
 
