@@ -3429,3 +3429,7 @@ section#product_detail .slick-next:before {
     min-width: 100px;
     object-fit: fill;
 }
+
+.margin-bottom-40{
+    margin-bottom: 40px;
+}

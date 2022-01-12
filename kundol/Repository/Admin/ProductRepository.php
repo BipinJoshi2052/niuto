@@ -138,7 +138,13 @@ class ProductRepository implements ProductInterface
             if(isset($_GET['productId'])){
                 $product = $product->getProductDetailByLanguage($languageId, $_GET['productId']);
             }
+            
 
+            // if (isset($_GET['getRelated']) && $_GET['getRelated'] == '1' && isset($_GET['productId'])) {
+            //     $cat = Product::where('id',$_GET['productId'])->first('');
+            //     $product = $product->where('discount_price','>',0);
+            //     // dd($product);
+            // }
             if (isset($_GET['price_from']) && $_GET['price_from'] != '' && isset($_GET['price_to']) && $_GET['price_to'] != '') {
                 $product = $product->getProductByPrice($_GET['price_from'], $_GET['price_to']);
             }
