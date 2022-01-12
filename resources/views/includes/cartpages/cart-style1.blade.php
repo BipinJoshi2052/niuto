@@ -56,7 +56,7 @@
                    </tbody>
                 </table>
                 
-                <div class="row">
+                <div class="row d-none" id="updateAndCouponRow">
                   <div class="d-flex justify-content-around align-items-center w-100 my-3 flex-wrap">
                      <form class="coupon-field d-flex ">
                          <input type="text" placeholder="Apply Coupon Code" class="mr-2 coupon_code form-control">
@@ -96,7 +96,7 @@
                 </div>
              </div>
              <div class="btn_wrapper mt-4">
-                <a href="{{ url('/checkout') }}" class="theme_btn btn_tr ">Checkout</a>
+                <a href="{{ url('/checkout') }}" class="theme_btn btn_tr proceed_checkout_modal">Checkout</a>
              </div>
           </div>
        </div>

@@ -94,7 +94,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                                         </div>
                                         <div class="top_cartmodal_btn d-flex justify-content-between align-items-center w-100">
                                             <a href="{{ url('/cart') }}" class="them_btn_new btn_cart_modal">View Cart</a>
-                                            <a href="{{ url('/checkout') }}" class="them_btn_new btn_cart_modal">Proceed
+                                            <a href="{{ url('/checkout') }}" class="them_btn_new btn_cart_modal proceed_checkout_modal">Proceed
                                                 Checkout</a>
                                         </div>
                                     </div>
