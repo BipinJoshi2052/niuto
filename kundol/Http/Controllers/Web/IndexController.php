@@ -13,6 +13,7 @@ use App\Models\Admin\Page;
 use App\Models\Admin\PaymentMethod;
 use App\Models\Admin\PaymentMethodSetting;
 use App\Models\Admin\Product;
+use App\Models\Admin\ProductCombinationDtl;
 use App\Models\Admin\ProductDetail as AdminProductDetail;
 use App\Models\Web\Order;
 use App\Services\Web\HomeService;
@@ -64,6 +65,28 @@ class IndexController extends Controller
         $homeService = new HomeService;
         $data = $homeService->homeIndex();
         $setting = getSetting();
+        // $variantId = [8, 2, 4, 7];
+        // $products = ProductCombinationDtl::where('product_id', 294)->whereIn('variation_id', $variantId)->with('variation')->get();
+        // $a = 0;
+        // $true = true;
+        // $false = false;
+        // foreach($products as $product){
+        //     foreach($variantId as $variantId){
+        //         if($product->variation->id == $variantId){
+        //             // $true = $true || true;
+        //             echo '$true<br />';
+        //         }else{
+        //             // $false = $false || false;
+        //             echo '$false<br />';
+        //         }
+        //     }
+        //     echo $a . '<br />';
+        //     // if($product->product_combination_id == $a && function($variantId, $product, $true, $false){
+        //     // }){
+        //     //     $a = $product->product_combination_id;
+        //     // }
+        // }
+        // dd('asdasd');
         return view('home', compact('data', 'setting'));
     }
 

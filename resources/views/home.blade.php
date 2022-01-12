@@ -333,6 +333,7 @@
                 '/api/client/products?limit=12&getCategory=1&getDiscount=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'product-list-section';
+            
             fetchProduct(url, appendTo);
 
 
@@ -343,49 +344,17 @@
                 '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' +
                 1 + '&currency=' + 1;
             appendTo = 'featured-product-section';
-            // console.log('2nd append');
+            
             fetchProduct(url, appendTo);
 
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'latest-product-section';
-            // console.log(appendTo);
-            // console.log('3rd append');
+            
             fetchProduct(url, appendTo);
 
             blogNews();
-
-            // var url = "{{ url('') }}" +
-            //     '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' + languageId +
-            //     '&topSelling=1&currency=' + 1;
-            // appendTo = 'tab_top_sales';
-            // fetchProduct(url, appendTo);
-
-            // var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
-            //     languageId + '&currency=' + 1;
-            // appendTo = 'tab_special_products';
-            // fetchProduct(url, appendTo);
-
-
-            // var url = "{{ url('') }}" +
-            //     '/api/client/products?limit=6&getCategory=1&getDetail=1&language_id=' + languageId +
-            //     '&sortBy=id&sortType=DESC&currency=' + 1;
-            // appendTo = 'weekly-sale';
-            // fetchProduct(url, appendTo);
-
-            // var url = "{{ url('') }}" +
-            //     '/api/client/products?limit=1&getCategory=1&getDetail=1&language_id=' + languageId +
-            //     '&topSelling=1&currency=' + 1;
-            // appendTo = 'weekly-sale-first-div';
-            // fetchFeaturedWeeklyProduct(url,appendTo)
-
-            // bannerMedia();
-            // cartSession = $.trim(localStorage.getItem("cartSession"));
-            // if (cartSession == null || cartSession == 'null') {
-            //     cartSession = '';
-            // }
-            // menuCart(cartSession);
         });
 
         function fetchProduct(url, appendTo) {
@@ -455,9 +424,12 @@
                                 if (data.data[i].product_combination != null && data.data[i]
                                     .product_combination != 'null' && data.data[i].product_combination != '') {
                                     productCardPrice = data.data[i].product_combination[0].product_price_symbol;
+                                } else {
+                                    productCardPrice = data.data[i].product_discount_price_symbol + ' <b>' +
+                                        data.data[i].product_price_symbol + '</b>';
                                 }
                             }
-                            // console.log(data);
+                            
                             switch (appendTo) {
                                 case 'product-list-section':
 
@@ -542,7 +514,7 @@
 
                                 case 'latest-product-section':
                                     // 
-                                    // console.log('hi');
+                                    
                                     // product =
                                     //     '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
                                     //     '<div class="product-grid-item">' +
@@ -658,7 +630,7 @@
                                         '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
-                                        '<h5>New</h5>' +
+                                        '<h5>Featured</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
@@ -696,8 +668,7 @@
                         //     getSliderSettings(appendTo);
                     }
                     // appendTo == 'latest-product-section' ? productListInit() : '';
-                    // console.log(appendTo);
-                    // console.log(appendTo == 'latest-product-section');
+                    
 
                 },
 
@@ -730,7 +701,7 @@
 
                 success: function(data) {
                     if (data.status == 'Success') {
-                        // console.log(data,"final data");
+                       
                         var htmlToRender =
                             "<article><div class='badges'><span class='badge badge-success'>Featured</span></div><div class='detail'>";
 
@@ -1109,7 +1080,7 @@
                 beforeSend: function() {},
 
                 success: function(data) {
-                    // console.log(data);
+                    
                     if (data.status == 'Success') {
 
                         var bannerSection = '';

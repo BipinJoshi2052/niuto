@@ -77,7 +77,7 @@ $unactive = '';
         $("#prf-pic").change(function() {
             if ($(this).val() != "") {
                 upload(this);
-                console.log($(this).val());
+                
             }
         });
 
@@ -110,7 +110,7 @@ $unactive = '';
 
                 },
                 error: function(xhr, status, error) {
-                    console.log(xhr.responseText);
+                    
                 },
             });
         }

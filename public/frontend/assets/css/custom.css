@@ -2509,6 +2509,7 @@ section#product_detail ._p-qty-and-cart ._p-add-cart .btn {
     min-width: 32px;
     height: 32px;
     text-align: center;
+    cursor: pointer;
 }
 
 .size-wrapper .select-size .size-active {
@@ -2521,6 +2522,7 @@ section#product_detail ._p-qty-and-cart ._p-add-cart .btn {
     min-width: 32px;
     height: 32px;
     text-align: center;
+    cursor: pointer;
 }
 
 .star_block i.fa.fa-star {
@@ -3404,4 +3406,7 @@ section#product_detail .slick-next:before {
 }
 .category_img img {
     margin: auto;
+}
+#featured-product-section .dis_block h5{
+    width: 6.6rem;
 }
