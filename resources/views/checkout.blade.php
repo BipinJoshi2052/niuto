@@ -127,8 +127,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">Postal Code</label>
-                                    <input type="text" class="form-control w-100" placeholder="5468"
-                                        id="delivery_postcode">
+                                    <input type="text" class="form-control w-100" placeholder="5468" id="delivery_postcode">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">Phone Number</label>
@@ -154,8 +153,7 @@
                                                 name="customRadio" class="payment_method"
                                                 {{ old('customRadio', $loop->first ? 'checked' : '') }}
                                                 value="{{ $payment_methods->payment_method }}">
-                                            <label class="my-auto"
-                                                for="inlineCheckbox{{ $payment_methods->id }}">
+                                            <label class="my-auto" for="inlineCheckbox{{ $payment_methods->id }}">
                                                 <h5 class="font-weigth-normal mb-0">
                                                     {{ ucwords(str_replace('_', ' ', $payment_methods->payment_method)) }}
                                                 </h5>
@@ -221,12 +219,12 @@
         $(document).ready(function() {
             if (loggedIn == '1') {
                 cartItem('');
-                
+
             } else {
                 cartItem(cartSession);
             }
 
-            
+
         });
 
         $(document).ajaxStop(function() {
@@ -252,7 +250,7 @@
 
 
         function cartItem(cartSession) {
-            
+
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&language_id=' + languageId +
                     '&currency=' + localStorage.getItem("currency");
@@ -270,7 +268,7 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function(data) {
-                    
+
                 },
                 success: function(data) {
                     if (data.data.length == 0) {
@@ -1110,10 +1108,18 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {},
+                beforeSend: function() {
+                    $(".createOrder").attr('disabled', true);
+                    i = 0;
+                    interval = setInterval(function() {
+                        i = ++i % 4;
+                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
+                    }, 200);
+                },
                 success: function(data) {
                     // console.log(data);
                     if (data.status == 'Success') {
+                        clearInterval(interval);
                         if (payment_method == 'esewa') {
                             pid = $('#esewaForm input[name=pid]').val() + '?' + data.data.order_id;
                             $('#esewaForm input[name=pid]').val(pid);
