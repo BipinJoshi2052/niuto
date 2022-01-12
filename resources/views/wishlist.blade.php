@@ -127,9 +127,9 @@
         // getCustomerOrder();
         
     });
-    $(document).ajaxStop(function(){
+    // $(document).ajaxStop(function(){
       wishListShow();
-    });
+    // });
     
     function wishListShow() {
         console.log("Hello Wishlist");

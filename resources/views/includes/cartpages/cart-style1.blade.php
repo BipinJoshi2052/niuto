@@ -79,20 +79,20 @@
                 <strong class="green_one_text mb-4 d-block">CART TOTALS</strong>
                 <div class="cart-price d-flex justify-content-between">
                    <h6 class="">Sub Total</h6>
-                   <h6 class="green_one_text">$ 200</h6>
+                   <h6 class="green_one_text caritem-subtotal"></h6>
                 </div>
                 <div class="cart-price d-flex justify-content-between mt-2">
                    <!-- <h6 class="">Shipping Cost</h6> -->
                    <!-- <h6 class="green_one_text">$ 0</h6> -->
                 </div>
-                <div class="cart-price d-flex justify-content-between  mt-2"">
+                <div class="cart-price d-flex justify-content-between  mt-2">
                    <h6 class="">Discount</h6>
-                   <h6 class="green_one_text">$ 0</h6>
+                   <h6 class="green_one_text caritem-discount-coupon">Rs 0</h6>
                 </div>
                 <hr class="m-0 p-0">
-                <div class="cart-price d-flex justify-content-between  mt-2"">
+                <div class="cart-price d-flex justify-content-between  mt-2">
                    <h6 class="">Grand Total</h6>
-                   <h6 class="green_one_text">$ 200</h6>
+                   <h6 class="green_one_text caritem-grandtotal"></h6>
                 </div>
              </div>
              <div class="btn_wrapper mt-4">
