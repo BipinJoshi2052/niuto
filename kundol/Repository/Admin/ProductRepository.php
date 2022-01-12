@@ -135,6 +135,10 @@ class ProductRepository implements ProductInterface
                 $product = $product->sortByTopSellingProduct('qty', 'desc');
             }
 
+            if(isset($_GET['productId'])){
+                $product = $product->getProductDetailByLanguage($languageId, $_GET['productId']);
+            }
+
             if (isset($_GET['price_from']) && $_GET['price_from'] != '' && isset($_GET['price_to']) && $_GET['price_to'] != '') {
                 $product = $product->getProductByPrice($_GET['price_from'], $_GET['price_to']);
             }

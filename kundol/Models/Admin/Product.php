@@ -42,9 +42,19 @@ class Product extends Model
 
     public function scopeGetProductDetailByLanguageId($query, $languageId)
     {
+        
         return $query->with(['detail' => function ($q) use ($languageId) {
             $q->where('language_id', $languageId);
         }]);
+    }
+
+    public function scopeGetProductDetailByLanguage($query, $languageId, $productId = null)
+    {
+        return $query->with(['detail' => function ($q) use ($languageId) {
+            $q->where('language_id', $languageId);
+        }])->when(isset($productId), function($q) use ($productId){
+            $q->where('id', '!=', $productId);
+        });
     }
 
     public function scopeGetAttributeDetailByLanguage($query, $languageId)
