@@ -52,44 +52,53 @@ class CustomerAddressBookRepository implements CustomerAddressBookInterface
 
     public function store(array $parms)
     {
+        // dd($parms);
         try {
             if(isset($parms['is_default']) && $parms['is_default'] == '1'){
-                CustomerAddressBook::getCustomerAddress(\Auth::id())->update([
-                    'is_default' => 0
-                ]);
+                // if(CustomerAddressBook::getCustomerAddress(\Auth::id())->exists()){
+                    dd('helo');
+                    CustomerAddressBook::getCustomerAddress(\Auth::id())->update([
+                        'is_default' => 0
+                    ]);
+                // }
+                $parms['customer_id'] = \Auth::id();
+                $sql =  new CustomerAddressBook;
+                $sql = $sql->create($parms);
             }
-            $parms['customer_id'] = \Auth::id();
-            $sql =  new CustomerAddressBook;
-            $sql = $sql->create($parms);
         } catch (Exception $e) {
             return $this->errorResponse();
         }
-
-        if ($sql) {
-            return $this->successResponse(new CustomerAddressBookResource($sql), 'Customer Address Save Successfully!');
-        } else {
-            return $this->errorResponse();
-        }
+        // if(CustomerAddressBook::getCustomerAddress(\Auth::id())->exists()){
+            if ($sql) {
+                return $this->successResponse(new CustomerAddressBookResource($sql), 'Customer Address Save Successfully!');
+            } else {
+                return $this->errorResponse();
+            }
+        // }
     }
 
     public function update(array $parms, $customerAddressBook)
     {
         try {
             if(isset($parms['is_default']) && $parms['is_default'] == '1'){
+                // if(CustomerAddressBook::getCustomerAddress(\Auth::id())->exists()){
                 CustomerAddressBook::getCustomerAddress(\Auth::id())->where('id', '!=', $customerAddressBook->id)->update([
                     'is_default' => 0
                 ]);
+                $customerAddressBook->update($parms);
+            // }
             }
-            $customerAddressBook->update($parms);
+            
         } catch (Exception $e) {
             return $this->errorResponse();
         }
-
+        // if(CustomerAddressBook::getCustomerAddress(\Auth::id())->exists()){
         if ($customerAddressBook) {
             return $this->successResponse(new CustomerAddressBookResource($customerAddressBook), 'Customer Address Update Successfully!');
         } else {
             return $this->errorResponse();
         }
+    // }
     }
 
     public function destroy($customerAddressBook)

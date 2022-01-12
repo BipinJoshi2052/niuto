@@ -3331,4 +3331,59 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     display: flex;
     z-index: 0;
 }
+.product-detail-slider .slider_item {
+    margin: 5px 0;
+}
+.product-detail-slider .slider_item img {
+    object-fit: cover;
+    object-position: center;
+    height: 6rem;
+}
+.before,
+.after {
+    content: '';
+    text-decoration: none;
+    background-color: var(--blue);
+    color: white;
+    font-family: FontAwesome;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    display: block;
+    font-size: 1.5rem;
+}
+section#product_detail button.slick-prev.slick-arrow {
+    position: absolute;
+    left: 59% !important;
+    z-index: 9;
+    top: -5%;
+    transform: rotate(90deg);
+}
+section#product_detail button.slick-next.slick-arrow {
+    position: absolute;
+    right: 4rem;
+    /* bottom: 0 !IMPORTANT; */
+    
+    top: 100%;
+    left: 20%;
+}
+section#product_detail .slick-next:before {
+    content: "\f105";
+    color: var(--white);
+    font-size: 1.5rem;
+    font-family: "FontAwesome";
+    position: absolute;
+    color: var(--red_light);
+    font-size: 1.5rem;
+    font-family: "FontAwesome";
+    position: absolute;
+    font-weight: 200 !important;
+    border: 1px solid;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50%;
+    border-color: #0000005c;
+    background-color: var(--white);
+    bottom: 0 !important;
+    transform: rotate(90deg);
+}
 /*================== STAR RATING CSS END ==================*/
