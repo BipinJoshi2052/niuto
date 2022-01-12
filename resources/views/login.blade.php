@@ -155,11 +155,13 @@
                 clientsecret: "{{isset($setting['client_secret']) ? $setting['client_secret'] : ''}}",
             },
             beforeSend: function() {
-                $('#event-loading').css('display', 'block');
+                $('.section-loading').css('display', 'block');
             },
             success: function(data) {
+                console.log('login page');
+                console.log(data);
                 if(data.status == 'Success'){
-                    $('#event-loading').css('display', 'none');
+                    $('.section-loading').css('display', 'none');
                     localStorage.setItem("loginSuccessMessage", "Welcome " + data.data.first_name + " " + data.data.last_name);
                     localStorage.setItem("customerToken",data.data.token);
                     localStorage.setItem("customerHash",data.data.hash);
@@ -168,11 +170,14 @@
                     localStorage.setItem("customerFname",data.data.first_name);
                     localStorage.setItem("customerLname",data.data.last_name);
                     localStorage.setItem("cartSession",'');
+                    localStorage.setItem("customerImage", data.user_gallary);
+                    
+                    // return true;
                     window.location.href = '/';
                 }
             },
             error: function(data) {
-                $('#event-loading').css('display', 'none');
+                $('.section-loading').css('display', 'none');
                 if(data.responseJSON.errors){
                     var err = '';
                     $.each(data.responseJSON.errors, function(i, e){

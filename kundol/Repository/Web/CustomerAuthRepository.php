@@ -148,9 +148,16 @@ class CustomerAuthRepository implements CustomerAuthInterface
 
             $success['token'] =  $user->createToken('MyApp', ['customer'])->accessToken;
             $cookie = $this->getCookieDetails($success['token']);
+            if($user->Gallary != null){
+                $user_gallery = $user->Gallary->name;
+                $user_gallery = asset('gallary/'.$user_gallery);
+            } else {
+                $user_gallery = asset('images/noimage.png');
+            }
             return response()->json([
                 'status' => 'Success',
                 'data' => $user,
+                'user_gallary' => $user_gallery,
             ], 200)
                 ->cookie(
                     $cookie['name'],

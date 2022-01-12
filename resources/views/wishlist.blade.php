@@ -125,10 +125,14 @@
 
     $(document).ready(function() {
         // getCustomerOrder();
+        
     });
-
-    wishListShow();
+    // $(document).ajaxStop(function(){
+      wishListShow();
+    // });
+    
     function wishListShow() {
+        console.log("Hello Wishlist");
         var url = "{{ url('') }}" +
                 '/api/client/wishlist?limit=100&getCategory=1&getDetail=1&language_id=' + languageId +
                 '&sortBy=id&sortType=DESC&topSelling=1&currency='+localStorage.getItem("currency");
@@ -146,6 +150,7 @@
                 if (data.status == 'Success') {
                     $("#wishlist-show").html('');
                     for (i = 0; i < data.data.length; i++) {
+                        console.log(data.data.length); 
                         href = '/product/' + data.data[i].products.product_id + '/' + data.data[i].products.product_slug;
                         if (data.data[i].products.product_gallary != null && data.data[i].products.product_gallary != 'null' && data.data[i].products.product_gallary != '') {
                             if (data.data[i].products.product_gallary.detail != null && data.data[i].products.product_gallary.detail != 'null' && data.data[i].products.product_gallary.detail != '') {
@@ -238,6 +243,7 @@
                                     '  </a>'+
                                     '</td>'+
                                 '</tr>';
+                        console.log(tbodyRow);
                         $("#wishlist-show").append(tbodyRow);
                     }
 

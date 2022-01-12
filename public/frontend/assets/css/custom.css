@@ -1884,6 +1884,21 @@ a.w-25.theme_btn.btn_tr:hover {
     transition: 0.3s;
 }
 
+div#exampleModal .cart_img img {
+    max-height: 100px;
+    min-height: 100px;
+    transform: scale(1);
+    transition: 0.3s;
+    min-width: 151px;
+    max-width: 151px;
+}
+td.border-0.cart-block-top {
+    width: 171px;
+    display: inline-table;
+}
+::-webkit-scrollbar {
+    width: 1px !important;
+  }
 .product_des h3:hover {
     color: var(--blue);
 }

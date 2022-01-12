@@ -56,7 +56,6 @@ class CustomerAddressBookRepository implements CustomerAddressBookInterface
         try {
             if(isset($parms['is_default']) && $parms['is_default'] == '1'){
                 // if(CustomerAddressBook::getCustomerAddress(\Auth::id())->exists()){
-                    dd('helo');
                     CustomerAddressBook::getCustomerAddress(\Auth::id())->update([
                         'is_default' => 0
                     ]);
