@@ -13,7 +13,7 @@ $unactive = '';
     <div class="d-user-avater text-center mb-4">
         <img src="{{ asset('images/noimage.png') }}" class="img-fluid avater user_avatar_in_profile"
             alt="profile-image" id="profile_img">
-        <h5 class="user_name_in_profile">Muniraj</h5>
+        <h5 class="user_name_in_profile"></h5>
         <form>
             <a href="javascript:void(0)" class="text_yellow" onclick="changeProfile()"> <span class="mr-1"><i
                         class="fa fa-pencil" aria-hidden="true"></i></span> Upload Image</a>
