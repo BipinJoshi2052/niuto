@@ -283,13 +283,16 @@
 
                         for (i = 0; i < data.data.length; i++) {
                             price = 0; discount = 0; afterDiscountPrice = 0; imageSrc = ''; imageAlt = ''; itemName = '';
-                            discount = data.data[i].discount_price;
+                            afterDiscountPrice = data.data[i].discount_price;
                             if (data.data[i].product_type == 'variable') {
                                 for (k = 0; k < data.data[i].combination.length; k++) {
                                     if (data.data[i].product_combination_id == data.data[i].combination[k].product_combination_id) {
                                         total_weight += parseInt(data.data[i].product_weight) * parseInt(data.data[i].qty);
-                                        price = data.data[i].combination[k].price;
-                                        afterDiscountPrice = parseInt(price) - parseInt(discount);
+                                        if(afterDiscountPrice > 0){
+                                            price = afterDiscountPrice;
+                                        }else{
+                                            price = data.data[i].combination[k].price;
+                                        }
                                         if (data.data[i].combination[k].gallary != null) {
                                             imageSrc = '/gallary/' + data.data[i].combination[k].gallary.gallary_name;
                                             imageAlt = data.data[i].combination[k].gallary.gallary_name;
@@ -325,19 +328,22 @@
                                     imageAlt = data.data[i].product_detail[0].title;
                                     itemName = data.data[i].product_detail[0].title;
                                 }
-                                price = data.data[i].price;
-                                afterDiscountPrice = parseInt(price) - parseInt(discount);
+                                if(afterDiscountPrice > 0){
+                                    price = afterDiscountPrice;
+                                }else{
+                                    price = data.data[i].price;
+                                }
                             }
                             if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i]
                                 .currency != null) {
                                 if (data.data[i].currency.symbol_position == 'left') {
-                                    sum = +data.data[i].qty * +afterDiscountPrice;
+                                    sum = +data.data[i].qty * +price;
                                     cartItemTotal = data.data[i].currency.code + ' ' + sum;
-                                    cartItemPrice = data.data[i].currency.code + ' ' + afterDiscountPrice;
+                                    cartItemPrice = data.data[i].currency.code + ' ' + price;
                                 } else {
-                                    sum = +data.data[i].qty * +afterDiscountPrice;
+                                    sum = +data.data[i].qty * +price;
                                     cartItemTotal = sum + ' ' + data.data[i].currency.code;
-                                    cartItemPrice = afterDiscountPrice + ' ' + data.data[i].currency.code;
+                                    cartItemPrice = price + ' ' + data.data[i].currency.code;
                                 }
                             } else {
                                 cartItemPrice = discount_price;
@@ -345,7 +351,7 @@
                             itemQty = +data.data[i].qty;
                             itemQtyId = 'quantity' + i;
 
-                            total_price += afterDiscountPrice;
+                            total_price += (price * itemQty);
 
                             if ($.trim(data.data[i].category_detail[0].category_detail) != '' && $.trim(data
                                     .data[i].category_detail[0].category_detail) != 'null' && $.trim(data.data[
