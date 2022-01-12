@@ -298,7 +298,8 @@
     })
 
     function fetchRelatedProduct() {
-        var url = "{{ url('') }}" + '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
+        var productID = "{{ $product }}";
+        var url = "{{ url('') }}" + '/api/client/products?limit=12&getCategory=1&getDetail=1&productId='+ productID +'&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
         var appendTo = 'related';
         $.ajax({
             type: 'get',
@@ -343,7 +344,7 @@
                             if (data.data[i].product_discount_price == '' || data.data[i].product_discount_price == null || data.data[i].product_discount_price == 'null') {
                                 price = data.data[i].product_price_symbol;
                             } else {
-                                price = data.data[i].product_price_symbol + '<span>' +data.data[i].product_discount_price_symbol +'</span>';
+                                price = data.data[i].product_price_symbol + '<span class="strikeThrough ">' +data.data[i].product_discount_price_symbol +'</span>';
                             }
                         } else {
                             if (data.data[i].product_combination != null) {

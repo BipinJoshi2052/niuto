@@ -3351,3 +3351,9 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     z-index: 0;
 }
 /*================== STAR RATING CSS END ==================*/
+
+.strikeThrough{
+        padding-left: 10px;
+        font-size: 16px;
+        text-decoration: line-through;
+}
