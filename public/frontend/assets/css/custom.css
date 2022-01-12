@@ -2324,7 +2324,11 @@ section#checkout .text_gray {
 ._p-add-cart .btn {
     margin: 0px 8px;
 }
-
+section#product_detail ._p-qty-and-cart ._p-add-cart .btn {
+    margin: 0px 6px;
+    padding: 0 18px;
+    width: unset;
+}
 /*=========Recent-post==========*/
 .title_bx h3.title {
     font-size: 22px;
