@@ -73,6 +73,7 @@
             },
             beforeSend: function() {},
             success: function(data) {
+                console.log(data);
                 if (data.status == 'Success') {
                     var clone = '';
                     var sideGal = '';
@@ -197,6 +198,7 @@
                                 if(variId == combinationVarId){
                                     proComId = e.product_combination_id;
                                     $('#product-card-price').html(e.product_price_symbol);
+                                    $('#product_combination_id').val(e.product_combination_id);
                                     return false;
                                 }
                             })

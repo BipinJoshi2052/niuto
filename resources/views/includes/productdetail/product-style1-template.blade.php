@@ -41,6 +41,7 @@
                                 M.R.P. : <del id="cut-product-card-price"> </del>
                             </span>
                             <span class="price" id="product-card-price"> </span>
+                            <input text="hidden" id="product_combination_id">
                         </div>
                         <div class="_p-add-cart">
                             <div class="_p-qty">
