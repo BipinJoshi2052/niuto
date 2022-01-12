@@ -94,7 +94,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                                         </div>
                                         <div class="top_cartmodal_btn d-flex justify-content-between align-items-center w-100">
                                             <a href="{{ url('/cart') }}" class="them_btn_new btn_cart_modal">View Cart</a>
-                                            <a href="{{ url('/checkout') }}" class="them_btn_new btn_cart_modal">Proceed
+                                            <a href="{{ url('/checkout') }}" class="them_btn_new btn_cart_modal proceed_checkout_modal">Proceed
                                                 Checkout</a>
                                         </div>
                                     </div>
@@ -147,11 +147,20 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
 
                 <div class="sub_search">
                     <form action="" class="d-flex">
-                        <input class="input_box" type="text" placeholder="Search.." name="search" />
+                        <input id="search-input" class="input_box search_input" type="text" placeholder="Search.." name="search" />
                         <button class="search_top" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
+                    <div class="dropdown searchBox w-100" id="searchBox">
+                        <ul class="dropdown-menu" style="width: 100%; overflow-y: auto; max-height: 400px; min-height:auto">
+                            <a href="" style="text-decoration: none;">
+                                <li class="dropdown-item">
+                                    <img class="img-thumbnail" height="100px" src="https://dummyimage.com/150x100/000/fff"> India
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- search mobile new end  -->

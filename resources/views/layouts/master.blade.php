@@ -690,6 +690,21 @@
                 $("#total-menu-cart-product-count").html(0);
                 $("#mobile-total-menu-cart-product-count").html(0);
             }
+
+            $(".proceed_checkout_modal").on('click', function(e){
+                e.preventDefault();
+                console.log($("#top-cart-product-template").html());
+                if(loggedIn == 1 && $("#top-cart-product-template").html() == '<tr><td class="text-dark">No Items</td></tr>'){
+                    window.location.href = "{{ url('/shop') }}";
+                    toastr.error("No item in your cart. Please shop first");
+                } else if(loggedIn == 1 && $("#top-cart-product-template").html() != '') {
+                    window.location.href = "{{ url('/checkout') }}";
+                }
+                else {
+                    window.location.href = "{{ url('/login') }}";
+                    toastr.error('Please Login first');
+                }
+            });
         });
 
         function getSliderSettings(className) {
@@ -994,6 +1009,7 @@
                 },
                 success: function(data) {
                     $('#loading').css('display', 'none');
+                    console.log(data);
                     if (data.status == 'Success') {
                         if (loggedIn != '1') {
                             localStorage.setItem("cartSession", data.data.session);
@@ -1123,7 +1139,6 @@
                                     imageAlt = data.data[i].product_detail[0].title;
                                     name = data.data[i].product_detail[0].title;
                                 }
-                                // -----------price discount afterdiscountprice
                                 price = data.data[i].price;
                                 afterDiscountPrice = parseInt(price) - parseInt(discount);
                                 if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i]
@@ -1330,6 +1345,8 @@
                 },
                 success: function(data) {
                     $('#loading').css('display', 'none');
+                    console.log('cart page');
+                   
                     if (data.status == 'Success') {
                         $("#cartItem-product-show").html('');
                         const templ = document.getElementById("cartItem-Template");
@@ -1474,6 +1491,7 @@
                                 '"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>' +
                                 '</tr>';
                             $("#cartItem-product-show").append(tbodyRow);
+                            
 
                             // const temp1 = document.getElementById("cartItem-grandtotal-template");
                             // const clone1 = temp1.content.cloneNode(true);
@@ -1497,6 +1515,12 @@
                                         .currency.code);
                                 }
                             }
+                        }
+
+                        if(data.data.length > 0){
+                            $("#updateAndCouponRow").removeClass('d-none');
+                        } else {
+                            $("#updateAndCouponRow").addClass('d-none');
                         }
 
                         couponCart = $.trim(localStorage.getItem("couponCart"));
@@ -1575,7 +1599,7 @@
                         name: name
                     },
                     success: function(response) {
-                        console.log(response)
+                        // console.log(response)
                         if (response.length > 0) {
                             $('#searchBox > ul').html('');
                             var results = '';
@@ -1593,7 +1617,7 @@
                                     '</li>' +
                                     '</a>';
                             });
-                            console.log(results);
+                            // console.log(results);
                             $('#searchBox > ul').html(results);
                             $('#searchBox').addClass('show');
                             $('#searchBox > ul').addClass('show');

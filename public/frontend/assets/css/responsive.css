@@ -40,6 +40,8 @@ input.input_box[type="text"] {
 border: 1px solid;
   border-color: gray;
   padding-left: 19px;
+  
+  background: #fffefe;
 }
 
 button.search_icon_new {

@@ -67,6 +67,10 @@ class ProductRepository implements ProductInterface
             }
 
 
+            if (isset($_GET['getDiscount']) && $_GET['getDiscount'] == '1') {
+                $product = $product->where('discount_price','>',0);
+                // dd($product);
+            }
             if (isset($_GET['isFeatured']) && $_GET['isFeatured'] == '1') {
                 $product = $product->where('is_featured', $_GET['isFeatured']);
                 // dd($product);
@@ -129,6 +133,10 @@ class ProductRepository implements ProductInterface
 
             if (isset($_GET['topSelling']) && $_GET['topSelling'] == '1') {
                 $product = $product->sortByTopSellingProduct('qty', 'desc');
+            }
+
+            if(isset($_GET['productId'])){
+                $product = $product->getProductDetailByLanguage($languageId, $_GET['productId']);
             }
 
             if (isset($_GET['price_from']) && $_GET['price_from'] != '' && isset($_GET['price_to']) && $_GET['price_to'] != '') {
