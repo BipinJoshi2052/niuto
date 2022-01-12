@@ -831,7 +831,7 @@
                             //     '</div>' +
                             //     '</div>';
 
-                            blogSection += '<div class="col-md-4 col-12">' +
+                            blogSection += '<div class="col-md-4 col-12 margin-bottom-40">' +
                                 '<div class="destination-block position-relative">' +
                                 '<div class="image-block">' +
                                 '<img src="{{ asset('gallary') }}/' + e.gallary.gallary_name +

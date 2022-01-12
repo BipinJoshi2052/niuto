@@ -14,7 +14,7 @@
                 class="breadcrumb-item font-weight-bold"
                 aria-current="page"
               >
-                <a href="javascript:void(0)" class="text-dark"> Product Details </a>
+                <a href="javascript:void(0)" class="text-dark"> Products Details </a>
               </li>
             </ol>
           </nav>
