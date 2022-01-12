@@ -1,14 +1,15 @@
 <!--========================== DETAIL START  --->
 <section id="product_detail" class="section_bg padding">
     <div class="container">
-        <div class="row no-gutters">
-            <div class="col-md-6 _boxzoom d-md-block d-flex flex-column-reverse">
-                <div class="zoom-thumb">
-                    <ul class="piclist" id="side-gallery">
+        <div class="row no-gutters bg-white">
+            <div class="col-lg-6 col-md-12 col-12 _boxzoom d-flex align-items-center justify-content-around">
+            {{-- <div class="col-md-6 _boxzoom d-md-block d-flex flex-column-reverse"> --}}
+                <div class="zoom-thumb order-lg-1 order-md-2 order-2">
+                    <ul class="product-detail-slider piclist" id="side-gallery">
 
                     </ul>
                 </div>
-                <div class="_product-images">
+                <div class="_product-images order-lg-1 order-md-1 order-1">
                     <div class="picZoomer" id="zoomGallery">
                         {{-- <img class="my_img" src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|140:140,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|220:220,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|540:540" alt="product"> --}}
                     </div>
