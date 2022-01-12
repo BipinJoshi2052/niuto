@@ -416,7 +416,7 @@ span.pr-2.category_icon_img img {
     color: var(--black);
     border: 0;
     outline: 0;
-    background: none;   
+    background: none;
     width: 0;
     caret-color: #000000;
     line-height: 46px;
@@ -2309,11 +2309,13 @@ section#checkout .text_gray {
 ._p-add-cart .btn {
     margin: 0px 8px;
 }
+
 section#product_detail ._p-qty-and-cart ._p-add-cart .btn {
     margin: 0px 6px;
     padding: 0 18px;
     width: unset;
 }
+
 /*=========Recent-post==========*/
 .title_bx h3.title {
     font-size: 22px;
@@ -3320,7 +3322,7 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     position: relative;
     padding: 0;
 }
-    
+
 .rating-upper {
     color: #0FA549;
     padding: 0;
@@ -3337,21 +3339,25 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     display: flex;
     z-index: 0;
 }
+
 /*================== STAR RATING CSS END ==================*/
 
-.strikeThrough{
-        padding-left: 10px;
-        font-size: 16px;
-        text-decoration: line-through;
+.strikeThrough {
+    padding-left: 10px;
+    font-size: 16px;
+    text-decoration: line-through;
 }
+
 .product-detail-slider .slider_item {
     margin: 5px 0;
 }
+
 .product-detail-slider .slider_item img {
     object-fit: cover;
     object-position: center;
     height: 6rem;
 }
+
 .before,
 .after {
     content: '';
@@ -3365,6 +3371,7 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     display: block;
     font-size: 1.5rem;
 }
+
 section#product_detail button.slick-prev.slick-arrow {
     position: absolute;
     left: 59% !important;
@@ -3372,14 +3379,16 @@ section#product_detail button.slick-prev.slick-arrow {
     top: -5%;
     transform: rotate(90deg);
 }
+
 section#product_detail button.slick-next.slick-arrow {
     position: absolute;
     right: 4rem;
     /* bottom: 0 !IMPORTANT; */
-    
+
     top: 100%;
     left: 20%;
 }
+
 section#product_detail .slick-next:before {
     content: "\f105";
     color: var(--white);
@@ -3399,11 +3408,13 @@ section#product_detail .slick-next:before {
     bottom: 0 !important;
     transform: rotate(90deg);
 }
+
 /*================== STAR RATING CSS END ==================*/
 
-.opacity-1{
-    opacity: 1!important;
+.opacity-1 {
+    opacity: 1 !important;
 }
+
 .category_img img {
     margin: auto;
 }
