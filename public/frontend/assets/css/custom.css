@@ -3391,3 +3391,6 @@ section#product_detail .slick-next:before {
 .opacity-1{
     opacity: 1!important;
 }
+.category_img img {
+    margin: auto;
+}
