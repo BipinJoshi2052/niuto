@@ -1084,10 +1084,8 @@
                                         price = data.data[i].combination[k].price;
                                         afterDiscountPrice = parseInt(price) - parseInt(discount);
                                         if (data.data[i].combination[k].gallary != null && data.data[i]
-                                            .combination[k].gallary != 'null' && data.data[i].combination[k]
-                                            .gallary != '') {
-                                            imageSrc = '/gallary/' + data.data[i].combination[k].gallary
-                                                .gallary_name;
+                                            .combination[k].gallary != 'null' && data.data[i].combination[k].gallary != '') {
+                                            imageSrc = '/gallary/' + data.data[i].combination[k].gallary.gallary_name;
                                             imageAlt = data.data[i].combination[k].gallary.gallary_name;
                                             name = data.data[i].product_detail[0].title + ' ';
                                             for (loop = 0; loop < data.data[i].product_combination.length; loop++) {
