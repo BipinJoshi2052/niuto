@@ -106,19 +106,17 @@
                 },
                 beforeSend: function() {
                     // alert('Helo');
-                    $('#section-loading').css('display', 'block');
+                    $('.section-loading').css('display', 'block');
                 },
                 success: function(data) {
-                    console.log(data);
-                    console.log(typeof(data));
-                    console.log(data.data.length);
+                    
                     if (data.status == 'Success' && data.data.length > 0) {
                         var links = '';
                         var page_meta_label = '';
                         for(meta = 0; meta < data.meta.links.length; meta++){
                             var page_meta_next_page = getURLParameter(data.meta.links[meta].url, 'page');
                             // var page_meta_next_page = getURLParameter(data.meta.links[meta].url, 'page') != null ? getURLParameter(data.meta.links[meta].url, 'page') : '#' ;
-                            // console.log(page_meta_next_page);
+                            
                             var page_meta_url = data.meta.links[meta].url;
                             // var page_meta_url = data.meta.links[meta].url != null ? data.meta.links[meta].url : '#';
                             var page_meta_active = data.meta.links[meta].active == true ? 'active' : '';
@@ -260,7 +258,7 @@
                     }
                 },
                 complete: function(){
-                    $('#section-loading').css('display', 'none');
+                    $('.section-loading').css('display', 'none');
                 },
                 error: function(data) {},
             });
@@ -479,7 +477,7 @@
 
             }
 
-            // console.log(attribute_id, variation_id, attribute, variation)
+            
         })
 
         $('#filter').click(function(e) {
@@ -558,7 +556,7 @@
         $(document).on('change', "#range-slider", function(){
             var mySlider = $("div.price-slider").slider();
             priceRange = mySlider.slider('getValue');
-            console.log(priceRange);
+            
             fetchProduct(1);
         });
         

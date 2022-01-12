@@ -1,5 +1,5 @@
-{{-- {{ dd(get_defined_vars()) }} --}}
 @extends('layouts.master')
+
 @section('content')
 <style>
     .variation_active {
@@ -10,7 +10,32 @@
         border: 1px solid;
     }
 </style>
-@include(isset(getSetting()['product_detail']) ? 'includes.productdetail.product-'.getSetting()['product_detail'] : 'includes.productdetail.product-style1')
+<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 m-auto">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item font-weight-bold">
+                <a href="{{ url('/') }}"
+                  ><span><i class="fa fa-home" aria-hidden="true"></i></span>
+                  HOME</a
+                >
+              </li>
+              <li
+                class="breadcrumb-item font-weight-bold"
+                aria-current="page"
+              >
+                <a href="javascript:void(0)" class="text-dark breadcrumb-title"> </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{{-- @include(isset(getSetting()['product_detail']) ? 'includes.productdetail.product-'.getSetting()['product_detail'] : 'includes.productdetail.product-style1') --}}
 
 @include(isset(getSetting()['product_detail']) ? 'includes.productdetail.product-'.getSetting()['product_detail']."-template" : 'includes.productdetail.product-style1-template')
 
@@ -73,8 +98,6 @@
             },
             beforeSend: function() {},
             success: function(data) {
-                console.log('productdetail');
-                console.log(data);
                 if (data.status == 'Success') {
                     var clone = '';
                     var sideGal = '';
@@ -138,6 +161,8 @@
 
                     if (data.data.detail != null) {
                         $("#pro-title").html(data.data.detail[0].title);
+                        $(".breadcrumb-title").html(data.data.detail[0].title);
+                        
 
                     }
 
@@ -193,7 +218,6 @@
                                 })
                                 
                                 if(variId == combinationVarId){
-                                    console.log(e.price - data.data.product_discount_price);
                                     proComId = e.product_combination_id;
                                     if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
                                         $("#product-card-price").html(data.data.product_price_symbol);
@@ -319,7 +343,7 @@
 
         }
 
-        // // console.log(attribute_id, variation_id, attribute, variation);
+        
         var url = "{{ url('') }}" + '/api/client/products/{{ $product }}?getCategory=1&getDetail=1&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
         $.ajax({
             type: 'get',
@@ -342,8 +366,7 @@
                             ++p;
                         }
                         if (variation_array.length == variation_id.length) {
-                            // console.log(variation_array);
-                            // console.log(variation_id);
+                            
                             for (m = 0; m < variation_id.length; m++) {
                                 if (jQuery.inArray(parseInt(variation_id[m]), variation_array) == -1) {
                                     not_combination = 1;
@@ -389,7 +412,7 @@
 
     function fetchRelatedProduct() {
         var productID = "{{ $product }}";
-        var url = "{{ url('') }}" + '/api/client/products?limit=12&getCategory=1&getDetail=1&productId='+ productID +'&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
+        var url = "{{ url('') }}" + '/api/client/products?limit=4&getCategory=1&getDetail=1&getRelated=1&productId='+ productID +'&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
         var appendTo = 'related';
         $.ajax({
             type: 'get',
@@ -487,7 +510,7 @@
                         // '</div>';
 
 
-                        clone = '<div class="col-md-3 col-sm-6 col-12">'+
+                        clone = '<div class="col-md-3 col-sm-6 col-12 margin-bottom-40">'+
                                     '<div class="item_block bg-white position-relative p-3 mb-md-0 mb-3">'+
                                     '  <div class="img_block">'+
                                     '    <a href="'+ href +'">'+
@@ -561,7 +584,7 @@
                 }
             },
             error: function(data) {
-                // console.log(data);
+                
                 if (data.status == 422) {
                     jQuery.each(data.responseJSON.errors, function(index, item) {
                         $("#" + index).parent().find('.invalid-feedback').css('display',
@@ -690,7 +713,7 @@
                 }
             },
             error: function(data) {
-                // console.log(data);
+                
             },
         });
     }

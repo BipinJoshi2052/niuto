@@ -586,7 +586,7 @@
     @endphp
     <script>
         loginErrorMessage = localStorage.getItem("loginErrorMessage");
-        // console.log(loginErrorMessage);
+        
         if (loginErrorMessage != null) {
             toastr.error(loginErrorMessage);
             localStorage.removeItem("loginErrorMessage");
@@ -598,7 +598,7 @@
     </script>
     <script>
         toastr.options = {
-            "closeButton": false,
+            "closeButton": true,
             "debug": false,
             "newestOnTop": false,
             "progressBar": false,
@@ -675,10 +675,10 @@
             getWishlist();
 
             // if (loggedIn != '1') {
-            //     // console.log('login');
+            //     
             //     $(".auth-login").remove();
             // } else {
-            //     // console.log('no login');
+            //     
             //     $(".without-auth-login").remove();
             //     $(".welcomeUsername").html(customerFname + " " + customerLname);
             // }
@@ -693,7 +693,7 @@
 
             $(".proceed_checkout_modal").on('click', function(e){
                 e.preventDefault();
-                console.log($("#top-cart-product-template").html());
+                
                 if(loggedIn == 1 && $("#top-cart-product-template").html() == '<tr><td class="text-dark">No Items</td></tr>'){
                     window.location.href = "{{ url('/shop') }}";
                     toastr.error("No item in your cart. Please shop first");
@@ -987,7 +987,7 @@
         }
 
         function addToCartFun(product_id, product_combination_id, cartSession, qty, ik, len) {
-            console.log("i =" + ik, "len =" + len);
+            // console.log("i =" + ik, "len =" + len);
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&product_id=' + product_id +
                     '&qty=' + qty + '&product_combination_id=' + product_combination_id;
@@ -1009,7 +1009,7 @@
                 },
                 success: function(data) {
                     $('#loading').css('display', 'none');
-                    console.log(data);
+                    // console.log(data);
                     if (data.status == 'Success') {
                         if (loggedIn != '1') {
                             localStorage.setItem("cartSession", data.data.session);
@@ -1348,6 +1348,12 @@
                     // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
+<<<<<<< HEAD
+=======
+                    $('#loading').css('display', 'none');
+                    
+                   
+>>>>>>> master
                     if (data.status == 'Success') {
                         $("#cartItem-product-show").html('');
                         const templ = document.getElementById("cartItem-Template");
@@ -1580,7 +1586,7 @@
                         name: name
                     },
                     success: function(response) {
-                        // console.log(response)
+                        
                         if (response.length > 0) {
                             $('#searchBox > ul').html('');
                             var results = '';
@@ -1598,7 +1604,7 @@
                                     '</li>' +
                                     '</a>';
                             });
-                            // console.log(results);
+                            
                             $('#searchBox > ul').html(results);
                             $('#searchBox').addClass('show');
                             $('#searchBox > ul').addClass('show');
@@ -1609,7 +1615,7 @@
                         }
                     },
                     error: function(error) {
-                        // console.log(error);
+                        
                     }
                 });
             } else {
@@ -1647,10 +1653,10 @@
 
     <script>
         
-        setTimeout(() => {
+        // setTimeout(() => {
             
-            $(".latest_slider").not('.slick-initialized').slick();
-            }, 1000);
+        //     $(".latest_slider").not('.slick-initialized').slick();
+        //     }, 1000);
     </script>
 </body>
 
