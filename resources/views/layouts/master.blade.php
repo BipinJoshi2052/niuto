@@ -1656,10 +1656,10 @@
 
     <script>
         
-        setTimeout(() => {
+        // setTimeout(() => {
             
-            $(".latest_slider").not('.slick-initialized').slick();
-            }, 1000);
+        //     $(".latest_slider").not('.slick-initialized').slick();
+        //     }, 1000);
     </script>
 </body>
 
