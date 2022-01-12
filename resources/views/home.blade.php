@@ -466,7 +466,7 @@
                                     //     '</div>' +
                                     //     '</div>';
 
-                                    product = '<div class="">' +
+                                    product = '<div class="col-md-4">' +
                                         '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
@@ -658,82 +658,7 @@
                             $("#" + appendTo).append(product);
                         }
 
-                        $(".slick_slider").slick({
-                            dots: false,
-                            arrows: true,
-                            autoplay: true,
-                            autoplaySpeed: 3000,
-                            slidesToShow: 5,
-                            slidesToScroll: 1,
-
-                            responsive: [{
-                                    breakpoint: 1399,
-                                    settings: {
-                                        slidesToShow: 4,
-                                        slidesToScroll: 1,
-                                    },
-                                },
-                                {
-                                    breakpoint: 1080,
-                                    settings: {
-                                        slidesToShow: 4,
-                                        slidesToScroll: 1,
-                                    },
-                                },
-                                {
-                                    breakpoint: 780,
-                                    settings: {
-                                        slidesToShow: 3,
-                                        slidesToScroll: 1,
-                                    },
-                                },
-                                {
-                                    breakpoint: 600,
-                                    settings: {
-                                        slidesToShow: 2,
-                                        slidesToScroll: 1,
-                                    },
-                                },
-                            ],
-                        });
-                        $("#product-list-section").slick({
-                            dots: false,
-                            arrows: true,
-                            autoplay: true,
-                            autoplaySpeed: 3000,
-                            slidesToShow: 5,
-                            slidesToScroll: 1,
-
-                            responsive: [{
-                                    breakpoint: 1399,
-                                    settings: {
-                                        slidesToShow: 4,
-                                        slidesToScroll: 1,
-                                    },
-                                },
-                                {
-                                    breakpoint: 1080,
-                                    settings: {
-                                        slidesToShow: 4,
-                                        slidesToScroll: 1,
-                                    },
-                                },
-                                {
-                                    breakpoint: 780,
-                                    settings: {
-                                        slidesToShow: 3,
-                                        slidesToScroll: 1,
-                                    },
-                                },
-                                {
-                                    breakpoint: 600,
-                                    settings: {
-                                        slidesToShow: 2,
-                                        slidesToScroll: 1,
-                                    },
-                                },
-                            ],
-                        });
+                    
 
 
 
@@ -1425,6 +1350,82 @@
                 autoplaySpeed: 3000,
                 slidesToShow: 5,
                 slidesToScroll: 1,
+                responsive: [{
+                        breakpoint: 1399,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 1080,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 780,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        },
+                    },
+                ],
+            });
+            $(".slick_slider").slick({
+                dots: false,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+
+                responsive: [{
+                        breakpoint: 1399,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 1080,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 780,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        },
+                    },
+                ],
+            });
+            $("#product-list-section").slick({
+                dots: false,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+
                 responsive: [{
                         breakpoint: 1399,
                         settings: {
