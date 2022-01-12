@@ -431,16 +431,35 @@
                         }
 
                         if (data.data[i].product_type == 'simple') {
-                            if (data.data[i].product_discount_price == '' || data.data[i].product_discount_price == null || data.data[i].product_discount_price == 'null') {
-                                price = data.data[i].product_price_symbol;
+                                if ((data.data[i].product_discount_price_symbol == '' || data.data[i]
+                                        .product_discount_price_symbol == null || data.data[i]
+                                        .product_discount_price_symbol ==
+                                        'null') ) {
+
+                                    price = data.data[i].product_discount_price_symbol;
+                                } else if (data.data[i].product_discount_price == 0) {
+                                    price = data.data[i].product_price_symbol;
+                                } else {
+                                    price = data.data[i].product_discount_price_symbol + '<span class="strikeThrough ">' +data.data[i].product_price_symbol +'</span>';
+                                }
                             } else {
-                                price = data.data[i].product_price_symbol + '<span class="strikeThrough ">' +data.data[i].product_discount_price_symbol +'</span>';
+                                if (data.data[i].product_combination != null && data.data[i]
+                                    .product_combination != 'null' && data.data[i].product_combination != '') {
+                                    price = data.data[i].product_combination[0].product_price_symbol;
+                                }
                             }
-                        } else {
-                            if (data.data[i].product_combination != null) {
-                                price = data.data[i].product_combination[0].product_price_symbol;
-                            }
-                        }
+
+                        // if (data.data[i].product_type == 'simple') {
+                        //     if (data.data[i].product_discount_price == '' || data.data[i].product_discount_price == null || data.data[i].product_discount_price == 'null') {
+                        //         price = data.data[i].product_price_symbol;
+                        //     } else {
+                        //         price = data.data[i].product_price_symbol + '<span class="strikeThrough ">' +data.data[i].product_discount_price_symbol +'</span>';
+                        //     }
+                        // } else {
+                        //     if (data.data[i].product_combination != null) {
+                        //         price = data.data[i].product_combination[0].product_price_symbol;
+                        //     }
+                        // }
 
                         // clone = '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
                         //     '<div class="product-grid-item">' +
