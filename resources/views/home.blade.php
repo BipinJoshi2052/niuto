@@ -686,7 +686,7 @@
                             $("#" + appendTo).append(product);
                         }
 
-                        $(".slick_slider").slick({
+                        $(".slick_slider").not('.slick-initialized').slick({
                             dots: false,
                             arrows: true,
                             autoplay: true,
@@ -724,7 +724,7 @@
                                 },
                             ],
                         });
-                        $("#product-list-section").slick({
+                        $("#product-list-section").not('.slick-initialized').slick({
                             dots: false,
                             arrows: true,
                             autoplay: true,
@@ -762,20 +762,13 @@
                                 },
                             ],
                         });
-
-
-
-
-
                         // if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
                         //     getSliderSettings(appendTo);
                     }
                     // appendTo == 'latest-product-section' ? productListInit() : '';
                     // console.log(appendTo);
                     // console.log(appendTo == 'latest-product-section');
-
                 },
-
                 complete: function() {
                     $('.section-loading').css('display', 'none');
                 },
