@@ -466,7 +466,7 @@
                                     //     '</div>' +
                                     //     '</div>';
 
-                                    product = '<div class="col-md-4">' +
+                                    product = '<div class="">' +
                                         '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
@@ -831,7 +831,7 @@
                             //     '</div>' +
                             //     '</div>';
 
-                            blogSection += '<div class="col-md-4 col-12">' +
+                            blogSection += '<div class="col-md-4 col-12 margin-bottom-40">' +
                                 '<div class="destination-block position-relative">' +
                                 '<div class="image-block">' +
                                 '<img src="{{ asset('gallary') }}/' + e.gallary.gallary_name +
@@ -1423,7 +1423,7 @@
                 arrows: true,
                 autoplay: true,
                 autoplaySpeed: 3000,
-                slidesToShow: 5,
+                slidesToShow: 4,
                 slidesToScroll: 1,
 
                 responsive: [{

@@ -57,12 +57,12 @@
                             <form>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="text_gray">Order Status: <span class="order-status"></span></label><br/>
-                                        <label class="text_gray">Order Date: <span class="order-date"></span></label><br/>
+                                        <label class="text_gray"><b>Order Status:</b> <span class="order-status"></span></label><br/>
+                                        <label class="text_gray"><b>Order Date:</b> <span class="order-date"></span></label><br/>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="text_gray">Address: <span class="order-delivery-address"></span> </label><br/>
-                                        <label class="text_gray">Address Detail: <span class="order-delivery-detail"></span> </label><br/>
+                                        <label class="text_gray"><b>Address:</b> <span class="order-delivery-address"></span> </label><br/>
+                                        <label class="text_gray"><b>Address Detail:</b> <span class="order-delivery-detail"></span> </label><br/>
                                     </div>
                                 </div>
                             </form>
@@ -84,7 +84,7 @@
                             <!-- Cart -->
                             <section id="cart-wrapper" class="py-3">
                                 <div class="container">
-                                    <div class="row">
+                                    {{-- <div class="row"> --}}
                                         <div class="shopping-cart">
                                             <div class="shopping-cart-table">
                                                 <div class="table-responsive">
@@ -131,7 +131,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    {{-- </div> --}}
                                 </div>
                             </section>
                             <!-- Cart Ends -->
@@ -286,7 +286,7 @@
 
                             tbodyRow = '<tr>' +
                                 '<td class="cart-image">' +
-                                    '<img src="' + imgSrc + '" class="img-fluid cartItem-image">' +
+                                    '<img src="' + imgSrc + '" class="img-fluid cartItem-image OrderDetailImage">' +
                                 '</td>' +
                                 '<td class="cart-product-name-info">' +
                                     '<h4 class="cart-product-description cartItem-name">' + name + '</h4>' +
