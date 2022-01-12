@@ -1627,6 +1627,8 @@
     </script>
 
     @yield('script')
+    
+    @yield('scripts')
 
     <script>
         

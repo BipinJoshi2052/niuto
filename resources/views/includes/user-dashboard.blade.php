@@ -62,7 +62,7 @@ $unactive = '';
     </ul>
 </div>
 
-@section('script')
+@section('scripts')
     <script>
         $(document).ajaxStop(function() {
             $("#profile_img").attr('src', localStorage.customerImage);
