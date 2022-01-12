@@ -987,7 +987,7 @@
         }
 
         function addToCartFun(product_id, product_combination_id, cartSession, qty, ik, len) {
-            
+            // console.log("i =" + ik, "len =" + len);
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&product_id=' + product_id +
                     '&qty=' + qty + '&product_combination_id=' + product_combination_id;
@@ -1009,7 +1009,7 @@
                 },
                 success: function(data) {
                     $('#loading').css('display', 'none');
-                    
+                    // console.log(data);
                     if (data.status == 'Success') {
                         if (loggedIn != '1') {
                             localStorage.setItem("cartSession", data.data.session);
@@ -1666,10 +1666,10 @@
 
     <script>
         
-        setTimeout(() => {
+        // setTimeout(() => {
             
-            $(".latest_slider").not('.slick-initialized').slick();
-            }, 1000);
+        //     $(".latest_slider").not('.slick-initialized').slick();
+        //     }, 1000);
     </script>
 </body>
 

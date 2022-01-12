@@ -3418,3 +3418,6 @@ section#product_detail .slick-next:before {
 .category_img img {
     margin: auto;
 }
+#featured-product-section .dis_block h5{
+    width: 6.6rem;
+}
