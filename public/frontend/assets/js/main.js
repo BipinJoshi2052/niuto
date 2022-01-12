@@ -1,3 +1,19 @@
+$(document).ready(function() {
+
+  $('.search_icon_new').click(function() {
+    $('.sub_search').css("opacity", "1");
+    $('.search_icon_new').hide();
+  });
+$("body").on('click', function (e) {
+  if ($(e.target).closest(".search_icon_new").length === 0  && $(e.target).closest(".sub_search").length === 0) {
+    $('.search_icon_new').show();
+    $('.sub_search').css("opacity", "0");
+  }
+});
+
+
+
+});
 $(document).ready(function () {
   if($(".js-range-slider").length > 0){
     $(".js-range-slider").ionRangeSlider({

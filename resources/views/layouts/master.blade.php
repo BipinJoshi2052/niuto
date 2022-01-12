@@ -1565,7 +1565,7 @@
                         name: name
                     },
                     success: function(response) {
-                        console.log(response)
+                        // console.log(response)
                         if (response.length > 0) {
                             $('#searchBox > ul').html('');
                             var results = '';
@@ -1583,7 +1583,7 @@
                                     '</li>' +
                                     '</a>';
                             });
-                            console.log(results);
+                            // console.log(results);
                             $('#searchBox > ul').html(results);
                             $('#searchBox').addClass('show');
                             $('#searchBox > ul').addClass('show');
