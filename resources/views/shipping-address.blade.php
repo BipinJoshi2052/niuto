@@ -309,7 +309,7 @@
             beforeSend: function() {},
             success: function(data) {
                 if (data.status == 'Success') {
-                    toastr.success('{{ trans("shipping-add-successfully") }}')
+                    toastr.success('{{ trans("response.shipping-add-successfully") }}')
                     getCustomerAdress();
                 } else if (data.status == 'Error') {
                     toastr.error('{{ trans("response.some_thing_went_wrong") }}');

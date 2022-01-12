@@ -116,6 +116,8 @@
         customerToken = $.trim(localStorage.getItem("customerToken"));
         customerId = $.trim(localStorage.getItem("customerId"));
 
+        customerImage = localStorage.getItem("customerImage");
+
         $(document).ready(function() {
             // $('.datepicker').datepicker({
             //     format: 'yyyy-mm-dd',
@@ -140,6 +142,12 @@
                         $("#profileForm").find("#first_name").val(data.data.customer_first_name);
                         $("#profileForm").find("#last_name").val(data.data.customer_last_name);
                         $("#profileForm").find("#email").val(data.data.customer_email);
+                        $(".user_avatar_in_profile").attr('src', data.data.gallary_name);
+                        $(".user_name_in_profile").html(customerFname + ' ' + customerLname);
+                    } else {
+                        var imgsrc = "{{ asset('images/noimage.png') }}";
+                        $(".user_avatar_in_profile").attr('src', imgsrc);
+                        $(".user_name_in_profile").html('');
                     }
                 },
                 error: function(data) {},
@@ -197,7 +205,7 @@
                 beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success') {
-                        toastr.success('{{ trans('profile-updated-successfully') }}');
+                        toastr.success('{{ trans('response.profile-updated-successfully') }}');
                         localStorage.customerFname = data.data.customer_first_name;
                         localStorage.customerLname = data.data.customer_last_name;
                     } else if (data.status == 'Error') {

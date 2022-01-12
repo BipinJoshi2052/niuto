@@ -10,13 +10,18 @@
             <div class="container">
                 <div class="section_title">
                     <h1 class="mb-5 position-relative font-weight-bold">
-                        Products List 
+                        Featured Products
                     </h1>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+
+
                         @include('includes.loader')
-                        <div class="slick_slider" id="product-list-section">
+                        <div class="slick_slider" id="featured-product-section">
+
+
+
                             {{-- <div class="item_block bg-white position-relative p-3">
                                 <div class="img_block">
                                     <a href="product.product.htmlhtml">
@@ -55,9 +60,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="full_banner">
-                            <img src="https://demo.xpeedstudio.com/marketov2/grocery/wp-content/uploads/sites/12/2018/10/ad-min.png"
-                                alt="image" class="img-fluid" />
+                        <div class="full_banner" id="banner-section">
+                            {{-- <img src="https://demo.xpeedstudio.com/marketov2/grocery/wp-content/uploads/sites/12/2018/10/ad-min.png"
+                                alt="image" class="img-fluid" /> --}}
                         </div>
                     </div>
                 </div>
@@ -96,7 +101,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         @include('includes.loader')
-                        <div class="latest_slider" id="latest-product-section">
+                        <div class="latest_product_slider" id="latest-product-section">
 
                         </div>
                     </div>
@@ -113,7 +118,7 @@
                     </h1>
                 </div>
                 @include('includes.loader')
-                <div class="row" id="featured-product-section">
+                <div class="row" id="product-list-section">
 
                     {{-- <div class="col-md-4">
                         <div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">
@@ -154,9 +159,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="img_big_sale pt-md-5 pt-3">
-                            <img src="https://montechbd.com/shopist/demo/public/images/promo3.png" class="img-fluid"
-                                alt="image" />
+
+                        <div class="img_big_sale pt-md-5 pt-3" id="banner-section2">
+                            {{-- <img src="https://montechbd.com/shopist/demo/public/images/promo3.png" class="img-fluid"
+                                alt="image" /> --}}
                         </div>
                     </div>
                 </div>
@@ -164,7 +170,7 @@
         </section>
         <!--======================== DISCOUNTED END  -->
         <!--============================= TESTIMONIAL  START============================ -->
-        <section id="testimonial" class="section_bg position-relative">
+        {{-- <section id="testimonial" class="section_bg position-relative">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -262,7 +268,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <!--============================= TESTIMONIAL  END ============================ -->
         <!--============================= FACILITIES  START ============================ -->
@@ -321,7 +327,8 @@
         $(document).ready(function() {
             sliderMedia();
             categorySlider();
-            
+            pageMedia();
+            pageMedia2();
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
@@ -329,17 +336,23 @@
             console.log('1st append');
             fetchProduct(url, appendTo);
 
-            var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
+
+            // var url = "{{ url('') }}" +
+            //     '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
+            //     '&sortBy=id&sortType=DESC&currency=' + 1;
+            var url = "{{ url('') }}" +
+                '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' +
                 1 + '&currency=' + 1;
             appendTo = 'featured-product-section';
-            console.log('2nd append');
+            // console.log('2nd append');
             fetchProduct(url, appendTo);
 
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'latest-product-section';
-            console.log('3rd append');
+            // console.log(appendTo);
+            // console.log('3rd append');
             fetchProduct(url, appendTo);
 
             blogNews();
@@ -354,9 +367,13 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
+
                 beforeSend: function() {
-                    $('.section-loading').css('display','block');
+                    $('.section-loading').css('display', 'block');
                 },
+
+                beforeSend: function() {},
+
                 success: function(data) {
                     console.log(data);
                     if (data.status == 'Success') {
@@ -394,9 +411,13 @@
                             }
 
                             if (data.data[i].product_type == 'simple') {
-                                if (data.data[i].product_discount_price == '' || data.data[i]
-                                    .product_discount_price == null || data.data[i].product_discount_price ==
-                                    'null') {
+                                if ((data.data[i].product_discount_price_symbol == '' || data.data[i]
+                                        .product_discount_price_symbol == null || data.data[i]
+                                        .product_discount_price_symbol ==
+                                        'null') && data.data[i].product_discount_price > 0) {
+
+                                    productCardPrice = data.data[i].product_discount_price_symbol;x
+                                } else if (data.data[i].product_discount_price == 0) {
                                     productCardPrice = data.data[i].product_price_symbol;
                                 } else {
                                     productCardPrice = data.data[i].product_discount_price_symbol + ' <b>' +
@@ -411,32 +432,76 @@
                                         data.data[i].product_price_symbol + '</b>';
                                 }
                             }
+                            // console.log(data);
                             switch (appendTo) {
                                 case 'product-list-section':
+<<<<<<< HEAD
                                     product = '<div class="item_block bg-white position-relative p-3">' +
+=======
+
+                                    // product = '<div class="item_block bg-white position-relative p-3">' +
+                                    //     '<div class="img_block">' +
+                                    //     '<a href="' + href + '">' +
+                                    //     '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
+                                    //     '</div>' +
+                                    //     '<div class="content_block pb-3">' +
+                                    //     '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                    //     '</small>' +
+                                    //     '<h4>' + title + '</h4>' +
+                                    //     '<span class="font-weight-bold">' + productCardPrice + '</span>' +
+                                    //     '</div>' +
+                                    //     '<div class="wish_list_block">' +
+                                    //     '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                    //     '</div>' +
+                                    //     '<div class="dis_block">' +
+                                    //     '<h5>New</h5>' +
+                                    //     '</div>' +
+                                    //     '<div class="icon_group">' +
+                                    //     '<div class="cart_blocks">' +
+                                    //     '<a href="">' +
+                                    //     '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
+                                    //     '</div>' +
+                                    //     '<div class="cart_block">' +
+                                    //     '<a href="">' +
+                                    //     '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
+                                    //     '</div>' +
+                                    //     '<div class="cart_blockss">' +
+                                    //     '<a href="">' +
+                                    //     '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
+                                    //     '</div>' +
+                                    //     '</div>' +
+                                    //     '</div>';
+
+                                    product = '<div class="col-md-4">' +
+                                        '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
+>>>>>>> master
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
                                         '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
                                         '</div>' +
                                         '<div class="content_block pb-3">' +
-                                        '<small>' + data.data[i].category[0].category_detail.detail[0].name +
-                                        '</small>' +
+                                        // '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                        // '</small>' +
                                         '<h4>' + title + '</h4>' +
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
-                                        '<h5>New</h5>' +
+                                        '<h5>Sale</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
-                                        '<a href="">' +
+                                        '<a href="' + href + '"">' +
                                         '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_blockss">' +
@@ -444,17 +509,19 @@
                                         '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '</div>' +
+                                        '</div>' +
                                         '</div>';
 
 
-
-
-                                    if (i == 6) {
+                                    if (i == 3) {
                                         return false
                                     };
                                     break;
 
+
                                 case 'latest-product-section':
+                                    // 
+                                    // console.log('hi');
                                     // product =
                                     //     '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
                                     //     '<div class="product-grid-item">' +
@@ -496,18 +563,22 @@
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
                                         '<h5>New</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
-                                        '<a href="">' +
+                                        '<a href="' + href + '">' +
                                         '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_blockss">' +
@@ -549,37 +620,39 @@
                                     //     '</div>' +
                                     //     '</div>';
 
-                                    product = '<div class="col-md-4">' +
-                                        '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
+                                    product = '<div class="item_block bg-white position-relative p-3">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
                                         '<img src="' + imgSrc + '" alt="imageimg" class="img-fluid" /></a>' +
                                         '</div>' +
                                         '<div class="content_block pb-3">' +
-                                        // '<small>' + data.data[i].category[0].category_detail.detail[0].name +
-                                        // '</small>' +
+                                        '<small>' + data.data[i].category[0].category_detail.detail[0].name +
+                                        '</small>' +
                                         '<h4>' + title + '</h4>' +
                                         '<span class="font-weight-bold">' + productCardPrice + '</span>' +
                                         '</div>' +
                                         '<div class="wish_list_block">' +
-                                        '<a href=""><i class="fa fa-heart" aria-hidden="true"></i></a>' +
+                                        '<a href="javascript:void(0)" onclick="addWishlist(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="dis_block">' +
-                                        '<h5>Sale</h5>' +
+                                        '<h5>New</h5>' +
                                         '</div>' +
                                         '<div class="icon_group">' +
                                         '<div class="cart_blocks">' +
-                                        '<a href="">' +
+                                        '<a href="javascript:void(0)" onclick="addToCart(this)" data-id="' +
+                                        data.data[i].product_id + '" data-type="' + data.data[i].product_type +
+                                        '" data-tip="Add to Cart">' +
                                         '<i class="fa fa-cart-plus" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_block">' +
-                                        '<a href="">' +
+                                        '<a href="' + href + '">' +
                                         '<i class="fa fa-eye" aria-hidden="true"></i></a>' +
                                         '</div>' +
                                         '<div class="cart_blockss">' +
                                         '<a href="">' +
                                         '<i class="fa fa-exchange" aria-hidden="true"></i></a>' +
-                                        '</div>' +
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
@@ -591,7 +664,7 @@
 
                             $("#" + appendTo).append(product);
                         }
-                        
+
                         $(".slick_slider").slick({
                             dots: false,
                             arrows: true,
@@ -631,22 +704,25 @@
                             ],
                         });
 
-                        
-                            
+
+
 
                         // if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
                         //     getSliderSettings(appendTo);
                     }
                     // appendTo == 'latest-product-section' ? productListInit() : '';
+                    // console.log(appendTo);
+                    // console.log(appendTo == 'latest-product-section');
 
-                    console.log(appendTo == 'latest-product-section');
                 },
-                complete:function()
-                {
+
+                complete: function() {
                     $('.section-loading').css('display', 'none');
                 },
+
+
                 error: function(data) {
-                    $('#section-loading').css('display', 'none');
+                    $('#event-loading').css('display', 'none');
                 },
             });
         }
@@ -660,9 +736,13 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
+
                 beforeSend: function() {
-                    $('.section-loading').css('display','block');
+                    $('.section-loading').css('display', 'block');
                 },
+
+                beforeSend: function() {},
+
                 success: function(data) {
                     if (data.status == 'Success') {
                         // console.log(data,"final data");
@@ -743,10 +823,12 @@
                         $('#weekly-sale-first-div').html(htmlToRender);
                     }
                 },
-                complete:function()
-                {
+
+                complete: function() {
                     $('.section-loading').css('display', 'none');
                 },
+
+
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -764,9 +846,13 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
+
                 beforeSend: function() {
-                    $('.section-loading').css('display','block');
+                    $('.section-loading').css('display', 'block');
                 },
+
+                beforeSend: function() {},
+
                 success: function(data) {
                     if (data.status == 'Success') {
                         var blogSection = '';
@@ -807,8 +893,6 @@
                                 // '&nbsp; &nbsp;' +
                                 // '<span><i class="fa fa-comment-o" aria-hidden="true"></i> ' + e.detail[0].name + ' </span>' +
 
-
-
                                 '</div>' +
                                 '</div>' +
                                 '</div>';
@@ -842,10 +926,12 @@
                         $('#blog-section').html(blogSection);
                     }
                 },
-                complete:function()
-                {
+
+                complete: function() {
                     $('.section-loading').css('display', 'none');
                 },
+
+
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -880,9 +966,13 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
+
                 beforeSend: function() {
-                    $('.section-loading').css('display','block');
+                    $('.section-loading').css('display', 'block');
                 },
+
+                beforeSend: function() {},
+
                 success: function(data) {
                     if (data.status == 'Success') {
                         var sliderSection = '';
@@ -920,10 +1010,144 @@
                     }
 
                 },
-                complete:function()
-                {
+
+                complete: function() {
                     $('.section-loading').css('display', 'none');
                 },
+
+
+
+                error: function(data) {
+                    $('#event-loading').css('display', 'none');
+                },
+            });
+        }
+
+
+        function pageMedia() {
+            var sliderType = "{{ getSetting()['slider_style'] ? getSetting()['slider_style'] : '' }}";
+            if (sliderType == "style1") {
+                sliderType = 2;
+            }
+            if (sliderType == "style2") {
+                sliderType = 1;
+            }
+            if (sliderType == "style3") {
+                sliderType = 3;
+            }
+            if (sliderType == "style4") {
+                sliderType = 4;
+            }
+            if (sliderType == "style5") {
+                sliderType = 5;
+            }
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/slider?getLanguage=' + 1 +
+                    '&getSliderType=1&getSliderNavigation=1&getSliderGallary=1&limit=5&sortBy=id&sortType=DESC&sliderType=' +
+                    sliderType + '&language_id=' + 1,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+
+                beforeSend: function() {
+                    $('.section-loading').css('display', 'block');
+                },
+
+                beforeSend: function() {},
+
+                success: function(data) {
+                    if (data.status == 'Success') {
+                        var bannerSection = '';
+                        if (data.data[0]) {
+                            bannerSection +=
+
+                                '<img src="{{ asset('gallary') }}/' + data.data[0].gallary +
+                                '" class="d-block w-100 img-fluid" alt="image...">';
+                            $('#banner-section').html(bannerSection);
+                        }
+
+
+
+                    }
+
+                },
+
+                complete: function() {
+                    $('.section-loading').css('display', 'none');
+                },
+
+
+
+                error: function(data) {
+                    $('#event-loading').css('display', 'none');
+                },
+            });
+        }
+
+        function pageMedia2() {
+            var sliderType = "{{ getSetting()['slider_style'] ? getSetting()['slider_style'] : '' }}";
+            if (sliderType == "style1") {
+                sliderType = 2;
+            }
+            if (sliderType == "style2") {
+                sliderType = 1;
+            }
+            if (sliderType == "style3") {
+                sliderType = 3;
+            }
+            if (sliderType == "style4") {
+                sliderType = 4;
+            }
+            if (sliderType == "style5") {
+                sliderType = 5;
+            }
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/slider?getLanguage=' + 1 +
+                    '&getSliderType=1&getSliderNavigation=1&getSliderGallary=1&limit=5&sortBy=id&sortType=DESC&sliderType=' +
+                    sliderType + '&language_id=' + 1,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+
+                beforeSend: function() {
+                    $('.section-loading').css('display', 'block');
+                },
+
+                beforeSend: function() {},
+
+                success: function(data) {
+                    // console.log(data);
+                    if (data.status == 'Success') {
+
+                        var bannerSection = '';
+                        if (data.data[1]) {
+                            bannerSection +=
+
+                                '<img src="{{ asset('gallary') }}/' + data.data[1].gallary +
+                                '" class="d-block w-100 img-fluid" alt="image...">';
+                            $('#banner-section2').html(bannerSection);
+                        }
+
+
+
+                    }
+
+                },
+
+                complete: function() {
+                    $('.section-loading').css('display', 'none');
+                },
+
+
+
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -941,10 +1165,15 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
+
                 beforeSend: function() {
-                    $('.section-loading').css('display','block');
+                    $('.section-loading').css('display', 'block');
                 },
+
+                beforeSend: function() {},
+
                 success: function(data) {
+                    
                     var category = '';
                     if (data.status == 'Success') {
                         $.each(data.data, function(i, e) {
@@ -964,7 +1193,7 @@
                             //     '</div>' +
                             //     '</div>';
 
-                            category += '<a href="">' +
+                            category += '<a href="/shop?category=' + e.id + '">' +
                                 '<div class="category_block bg-white">' +
                                 '<div class="category_img">' +
                                 '<img src="{{ asset('gallary') }}/' + e.gallary +
@@ -1017,10 +1246,11 @@
                         });
                     }
                 },
-                complete:function()
-                {
+
+                complete: function() {
                     $('.section-loading').css('display', 'none');
                 },
+
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -1070,9 +1300,13 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
+
                 beforeSend: function() {
-                    $('.section-loading').css('display','block');
+                    $('.section-loading').css('display', 'block');
                 },
+
+                beforeSend: function() {},
+
                 success: function(data) {
                     if (data.status == 'Success') {
                         if (typeof data.data[0] !== 'undefined') {
@@ -1127,10 +1361,11 @@
                         $('.banner_div').css('display', 'block');
                     }
                 },
-                complete:function()
-                {
+
+                complete: function() {
                     $('.section-loading').css('display', 'none');
                 },
+
                 error: function(data) {
                     $('#event-loading').css('display', 'none');
                 },
@@ -1148,11 +1383,11 @@
         //         slidesToScroll: 1,
         //     });
         // }
-    
+
 
         function productListInit() {
-          
-            $(".latest_slider").slick({
+
+            $(".latest_product_slider").slick({
                 dots: false,
                 arrows: true,
                 autoplay: true,
@@ -1191,5 +1426,9 @@
             });
 
         }
+
+        $(document).ajaxStop(function() {
+            productListInit();
+        });
     </script>
 @endsection
