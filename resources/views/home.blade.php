@@ -466,7 +466,7 @@
                                     //     '</div>' +
                                     //     '</div>';
 
-                                    product = '<div class="col-md-4">' +
+                                    product = '<div class="">' +
                                         '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
