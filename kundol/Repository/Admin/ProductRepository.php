@@ -67,6 +67,10 @@ class ProductRepository implements ProductInterface
             }
 
 
+            if (isset($_GET['getDiscount']) && $_GET['getDiscount'] == '1') {
+                $product = $product->where('discount_price','>',0);
+                // dd($product);
+            }
             if (isset($_GET['isFeatured']) && $_GET['isFeatured'] == '1') {
                 $product = $product->where('is_featured', $_GET['isFeatured']);
                 // dd($product);

@@ -330,7 +330,7 @@
             pageMedia();
             pageMedia2();
             var url = "{{ url('') }}" +
-                '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
+                '/api/client/products?limit=12&getCategory=1&getDiscount=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'product-list-section';
             fetchProduct(url, appendTo);
@@ -405,12 +405,10 @@
                 beforeSend: function() {},
 
                 success: function(data) {
-                    console.log(data);
                     if (data.status == 'Success') {
                         for (i = 0; i < data.data.length; i++) {
 
-                            if (data.data[i].product_gallary != null && data.data[i].product_gallary !=
-                                'null' && data.data[i].product_gallary != '') {
+                            if (data.data[i].product_gallary != null && data.data[i].product_gallary != 'null' && data.data[i].product_gallary != '') {
                                 if (data.data[i].product_gallary.detail != null && data.data[i].product_gallary
                                     .detail != 'null' && data.data[i].product_gallary.detail != '') {
                                     imgSrc = data.data[i].product_gallary.detail[1].gallary_path;
@@ -444,9 +442,9 @@
                                 if ((data.data[i].product_discount_price_symbol == '' || data.data[i]
                                         .product_discount_price_symbol == null || data.data[i]
                                         .product_discount_price_symbol ==
-                                        'null') && data.data[i].product_discount_price > 0) {
+                                        'null') ) {
 
-                                    productCardPrice = data.data[i].product_discount_price_symbol;x
+                                    productCardPrice = data.data[i].product_discount_price_symbol;
                                 } else if (data.data[i].product_discount_price == 0) {
                                     productCardPrice = data.data[i].product_price_symbol;
                                 } else {
@@ -496,7 +494,7 @@
                                     //     '</div>' +
                                     //     '</div>';
 
-                                    product = '<div class="col-md-4">' +
+                                    product = '<div class="">' +
                                         '<div class="item_block bg-white position-relative p-3 mb-lg-0 mb-4">' +
                                         '<div class="img_block">' +
                                         '<a href="' + href + '">' +
@@ -536,7 +534,7 @@
                                         '</div>';
 
 
-                                    if (i == 3) {
+                                    if (i == 6) {
                                         return false
                                     };
                                     break;
@@ -726,6 +724,45 @@
                                 },
                             ],
                         });
+                        $("#product-list-section").slick({
+                            dots: false,
+                            arrows: true,
+                            autoplay: true,
+                            autoplaySpeed: 3000,
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
+
+                            responsive: [{
+                                    breakpoint: 1399,
+                                    settings: {
+                                        slidesToShow: 4,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 1080,
+                                    settings: {
+                                        slidesToShow: 4,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 780,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1,
+                                    },
+                                },
+                            ],
+                        });
+
 
 
 
