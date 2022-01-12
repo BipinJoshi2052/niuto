@@ -1348,12 +1348,6 @@
                     // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-<<<<<<< HEAD
-=======
-                    $('#loading').css('display', 'none');
-                    
-                   
->>>>>>> master
                     if (data.status == 'Success') {
                         $("#cartItem-product-show").html('');
                         const templ = document.getElementById("cartItem-Template");
