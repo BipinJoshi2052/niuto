@@ -1,21 +1,13 @@
-<script>
+{{-- <script>
     loggedIn = localStorage.getItem("customerLoggedin");
     if (loggedIn != '1') {
         localStorage.setItem("loginErrorMessage", "Please Login!!!");
         window.location.href = "{{ url('/login') }}";
     }
-    languageId = $.trim(localStorage.getItem("languageId"));
-    cartSession = $.trim(localStorage.getItem("cartSession"));
-    if (cartSession == null || cartSession == 'null') {
-        cartSession = '';
-    }
-    customerToken = $.trim(localStorage.getItem("customerToken"));
-    customerId = $.trim(localStorage.getItem("customerId"));
-    cartItem(cartSession);
-</script>
+
+</script> --}}
 @extends('layouts.master')
 @section('content')
-
     <section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
         <div class="container">
             <div class="row">
@@ -229,9 +221,12 @@
         $(document).ready(function() {
             if (loggedIn == '1') {
                 cartItem('');
+                
             } else {
                 cartItem(cartSession);
             }
+
+            
         });
 
         $(document).ajaxStop(function() {
@@ -257,7 +252,7 @@
 
 
         function cartItem(cartSession) {
-            console.log('Hello chekout page')
+            
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&language_id=' + languageId +
                     '&currency=' + localStorage.getItem("currency");
@@ -274,7 +269,9 @@
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {},
+                beforeSend: function(data) {
+                    
+                },
                 success: function(data) {
                     if (data.data.length == 0) {
                         window.location.href = "{{ url('/shop') }}";
