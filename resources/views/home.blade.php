@@ -333,7 +333,7 @@
                 '/api/client/products?limit=12&getCategory=1&getDiscount=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'product-list-section';
-            console.log('1st append');
+            
             fetchProduct(url, appendTo);
 
 
@@ -344,15 +344,14 @@
                 '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' +
                 1 + '&currency=' + 1;
             appendTo = 'featured-product-section';
-            // console.log('2nd append');
+            
             fetchProduct(url, appendTo);
 
             var url = "{{ url('') }}" +
                 '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + 1 +
                 '&sortBy=id&sortType=DESC&currency=' + 1;
             appendTo = 'latest-product-section';
-            // console.log(appendTo);
-            // console.log('3rd append');
+            
             fetchProduct(url, appendTo);
 
             blogNews();
@@ -430,7 +429,7 @@
                                         data.data[i].product_price_symbol + '</b>';
                                 }
                             }
-                            // console.log(data);
+                            
                             switch (appendTo) {
                                 case 'product-list-section':
 
@@ -515,7 +514,7 @@
 
                                 case 'latest-product-section':
                                     // 
-                                    // console.log('hi');
+                                    
                                     // product =
                                     //     '<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12  mt-4 mb-3">' +
                                     //     '<div class="product-grid-item">' +
@@ -744,8 +743,7 @@
                         //     getSliderSettings(appendTo);
                     }
                     // appendTo == 'latest-product-section' ? productListInit() : '';
-                    // console.log(appendTo);
-                    // console.log(appendTo == 'latest-product-section');
+                    
 
                 },
 
@@ -778,7 +776,7 @@
 
                 success: function(data) {
                     if (data.status == 'Success') {
-                        // console.log(data,"final data");
+                       
                         var htmlToRender =
                             "<article><div class='badges'><span class='badge badge-success'>Featured</span></div><div class='detail'>";
 
@@ -1157,7 +1155,7 @@
                 beforeSend: function() {},
 
                 success: function(data) {
-                    // console.log(data);
+                    
                     if (data.status == 'Success') {
 
                         var bannerSection = '';

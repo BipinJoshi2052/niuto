@@ -73,8 +73,6 @@
             },
             beforeSend: function() {},
             success: function(data) {
-                console.log('productdetail');
-                console.log(data);
                 if (data.status == 'Success') {
                     var clone = '';
                     var sideGal = '';
@@ -193,7 +191,6 @@
                                 })
                                 
                                 if(variId == combinationVarId){
-                                    console.log(e.price - data.data.product_discount_price);
                                     proComId = e.product_combination_id;
                                     if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
                                         $("#product-card-price").html(data.data.product_price_symbol);
@@ -319,7 +316,7 @@
 
         }
 
-        // // console.log(attribute_id, variation_id, attribute, variation);
+        
         var url = "{{ url('') }}" + '/api/client/products/{{ $product }}?getCategory=1&getDetail=1&language_id=' + languageId + '&currency='+localStorage.getItem("currency");
         $.ajax({
             type: 'get',
@@ -342,8 +339,7 @@
                             ++p;
                         }
                         if (variation_array.length == variation_id.length) {
-                            // console.log(variation_array);
-                            // console.log(variation_id);
+                            
                             for (m = 0; m < variation_id.length; m++) {
                                 if (jQuery.inArray(parseInt(variation_id[m]), variation_array) == -1) {
                                     not_combination = 1;
@@ -561,7 +557,7 @@
                 }
             },
             error: function(data) {
-                // console.log(data);
+                
                 if (data.status == 422) {
                     jQuery.each(data.responseJSON.errors, function(index, item) {
                         $("#" + index).parent().find('.invalid-feedback').css('display',
@@ -690,7 +686,7 @@
                 }
             },
             error: function(data) {
-                // console.log(data);
+                
             },
         });
     }
