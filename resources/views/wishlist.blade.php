@@ -132,7 +132,6 @@
     // });
     
     function wishListShow() {
-        console.log("Hello Wishlist");
         var url = "{{ url('') }}" +
                 '/api/client/wishlist?limit=100&getCategory=1&getDetail=1&language_id=' + languageId +
                 '&sortBy=id&sortType=DESC&topSelling=1&currency='+localStorage.getItem("currency");
@@ -150,7 +149,6 @@
                 if (data.status == 'Success') {
                     $("#wishlist-show").html('');
                     for (i = 0; i < data.data.length; i++) {
-                        console.log(data.data.length); 
                         href = '/product/' + data.data[i].products.product_id + '/' + data.data[i].products.product_slug;
                         if (data.data[i].products.product_gallary != null && data.data[i].products.product_gallary != 'null' && data.data[i].products.product_gallary != '') {
                             if (data.data[i].products.product_gallary.detail != null && data.data[i].products.product_gallary.detail != 'null' && data.data[i].products.product_gallary.detail != '') {
@@ -174,8 +172,12 @@
                             title = data.data[i].products.detail[0].title;
                             desc = data.data[i].products.detail[0].desc;
                         }
-
-                        wishlistProductPrice = data.data[i].products.product_price_symbol;
+                        if(data.data[i].products.product_discount_price == '' || data.data[i].products.product_discount_price == null || data.data[i].products.product_discount_price == 'null'){
+                          wishlistProductPrice = data.data[i].products.product_price_symbol;
+                        } else {
+                          wishlistProductPrice = data.data[i].products.product_discount_price_symbol;
+                        }
+                        // wishlistProductPrice = data.data[i].products.product_discount_price_symbol;
                         if (data.data[i].product_type == 'simple') {
                             console.log('simple');
                             if (data.data[i].product_discount_price == '' || data.data[i].product_discount_price == null || data.data[i].product_discount_price == 'null') {
@@ -184,7 +186,7 @@
                                 wishlistProductPrice = data.data[i].product_discount_price_symbol + '<span>' +data.data[i].product_price_symbol + '</span>';
                             }
                         } else {
-                            
+                            console.log("variantl");
                             if (data.data[i].product_combination != null && data.data[i].product_combination != 'null' && data.data[i].product_combination != '') {
                                 wishlistProductPrice = data.data[i].product_combination[0].product_price_symbol;
                             }
@@ -220,9 +222,11 @@
                                     '  </div>'+
                                     '</th>'+
                                     '<td class="cart_td gray_title cart-product-name-info">'+
+                                    '<a href="'+ href +'">'+
                                     '  <div class="product_des">'+
                                     '    <h3>'+ title +'</h3>'+
                                     '  </div>'+
+                                    '</a>'+
                                     '</td>'+
                                     '<td class="gray_title cart-product-quantity">'+
                                     '  <div class="qty">'+
@@ -243,7 +247,6 @@
                                     '  </a>'+
                                     '</td>'+
                                 '</tr>';
-                        console.log(tbodyRow);
                         $("#wishlist-show").append(tbodyRow);
                     }
 
