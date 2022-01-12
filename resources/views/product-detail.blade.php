@@ -138,7 +138,6 @@
 
                     if (data.data.detail != null) {
                         $("#pro-title").html(data.data.detail[0].title);
-                        $(".pro-desc").html(data.data.detail[0].desc);
 
                     }
 

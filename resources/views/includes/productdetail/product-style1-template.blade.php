@@ -60,13 +60,6 @@
                             </div>
                         </div>
                         <span id="variant"></span>
-                        <div class="_p-features">
-                            <span> Description: </span>
-                            <p class="pro-desc">
-                                {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                                deserunt adipisci facilis. --}}
-                            </p>
-                        </div>
                         {{-- <form action="" method="post" accept-charset="utf-8"> --}}
                         <ul class="spe_ul"></ul>
                         <div class="_p-qty-and-cart">
@@ -81,9 +74,6 @@
                                     tabindex="0">
                                     <i class="fa fa-heart"></i> Add to Wishlist
                                 </button>
-                                {{-- <input type="hidden" name="pid" value="18" />
-                                <input type="hidden" name="price" value="850" />
-                                <input type="hidden" name="url" value="" /> --}}
                             </div>
                             <div id="share"></div>
                         </div>
