@@ -137,6 +137,12 @@
             success: function(data) {
                 if (data.status == 'Success') {
                     // console.log(data);
+                    var rowCount = $('.order-showw tr').length;
+                    if(rowCount == 0)
+                    {
+                      var noOrders = '<span>No Orders</span>';
+                      $("#order-showw").html(noOrders);
+                    }
                     $("#order-show").html('');
                     for (i = 0; i < data.data.length; i++) {
                         order = data.data[i].order_date.split('T');
@@ -179,6 +185,7 @@
                                     }
                                 }
                             }
+                           
                         }
                         tBodyRow = '<tr>'+
                                         '<td class="cart_td gray_title">'+
@@ -202,7 +209,10 @@
                                         '</td>'+
                                     '</tr>';
                         $("#order-showw").append(tBodyRow);
+                        
                     }
+                    var rowCount = $('.order-showw tr').length;
+                  
                 }
             },
             error: function(data) {},
