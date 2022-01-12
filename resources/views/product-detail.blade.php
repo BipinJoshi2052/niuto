@@ -73,12 +73,14 @@
             },
             beforeSend: function() {},
             success: function(data) {
+                console.log('productdetail');
                 console.log(data);
                 if (data.status == 'Success') {
                     var clone = '';
                     var sideGal = '';
                     var thumbGal = '';
                     var img_str = '';
+                    prodGalDetGalName = '';
                     $('#add-to-wishlist').attr('data-id', data.data.product_id);
                     $('#add-to-wishlist').attr('onclick', 'addWishlist(this)');
                     $('#add-to-wishlist').attr('data-type', data.data.product_type);
@@ -136,22 +138,108 @@
 
                     if (data.data.detail != null) {
                         $("#pro-title").html(data.data.detail[0].title);
-                        $(".pro-desc").html(data.data.detail[0].desc);
 
                     }
 
                     if (data.data.product_type == 'simple') {
-                            if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
-                                $("#product-card-price").html(data.data.product_price_symbol);
-                            } else {
-                                $("#product-card-price").html(data.data.product_discount_price_symbol); 
-                                $('#cut-product-card-price').html(data.data.product_price_symbol);
-                            }
+                        if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
+                            $("#product-card-price").html(data.data.product_price_symbol);
                         } else {
-                            if (data.data.product_combination != null) {
-                                $("#product-card-price").html(data.data.product_combination[0].product_price_symbol);
+                            $("#product-card-price").html('Rs. ' + (data.data.product_price - data.data.product_discount_price)); 
+                            $('#cut-product-card-price').html(data.data.product_price_symbol);
+                        }
+                    } else {
+                        if (data.data.product_combination != null) {
+                            $("#product-card-price").html(data.data.product_combination[0].product_price_symbol);
                         }
                     }
+                    if(data.data.product_type == 'variable'){
+                        var variant = '';
+                        if(data.data.attribute && data.data.attribute.length > 0){
+                            $.each(data.data.attribute, function(i, e){
+                                if(e.attributes.detail[0].name){
+                                    variant += '<div class="size-wrapper variant-div">';
+                                    variant += '<div class="size-select mb-3">';
+                                    variant += '<h5 data-id="' + e.attributes.attribute_id + '">' + e.attributes.detail[0].name + '</h5>';
+                                    variant += '<div class="select-size">';
+                                    if(e.variations){
+                                        $.each(e.variations, function(i, e){
+                                            if(e.product_variation.detail[0].name){
+                                                active = i == 0 ? '-active' : '';
+                                                variant += '<div class="size' + active + '" data-id="' + e.product_variation.id + '">' + e.product_variation.detail[0].name + '</div>';
+                                            }
+                                        });
+                                    }
+                                    variant += '</div>';
+                                    variant += '</div>';
+                                    variant += '</div>';
+                                }
+                            })
+                        }
+                        $('#variant').html(variant);
+
+                        variId = '';
+                        proComId = '';
+                        if($('.variant-div')){
+                            $.each($('.variant-div'), function(){
+                                variId += $(this).find('.size-active').data('id');
+                            });
+                        }
+                        if(data.data.product_combination){
+                            $.each(data.data.product_combination, function(i, e){
+                                var combinationVarId = '';
+                                $.each(e.combination, function(i, e){
+                                    combinationVarId += e.variation_id; 
+                                })
+                                
+                                if(variId == combinationVarId){
+                                    console.log(e.price - data.data.product_discount_price);
+                                    proComId = e.product_combination_id;
+                                    if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
+                                        $("#product-card-price").html(data.data.product_price_symbol);
+                                    } else {
+                                        $("#product-card-price").html('Rs. ' + (e.price - data.data.product_discount_price)); 
+                                        $('#cut-product-card-price').html(e.product_price_symbol);
+                                    }
+                                    $('#product_combination_id').val(e.product_combination_id);
+                                    return false;
+                                }
+                            })
+                        }
+
+                        $(document).on('click', '.size', function() {
+                            $(this).removeClass().addClass('size-active');
+                            $(this).siblings().removeClass().addClass('size');
+                            variId = '';
+                            proComId = '';
+                            if($('.variant-div')){
+                                $.each($('.variant-div'), function(){
+                                    variId += $(this).find('.size-active').data('id');
+                                });
+                            }
+                            if(data.data.product_combination){
+                                $.each(data.data.product_combination, function(i, e){
+                                    var combinationVarId = '';
+                                    $.each(e.combination, function(i, e){
+                                        combinationVarId += e.variation_id; 
+                                    })
+                                    
+                                    if(variId == combinationVarId){
+                                        proComId = e.product_combination_id;
+                                        if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
+                                            $("#product-card-price").html(data.data.product_price_symbol);
+                                        } else {
+                                            $("#product-card-price").html('Rs. ' + (e.price - data.data.product_discount_price)); 
+                                            $('#cut-product-card-price').html(e.product_price_symbol);
+                                        }
+                                        $('#product_combination_id').val(e.product_combination_id);
+                                        return false;
+                                    }
+                                })
+                            }
+                        });
+                    }
+
                     if (data.data.reviews !== null) {
                         $(".review-count").html(data.data.reviews.length);
                         rating = '';
@@ -195,6 +283,8 @@
             },
         });
     }
+
+
 
     $(document).on('click', '.variation_list_item', function() {
         var variation_name = $(this).attr('data-variation-name');

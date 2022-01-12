@@ -42,6 +42,7 @@
                                 M.R.P. : <del id="cut-product-card-price"> </del>
                             </span>
                             <span class="price" id="product-card-price"> </span>
+                            <input type="hidden" id="product_combination_id">
                         </div>
                         <div class="_p-add-cart">
                             <div class="_p-qty">
@@ -59,54 +60,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="product_detail_color">
-                            <div class="image-size-wrapper">
-                                <div class="image-select mb-3">
-                                    <h5>Color</h5>
-                                    <div class="select-image-size">
-                                        <div class="imagesize">
-                                            <img src="https://st.depositphotos.com/1017986/2626/i/600/depositphotos_26263587-stock-photo-man-in-blank-t-shirt.jpg"
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="imagesize imagesize-active">
-                                            <img src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|140:140,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|220:220,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|540:540"
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="imagesize">
-                                            <img src="https://www.rushordertees.com/design/ZoomImage.php?src=NTUyMTM2Mw_f&style=RT2000&colorCode=WHT&x=240&y=300&width=880&height=880&scale=1.7&watermark=false&autoInvertDesign=true"
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="imagesize image-size">
-                                            <img src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|140:140,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|220:220,https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/893E44B4248847338CD88E85BD79D361/10186027_r.jpg?fit=inside|540:540"
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="imagesize image-size">
-                                            <img src="https://www.rushordertees.com/design/ZoomImage.php?src=NTUyMTM2Mw_f&style=RT2000&colorCode=WHT&x=240&y=300&width=880&height=880&scale=1.7&watermark=false&autoInvertDesign=true"
-                                                class="img-fluid" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="size-wrapper">
-                            <div class="size-select mb-3">
-                                <h5>Size</h5>
-                                <div class="select-size">
-                                    <div class="size">S</div>
-                                    <div class="size-active">M</div>
-                                    <div class="size">L</div>
-                                    <div class="size">XL</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="_p-features">
-                            <span> Description: </span>
-                            <p class="pro-desc">
-                                {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                                deserunt adipisci facilis. --}}
-                            </p>
-                        </div>
+                        <span id="variant"></span>
                         {{-- <form action="" method="post" accept-charset="utf-8"> --}}
                         <ul class="spe_ul"></ul>
                         <div class="_p-qty-and-cart">
@@ -121,9 +75,6 @@
                                     tabindex="0">
                                     <i class="fa fa-heart"></i> Add to Wishlist
                                 </button>
-                                {{-- <input type="hidden" name="pid" value="18" />
-                                <input type="hidden" name="price" value="850" />
-                                <input type="hidden" name="url" value="" /> --}}
                             </div>
                             <div id="share"></div>
                         </div>
