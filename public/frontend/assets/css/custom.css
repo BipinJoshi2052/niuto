@@ -2309,7 +2309,11 @@ section#checkout .text_gray {
 ._p-add-cart .btn {
     margin: 0px 8px;
 }
-
+section#product_detail ._p-qty-and-cart ._p-add-cart .btn {
+    margin: 0px 6px;
+    padding: 0 18px;
+    width: unset;
+}
 /*=========Recent-post==========*/
 .title_bx h3.title {
     font-size: 22px;
@@ -3330,6 +3334,13 @@ section#checkout .btn_groups-single button.confirmButton:hover {
     padding: 0;
     display: flex;
     z-index: 0;
+}
+/*================== STAR RATING CSS END ==================*/
+
+.strikeThrough{
+        padding-left: 10px;
+        font-size: 16px;
+        text-decoration: line-through;
 }
 .product-detail-slider .slider_item {
     margin: 5px 0;
