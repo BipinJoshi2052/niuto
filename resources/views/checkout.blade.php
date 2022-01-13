@@ -99,7 +99,49 @@
                                 <h4>Shipping Information</h4>
                             </div>
                         </div>
-                        <form>
+                        <!-- table start  -->
+                        <div id="shipping_table_content" class="table-responsive-lg d-none">
+                            <table class="table border_new">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th class="font-weight-bold text-dark">
+                                        </th>
+                                        <th class="font-weight-bold text-dark t-cart">
+                                            {{ trans('lables.shipping-address-first-name') }}</th>
+                                        <th class="font-weight-bold text-dark">
+                                            {{ trans('lables.shipping-address-last-name') }}</th>
+                                        <th class="font-weight-bold text-dark">
+                                            {{ trans('lables.shipping-address-country-state-city') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center" id="shipping-address-listing-show">
+                                    {{-- <tr class="text-center">
+                                        <td class="border_trhee">
+                                            <div class="img-block">
+                                                <img src="https://montechbd.com/shopist/demo/public/uploads/1619866402-h-250-7-front-f.jpg"
+                                                    alt="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column w-100">
+                                                <div class="head w-100">Blue Diamond Almonds</div>
+                                            </div>
+                                        </td>
+                                        <td class="text_gray">$20</td>
+                                        <td class="text_gray">
+                                            <div class="qty">
+                                                <input type="number" class="" name="qty" value="1">
+                                            </div>
+                                        </td>
+                                        <td class="text_gray">$0</td>
+                                        <td class="text_gray">$20</td>
+                                    </tr> --}}
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <!-- table end  -->
+                        <form class="d-none" id="shipping_detail_form">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">First Name</label>
@@ -119,12 +161,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">Country</label>
-                                    <select class="form-control w-100" id="delivery_country" onchange="states1()"></select>
+                                    <select class="form-control w-100" id="delivery_country" onchange="states()"></select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">State</label>
                                     <select class="form-control" id="delivery_state"></select>
                                 </div>
+                                <input type="hidden" class="form-control" id="delivery_state_hidden">
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">Postal Code</label>
                                     <input type="text" class="form-control w-100" placeholder="5468" id="delivery_postcode">
@@ -197,6 +240,38 @@
         </div>
     </section>
     <!--========================== CHECKOUT END  --->
+
+    {{-- Template Start --}}
+    <template id="shipping-address-listing-template">
+        <tr class="shipping-address-listing-id">
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input shipping-address-listing-is-default" name="radiobtn" type="radio">
+                </div>
+            </td>
+            <td>
+                <label class="form-check-label shipping-address-listing-first-name">
+                </label>
+            </td>
+            <td>
+                <label class="form-check-label shipping-address-listing-last-name">
+                </label>
+            </td>
+            <td>
+                <label class="form-check-label shipping-address-listing-country-state-city">
+                </label>
+            </td>
+
+            {{-- <td class="edit-tag">
+                <ul class="d-inline-flex">
+                    <li><a href="javascript:void(0)" class="shipping-address-listing-edit-btn"> <i class="fas fa-pen"></i> Edit</a></li>
+                    <li><a href="javascript:void(0)" class="shipping-address-listing-delete-btn"> <i class="fas fa-trash-alt"></i> Remove</a></li>
+                </ul>
+
+            </td> --}}
+        </tr>
+    </template>
+    {{-- Template End --}}
 
     {{-- <input type="hidden" class="total_by_weight" /> --}}
 
@@ -280,26 +355,37 @@
                         total_weight = 0;
 
                         for (i = 0; i < data.data.length; i++) {
-                            price = 0; discount = 0; afterDiscountPrice = 0; imageSrc = ''; imageAlt = ''; itemName = '';
+                            price = 0;
+                            discount = 0;
+                            afterDiscountPrice = 0;
+                            imageSrc = '';
+                            imageAlt = '';
+                            itemName = '';
                             afterDiscountPrice = data.data[i].discount_price;
                             if (data.data[i].product_type == 'variable') {
                                 for (k = 0; k < data.data[i].combination.length; k++) {
-                                    if (data.data[i].product_combination_id == data.data[i].combination[k].product_combination_id) {
-                                        total_weight += parseInt(data.data[i].product_weight) * parseInt(data.data[i].qty);
-                                        if(afterDiscountPrice > 0){
+                                    if (data.data[i].product_combination_id == data.data[i].combination[k]
+                                        .product_combination_id) {
+                                        total_weight += parseInt(data.data[i].product_weight) * parseInt(data
+                                            .data[i].qty);
+                                        if (afterDiscountPrice > 0) {
                                             price = afterDiscountPrice;
-                                        }else{
+                                        } else {
                                             price = data.data[i].combination[k].price;
                                         }
                                         if (data.data[i].combination[k].gallary != null) {
-                                            imageSrc = '/gallary/' + data.data[i].combination[k].gallary.gallary_name;
+                                            imageSrc = '/gallary/' + data.data[i].combination[k].gallary
+                                                .gallary_name;
                                             imageAlt = data.data[i].combination[k].gallary.gallary_name;
                                             itemName = data.data[i].product_detail[0].title + ' ';
-                                            for (loop = 0; loop < data.data[i].product_combination.length; loop++) {
+                                            for (loop = 0; loop < data.data[i].product_combination
+                                                .length; loop++) {
                                                 if (data.data[i].product_combination[loop].length - 1 == loop) {
-                                                    itemName += data.data[i].product_combination[loop].variation.detail[0].name;
+                                                    itemName += data.data[i].product_combination[loop].variation
+                                                        .detail[0].name;
                                                 } else {
-                                                    itemName += data.data[i].product_combination[loop].variation.detail[0].name + '-';
+                                                    itemName += data.data[i].product_combination[loop].variation
+                                                        .detail[0].name + '-';
                                                 }
                                             }
                                         }
@@ -326,9 +412,9 @@
                                     imageAlt = data.data[i].product_detail[0].title;
                                     itemName = data.data[i].product_detail[0].title;
                                 }
-                                if(afterDiscountPrice > 0){
+                                if (afterDiscountPrice > 0) {
                                     price = afterDiscountPrice;
-                                }else{
+                                } else {
                                     price = data.data[i].price;
                                 }
                             }
@@ -561,9 +647,124 @@
         country = state = '';
         $(document).ready(function() {
             getCustomerAdress();
-            countries();
-            states1();
+            // countries();
+            // states1();
+            getShippingInformation();
         });
+
+
+        function getShippingInformation() {
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/customer_address_book',
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success') {
+                        if (data.data.length > 0) {
+                            $("#shipping_table_content").removeClass('d-none');
+                            $("#shipping_detail_form").addClass('d-none');
+                            $("#shipping-address-listing-show").html('');
+                            const templ = document.getElementById("shipping-address-listing-template");
+                            for (i = 0; i < data.data.length; i++) {
+                                const clone = templ.content.cloneNode(true);
+                                clone.querySelector(".shipping-address-listing-first-name").innerHTML = data
+                                    .data[i]
+                                    .first_name;
+                                clone.querySelector(".shipping-address-listing-last-name").innerHTML = data
+                                    .data[i]
+                                    .last_name;
+                                country = state = '';
+                                if (data.data[i].country_id != 'null' && data.data[i].country_id != null && data
+                                    .data[i].country_id != '') {
+                                    country = data.data[i].country_id.country_name + ', ';
+                                }
+                                if (data.data[i].state_id != 'null' && data.data[i].state_id != null && data
+                                    .data[i]
+                                    .state_id != '') {
+                                    state = data.data[i].state_id.name + ', ';
+                                }
+                                clone.querySelector(".shipping-address-listing-country-state-city").innerHTML =
+                                    country + state + data.data[i].city;
+                                clone.querySelector(".shipping-address-listing-is-default").setAttribute(
+                                    'data-id',
+                                    data.data[i].id);
+                                clone.querySelector(".shipping-address-listing-is-default").setAttribute(
+                                    'onclick',
+                                    'setAddress(this)');
+                                // clone.querySelector(".shipping-address-listing-edit-btn").setAttribute('data-id', data.data[i].id);
+                                // clone.querySelector(".shipping-address-listing-edit-btn").setAttribute('onclick', 'shippingEdit(this)');
+                                // clone.querySelector(".shipping-address-listing-delete-btn").setAttribute('data-id', data.data[i].id);
+                                // clone.querySelector(".shipping-address-listing-delete-btn").setAttribute('onclick', 'shippingDelete(this)');
+                                if (data.data[i].default_address == '1') {
+                                    $("#shippingAddressForm").find("#gender").val(data.data[i].gender);
+                                    $("#shippingAddressForm").find("#dob").val(data.data[i].dob);
+                                    $("#shippingAddressForm").find("#phone").val(data.data[i].phone);
+                                    clone.querySelector(".shipping-address-listing-is-default").setAttribute(
+                                        'checked', true);
+                                }
+                                $("#shipping-address-listing-show").append(clone);
+                            }
+                            $("#shippingAddressForm").find("#method").val('post');
+                        } else {
+                            $("#shipping_table_content").addClass('d-none');
+                            $("#shipping_detail_form").removeClass('d-none');
+                        }
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+
+        function setAddress(input) {
+            id = $(input).attr('data-id');
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" + '/api/client/customer_address_book/' + id,
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success') {
+
+                        $("#delivery_first_name").val(data.data.first_name);
+                        $("#delivery_last_name").val(data.data.last_name);
+                        $("#delivery_postcode").val(data.data.postcode);
+
+                        country = state = '';
+                        if (data.data.country_id != 'null' && data.data.country_id != null && data.data
+                            .country_id != '') {
+                            country = data.data.country_id.country_id;
+                        }
+                        if (data.data.state_id != 'null' && data.data.state_id != null && data.data.state_id !=
+                            '') {
+                            state = data.data.state_id.id;
+                        }
+                        countries1();
+                        $("#delivery_country_hidden").val(country);
+                        $("#delivery_country").val(country);
+
+                        $("#delivery_state_hidden").val(state);
+                        $("#delivery_state").val(state);
+                        $("#delivery_city").val(data.data.city);
+                        $("#delivery_street_address").val(data.data.street_address);
+                        $("#delivery_phone").val(data.data.phone);
+                    }
+                },
+                error: function(data) {},
+            });
+        }
 
         function getCustomerAdress() {
             $.ajax({
@@ -650,9 +851,11 @@
         }
 
         function states() {
-            country_id = $("#billing_country").val();
+            // alert("elo");
+            country_id = $("#delivery_country").val();
+            console.log(country_id);
             if (country_id == '') {
-                $("#billing_state").html('');
+                $("#delivery_state").html('');
                 return;
             }
 
@@ -667,19 +870,24 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
+                    console.log($("#delivery_state_hidden").val);
                     if (data.status == 'Success') {
+                        console.log("I am here");
+                        console.log(data);
                         html = '<option value="">Select</option>';
                         for (i = 0; i < data.data.length; i++) {
                             selected = '';
-                            if ($.trim($("#billing_state_hidden").val()) != '' && $.trim($(
-                                    "#billing_state_hidden").val()) == data.data[i].id) {
+                            console.log($("#delivery_state_hidden").val());
+                            if ($.trim($("#delivery_state_hidden").val()) != '' && $.trim($(
+                                    "#delivery_state_hidden").val()) == data.data[i].id) {
                                 selected = 'selected';
                             }
                             html += '<option value="' + data.data[i].id + '" ' + selected + '>' + data.data[i]
                                 .name + '</option>';
                         }
-                        $("#billing_state").html(html);
-                        $("#billing_state_hidden").val('');
+
+                        $("#delivery_state").html(html);
+                        $("#delivery_state_hidden").val('');
                     } else if (data.status == 'Error') {
                         toastr.error('{{ trans('response.some_thing_went_wrong') }}');
                     }
@@ -1085,7 +1293,8 @@
                     i = 0;
                     interval = setInterval(function() {
                         i = ++i % 4;
-                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
+                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join(
+                            "."));
                     }, 200);
                 },
                 success: function(data) {
