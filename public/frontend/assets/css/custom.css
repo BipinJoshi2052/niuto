@@ -3433,3 +3433,30 @@ section#product_detail .slick-next:before {
 .margin-bottom-40{
     margin-bottom: 40px;
 }
+.modal-body td {
+    width: 205px;
+    text-align: center;
+}
+th .cart_img img {
+    max-height: 100px !IMPORTANT;
+    min-height: 99px !important;
+    transform: scale(1);
+    transition: 0.3s;
+    transform: unset;
+    max-width: 100px;
+    min-width: 100px;
+}
+section#checkout .img-block img {
+    object-fit: fill;
+    object-position: center;
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+.cart_imgss img {
+    max-height: 83px;
+    min-height:83px;
+    max-width: 129px;
+    min-width: 129px;
+}
