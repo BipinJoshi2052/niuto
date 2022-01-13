@@ -173,6 +173,7 @@
                                     <select class="form-control" id="delivery_state"></select>
                                 </div>
                                 <input type="hidden" class="form-control" id="delivery_state_hidden">
+                                <input type="hidden" class="form-control" id="delivery_country_hidden">
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">Postal Code</label>
                                     <input type="text" class="form-control w-100" placeholder="5468" id="delivery_postcode">
@@ -820,7 +821,7 @@
                         success: function(data) {
                             if (data.status == 'Success') {
                                 toastr.success(
-                                    '{{ trans('response.profile-updated-successfully') }}'
+                                    'Shipping address added sucessfully'
                                 );
                                 localStorage.customerFname = data.data.customer_first_name;
                                 localStorage.customerLname = data.data.customer_last_name;
@@ -854,6 +855,11 @@
                             first_name: new_first_name,
                             last_name: new_last_name,
                             phone: new_phone,
+                            country_id: new_country,
+                            state_id: new_state,
+                            street_address: new_street_address,
+                            postcode: new_postcode,
+                            city: new_city,
                             type: 'profile'
                         },
                         headers: {
@@ -866,6 +872,16 @@
                         success: function(data) {
                             if (data.status == 'Success') {
                                 getShippingInformation();
+                                $("#delivery_first_name").val(new_first_name);
+                                $("#delivery_last_name").val(new_last_name);
+                                $("#delivery_street_aadress").val(new_street_address);
+                                $("#delivery_city").val(new_city);
+                                $("#delivery_country").val(new_country);
+                                $("#delivery_state").val(new_state);
+                                $("#delivery_postcode").val(new_postcode);
+                                $("#delivery_phone").val(new_phone);
+                                $("#delivery_state_hidden").val(new_state);
+                                $("#delivery_country").trigger('change');
                                 $("#addNewShippingAddressModal").modal('toggle');
                             } else if (data.status == 'Error') {
                                 toastr.error(
@@ -1003,14 +1019,14 @@
                             '') {
                             state = data.data.state_id.id;
                         }
-                        countries1();
+                        // countries1();
                         $("#delivery_country_hidden").val(country);
                         $("#delivery_country").val(country);
-
+                        $("#delivery_country").trigger('change');
                         $("#delivery_state_hidden").val(state);
                         $("#delivery_state").val(state);
                         $("#delivery_city").val(data.data.city);
-                        $("#delivery_street_address").val(data.data.street_address);
+                        $("#delivery_street_aadress").val(data.data.street_address);
                         $("#delivery_phone").val(data.data.phone);
                     }
                 },
@@ -1045,16 +1061,19 @@
                                 .state_id != '') {
                                 state = data.data[i].state_id.id;
                             }
-                            countries1();
                             $("#delivery_country_hidden").val(country);
                             $("#delivery_state_hidden").val(state);
+                            countries1();
+                            $("#delivery_country").val(country);
+                            
+                            $("#delivery_state").val(state);
                             $("#delivery_city").val(data.data[i].city);
                             $("#delivery_street_aadress").val(data.data[i].street_address);
                             $("#delivery_phone").val(data.data[i].phone);
                         }
-                        if (data.data.length == 0) {
-                            countries1();
-                        }
+                        // if (data.data.length == 0) {
+                        //     countries1();
+                        // }
                         shippingMethodisDefault();
                     }
                 },
@@ -1169,9 +1188,10 @@
                                 $("#delivery_country_hidden").val('');
                             } else if (data.data[i].country_id == country) {
                                 selected = 'selected';
-                            } else if (data.data[i].country_name == 'Nepal') {
-                                selected = 'selected';
-                            }
+                            } 
+                            // else if (data.data[i].country_name == 'Nepal') {
+                            //     selected = 'selected';
+                            // }
                             html += '<option value="' + data.data[i].country_id + '" ' + selected + '>' + data
                                 .data[i].country_name + '</option>';
                         }
