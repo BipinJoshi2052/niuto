@@ -138,8 +138,6 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    console.log('Profile Page');
-                    console.log(data);
                     if (data.status == 'Success') {
                         $("#profileForm").find("#first_name").val(data.data.customer_first_name);
                         $("#profileForm").find("#last_name").val(data.data.customer_last_name);

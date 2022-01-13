@@ -853,7 +853,7 @@
         function states() {
             // alert("elo");
             country_id = $("#delivery_country").val();
-            console.log(country_id);
+            
             if (country_id == '') {
                 $("#delivery_state").html('');
                 return;
@@ -870,14 +870,13 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    console.log($("#delivery_state_hidden").val);
+                    
                     if (data.status == 'Success') {
-                        console.log("I am here");
-                        console.log(data);
+                        
                         html = '<option value="">Select</option>';
                         for (i = 0; i < data.data.length; i++) {
                             selected = '';
-                            console.log($("#delivery_state_hidden").val());
+                            
                             if ($.trim($("#delivery_state_hidden").val()) != '' && $.trim($(
                                     "#delivery_state_hidden").val()) == data.data[i].id) {
                                 selected = 'selected';
