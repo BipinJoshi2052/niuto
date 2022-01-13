@@ -102,7 +102,7 @@ if($requestCategory != null || $requestCategory != ''){
                             <div class="category_title">
                                 <h4 class="pl-4 font-weight-bold">
                                     <span class="pr-3"></span>
-                                    Our Brand
+                                    Our Brand 
                                 </h4>
                             </div>
                             <div class="our_brand pt-3">
@@ -190,4 +190,162 @@ if($requestCategory != null || $requestCategory != ''){
             </div>
         </div>
     </div>
+
+     <!-- Modal -->
+     <div class="modal fade" id="leftsidebarfilter" tabindex="-1" role="dialog" aria-labelledby="leftsidebarfilterlabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <h5 class="modal-title font-weight-bold" id="leftsidebarfilterlabel">Product Filter</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                 <div class="left-side-wrapper px-md-4 px-1 py-md-4 py-2">
+                    <div class="row">
+                       <div class="col-md-12">
+                          <div id="sidebarmodal" class="bg-white border_one category_product">
+                             <nav id="column_left">
+                                <ul class="nav nav-list">
+                                   <li class="main-list p-0">
+                                      <a class="accordion-heading" data-toggle="collapse" data-target="#submenu1" aria-expanded="true">
+                                         <span class="nav-header-primary nav-link dropdown-toggle d-block p-0 category_title">
+                                         <h4 class=" font-weight-bold text-center">Categories </h4>
+                                      </a>
+                                      <ul class="px-3 collapse show" id="submenu1" style="">
+                                        @foreach ($categories as $k => $category)
+                                         <li class="mobile_plush">
+                                            <a href="/shop?category={{ $category->id }}" class="accordion-heading dropdown-toggle collapsed" data-toggle="collapse" data-target="#submenu11" aria-expanded="false">
+                                               <h5>{{ $category->detail[0]->category_name }}</h5>
+                                               <span class="pull-right "><b class="caret"></b></span>
+                                            </a>
+                                            @if (!$category->subcategory->isEmpty())
+                                            <ul class="pl-0 collapse" id="submenu11" style="">
+                                            @foreach ($category->subcategory as $sub => $subcat)
+                                               <li>
+                                                  <a href="/shop?category={{ $subcat->id }}" title="Title">
+                                                     <h6>-{{ $subcat->detail[0]->category_name }} </h6>
+                                                  </a>
+                                               </li>
+                                               @endforeach
+                                            </ul>
+                                            @endif
+                                         </li>
+                                         @endforeach
+                                      </ul>
+                                   </li>
+                                </ul>
+                             </nav>
+                          </div>
+                       </div>
+                       <div class="col-md-12">
+                          <div class="
+                             price_rang_block
+                             border_one
+                             bg-white
+                             category_product
+                             mt-4
+                             ">
+                             <div class="category_title">
+                                <h4 class="pl-4 font-weight-bold">
+                                   <span class="pr-3"></span>
+                                   Our Brand
+                                </h4>
+                             </div>
+                             <div class="our_brand-2 pt-3">
+                                <div class="our_brand_two">
+                                   <img
+                                      src="https://montechbd.com/shopist/demo/public/uploads/1616788177-h-80-nike.png"
+                                      class="img-fluid"
+                                      alt=""
+                                      />
+                                </div>
+                                <div class="our_brand_two">
+                                   <img
+                                      src="https://montechbd.com/shopist/demo/public/uploads/1616788177-h-80-nike.png"
+                                      class="img-fluid"
+                                      alt=""
+                                      />
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-md-12">
+                          <div class="
+                             price_rang_block
+                             border_one
+                             bg-white
+                             category_product
+                             mt-4
+                             ">
+                             <div class="category_title">
+                                <h4 class="pl-4 font-weight-bold">
+                                   <span class="pr-3"></span>
+                                   Price Range
+                                </h4>
+                             </div>
+                            <div class="slider price-slider" id="range-slider">
+                          </div>
+                       </div>
+                       @foreach($data["attribute"] as $key => $attribute)
+                       @php
+                           $attribute_name = $attribute->attribute_detail[0]->name;
+                       @endphp
+                       @if($attribute_name == 'Color' || $attribute_name == "Size")
+                           <input type="hidden" value="{{ $attribute->id }}" name="attribute[]">
+                           @if($attribute_name == "Color" && !$attribute->variation->isEmpty())
+                               <div class="col-md-12">
+                                   <div class="price_rang_block border_one bg-white category_product mt-4">
+                                       <div class="category_title">
+                                           <h4 class="pl-4 font-weight-bold">
+                                               <span class="pr-3"></span>
+                                               Select Colors
+                                           </h4>
+                                       </div>
+                                       <div class="colors_block p-3">
+                                           @foreach($attribute->variation as $atvkey => $variation)
+                                               <label class="color_single">
+                                               <small class="round" style="background-color: {{ $variation->variation_detail[0]->name }}"></small>
+                                               <span class=""> {{ $variation->variation_detail[0]->name }}</span>
+                                               <input type="checkbox" name="variation[]" class="variation-filter" value="{{ $variation->variation_detail[0]->variation_id }}" data-attribute-id="{{ $attribute->id }}" data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
+                                               <span class="checkmark"></span>
+                                               </label>
+                                           @endforeach
+                                       </div>
+                                   </div>
+                               </div> 
+                               @elseif($attribute_name == "Size" && !$attribute->variation->isEmpty())
+                               <div class="col-md-12">
+                                   <div class="price_rang_block border_one bg-white category_product mt-4">
+                                       <div class="category_title">
+                                           <h4 class="pl-4 font-weight-bold">
+                                               <span class="pr-3"></span>
+                                               Select Sizes
+                                           </h4>
+                                       </div>
+                                       <div class="colors_block p-3">
+                                           @foreach($attribute->variation as $atvkey => $variation)
+                                               <label class="color_single"> 
+                                                   <span class="">{{ $variation->variation_detail[0]->name }}</span>
+                                                   <input type="checkbox" name="variation[]" class="variation-filter" value="{{ $variation->variation_detail[0]->variation_id }}" data-attribute-id="{{ $attribute->id }}" data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
+                                                   <span class="checkmark"></span>
+                                               </label>
+                                           @endforeach
+                                       </div>
+                                   </div>
+                               </div>
+                           @endif
+                       @else
+                           @break
+                       @endif
+                   @endforeach
+                    </div>
+                 </div>
+              </div>
+              <!-- <div class="modal-footer">
+                 </div> -->
+           </div>
+        </div>
+     </div>
+     <!-- Mobile Filter Pop Up Ends -->
+
 </section>
