@@ -92,11 +92,16 @@
                         </div>
                         <!-- table end  -->
                     </div>
+
                     <div class="col-xl-12">
                         <div class="my-car-title d-flex mb-3 mt-4">
                             <div class="my-cart-number">2</div>
                             <div class="my-cart-order">
                                 <h4>Shipping Information</h4>
+                                <button type="button" id="shippingAddressButton" class="btn btn-primary d-none float-right"
+                                    data-toggle="modal" data-target="#addNewShippingAddressModal">
+                                    Add New Address
+                                </button>
                             </div>
                         </div>
                         <!-- table start  -->
@@ -141,7 +146,7 @@
                             </table>
                         </div>
                         <!-- table end  -->
-                        <form class="d-none" id="shipping_detail_form">
+                        <form class="" id="shipping_detail_form">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">First Name</label>
@@ -275,8 +280,82 @@
 
     {{-- <input type="hidden" class="total_by_weight" /> --}}
 
+
+
+    {{-- Add new shipping address modal --}}
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="addNewShippingAddressModal" tabindex="-1" role="dialog"
+        aria-labelledby="addNewShippingAddressModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewShippingAddressModalLabel">Add New Shipping Address</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="shipping_detail_form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="" class="text_gray mt-3">First Name</label>
+                                <input type="text" name="new_first_name" class="form-control w-100" id="new_first_name">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text_gray mt-3">Last Name</label>
+                                <input type="text" name="new_last_name" class="form-control w-100" id="new_last_name">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text_gray mt-3">Address</label>
+                                <input type="text" name="new_street_aadress" class="form-control w-100"
+                                    id="new_street_aadress">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text_gray mt-3">City</label>
+                                <input type="text" name="new_city" class="form-control w-100" id="new_city">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text_gray mt-3">Country</label>
+                                <select class="form-control w-100" name="new_country" id="new_country"
+                                    onchange="getStatesInModal()">
+                                    <option value="">Select Country</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text_gray mt-3">State</label>
+                                <select class="form-control" name="new_state" id="new_state">
+                                    <option value="">Select State</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="" class="text_gray mt-3">Postal Code</label>
+                                <input type="text" class="form-control w-100" placeholder="" id="new_postcode"
+                                    name="new_postcode">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text_gray mt-3">Phone Number</label>
+                                <input type="text" class="form-control w-100" placeholder="" id="new_phone"
+                                    name="new_phone">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="SaveNewShippingAddress">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- End add new shipping address modal --}}
+
+
 @endsection
 @section('script')
+    <script src="{{ asset('frontend/assets/js/jquery-validate.min.js') }}"></script>
     <script>
         languageId = $.trim(localStorage.getItem("languageId"));
         cartSession = $.trim(localStorage.getItem("cartSession"));
@@ -644,6 +723,156 @@
 
 
     <script>
+        $(document).ready(function() {
+            $("#addNewShippingAddressModal").on("shown.bs.modal", function(e) {
+                getcountriesInModal();
+            });
+
+
+
+
+            $(document).on('click', "#SaveNewShippingAddress", function() {
+            // $("#SaveNewShippingAddress").on('click', function() {
+                var new_first_name = $("#new_first_name").val(),
+                    new_last_name = $("#new_last_name").val(),
+                    new_phone = $("#new_phone").val(),
+                    new_country = $("#new_country").val(),
+                    new_state = $("#new_state").val(),
+                    new_postcode = $("#new_postcode").val(),
+                    new_street_address = $("#new_street_aadress").val(),
+                    new_city = $("#new_city").val();
+                if (new_first_name == '') {
+                    toastr.error('First name is required');
+                    return false;
+                } else if (new_last_name == '') {
+                    toastr.error('Last name is required');
+                    return false;
+                } else if (new_phone == '') {
+                    toastr.error('Phone is required');
+                    return false;
+                } else if (new_country == '') {
+                    toastr.error('Country is required');
+                    return false;
+                } else if (new_state == '') {
+                    toastr.error('State is required');
+                    return false;
+                } else if (new_postcode == '') {
+                    toastr.error('Postcode is required');
+                    return false;
+                } else if (new_street_address == '') {
+                    toastr.error('Street Address is required');
+                    return false;
+                } else if (new_city == '') {
+                    toastr.error("City is required");
+                    return false;
+                } else {
+                    $.ajax({
+                        type: 'put',
+                        url: "{{ url('') }}" +
+                            '/api/client/profile/' + customerId,
+                        data: {
+                            first_name: new_first_name,
+                            last_name: new_last_name,
+                            type: 'profile'
+                        },
+                        headers: {
+                            'Authorization': 'Bearer ' + customerToken,
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                            clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                        },
+                        beforeSend: function() {},
+                        success: function(data) {
+                            if (data.status == 'Success') {
+                                toastr.success(
+                                    'Shipping Address added successfully'
+                                );
+                                localStorage.customerFname = data.data.customer_first_name;
+                                localStorage.customerLname = data.data.customer_last_name;
+                            } else if (data.status == 'Error') {
+                                toastr.error(
+                                    '{{ trans('response.some_thing_went_wrong') }}');
+                            }
+                        },
+                        error: function(data) {
+                            if (data.status == 422) {
+                                jQuery.each(data.responseJSON.errors, function(index, item) {
+                                    $("#" + index).parent().find('.invalid-feedback')
+                                        .css('display',
+                                            'block');
+                                    $("#" + index).parent().find('.invalid-feedback')
+                                        .html(item);
+                                });
+                            } else {
+                                toastr.error(
+                                    '{{ trans('response.some_thing_went_wrong') }}');
+                            }
+                        },
+                    });
+
+                    var url = '/api/client/customer_address_book';
+                    $.ajax({
+                        type: "post",
+                        url: "{{ url('') }}" + url,
+                        data: {
+                            is_default: '1',
+                            first_name: new_first_name,
+                            last_name: new_last_name,
+                            phone: new_phone,
+                            country_id: new_country,
+                            state_id: new_state,
+                            street_address: new_street_address,
+                            postcode: new_postcode,
+                            city: new_city,
+                            type: 'profile'
+                        },
+                        headers: {
+                            'Authorization': 'Bearer ' + customerToken,
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                            clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                        },
+                        beforeSend: function() {},
+                        success: function(data) {
+                            if (data.status == 'Success') {
+                                getShippingInformation();
+                                $("#delivery_first_name").val(new_first_name);
+                                $("#delivery_last_name").val(new_last_name);
+                                $("#delivery_street_aadress").val(new_street_address);
+                                $("#delivery_city").val(new_city);
+                                $("#delivery_country").val(new_country);
+                                $("#delivery_state").val(new_state);
+                                $("#delivery_postcode").val(new_postcode);
+                                $("#delivery_phone").val(new_phone);
+                                $("#delivery_state_hidden").val(new_state);
+                                $("#addNewShippingAddressModal").modal('toggle');
+                            } else if (data.status == 'Error') {
+                                toastr.error(
+                                '{{ trans('response.some_thing_went_wrong') }}');
+                            }
+                        },
+                        error: function(data) {
+                            if (data.status == 422) {
+                                jQuery.each(data.responseJSON.errors, function(index, item) {
+                                    $("#" + index).parent().find('.invalid-feedback')
+                                        .css('display',
+                                            'block');
+                                    $("#" + index).parent().find('.invalid-feedback')
+                                        .html(item);
+                                });
+                            } else {
+                                toastr.error(
+                                '{{ trans('response.some_thing_went_wrong') }}');
+                            }
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <script>
         country = state = '';
         $(document).ready(function() {
             getCustomerAdress();
@@ -670,9 +899,11 @@
                         if (data.data.length > 0) {
                             $("#shipping_table_content").removeClass('d-none');
                             $("#shipping_detail_form").addClass('d-none');
+                            $("#shippingAddressButton").removeClass('d-none');
                             $("#shipping-address-listing-show").html('');
                             const templ = document.getElementById("shipping-address-listing-template");
                             for (i = 0; i < data.data.length; i++) {
+                                console.log(data.data[i].id);
                                 const clone = templ.content.cloneNode(true);
                                 clone.querySelector(".shipping-address-listing-first-name").innerHTML = data
                                     .data[i]
@@ -710,11 +941,21 @@
                                         'checked', true);
                                 }
                                 $("#shipping-address-listing-show").append(clone);
+
+                                // if(type == 'fromship'){
+                                //     var last_data = data.data[data.data.length - 1].id;
+                                //     console.log('lastdata');
+                                //     console.log(last_data);
+                                //     var this_html = '<input class="form-check-input shipping-address-listing-is-default" name="radiobtn" type="radio" data-id="'+ last_data +'" onclick="setAddress(this)" checked="true">';
+                                //     setAddress(this_html);
+                                    
+                                // }
                             }
                             $("#shippingAddressForm").find("#method").val('post');
                         } else {
                             $("#shipping_table_content").addClass('d-none');
                             $("#shipping_detail_form").removeClass('d-none');
+                            $("#shippingAddressButton").addClass('d-none');
                         }
                     }
                 },
@@ -756,7 +997,9 @@
                         $("#delivery_country").val(country);
 
                         $("#delivery_state_hidden").val(state);
+                        
                         $("#delivery_state").val(state);
+                        
                         $("#delivery_city").val(data.data.city);
                         $("#delivery_street_address").val(data.data.street_address);
                         $("#delivery_phone").val(data.data.phone);
@@ -853,7 +1096,7 @@
         function states() {
             // alert("elo");
             country_id = $("#delivery_country").val();
-            
+
             if (country_id == '') {
                 $("#delivery_state").html('');
                 return;
@@ -870,13 +1113,13 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    
+
                     if (data.status == 'Success') {
-                        
+
                         html = '<option value="">Select</option>';
                         for (i = 0; i < data.data.length; i++) {
                             selected = '';
-                            
+
                             if ($.trim($("#delivery_state_hidden").val()) != '' && $.trim($(
                                     "#delivery_state_hidden").val()) == data.data[i].id) {
                                 selected = 'selected';
@@ -929,6 +1172,67 @@
 
                         }
 
+                    } else if (data.status == 'Error') {
+                        toastr.error('{{ trans('response.some_thing_went_wrong') }}');
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+
+
+
+        function getcountriesInModal() {
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}/api/client/country?getAllData=1",
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success') {
+                        html = '<option value="">Select Country</option>';
+                        for (i = 0; i < data.data.length; i++) {
+                            html += '<option value="' + data.data[i].country_id + '">' + data
+                                .data[i].country_name + '</option>';
+                        }
+                        $("#new_country").html(html);
+
+                    } else if (data.status == 'Error') {
+                        toastr.error('{{ trans('response.some_thing_went_wrong') }}');
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+
+        function getStatesInModal() {
+            var modal_country_id = $("#new_country").val();
+
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}/api/client/state?country_id=" + modal_country_id + '&getAllData=1',
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success') {
+                        htmls = '<option value="">Select State</option>';
+                        for (i = 0; i < data.data.length; i++) {
+                            htmls += '<option value="' + data.data[i].id + '">' + data.data[i]
+                                .name + '</option>';
+                        }
+                        $("#new_state").html(htmls);
                     } else if (data.status == 'Error') {
                         toastr.error('{{ trans('response.some_thing_went_wrong') }}');
                     }
