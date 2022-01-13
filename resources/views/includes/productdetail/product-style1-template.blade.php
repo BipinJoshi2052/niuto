@@ -5,7 +5,7 @@
             <div class="col-lg-6 col-md-12 col-12 _boxzoom d-flex align-items-center justify-content-around">
             {{-- <div class="col-md-6 _boxzoom d-md-block d-flex flex-column-reverse"> --}}
                 <div class="zoom-thumb order-lg-1 order-md-2 order-2">
-                    <ul class="product-detail-slider piclist" id="side-gallery">
+                    <ul class="product-detail-slider d-flex flex-column position-relative" id="side-gallery">
 
                     </ul>
                 </div>

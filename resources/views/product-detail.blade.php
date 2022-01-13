@@ -117,8 +117,8 @@
                         for (var g = 0; g < data.data.product_gallary_detail.length; g++) {
                             
                             prodGalDetGalName = data.data.product_gallary_detail[g].gallary_name;
-                            sideGal += '<li>'+
-                                            '<img src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
+                            sideGal += '<li class="slider_item position-relative">'+
+                                            '<img class="d-block w-100 img-fluid" src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
                                         '</li>';
                             if(g == 0){
                                 dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
@@ -794,5 +794,63 @@
             $(".picZoomer-pic").attr("src", $pic.attr("src"));
         });
     }
+    $(document).ajaxStop(function() {
+        $(".product-detail-slider").slick({
+            autoplay: false,
+            dots: false,
+            vertical: true,
+            verticalSwiping: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: "50%",
+            responsive: [
+                {
+                    breakpoint: 1700,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 1399,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 780,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                        vertical: false,
+                        verticalSwiping: false,
+                        arrows: false,
+                    },
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        vertical: false,
+                        verticalSwiping: false,
+                        arrows: false,
+                    },
+                },
+                {
+                    breakpoint: 496,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        vertical: false,
+                        verticalSwiping: false,
+                        arrows: false,
+                    },
+                },
+            ],
+        });
+        });
 </script>
 @endsection
