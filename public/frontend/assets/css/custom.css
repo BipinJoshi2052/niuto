@@ -3421,6 +3421,15 @@ section#product_detail .slick-next:before {
 #featured-product-section .dis_block h5{
     width: 6.6rem;
 }
+
+
+.OrderDetailImage{
+    /* height: 100 !important; */
+    max-width: 100px;
+    min-width: 100px;
+    object-fit: fill;
+}
+
 .margin-bottom-40{
     margin-bottom: 40px;
 }
