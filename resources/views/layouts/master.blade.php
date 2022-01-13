@@ -1587,15 +1587,14 @@
                             var results = '';
                             $.each(response, function(i, e) {
                                 price = e.price;
-                                discount = e.discount_price;
-                                newPrice = parseInt(price) - parseInt(discount);
+                                newPrice = e.discount_price;
                                 results += '<a href="/product/' + e.id + '/' + e.product_slug +
                                     '" style="text-decoration: none;">' +
                                     '<li class="dropdown-item">' +
                                     '<img class="img-thumbnail" src="{{ asset('/gallary') }}/' +
                                     e.gallary_name +
                                     '" style="width: 70px; height: 60px;"> ' + e.title +
-                                    ' (Rs. ' + newPrice + ')' +
+                                    ' (<del id="cut-product-card-price">Rs. ' + price + '</del> ' + ' Rs. ' + newPrice + ')'
                                     '</li>' +
                                     '</a>';
                             });

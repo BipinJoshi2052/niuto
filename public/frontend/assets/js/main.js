@@ -384,3 +384,34 @@ function increaseCartInput(cart_input){
   var $_input_value = $(cart_input).val();
   $(cart_input).val(parseInt($_input_value) + 1);
 }
+
+// product review rating page js
+$('.rating-select .btn').on('mouseover', function(){
+  $(this).removeClass('btn-light').addClass('btn-success');
+  $(this).prevAll().removeClass('btn-light').addClass('btn-success');
+  $(this).nextAll().removeClass('btn-success').addClass('btn-light');
+});
+
+$('.rating-select').on('mouseleave', function(){
+  active = $(this).parent().find('.selected');
+  if(active.length) {
+      active.removeClass('btn-light').addClass('btn-success');
+      active.prevAll().removeClass('btn-light').addClass('btn-success');
+      active.nextAll().removeClass('btn-success').addClass('btn-light');
+  } else {
+      $(this).find('.btn').removeClass('btn-success').addClass('btn-light');
+  }
+});
+
+$('.rating-select .btn').click(function(){
+  if($(this).hasClass('selected')) {
+      $('.rating-select .selected').removeClass('selected');
+  } else {
+      $('.rating-select .selected').removeClass('selected');
+      $(this).addClass('selected');
+      
+      if($('#prodRating').length>0){
+          $('#prodRating').val( $(this).data('rating_value') );
+      }
+  }
+});
