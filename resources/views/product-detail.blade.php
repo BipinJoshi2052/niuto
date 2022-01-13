@@ -162,15 +162,13 @@
                     if (data.data.detail != null) {
                         $("#pro-title").html(data.data.detail[0].title);
                         $(".breadcrumb-title").html(data.data.detail[0].title);
-                        
-
                     }
 
                     if (data.data.product_type == 'simple') {
                         if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
                             $("#product-card-price").html(data.data.product_price_symbol);
                         } else {
-                            $("#product-card-price").html('Rs. ' + (data.data.product_price - data.data.product_discount_price)); 
+                            $("#product-card-price").html('Rs. ' + (data.data.product_discount_price_symbol)); 
                             $('#cut-product-card-price').html(data.data.product_price_symbol);
                         }
                     } else {
@@ -222,7 +220,7 @@
                                     if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
                                         $("#product-card-price").html(data.data.product_price_symbol);
                                     } else {
-                                        $("#product-card-price").html('Rs. ' + (e.price - data.data.product_discount_price)); 
+                                        $("#product-card-price").html('Rs. ' + (data.data.product_discount_price_symbol)); 
                                         $('#cut-product-card-price').html(e.product_price_symbol);
                                     }
                                     $('#product_combination_id').val(e.product_combination_id);
@@ -253,7 +251,7 @@
                                         if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
                                             $("#product-card-price").html(data.data.product_price_symbol);
                                         } else {
-                                            $("#product-card-price").html('Rs. ' + (e.price - data.data.product_discount_price)); 
+                                            $("#product-card-price").html('Rs. ' + (data.data.product_discount_price_symbol)); 
                                             $('#cut-product-card-price').html(e.product_price_symbol);
                                         }
                                         $('#product_combination_id').val(e.product_combination_id);

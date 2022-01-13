@@ -183,7 +183,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                 font-weight-bold
                 text-left text-lg-center
               "
-                        href="product.html">Category
+                        href="{{ url('shop?category') }}">Category
                     </a>
                     <div class="menu_drop_down">
                         <div class="row">
