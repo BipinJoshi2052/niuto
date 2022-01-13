@@ -652,7 +652,8 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
         }
 
         function addToCartFun(product_id, product_combination_id, cartSession, qty, ik, len) {
-            // console.log("i =" + ik, "len =" + len);
+            console.log("i =" + ik, "len =" + len);
+            console.log(product_id, product_combination_id, cartSession, qty);
             if (loggedIn == '1') {
                 url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&product_id=' + product_id +
                     '&qty=' + qty + '&product_combination_id=' + product_combination_id;
@@ -669,12 +670,10 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                     clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
-                beforeSend: function() {
-                    // $('#loading').css('display', 'block');
-                },
+                beforeSend: function() {},
                 success: function(data) {
-                    $('#loading').css('display', 'none');
-                    // console.log(data);
+                    console.log('addToCartFun');
+                    console.log(data);
                     if (data.status == 'Success') {
                         if (loggedIn != '1') {
                             localStorage.setItem("cartSession", data.data.session);
@@ -731,6 +730,8 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                     // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
+                    console.log('menucart');
+                    console.log(data);
                     if (data.status == 'Success') {
                         total_price = 0;
                         price = 0;
