@@ -146,7 +146,7 @@
                             </table>
                         </div>
                         <!-- table end  -->
-                        <form class="d-none" id="shipping_detail_form">
+                        <form class="" id="shipping_detail_form">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">First Name</label>
@@ -729,45 +729,10 @@
             });
 
 
-            // $("#shipping_detail_form").validate({
-            //     rules: {
-            //         new_first_name: "required",
-            //         new_last_name: "required",
-            //         new_phone: {
-            //             required: true,
-            //             digits: true,
-            //             minlength: 10,
-            //             maxlength: 13
-            //         },
-            //         new_street_aadress: "required",
-            //         new_city: "required",
-            //         new_country: "required",
-            //         new_state: "required",
-            //         new_postcode: "required",
-            //     },
-            //     messages: {
-            //         new_first_name: "The first name is required",
-            //         new_last_name: "The last name is required",
-            //         new_phone: {
-            //             digits: "Phone must contain only numeric value",
-            //             minlength: "Phone must have at least 10 digits",
-            //             maxlength: "The phone length must not be greater than 13",
-            //         },
-            //         new_street_aadress: "The street address is required",
-            //         new_city: "The city is required",
-            //         new_country: "Select Country",
-            //         new_state: "Select State",
-            //         new_postcode: "Postcode is required",
-
-            //     },
-            //     submitHandler: function() {
-            //         $("#shipping_detail_form").submit();
-            //     }
-
-            // });
 
 
-            $("#SaveNewShippingAddress").on('click', function() {
+            $(document).on('click', "#SaveNewShippingAddress", function() {
+            // $("#SaveNewShippingAddress").on('click', function() {
                 var new_first_name = $("#new_first_name").val(),
                     new_last_name = $("#new_last_name").val(),
                     new_phone = $("#new_phone").val(),
@@ -820,7 +785,7 @@
                         success: function(data) {
                             if (data.status == 'Success') {
                                 toastr.success(
-                                    '{{ trans('response.profile-updated-successfully') }}'
+                                    'Shipping Address added successfully'
                                 );
                                 localStorage.customerFname = data.data.customer_first_name;
                                 localStorage.customerLname = data.data.customer_last_name;
@@ -854,6 +819,11 @@
                             first_name: new_first_name,
                             last_name: new_last_name,
                             phone: new_phone,
+                            country_id: new_country,
+                            state_id: new_state,
+                            street_address: new_street_address,
+                            postcode: new_postcode,
+                            city: new_city,
                             type: 'profile'
                         },
                         headers: {
@@ -866,6 +836,15 @@
                         success: function(data) {
                             if (data.status == 'Success') {
                                 getShippingInformation();
+                                $("#delivery_first_name").val(new_first_name);
+                                $("#delivery_last_name").val(new_last_name);
+                                $("#delivery_street_aadress").val(new_street_address);
+                                $("#delivery_city").val(new_city);
+                                $("#delivery_country").val(new_country);
+                                $("#delivery_state").val(new_state);
+                                $("#delivery_postcode").val(new_postcode);
+                                $("#delivery_phone").val(new_phone);
+                                $("#delivery_state_hidden").val(new_state);
                                 $("#addNewShippingAddressModal").modal('toggle');
                             } else if (data.status == 'Error') {
                                 toastr.error(
@@ -924,6 +903,7 @@
                             $("#shipping-address-listing-show").html('');
                             const templ = document.getElementById("shipping-address-listing-template");
                             for (i = 0; i < data.data.length; i++) {
+                                console.log(data.data[i].id);
                                 const clone = templ.content.cloneNode(true);
                                 clone.querySelector(".shipping-address-listing-first-name").innerHTML = data
                                     .data[i]
@@ -961,6 +941,15 @@
                                         'checked', true);
                                 }
                                 $("#shipping-address-listing-show").append(clone);
+
+                                // if(type == 'fromship'){
+                                //     var last_data = data.data[data.data.length - 1].id;
+                                //     console.log('lastdata');
+                                //     console.log(last_data);
+                                //     var this_html = '<input class="form-check-input shipping-address-listing-is-default" name="radiobtn" type="radio" data-id="'+ last_data +'" onclick="setAddress(this)" checked="true">';
+                                //     setAddress(this_html);
+                                    
+                                // }
                             }
                             $("#shippingAddressForm").find("#method").val('post');
                         } else {
@@ -1008,7 +997,9 @@
                         $("#delivery_country").val(country);
 
                         $("#delivery_state_hidden").val(state);
+                        
                         $("#delivery_state").val(state);
+                        
                         $("#delivery_city").val(data.data.city);
                         $("#delivery_street_address").val(data.data.street_address);
                         $("#delivery_phone").val(data.data.phone);
