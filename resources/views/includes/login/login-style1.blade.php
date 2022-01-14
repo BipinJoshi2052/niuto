@@ -39,7 +39,7 @@
                 <div class="social-icon-footer">
                   <ul class="d-flex justify-content-around">
                     <li class="facebook_bg register_button">
-                      <a href="" class="text-white">
+                      <a href="{{url('/api/client/customer_login/facebook')}}" class="text-white">
                           <i class="fa fa-facebook" aria-hidden="true"></i>
                     </a>
                     </li>
@@ -47,7 +47,7 @@
                       <a href="" class="text-white"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                     </li>
                     <li class="google_bg register_button">
-                      <a href="" class="text-white"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                      <a href="{{url('/api/client/customer_login/google')}}" class="text-white"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
                     </li>
                     <li class="linkedin_bg register_button">
                       <a href="" class="text-white"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
