@@ -3460,3 +3460,6 @@ section#checkout .img-block img {
     max-width: 129px;
     min-width: 129px;
 }
+.modal-body td:last-child { 
+    width: 80px;
+}

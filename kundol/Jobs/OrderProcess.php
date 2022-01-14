@@ -71,6 +71,7 @@ class OrderProcess implements ShouldQueue
             }
 
             $stockValidate = $orderService->CheckStock($customer_id);
+            // return $stockValidate;
             // dd($stockValidate);
             if ($stockValidate['status'] == 'Error')
                 return $stockValidate;

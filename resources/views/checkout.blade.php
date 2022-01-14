@@ -299,18 +299,18 @@
                                                 if (data.data[i].product_combination[loop].length - 1 == loop) {
                                                     itemName += data.data[i].product_combination[loop].variation.detail[0].name;
                                                 } else {
-                                                    itemName += data.data[i].product_combination[loop].variation.detail[0].name + '-';
+                                                    itemName += data.data[i].product_combination[loop].variation.detail[0].name;
                                                 }
                                             }
                                         }
                                         k = data.data[i].combination.length;
                                     }
                                 }
-                                if (data.data[i].product_detail != null && $.trim(data.data[i]
-                                        .product_detail) != '') {
-                                    imageAlt = data.data[i].product_detail[0].title;
-                                    itemName = data.data[i].product_detail[0].title;
-                                }
+                                // if (data.data[i].product_detail != null && $.trim(data.data[i]
+                                //         .product_detail) != '') {
+                                //     imageAlt = data.data[i].product_detail[0].title;
+                                //     itemName = data.data[i].product_detail[0].title;
+                                // }
                             } else {
                                 total_weight += parseInt(data.data[i].product_weight) * parseInt(data.data[i]
                                     .qty);
@@ -1081,12 +1081,12 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    $(".createOrder").attr('disabled', true);
-                    i = 0;
-                    interval = setInterval(function() {
-                        i = ++i % 4;
-                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
-                    }, 200);
+                    // $(".createOrder").attr('disabled', true);
+                    // i = 0;
+                    // interval = setInterval(function() {
+                    //     i = ++i % 4;
+                    //     $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
+                    // }, 200);
                 },
                 success: function(data) {
                     // console.log(data);
@@ -1097,7 +1097,7 @@
                             $('#esewaForm input[name=pid]').val(pid);
                             $('#esewaForm').submit();
                         } else if (payment_method == 'cod') {
-                            window.location.href = "{{ url('/thankyou') }}";
+                            // window.location.href = "{{ url('/thankyou') }}";
                         }
                     } else if (data.status == 'Error') {
                         toastr.error('{{ trans('response.some_thing_went_wrong') }}');

@@ -1078,7 +1078,7 @@
                     // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    console.log('menucart');
+                    // console.log('menucart');
                     console.log(data);
                     if (data.status == 'Success') {
                         total_price = 0;
@@ -1094,7 +1094,7 @@
                         var totalRow = '';
                         var clone = '';
                         for (i = 0; i < data.data.length; i++) {
-                            afterDiscountPrice = data.data[i].discount_price;
+                            var afterDiscountPrice = data.data[i].discount_price;
                             if (data.data[i].product_type == 'variable') {
                                 for (k = 0; k < data.data[i].combination.length; k++) {
                                     if (data.data[i].product_combination_id == data.data[i].combination[k]

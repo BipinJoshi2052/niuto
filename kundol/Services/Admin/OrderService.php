@@ -27,18 +27,25 @@ class OrderService
     public function CheckStock($customer_id)
     {
         $sql = $this->getCartItemQty($customer_id);
+        $price = '';
         $totalPrice = 0;
         foreach ($sql as $data) {
-            if (!Gate::allows('isDigital')) {
-                $totalPrice = $totalPrice + (($data->prices - $data->discounts) * $data->qty);
-                $qtyValidation = new AvailableQty;
-                $qtyValidation = $qtyValidation->availableQty($data->product_id, $data->product_combination_id, $data->qty);
+            // if (!Gate::allows('isDigital')) {
+            //     $totalPrice = $totalPrice + (($data->prices - $data->discounts) * $data->qty);
+            //     $qtyValidation = new AvailableQty;
+            //     $qtyValidation = $qtyValidation->availableQty($data->product_id, $data->product_combination_id, $data->qty);
                 // if (!$qtyValidation) {
                 //     return $this->errorResponseArray('Out of Stock!', 422, $data);
                 // }
-            } else {
-                $totalPrice = $totalPrice + ($data->prices - $data->discounts);
-            }
+            // } else {
+                if($data->discounts){
+                    $totalPrice = $data->discounts;
+                }else{
+                    $totalPrice = $totalPrice + $data->prices;                    
+                }
+        // return $sql;
+                // $totalPrice = $totalPrice + ($data->prices - $data->discounts);
+            // }
         }
         return $this->successResponseArray($totalPrice, 'Order Save Successfully!');
     }
@@ -56,14 +63,29 @@ class OrderService
         $products = $productsPoint = [];
         foreach ($sql as $data) {
             $totalPrice = 0;
-            if (!Gate::allows('isDigital'))
-                $totalPrice = $totalPrice + (($data->prices - $data->discounts) * $data->qty);
-            else
-                $totalPrice = $totalPrice + (($data->prices - $data->discounts));
+
+            //if there is discount price then, price of that item is discount price, not subtracted price
+            if($data->discounts > 0){
+                $totalPrice = $totalPrice + (($data->discounts) * $data->qty);
+                $parms['product_price'] = $data->discounts;
+                $parms['product_discount'] = $data->discounts;
+                // $parms['product_discount'] = '22';      
+            }else{         
+                $totalPrice = $totalPrice + (($data->prices) * $data->qty);
+                $parms['product_price'] = $data->prices;
+                $parms['product_discount'] = 0;       
+            }
+
+            // if (!Gate::allows('isDigital'))
+            //     $totalPrice = $totalPrice + (($data->prices - $data->discounts) * $data->qty);
+            // else
+            //     $totalPrice = $totalPrice + (($data->prices - $data->discounts));
 
             $parms['total'] = $totalPrice;
-            $parms['product_price'] = $data->prices;
-            $parms['product_discount'] = $data->discounts;
+
+            // $parms['product_price'] = $data->prices;
+            // $parms['product_discount'] = $data->discounts;
+
             $parms['product_id'] = $data->product_id;
             $parms['product_combination_id'] = $data->product_combination_id;
             $parms['qty'] = $data->qty;
@@ -72,12 +94,12 @@ class OrderService
             OrderDetail::create($parms);
             $products[] = $parms['product_price'] * $parms['qty'];
             $productsPoint[] = Product::productId($parms['product_id'])->value('is_points');
-            if (!Gate::allows('isDigital'))
-                $this->RemoveOrderInventory($parms);
+            // if (!Gate::allows('isDigital'))
+            //     $this->RemoveOrderInventory($parms);
         }
         $points = new PointService;
         $points->orderPoints($products, $productsPoint, $order->customer_id, $order->id);
-        $this->RemoveCartItem($order->customer_id);
+        // $this->RemoveCartItem($order->customer_id);
         return 1;
     }
 
