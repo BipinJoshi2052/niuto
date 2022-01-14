@@ -29,6 +29,7 @@ class CustomerAddressBookController extends Controller
 
     public function store(CustomerAddressBookRequest $request)
     {
+        // dd($request->all());
         $parms = $request->all();
         return $this->customerAddressBookRepository->store($parms);
     }
