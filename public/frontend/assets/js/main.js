@@ -29,16 +29,7 @@ $(document).ready(function () {
     });
   }
 });
-function our_brand(){
-  $(".our_brand").slick({
-    dots: false,
-    arrows: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  });
-}
+
 window.addEventListener("scroll", function () {
   var header = document.querySelector(".header");
   header.classList.toggle("sticky-bar", window.scrollY > 50);
