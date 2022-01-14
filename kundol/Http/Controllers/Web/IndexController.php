@@ -434,6 +434,33 @@ class IndexController extends Controller
         ];
     }
 
+
+    public function getTrackOrderStatus(Request $request, $order_id)
+    {
+        // dd($request->all());
+        // $validator = Validator::make($request->all(), [
+        //     "order_id" => ["required"],
+        // ]);
+        // if($validator->fails()){
+        //     return response()->json(["validation_error" => "Order Id is required"]);
+        // }
+        // if($validator->passes()){
+            $order = Order::where("id", $order_id);
+            if($order->exists()){
+                $order_status = $order->first()->order_status;
+            } else {
+                return response()->json(["error"=>"Order Id doesn't exists"]);
+            }
+            if($request->ajax()){
+                return response()->json(["order_status" => $order_status]);
+            } 
+            $homeService = new HomeService;
+            $data = $homeService->homeIndex();
+            return view("trackorder", compact('order_status', 'data', 'order_id'));
+        // }
+        
+    }
+
     /* public function query()
 {
 $vendorId = \Auth::user()->vendor_id;

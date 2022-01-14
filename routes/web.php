@@ -88,4 +88,7 @@ Route::group(['middleware' => ['general']], function () {
     
     Route::get('esewa-verify', 'Web\PaymentVerification@verify')->name('esewa-verify');
 
+
+    Route::get("track-order/{order_id}", 'Web\IndexController@getTrackOrderStatus')->name("trackOrderStatus");
+
 });

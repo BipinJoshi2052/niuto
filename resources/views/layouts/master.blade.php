@@ -1313,6 +1313,37 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
         function loaderOnLoad() {
             $("#loading").css('display', 'none');
         }
+
+
+
+        function trackMyOrder(frompage){
+            if(frompage == '' || frompage == null){
+                var orderID = $("#headerTrackOrderID").val();
+            } else if(frompage == 'trackpage'){
+                var orderID = $("#trackPageOrderID").val();
+            }
+            
+            if(orderID == '' || orderID == null){
+                toastr.error("Please enter order Id");
+                return false;
+            } 
+            var trackrurl = "{{ route('trackOrderStatus', ':order_id') }}";
+            trackrurl = trackrurl.replace(':order_id', orderID);
+            $.ajax({
+                url: trackrurl,
+                type: "get",
+                data: {'order_id': orderID},
+                success: function(response){
+                    if(response.validation_error){
+                        toastr.error(response.validation_error);
+                    } else if(response.error){
+                        toastr.error(response.error);
+                    } else{
+                        location.href = trackrurl;
+                    }
+                }
+            });
+        }
     </script>
 
     @yield('script')

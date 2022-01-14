@@ -3613,3 +3613,8 @@ section#checkout .img-block img {
     }
     
     /*=================================================== SHIPPING END  */
+
+
+    .trackDropdown .dropdown-menu{
+        min-width: 20rem;
+    }
