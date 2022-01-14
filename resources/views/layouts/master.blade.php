@@ -673,7 +673,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                 beforeSend: function() {},
                 success: function(data) {
                     console.log('addToCartFun');
-                    console.log(data);
+                    // console.log(data);
                     if (data.status == 'Success') {
                         if (loggedIn != '1') {
                             localStorage.setItem("cartSession", data.data.session);
@@ -731,7 +731,7 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                 },
                 success: function(data) {
                     // console.log('menucart');
-                    console.log(data);
+                    // console.log(data);
                     if (data.status == 'Success') {
                         total_price = 0;
                         price = 0;
