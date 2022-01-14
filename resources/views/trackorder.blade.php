@@ -103,7 +103,7 @@
                             @endforeach --}}
                            
                             @foreach ($statuses as $key => $value)
-                                <div class="stepper-item {{ $order_status == $value && (array_search($value, $statuses) <= $key )  ? 'completed' : '' }}">
+                                <div class="stepper-item {{ $order_status == $value && (array_search($value, $statuses) >= $key )  ? 'completed' : '' }}">
                                     <div class="step-counter">{{ $key + 1 }}</div>
                                     <div class="step-name">{{ $value }}</div>
                                 </div>
