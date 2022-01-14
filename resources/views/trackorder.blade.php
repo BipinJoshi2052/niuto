@@ -101,13 +101,19 @@
                                     <div class="step-name">{{ $value }}</div>
                                 </div>
                             @endforeach --}}
-                           
+                            @php
+                                $currenstatus = 'completed';
+                            @endphp
                             @foreach ($statuses as $key => $value)
-                                <div class="stepper-item {{ $order_status == $value && (array_search($value, $statuses) >= $key )  ? 'completed' : '' }}">
+                                <div class="stepper-item {{ $currenstatus }}">
                                     <div class="step-counter">{{ $key + 1 }}</div>
                                     <div class="step-name">{{ $value }}</div>
                                 </div>
-
+                                <?php
+                                    if($value == $order_status){
+                                        $currenstatus = '';
+                                    }
+                                ?>
                             @endforeach
                         </div>
                     </div>
