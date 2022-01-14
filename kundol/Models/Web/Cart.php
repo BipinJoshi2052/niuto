@@ -75,9 +75,9 @@ class Cart extends Model
 
     public function ScopeAvailableQtys($query)
     {
-        if(!Gate::allows('isDigital'))
-            $query->leftJoin('avaliable_qty', 'cart_items.product_id', '=', 'avaliable_qty.product_id')->whereRaw('IF (`avaliable_qty`.`product_type` = "variable", `avaliable_qty`.`product_combination_id` = `cart_items`.`product_combination_id`,true)')->select('avaliable_qty.price as prices','avaliable_qty.discount_price as discounts','cart_items.*');
-        else
+        // if(!Gate::allows('isDigital'))
+        //     $query->leftJoin('avaliable_qty', 'cart_items.product_id', '=', 'avaliable_qty.product_id')->whereRaw('IF (`avaliable_qty`.`product_type` = "variable", `avaliable_qty`.`product_combination_id` = `cart_items`.`product_combination_id`,true)')->select('avaliable_qty.price as prices','avaliable_qty.discount_price as discounts','cart_items.*');
+        // else
             $query->leftJoin('products', 'cart_items.product_id', '=', 'products.id')->select('products.price as prices','products.discount_price as discounts','cart_items.*');
     }
 
