@@ -137,7 +137,7 @@
             success: function(data) {
                 if (data.status == 'Success') {
                     // console.log(data);
-                    var rowCount = $('.order-showw tr').length;
+                    var rowCount = data.data.length;
                     if(rowCount == 0)
                     {
                       var noOrders = '<span>No Orders</span>';
@@ -160,7 +160,7 @@
                             price = data.data[i].order_price;
                         }
 
-                        orderStatus = data.data[i].order_status === 'Pending' ? '<span class="badge badge-success">'+ data.data[i].order_status +'</span>' + ' / <span class="bg-danger text-white px-3 py-2" onClick="cancelStatus(' + data.data[i].order_id + ')">Cancel Order</span>' : '<span class="bg-success text-white px-3 py-2">'+ data.data[i].order_status +'</span>';
+                        orderStatus = data.data[i].order_status === 'Pending' ? '<span class="badge badge-success">'+ data.data[i].order_status +'</span>' + ' / <span class="badge badge-danger text-white" style="cursor:pointer" onClick="cancelStatus(' + data.data[i].order_id + ')">Cancel Order</span>' : '<span class="badge badge-success text-white px-3 py-2">'+ data.data[i].order_status +'</span>';
                         // orderStatus = data.data[i].order_status === 'Pending' ? data.data[i].order_status + ' / <button type="button" class="btn btn-primary mx-1" onClick="cancelStatus(' + data.data[i].order_id + ')"> Cancel Order</button>' : data.data[i].order_status;
                         if (data.data[i].order_detail != null && data.data[i].order_detail != 'null' && data.data[i].order_detail != '') {
                             if (data.data[i].order_detail[0].product != null && data.data[i].order_detail[0].product != 'null' && data.data[i].order_detail[0].product != '') {
