@@ -15,6 +15,26 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                                 aria-hidden="true"></i><span class="font-weight-normal">Wishlist</span>
                                 <sup class="wishlist-count"></sup>
                         </a>
+                        <!-- Track My Order -->
+                        <div class="dropdown trackDropdown">
+                            <button class="pb-0 btn bg-transparent dropdown-toggle pt-0 font-weight-normal"
+                                type="button" data-toggle="dropdown">
+                                </i>Track My Order
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <form action="" class="p-3">
+                                    <div class="form-group">
+                                        <label for="">Enter your order ID</label>
+                                        <input type="text" name="order_id" class="form-control headerTrackOrderID" placeholder="OrderID73473" id="headerTrackOrderID">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" onclick="trackMyOrder('');" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </ul>
+                        </div>
+                        <!-- End track my order -->
                         <!-- user login start  -->
                         <div class="dropdown user_login_mobile">
                             <button class="pb-0 btn bg-transparent dropdown-toggle pt-0 font-weight-normal"
