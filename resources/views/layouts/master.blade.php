@@ -89,8 +89,8 @@
 
 
 
+    {{-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> --}}
     <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
     'includes.footers.footer-style1')
 
@@ -1065,8 +1065,6 @@
                     // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    console.log('menucart');
-                    console.log(data);
                     if (data.status == 'Success') {
                         total_price = 0;
                         price = 0; discount = 0; afterDiscountPrice = 0; imageSrc = ''; imageAlt = ''; name = '';

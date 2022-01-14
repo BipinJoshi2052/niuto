@@ -13,7 +13,7 @@ class Brand extends JsonResource
                 'brand_id' => $this->id,
                 'brand_name' => $this->name,
                 'brand_slug' => $this->brand_slug,
-                'gallary' => $this->gallary->name,
+                'gallary' => $this->gallary ? $this->gallary->name : '',
                 'brand_status' => $this->status,
             ];
         }
