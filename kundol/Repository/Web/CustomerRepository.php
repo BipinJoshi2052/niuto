@@ -18,8 +18,12 @@ class CustomerRepository implements CustomerInterface
     {
         // dd($customer->Gallary);
         // var_dump('Hello');
-        // dd($customer->Gallary);
-        $customer->gallary_name = $customer->Gallary->name;
+        if($customer->Gallary != null){
+            $customer->gallary_name = $customer->Gallary->name;
+        } else {
+            $customer->gallary_name = 'noimage.png';
+        }
+        
         try {
             return $this->successResponse(new CustomerResource($customer), 'Data Get Successfully!');
         } catch (Exception $e) {
