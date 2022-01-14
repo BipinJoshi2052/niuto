@@ -146,7 +146,7 @@
                             </table>
                         </div>
                         <!-- table end  -->
-                        <form class="d-none" id="shipping_detail_form">
+                        <form class="" id="shipping_detail_form">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">First Name</label>
@@ -173,7 +173,6 @@
                                     <select class="form-control" id="delivery_state"></select>
                                 </div>
                                 <input type="hidden" class="form-control" id="delivery_state_hidden">
-                                <input type="hidden" class="form-control" id="delivery_country_hidden">
                                 <div class="col-md-6">
                                     <label for="" class="text_gray mt-3">Postal Code</label>
                                     <input type="text" class="form-control w-100" placeholder="5468" id="delivery_postcode">
@@ -730,45 +729,10 @@
             });
 
 
-            // $("#shipping_detail_form").validate({
-            //     rules: {
-            //         new_first_name: "required",
-            //         new_last_name: "required",
-            //         new_phone: {
-            //             required: true,
-            //             digits: true,
-            //             minlength: 10,
-            //             maxlength: 13
-            //         },
-            //         new_street_aadress: "required",
-            //         new_city: "required",
-            //         new_country: "required",
-            //         new_state: "required",
-            //         new_postcode: "required",
-            //     },
-            //     messages: {
-            //         new_first_name: "The first name is required",
-            //         new_last_name: "The last name is required",
-            //         new_phone: {
-            //             digits: "Phone must contain only numeric value",
-            //             minlength: "Phone must have at least 10 digits",
-            //             maxlength: "The phone length must not be greater than 13",
-            //         },
-            //         new_street_aadress: "The street address is required",
-            //         new_city: "The city is required",
-            //         new_country: "Select Country",
-            //         new_state: "Select State",
-            //         new_postcode: "Postcode is required",
-
-            //     },
-            //     submitHandler: function() {
-            //         $("#shipping_detail_form").submit();
-            //     }
-
-            // });
 
 
-            $("#SaveNewShippingAddress").on('click', function() {
+            $(document).on('click', "#SaveNewShippingAddress", function() {
+            // $("#SaveNewShippingAddress").on('click', function() {
                 var new_first_name = $("#new_first_name").val(),
                     new_last_name = $("#new_last_name").val(),
                     new_phone = $("#new_phone").val(),
@@ -821,7 +785,7 @@
                         success: function(data) {
                             if (data.status == 'Success') {
                                 toastr.success(
-                                    'Shipping address added sucessfully'
+                                    'Shipping Address added successfully'
                                 );
                                 localStorage.customerFname = data.data.customer_first_name;
                                 localStorage.customerLname = data.data.customer_last_name;
@@ -881,7 +845,6 @@
                                 $("#delivery_postcode").val(new_postcode);
                                 $("#delivery_phone").val(new_phone);
                                 $("#delivery_state_hidden").val(new_state);
-                                $("#delivery_country").trigger('change');
                                 $("#addNewShippingAddressModal").modal('toggle');
                             } else if (data.status == 'Error') {
                                 toastr.error(
@@ -940,6 +903,7 @@
                             $("#shipping-address-listing-show").html('');
                             const templ = document.getElementById("shipping-address-listing-template");
                             for (i = 0; i < data.data.length; i++) {
+                                console.log(data.data[i].id);
                                 const clone = templ.content.cloneNode(true);
                                 clone.querySelector(".shipping-address-listing-first-name").innerHTML = data
                                     .data[i]
@@ -977,6 +941,15 @@
                                         'checked', true);
                                 }
                                 $("#shipping-address-listing-show").append(clone);
+
+                                // if(type == 'fromship'){
+                                //     var last_data = data.data[data.data.length - 1].id;
+                                //     console.log('lastdata');
+                                //     console.log(last_data);
+                                //     var this_html = '<input class="form-check-input shipping-address-listing-is-default" name="radiobtn" type="radio" data-id="'+ last_data +'" onclick="setAddress(this)" checked="true">';
+                                //     setAddress(this_html);
+                                    
+                                // }
                             }
                             $("#shippingAddressForm").find("#method").val('post');
                         } else {
@@ -1019,14 +992,16 @@
                             '') {
                             state = data.data.state_id.id;
                         }
-                        // countries1();
+                        countries1();
                         $("#delivery_country_hidden").val(country);
                         $("#delivery_country").val(country);
-                        $("#delivery_country").trigger('change');
+
                         $("#delivery_state_hidden").val(state);
+                        
                         $("#delivery_state").val(state);
+                        
                         $("#delivery_city").val(data.data.city);
-                        $("#delivery_street_aadress").val(data.data.street_address);
+                        $("#delivery_street_address").val(data.data.street_address);
                         $("#delivery_phone").val(data.data.phone);
                     }
                 },
@@ -1061,19 +1036,16 @@
                                 .state_id != '') {
                                 state = data.data[i].state_id.id;
                             }
+                            countries1();
                             $("#delivery_country_hidden").val(country);
                             $("#delivery_state_hidden").val(state);
-                            countries1();
-                            $("#delivery_country").val(country);
-                            
-                            $("#delivery_state").val(state);
                             $("#delivery_city").val(data.data[i].city);
                             $("#delivery_street_aadress").val(data.data[i].street_address);
                             $("#delivery_phone").val(data.data[i].phone);
                         }
-                        // if (data.data.length == 0) {
-                        //     countries1();
-                        // }
+                        if (data.data.length == 0) {
+                            countries1();
+                        }
                         shippingMethodisDefault();
                     }
                 },
@@ -1188,10 +1160,9 @@
                                 $("#delivery_country_hidden").val('');
                             } else if (data.data[i].country_id == country) {
                                 selected = 'selected';
-                            } 
-                            // else if (data.data[i].country_name == 'Nepal') {
-                            //     selected = 'selected';
-                            // }
+                            } else if (data.data[i].country_name == 'Nepal') {
+                                selected = 'selected';
+                            }
                             html += '<option value="' + data.data[i].country_id + '" ' + selected + '>' + data
                                 .data[i].country_name + '</option>';
                         }

@@ -75,6 +75,13 @@
 </head>
 
 <body>
+    <?php
+$categories = App\Models\Admin\Category::where('parent_id', null)
+    ->with('detail')
+    ->with('subcategory')
+    ->take(9)
+    ->get();
+?>
     @include(isset(getSetting()['header_style']) ? 'includes.headers.header-'.getSetting()['header_style'] :
     'includes.headers.header-style1')
     <div id="loading" style="display:none;">
@@ -149,140 +156,14 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle" href="{{ url('/shop') }}" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="nav-indication mr-2"><i class="fa fa-eercast"
-                                        aria-hidden="true"></i></span>Products<span class="ml-1">
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        aria-hidden="true"></i></span>Shop<span class="ml-1">
+                                   
                                 </span>
                             </a>
-                            <div class="dropdown-menu">
-                                <div class="container d-block">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 29</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 27</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 39</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 4</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 2</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 3</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 4</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                    </div>
-                                </div>
-                                <!--  /.container  -->
-                            </div>
+                            
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
@@ -295,267 +176,38 @@
                             <div class="dropdown-menu">
                                 <div class="container d-block">
                                     <div class="row">
+                                        @foreach ($categories as $k => $category)
                                         <div class="col-md-12">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
                                                     <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 29</a>
+                                                        href="/shop?category={{ $category->id }}">{{ $category->detail[0]->category_name }}</a>
                                                 </li>
+                                                @foreach ($category->subcategory as $sub => $subcat)
+                                                @if (!$category->subcategory->isEmpty())
                                                 <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                    <a class="nav-link" href="/shop?category={{ $subcat->id }}">{{ $subcat->detail[0]->category_name }}</a>
                                                 </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
+                                                @endif
+                                                @endforeach
                                             </ul>
                                         </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 27</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 39</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 4</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 2</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 3</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 4</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
+                                       @endforeach
                                     </div>
                                 </div>
                                 <!--  /.container  -->
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle" href="{{ url('/contact-us') }}" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="nav-indication mr-2"><i class="fa fa-eercast"
                                         aria-hidden="true"></i></span>
-                                Recipes<span class="ml-1">
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                Contact Us<span class="ml-1">
+                                    
                                 </span>
                             </a>
-                            <div class="dropdown-menu">
-                                <div class="container d-block">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 29</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 27</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 39</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 4</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 2</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 3</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 4</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                    </div>
-                                </div>
-                                <!--  /.container  -->
-                            </div>
+                         
                         </li>
                     </ul>
                 </div>
@@ -586,7 +238,7 @@
     @endphp
     <script>
         loginErrorMessage = localStorage.getItem("loginErrorMessage");
-        
+
         if (loginErrorMessage != null) {
             toastr.error(loginErrorMessage);
             localStorage.removeItem("loginErrorMessage");
@@ -691,16 +343,16 @@
                 $("#mobile-total-menu-cart-product-count").html(0);
             }
 
-            $(".proceed_checkout_modal").on('click', function(e){
+            $(".proceed_checkout_modal").on('click', function(e) {
                 e.preventDefault();
-                
-                if(loggedIn == 1 && $("#top-cart-product-template").html() == '<tr><td class="text-dark">No Items</td></tr>'){
+
+                if (loggedIn == 1 && $("#top-cart-product-template").html() ==
+                    '<tr><td class="text-dark">No Items</td></tr>') {
                     window.location.href = "{{ url('/shop') }}";
                     toastr.error("No item in your cart. Please shop first");
-                } else if(loggedIn == 1 && $("#top-cart-product-template").html() != '') {
+                } else if (loggedIn == 1 && $("#top-cart-product-template").html() != '') {
                     window.location.href = "{{ url('/checkout') }}";
-                }
-                else {
+                } else {
                     window.location.href = "{{ url('/login') }}";
                     toastr.error('Please Login first');
                 }
@@ -810,8 +462,21 @@
                     // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
+                    // console.log($(input).find('.fa-heart'))
+                    $(input).find('.fa-heart').css({
+                        color: "green",
+                    });
+                    // if($('.fa-heart').css('color') == 'red')
+                    // {
+                    //     $('.wish_list_block.i').css({color:"green"});
+                    // }
+                    // $('.wish_list_block.i').css({color:"green"});
                     $('#loading').css('display', 'none');
                     if (data.status == 'Success') {
+                        // $('.wish_list_block > a[data-id="' + data.data.product_id + '"] > i').css({
+                            
+                        //     color: "green"
+                        // });
                         $(".wishlist-count").html(data.data.length);
                         toastr.success('Product added to wishlist')
                     }
@@ -1067,7 +732,12 @@
                 success: function(data) {
                     if (data.status == 'Success') {
                         total_price = 0;
-                        price = 0; discount = 0; afterDiscountPrice = 0; imageSrc = ''; imageAlt = ''; name = '';
+                        price = 0;
+                        discount = 0;
+                        afterDiscountPrice = 0;
+                        imageSrc = '';
+                        imageAlt = '';
+                        name = '';
                         currrency = '';
                         var qtyAmountRow = '';
                         var deleteRow = '';
@@ -1089,18 +759,22 @@
                                             imageSrc = '/gallary/' + data.data[i].combination[k].gallary.gallary_name;
                                             imageAlt = data.data[i].combination[k].gallary.gallary_name;
                                             name = data.data[i].product_detail[0].title + ' ';
-                                            for (loop = 0; loop < data.data[i].product_combination.length; loop++) {
+                                            for (loop = 0; loop < data.data[i].product_combination
+                                                .length; loop++) {
                                                 if (data.data[i].product_combination[loop].length - 1 == loop) {
-                                                    name += data.data[i].product_combination[loop].variation.detail[0].name;
+                                                    name += data.data[i].product_combination[loop].variation
+                                                        .detail[0].name;
                                                 } else {
-                                                    name += data.data[i].product_combination[loop].variation.detail[0].name + '-';
+                                                    name += data.data[i].product_combination[loop].variation
+                                                        .detail[0].name + '-';
                                                 }
                                             }
                                         }
                                         k = data.data[i].combination.length;
                                     }
                                 }
-                                if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[i]
+                                if (data.data[i].currency != '' && data.data[i].currency != 'null' && data.data[
+                                        i]
                                     .currency != null) {
                                     if (data.data[i].currency.symbol_position == 'left') {
                                         qtyAmountRow = '<td class="border-0 cart-block-top">' +
@@ -1203,7 +877,7 @@
                         } else {
                             $("#mobile-total-menu-cart-product-count").html(data.data.length);
                             $("#top-cart-product-template").html(
-                            '<tr><td class="text-dark">No Items</td></tr>');
+                                '<tr><td class="text-dark">No Items</td></tr>');
                             $("#top-cart-product-total").html('');
                             $("#total-menu-cart-product-count").html(0);
                         }
@@ -1467,7 +1141,7 @@
                                 '"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>' +
                                 '</tr>';
                             $("#cartItem-product-show").append(tbodyRow);
-                            
+
 
                             // const temp1 = document.getElementById("cartItem-grandtotal-template");
                             // const clone1 = temp1.content.cloneNode(true);
@@ -1497,7 +1171,7 @@
                             }
                         }
 
-                        if(data.data.length > 0){
+                        if (data.data.length > 0) {
                             $("#updateAndCouponRow").removeClass('d-none');
                         } else {
                             $("#updateAndCouponRow").addClass('d-none');
@@ -1579,7 +1253,7 @@
                         name: name
                     },
                     success: function(response) {
-                        
+
                         if (response.length > 0) {
                             $('#searchBox > ul').html('');
                             var results = '';
@@ -1596,7 +1270,7 @@
                                     '</li>' +
                                     '</a>';
                             });
-                            
+
                             $('#searchBox > ul').html(results);
                             $('#searchBox').addClass('show');
                             $('#searchBox > ul').addClass('show');
@@ -1607,7 +1281,7 @@
                         }
                     },
                     error: function(error) {
-                        
+
                     }
                 });
             } else {
@@ -1640,13 +1314,12 @@
     </script>
 
     @yield('script')
-    
+
     @yield('scripts')
 
     <script>
-        
         // setTimeout(() => {
-            
+
         //     $(".latest_slider").not('.slick-initialized').slick();
         //     }, 1000);
     </script>
