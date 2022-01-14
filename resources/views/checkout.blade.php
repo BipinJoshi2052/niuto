@@ -97,11 +97,19 @@
                         <div class="my-car-title d-flex mb-3 mt-4">
                             <div class="my-cart-number">2</div>
                             <div class="my-cart-order d-flex justify-content-between w-100 align-items-center">
-                                <h4>Shipping Information</h4>
-                                <button type="button" id="shippingAddressButton" class="btn btn-primary d-none"
-                                    data-toggle="modal" data-target="#addNewShippingAddressModal">
-                                    Add New Address
-                                </button>
+                                <div class="title w-50">
+                                    <h4>Shipping Information</h4>
+                                </div>
+
+                                <div class="w-50 d-flex justify-content-center align-items-center">
+                                    <button type="button" id="shippingAddressButton" class="btn btn-primary d-none"
+                                        data-toggle="modal" data-target="#addNewShippingAddressModal">
+                                        Add New Address
+                                    </button>
+                                    <div class="check ml-3">
+                                        <input type="checkbox" style="width:unset;"> <span>Pickup Point</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- table start  -->
@@ -131,7 +139,7 @@
                         <!--========================== SHIPPING START  --->
 
                         <div class="grid shipping_info_card d-none" id="shipping">
-                            
+
                         </div>
                         <!--========================== SHIPPING end  --->
 
@@ -949,7 +957,8 @@
                             for (i = 0; i < data.data.length; i++) {
                                 const clone = templ.content.cloneNode(true);
                                 const cloneCard = cardTempl.content.cloneNode(true);
-                                cloneCard.querySelector(".shipping-address-listing-first-name-last-name").innerHTML = data.data[i].first_name + ' ' + data.data[i].last_name;
+                                cloneCard.querySelector(".shipping-address-listing-first-name-last-name")
+                                    .innerHTML = data.data[i].first_name + ' ' + data.data[i].last_name;
                                 // clone.querySelector(".shipping-address-listing-first-name").innerHTML = data
                                 //     .data[i]
                                 //     .first_name;
@@ -979,8 +988,10 @@
                                 // clone.querySelector(".shipping-address-listing-is-default").setAttribute(
                                 //     'onclick',
                                 //     'setAddress(this)');
-                                cloneCard.querySelector(".shipping-address-listing-card-is-default").setAttribute('data-id', data.data[i].id);
-                                cloneCard.querySelector(".shipping-address-listing-card-is-default").setAttribute('onclick', 'setAddress(this)');
+                                cloneCard.querySelector(".shipping-address-listing-card-is-default")
+                                    .setAttribute('data-id', data.data[i].id);
+                                cloneCard.querySelector(".shipping-address-listing-card-is-default")
+                                    .setAttribute('onclick', 'setAddress(this)');
                                 // clone.querySelector(".shipping-address-listing-edit-btn").setAttribute('data-id', data.data[i].id);
                                 // clone.querySelector(".shipping-address-listing-edit-btn").setAttribute('onclick', 'shippingEdit(this)');
                                 // clone.querySelector(".shipping-address-listing-delete-btn").setAttribute('data-id', data.data[i].id);
@@ -991,8 +1002,9 @@
                                     $("#shippingAddressForm").find("#phone").val(data.data[i].phone);
                                     // clone.querySelector(".shipping-address-listing-is-default").setAttribute(
                                     //     'checked', true);
-                                    cloneCard.querySelector(".shipping-address-listing-card-is-default").setAttribute(
-                                        'checked', true);
+                                    cloneCard.querySelector(".shipping-address-listing-card-is-default")
+                                        .setAttribute(
+                                            'checked', true);
                                 }
                                 // $("#shipping-address-listing-show").append(clone);
                                 $(".shipping_info_card").append(cloneCard);
@@ -1645,7 +1657,8 @@
                     i = 0;
                     interval = setInterval(function() {
                         i = ++i % 4;
-                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
+                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join(
+                            "."));
                     }, 200);
                 },
                 success: function(data) {
