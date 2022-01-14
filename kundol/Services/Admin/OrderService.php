@@ -14,6 +14,7 @@ use App\Models\Web\CouponOrder;
 use App\Models\Admin\CouponSetting;
 use App\Models\Admin\DefaultAccount;
 use App\Models\Admin\PaymentMethodSetting;
+use App\Models\Admin\ProductCombination;
 use App\Models\Admin\Product;
 use App\Models\Admin\Transaction;
 use App\Models\Admin\TransactionDetail;
@@ -70,9 +71,16 @@ class OrderService
                 $parms['product_price'] = $data->discounts;
                 $parms['product_discount'] = $data->discounts;
                 // $parms['product_discount'] = '22';      
-            }else{         
-                $totalPrice = $totalPrice + (($data->prices) * $data->qty);
-                $parms['product_price'] = $data->prices;
+            }else{  
+                $productPrice = 0;
+                if($data->product_combination_id != ''){
+                    $combination = ProductCombination::where('id', $data->product_combination_id)->first('price');
+                    $productPrice = $combination['price'];
+                }else{
+                    $combinationPrice = $data->prices;
+                }
+                $totalPrice = $totalPrice + (($productPrice) * $data->qty);
+                $parms['product_price'] = $productPrice;
                 $parms['product_discount'] = 0;       
             }
 
@@ -88,6 +96,7 @@ class OrderService
 
             $parms['product_id'] = $data->product_id;
             $parms['product_combination_id'] = $data->product_combination_id;
+
             $parms['qty'] = $data->qty;
             $parms['product_tax'] = 0;
             $parms['order_id'] = $order->id;
@@ -99,7 +108,7 @@ class OrderService
         }
         $points = new PointService;
         $points->orderPoints($products, $productsPoint, $order->customer_id, $order->id);
-        // $this->RemoveCartItem($order->customer_id);
+        $this->RemoveCartItem($order->customer_id);
         return 1;
     }
 

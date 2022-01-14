@@ -96,9 +96,9 @@
                     <div class="col-xl-12">
                         <div class="my-car-title d-flex mb-3 mt-4">
                             <div class="my-cart-number">2</div>
-                            <div class="my-cart-order">
+                            <div class="my-cart-order d-flex justify-content-between w-100 align-items-center">
                                 <h4>Shipping Information</h4>
-                                <button type="button" id="shippingAddressButton" class="btn btn-primary d-none float-right"
+                                <button type="button" id="shippingAddressButton" class="btn btn-primary d-none"
                                     data-toggle="modal" data-target="#addNewShippingAddressModal">
                                     Add New Address
                                 </button>
@@ -146,6 +146,65 @@
                             </table>
                         </div>
                         <!-- table end  -->
+
+
+                        <!--========================== SHIPPING START  --->
+
+                        <div class="grid" id="shipping">
+                            <label class="card">
+                                <input name="plan" class="radio" type="radio" checked />
+
+                                <span class="plan-details">
+                                    <span class="plan-type">Muniraj Rajbanshi</span>
+                                    {{-- <span class="plan-cost">$0<span class="slash">/</span><abbr
+                                            class="plan-cycle" title="month">mo</abbr></span> --}}
+                                    <b>Country: </b><span>Nepal</span>
+                                    <b>State: </b><span>Bagmati</span>
+                                    <b>City: </b><span>Biratnagar</span>
+                                </span>
+                            </label>
+                            <label class="card">
+                                <input name="plan" class="radio" type="radio" />
+                                <span class="hidden-visually">Pro - $50 per month, 5 team members, 500 GB per month, 5
+                                    concurrent builds</span>
+                                <span class="plan-details" aria-hidden="true">
+                                    <span class="plan-type">Pro</span>
+                                    <span class="plan-cost">$50<span class="slash">/</span><span
+                                            class="plan-cycle">mo</span></span>
+                                    <span>5 team members</span>
+                                    <span>500 GB/mo</span>
+                                    <span>5 concurrent builds</span>
+                                </span>
+                            </label>
+                            <label class="card">
+                                <input name="plan" class="radio" type="radio" />
+                                <span class="hidden-visually">Business - $200 per month, 5+ team members, 1000 GB per
+                                    month, Unlimited builds</span>
+                                <span class="plan-details" aria-hidden="true">
+                                    <span class="plan-type">Business</span>
+                                    <span class="plan-cost">$200<span class="slash">/</span><span
+                                            class="plan-cycle">mo</span></span>
+                                    <span>5+ team members</span>
+                                    <span>1000 GB/mo</span>
+                                    <span>Unlimited builds</span>
+                                </span>
+                            </label>
+                            <label class="card">
+                                <input name="plan" class="radio" type="radio" />
+                                <span class="hidden-visually">Business - $200 per month, 5+ team members, 1000 GB per
+                                    month, Unlimited builds</span>
+                                <span class="plan-details" aria-hidden="true">
+                                    <span class="plan-type">Business</span>
+                                    <span class="plan-cost">$200<span class="slash">/</span><span
+                                            class="plan-cycle">mo</span></span>
+                                    <span>5+ team members</span>
+                                    <span>1000 GB/mo</span>
+                                    <span>Unlimited builds</span>
+                                </span>
+                            </label>
+                        </div>
+                        <!--========================== SHIPPING end  --->
+
                         <form class="d-none" id="shipping_detail_form">
                             <div class="row">
                                 <div class="col-md-6">
@@ -885,7 +944,7 @@
                                 $("#addNewShippingAddressModal").modal('toggle');
                             } else if (data.status == 'Error') {
                                 toastr.error(
-                                '{{ trans('response.some_thing_went_wrong') }}');
+                                    '{{ trans('response.some_thing_went_wrong') }}');
                             }
                         },
                         error: function(data) {
@@ -899,7 +958,7 @@
                                 });
                             } else {
                                 toastr.error(
-                                '{{ trans('response.some_thing_went_wrong') }}');
+                                    '{{ trans('response.some_thing_went_wrong') }}');
                             }
                         },
                     });
@@ -1065,7 +1124,7 @@
                             $("#delivery_state_hidden").val(state);
                             countries1();
                             $("#delivery_country").val(country);
-                            
+
                             $("#delivery_state").val(state);
                             $("#delivery_city").val(data.data[i].city);
                             $("#delivery_street_aadress").val(data.data[i].street_address);
@@ -1188,7 +1247,7 @@
                                 $("#delivery_country_hidden").val('');
                             } else if (data.data[i].country_id == country) {
                                 selected = 'selected';
-                            } 
+                            }
                             // else if (data.data[i].country_name == 'Nepal') {
                             //     selected = 'selected';
                             // }
@@ -1621,12 +1680,12 @@
                     clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
                 },
                 beforeSend: function() {
-                    // $(".createOrder").attr('disabled', true);
-                    // i = 0;
-                    // interval = setInterval(function() {
-                    //     i = ++i % 4;
-                    //     $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
-                    // }, 200);
+                    $(".createOrder").attr('disabled', true);
+                    i = 0;
+                    interval = setInterval(function() {
+                        i = ++i % 4;
+                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
+                    }, 200);
                 },
                 success: function(data) {
                     // console.log(data);
@@ -1637,7 +1696,7 @@
                             $('#esewaForm input[name=pid]').val(pid);
                             $('#esewaForm').submit();
                         } else if (payment_method == 'cod') {
-                            // window.location.href = "{{ url('/thankyou') }}";
+                            window.location.href = "{{ url('/thankyou') }}";
                         }
                     } else if (data.status == 'Error') {
                         toastr.error('{{ trans('response.some_thing_went_wrong') }}');

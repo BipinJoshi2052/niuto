@@ -3463,3 +3463,153 @@ section#checkout .img-block img {
 .modal-body td:last-child { 
     width: 80px;
 }
+
+
+/*=================================================== SHIPPING START  */
+
+:root {
+    --card-line-height: 1.2em;
+    --card-padding: 1em;
+    --card-radius: 0.5em;
+    /* --color-green: #558309;
+    --color-gray: #e2ebf6;
+    --color-dark-gray: #c4d1e1; */
+    --radio-border-width: 2px;
+    --radio-size: 1.5em;
+    }
+    div#shipping input.radio {
+        width: 36px;
+        text-align: center;
+        height: 36px;
+    }
+    
+    section#checkout .grid {
+        display: grid;
+        grid-gap: var(--card-padding);
+        margin: 0 auto;
+        max-width: 100%;
+        padding: 0;
+    }
+    @media (min-width: 42em) {
+    section#checkout .grid {
+    grid-template-columns: repeat(3, 1fr);
+    }
+    }
+    section#checkout .card {
+    background-color: #fff;
+    border-radius: var(--card-radius);
+    position: relative;
+    }
+    section#checkout .card:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+    }
+    section#checkout .radio {
+    font-size: inherit;
+    margin: 0;
+    position: absolute;
+    right: calc(var(--card-padding) + var(--radio-border-width));
+    top: calc(var(--card-padding) + var(--radio-border-width));
+    }
+    @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    section#checkout .radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+    border: var(--radio-border-width) solid var(--color-gray);
+    border-radius: 50%;
+    cursor: pointer;
+    height: var(--radio-size);
+    outline: none;
+    transition: background 0.2s ease-out, border-color 0.2s ease-out;
+    width: var(--radio-size);
+    }
+    section#checkout .radio::after {
+    border: var(--radio-border-width) solid #fff;
+    border-top: 0;
+    border-left: 0;
+    content: '';
+    display: block;
+    height: 0.75rem;
+    left: 25%;
+    position: absolute;
+    top: 50%;
+    transform: rotate(45deg) translate(-50%, -50%);
+    width: 0.375rem;
+    }
+    section#checkout .radio:checked {
+    background: var(--blue);;
+    border-color: var(--blue);;
+    }
+    section#checkout .card:hover .radio {
+    border-color: gray;
+    }
+    section#checkout .card:hover .radio:checked {
+    border-color: var(--blue);;
+    }
+    }
+    section#checkout .plan-details {
+    border: var(--radio-border-width) solid var(--color-gray);
+    border-radius: var(--card-radius);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: var(--card-padding);
+    transition: border-color 0.2s ease-out;
+    }
+    section#checkout .card:hover .plan-details {
+    border-color: gray;
+    }
+    section#checkout .radio:checked ~ .plan-details {
+    border-color: var(--blue);;
+    }
+    section#checkout .radio:focus ~ .plan-details {
+    box-shadow: 0 0 0 2px gray;
+    }
+    section#checkout .radio:disabled ~ .plan-details {
+    color: gray;
+    cursor: default;
+    }
+    section#checkout .radio:disabled ~ .plan-details .plan-type {
+    color: gray;
+    }
+    section#checkout .card:hover .radio:disabled ~ .plan-details {
+    border-color: var(--color-gray);
+    box-shadow: none;
+    }
+    section#checkout .card:hover .radio:disabled {
+    border-color: var(--color-gray);
+    }
+    section#checkout .plan-type {
+    color: var(--blue);
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1em;
+    }
+    section#checkout .plan-cost {
+        font-size: 1.5rem;
+    /* font-weight: bold; */
+    padding: 0;
+    }
+    section#checkout .slash {
+    font-weight: normal;
+    }
+    section#checkout .plan-cycle {
+    font-size: 2rem;
+    font-variant: none;
+    border-bottom: none;
+    cursor: inherit;
+    text-decoration: none;
+    }
+    section#checkout .hidden-visually {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    }
+    
+    /*=================================================== SHIPPING END  */

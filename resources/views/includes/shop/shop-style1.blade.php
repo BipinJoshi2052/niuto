@@ -5,9 +5,11 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
     ->take(9)
     ->get();
 $requestCategory = request()->category;
-if($requestCategory != null || $requestCategory != ''){
-    $breadCrumbCat = App\Models\Admin\Category::where("id", $requestCategory)->with('detail')->first();
-    if(!empty($breadCrumbCat->parent)){
+if ($requestCategory != null || $requestCategory != '') {
+    $breadCrumbCat = App\Models\Admin\Category::where('id', $requestCategory)
+        ->with('detail')
+        ->first();
+    if (!empty($breadCrumbCat->parent)) {
         $maincategory = $breadCrumbCat->parent->with('detail')->first();
     } else {
         $maincategory = '';
@@ -27,14 +29,16 @@ if($requestCategory != null || $requestCategory != ''){
                             <a href="{{ url('/') }}"><span><i class="fa fa-home" aria-hidden="true"></i></span>
                                 HOME</a>
                         </li>
-                        @if($maincategory = '')
+                        @if ($maincategory = '')
                             <li class="breadcrumb-item font-weight-bold" aria-current="page">
-                                <a href="/shop?category={{ $maincategory->id }}"  class="text-dark">{{ $maincategory->detail[0]->category_name }}</a>
+                                <a href="/shop?category={{ $maincategory->id }}"
+                                    class="text-dark">{{ $maincategory->detail[0]->category_name }}</a>
                             </li>
                         @endif
-                        @if($breadCrumbCat != '')
+                        @if ($breadCrumbCat != '')
                             <li class="breadcrumb-item font-weight-bold" aria-current="page">
-                                <a href="javascript:void(0)" class="text-dark">{{ $breadCrumbCat->detail[0]->category_name }}</a>
+                                <a href="javascript:void(0)"
+                                    class="text-dark">{{ $breadCrumbCat->detail[0]->category_name }}</a>
                             </li>
                         @else
                             <li class="breadcrumb-item font-weight-bold" aria-current="page">
@@ -105,15 +109,11 @@ if($requestCategory != null || $requestCategory != ''){
                                     Our Brand 
                                 </h4>
                             </div>
-                            <div class="our_brand pt-3">
-                                <div class="our_brand_item">
+                            <div class="our_brand pt-3" id="prodBrand">
+                                {{-- <div class="our_brand_item">
                                     <img src="https://montechbd.com/shopist/demo/public/uploads/1616788177-h-80-nike.png"
                                         class="img-fluid" alt="" />
-                                </div>
-                                <div class="our_brand_item">
-                                    <img src="https://montechbd.com/shopist/demo/public/uploads/1616788177-h-80-nike.png"
-                                        class="img-fluid" alt="" />
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -125,18 +125,18 @@ if($requestCategory != null || $requestCategory != ''){
                                     Price Range
                                 </h4>
                             </div>
-                            <div class="slider price-slider" id="range-slider">
+                            <div class="slider" id="range-slider">
                             </div>
                             <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
                         </div>
                     </div>
-                    @foreach($data["attribute"] as $key => $attribute)
+                    @foreach ($data['attribute'] as $key => $attribute)
                         @php
                             $attribute_name = $attribute->attribute_detail[0]->name;
                         @endphp
-                        @if($attribute_name == 'Color' || $attribute_name == "Size")
+                        @if ($attribute_name == 'Color' || $attribute_name == 'Size')
                             <input type="hidden" value="{{ $attribute->id }}" name="attribute[]">
-                            @if($attribute_name == "Color" && !$attribute->variation->isEmpty())
+                            @if ($attribute_name == 'Color' && !$attribute->variation->isEmpty())
                                 <div class="col-md-12">
                                     <div class="price_rang_block border_one bg-white category_product mt-4">
                                         <div class="category_title">
@@ -146,18 +146,23 @@ if($requestCategory != null || $requestCategory != ''){
                                             </h4>
                                         </div>
                                         <div class="colors_block p-3">
-                                            @foreach($attribute->variation as $atvkey => $variation)
+                                            @foreach ($attribute->variation as $atvkey => $variation)
                                                 <label class="color_single">
-                                                <small class="round" style="background-color: {{ $variation->variation_detail[0]->name }}"></small>
-                                                <span class=""> {{ $variation->variation_detail[0]->name }}</span>
-                                                <input type="checkbox" name="variation[]" class="variation-filter" value="{{ $variation->variation_detail[0]->variation_id }}" data-attribute-id="{{ $attribute->id }}" data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
-                                                <span class="checkmark"></span>
+                                                    <small class="round"
+                                                        style="background-color: {{ $variation->variation_detail[0]->name }}"></small>
+                                                    <span class="">
+                                                        {{ $variation->variation_detail[0]->name }}</span>
+                                                    <input type="checkbox" name="variation[]" class="variation-filter"
+                                                        value="{{ $variation->variation_detail[0]->variation_id }}"
+                                                        data-attribute-id="{{ $attribute->id }}"
+                                                        data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
+                                                    <span class="checkmark"></span>
                                                 </label>
                                             @endforeach
                                         </div>
                                     </div>
-                                </div> 
-                            @elseif($attribute_name == "Size" && !$attribute->variation->isEmpty())
+                                </div>
+                            @elseif($attribute_name == 'Size' && !$attribute->variation->isEmpty())
                                 <div class="col-md-12">
                                     <div class="price_rang_block border_one bg-white category_product mt-4">
                                         <div class="category_title">
@@ -167,10 +172,14 @@ if($requestCategory != null || $requestCategory != ''){
                                             </h4>
                                         </div>
                                         <div class="colors_block p-3">
-                                            @foreach($attribute->variation as $atvkey => $variation)
-                                                <label class="color_single"> 
-                                                    <span class="">{{ $variation->variation_detail[0]->name }}</span>
-                                                    <input type="checkbox" name="variation[]" class="variation-filter" value="{{ $variation->variation_detail[0]->variation_id }}" data-attribute-id="{{ $attribute->id }}" data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
+                                            @foreach ($attribute->variation as $atvkey => $variation)
+                                                <label class="color_single">
+                                                    <span
+                                                        class="">{{ $variation->variation_detail[0]->name }}</span>
+                                                    <input type="checkbox" name="variation[]" class="variation-filter"
+                                                        value="{{ $variation->variation_detail[0]->variation_id }}"
+                                                        data-attribute-id="{{ $attribute->id }}"
+                                                        data-attribute-name="{{ $attribute->attribute_detail[0]->name }}">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             @endforeach
@@ -179,8 +188,8 @@ if($requestCategory != null || $requestCategory != ''){
                                 </div>
                             @endif
                         @else
-                            @break
-                        @endif
+                        @break
+                    @endif
                     @endforeach
                 </div>
             </div>
