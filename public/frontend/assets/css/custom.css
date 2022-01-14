@@ -3433,3 +3433,12 @@ section#product_detail .slick-next:before {
 .margin-bottom-40{
     margin-bottom: 40px;
 }
+
+.our_brand .slick-slide img {
+    display: block;
+    max-height: 80px;
+    min-height: 80px;
+    margin: auto;
+    object-fit: contain;
+    object-position: center;
+}
