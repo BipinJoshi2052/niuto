@@ -125,7 +125,7 @@ if ($requestCategory != null || $requestCategory != '') {
                                     Price Range
                                 </h4>
                             </div>
-                            <div class="slider" id="range-slider">
+                            <div class="slider" id="range-slider-div">
                             </div>
                             <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
                         </div>

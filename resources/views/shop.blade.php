@@ -710,12 +710,12 @@
             
         });
 
-        $(document).on('change', "#range-slider", function(){
-            if($(this).attr('value')){
-                priceRange = $(this).attr('value');
+        $(document).on('mouseup', "#range-slider", function(){
+            if($('#range-slider-div').attr('value')){
+                priceRange = $('#range-slider-div').attr('value');
             }
             splitValue = priceRange.split(',');
-            setTimeout(fetchProductWithRange(1, splitValue[0], splitValue[1]), 1000);
+            fetchProductWithRange(1, splitValue[0], splitValue[1]);
         });
         
 
@@ -727,7 +727,7 @@
         });
         function priceRangeslider()
         {
-            $("#range-slider").slider({
+            $("#range-slider-div").slider({
                 // the id of the slider element
                 id: "range-slider",
                 // minimum value
