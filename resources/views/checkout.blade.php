@@ -1091,9 +1091,9 @@
                             $("#delivery_street_aadress").val(data.data[i].street_address);
                             $("#delivery_phone").val(data.data[i].phone);
                         }
-                        // if (data.data.length == 0) {
-                        //     countries1();
-                        // }
+                        if (data.data.length == 0) {
+                            countries1();
+                        }
                         shippingMethodisDefault();
                     }
                 },
