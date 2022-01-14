@@ -42,7 +42,7 @@
                                 M.R.P. : <del id="cut-product-card-price"> </del>
                             </span>
                             <span class="price" id="product-card-price"> </span>
-                            <input type="text" id="product_combination_id">
+                            <input type="hidden" id="product_combination_id">
                         </div>
                         <div class="_p-add-cart">
                             <div class="_p-qty">
@@ -157,14 +157,19 @@
                         </div>
                         <form>
                             <label>
-                                <select class="form-control" id="prodRating" required>
-                                    <option value=''>Select</option>
-                                    <option value='1'>1</option>
-                                    <option value='2'>2</option>
-                                    <option value='3'>3</option>
-                                    <option value='4'>4</option>
-                                    <option value='5'>5</option>
-                                </select>
+                                <input type="hidden" name="prodRating" id="prodRating" value="">
+                                <div class="rating-select d-flex justify-content-center mb-4">
+                                    <div class="btn btn-light btn-sm" data-rating_value="1"><span
+                                            class="fa fa-star"></span></div>
+                                    <div class="btn btn-light btn-sm" data-rating_value="2"><span
+                                            class="fa fa-star"></span></div>
+                                    <div class="btn btn-light btn-sm" data-rating_value="3"><span
+                                            class="fa fa-star"></span></div>
+                                    <div class="btn btn-light btn-sm" data-rating_value="4"><span
+                                            class="fa fa-star"></span></div>
+                                    <div class="btn btn-light btn-sm" data-rating_value="5"><span
+                                            class="fa fa-star"></span></div>
+                                </div>
                             </label>
                             <label>
                                 <div class="col-text-area d-flex justify-content-center">

@@ -96,8 +96,8 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
 
 
 
+    {{-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> --}}
     <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     @include(isset(getSetting()['Footer_style']) ? 'includes.footers.footer-'.getSetting()['Footer_style'] :
     'includes.footers.footer-style1')
 
@@ -730,8 +730,6 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                     // $('#loading').css('display', 'block');
                 },
                 success: function(data) {
-                    console.log('menucart');
-                    console.log(data);
                     if (data.status == 'Success') {
                         total_price = 0;
                         price = 0;
@@ -1261,15 +1259,14 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                             var results = '';
                             $.each(response, function(i, e) {
                                 price = e.price;
-                                discount = e.discount_price;
-                                newPrice = parseInt(price) - parseInt(discount);
+                                newPrice = e.discount_price;
                                 results += '<a href="/product/' + e.id + '/' + e.product_slug +
                                     '" style="text-decoration: none;">' +
                                     '<li class="dropdown-item">' +
                                     '<img class="img-thumbnail" src="{{ asset('/gallary') }}/' +
                                     e.gallary_name +
                                     '" style="width: 70px; height: 60px;"> ' + e.title +
-                                    ' (Rs. ' + newPrice + ')' +
+                                    ' (<del id="cut-product-card-price">Rs. ' + price + '</del> ' + ' Rs. ' + newPrice + ')'
                                     '</li>' +
                                     '</a>';
                             });
