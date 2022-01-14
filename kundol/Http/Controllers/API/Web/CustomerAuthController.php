@@ -57,6 +57,8 @@ class CustomerAuthController extends Controller
         return Socialite::driver($provider)->stateless()->redirect();
     }
 
+   
+
     public function Callback($provider)
     {
         $userSocial = Socialite::driver($provider)->stateless()->user();
