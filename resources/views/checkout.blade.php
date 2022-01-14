@@ -476,11 +476,11 @@
                                         k = data.data[i].combination.length;
                                     }
                                 }
-                                if (data.data[i].product_detail != null && $.trim(data.data[i]
-                                        .product_detail) != '') {
-                                    imageAlt = data.data[i].product_detail[0].title;
-                                    itemName = data.data[i].product_detail[0].title;
-                                }
+                                // if (data.data[i].product_detail != null && $.trim(data.data[i]
+                                //         .product_detail) != '') {
+                                //     imageAlt = data.data[i].product_detail[0].title;
+                                //     itemName = data.data[i].product_detail[0].title;
+                                // }
                             } else {
                                 total_weight += parseInt(data.data[i].product_weight) * parseInt(data.data[i]
                                     .qty);
@@ -943,7 +943,7 @@
                             $("#shipping_detail_form").addClass('d-none');
                             $("#shippingAddressButton").removeClass('d-none');
                             $("#shipping-address-listing-show").html('');
-                            $(".shipping-address-listing-card").html('');
+                            $(".shipping_info_card").html('');
                             const templ = document.getElementById("shipping-address-listing-template");
                             const cardTempl = document.getElementById("shipping-address-listing-card-template");
                             for (i = 0; i < data.data.length; i++) {
@@ -1645,8 +1645,7 @@
                     i = 0;
                     interval = setInterval(function() {
                         i = ++i % 4;
-                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join(
-                            "."));
+                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
                     }, 200);
                 },
                 success: function(data) {

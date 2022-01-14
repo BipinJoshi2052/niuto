@@ -104,21 +104,25 @@
                     var thumbGal = '';
                     var img_str = '';
                     prodGalDetGalName = '';
+                    //Wishlist
                     $('#add-to-wishlist').attr('data-id', data.data.product_id);
-                    $('#add-to-wishlist').attr('onclick', 'addWishlist(this)');
                     $('#add-to-wishlist').attr('data-type', data.data.product_type);
+                    $('#add-to-wishlist').attr('onclick', 'addWishlist(this)');
+                    //Cart
                     $('#add-to-cart').attr('data-id', data.data.product_id);
                     $('#add-to-cart').attr('onclick', 'addToCart(this)');
                     $('#add-to-cart').attr('data-type', data.data.product_type);
+                    //BuyNow
                     $('#buyNow').attr('data-id', data.data.product_id);
                     $('#buyNow').attr('onclick', 'buyNow(this)');
                     $('#buyNow').attr('data-type', data.data.product_type);
+                    
                     if (data.data.product_gallary_detail != null && data.data.product_gallary_detail.length > 0) {
                         for (var g = 0; g < data.data.product_gallary_detail.length; g++) {
                             
                             prodGalDetGalName = data.data.product_gallary_detail[g].gallary_name;
-                            sideGal += '<li>'+
-                                            '<img src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
+                            sideGal += '<li class="slider_item position-relative">'+
+                                            '<img class="d-block w-100 img-fluid" src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
                                         '</li>';
                             if(g == 0){
                                 dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
@@ -129,23 +133,24 @@
                                 break;
                             }
                         }
-                        if(data.data.product_combination){
-                            for (loop = 0; loop < data.data.product_combination.length; loop++) {
-                                if (data.data.product_combination[loop].gallary != null) {
-                                    sideGal +=  '<li>'+
-                                                    '<img src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
-                                                '</li>';
-                                    if(loop == 0){
-                                        dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
-                                        showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
-                                    }
-                                }
-                                if(loop == 3){
-                                    break;
-                                }
-                            }
-                        }
-                    } else {
+                        // if(data.data.product_combination){
+                        //     for (loop = 0; loop < data.data.product_combination.length; loop++) {
+                        //         if (data.data.product_combination[loop].gallary != null) {
+                        //             sideGal +=  '<li>'+
+                        //                             '<img src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
+                        //                         '</li>';
+                        //             if(loop == 0){
+                        //                 dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
+                        //                 showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
+                        //             }
+                        //         }
+                        //         if(loop == 3){
+                        //             break;
+                        //         }
+                        //     }
+                        // }
+                    } 
+                    else {
                         if(data.data.product_gallary != null){
                             sideGal +=  '<li>'+
                                             '<img src="{{ asset("/")}}gallary/' + data.data.product_gallary.gallary_name + ' " alt="">'+
@@ -164,18 +169,35 @@
                         $(".breadcrumb-title").html(data.data.detail[0].title);
                     }
 
-                    if (data.data.product_type == 'simple') {
+                    // if (data.data.product_type == 'simple') {
                         if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
                             $("#product-card-price").html(data.data.product_price_symbol);
+                            // console.log('1');
                         } else {
-                            $("#product-card-price").html('Rs. ' + (data.data.product_discount_price_symbol)); 
-                            $('#cut-product-card-price').html(data.data.product_price_symbol);
+                            // $("#product-card-price").html('Rs. ' + (data.data.product_discount_price_symbol)); 
+                            // $('#cut-product-card-price').html(data.data.product_price_symbol);
+
+                            $("#product-card-price").html((data.data.product_price_symbol)); 
+                            $('#cut-product-card-price').html(data.data.product_discount_price_symbol);
                         }
-                    } else {
-                        if (data.data.product_combination != null) {
-                            $("#product-card-price").html(data.data.product_combination[0].product_price_symbol);
-                        }
-                    }
+                    // } 
+                    // else {
+                    //     if (data.data.product_combination == null) {
+                    //         if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
+                    //             $("#product-card-price").html(data.data.product_price_symbol);
+                    //             // console.log('1');
+                    //         } else {
+                    //             // $("#product-card-price").html('Rs. ' + (data.data.product_discount_price_symbol)); 
+                    //             // $('#cut-product-card-price').html(data.data.product_price_symbol);
+
+                    //             $("#product-card-price").html((data.data.product_price_symbol)); 
+                    //             $('#cut-product-card-price').html(data.data.product_discount_price_symbol);
+                    //         }
+                    //         // $("#product-card-price").html(data.data.product_combination[0].product_price_symbol);
+                    //     }else{
+                    //         console.log('no');
+                    //     }
+                    // }
                     if(data.data.product_type == 'variable'){
                         var variant = '';
                         if(data.data.attribute && data.data.attribute.length > 0){
@@ -217,10 +239,15 @@
                                 
                                 if(variId == combinationVarId){
                                     proComId = e.product_combination_id;
+
+// console.log(data.data.product_price_symbol);
+// console.log(e.product_price_symbol);
+// console.log(data.data.product_discount_price_symbol);
                                     if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
-                                        $("#product-card-price").html(data.data.product_price_symbol);
+                                        $("#product-card-price").html(e.product_price_symbol);
+                                        // $("#product-card-price").html(data.data.product_price_symbol);
                                     } else {
-                                        $("#product-card-price").html('Rs. ' + (data.data.product_discount_price_symbol)); 
+                                        $("#product-card-price").html((data.data.product_discount_price_symbol)); 
                                         $('#cut-product-card-price').html(e.product_price_symbol);
                                     }
                                     $('#product_combination_id').val(e.product_combination_id);
@@ -249,9 +276,10 @@
                                     if(variId == combinationVarId){
                                         proComId = e.product_combination_id;
                                         if (data.data.product_discount_price == '' || data.data.product_discount_price == null || data.data.product_discount_price =='null') {
-                                            $("#product-card-price").html(data.data.product_price_symbol);
+                                            // $("#product-card-price").html(data.data.product_price_symbol);
+                                            $("#product-card-price").html(e.product_price_symbol);
                                         } else {
-                                            $("#product-card-price").html('Rs. ' + (data.data.product_discount_price_symbol)); 
+                                            $("#product-card-price").html((data.data.product_discount_price_symbol)); 
                                             $('#cut-product-card-price').html(e.product_price_symbol);
                                         }
                                         $('#product_combination_id').val(e.product_combination_id);
@@ -792,5 +820,63 @@
             $(".picZoomer-pic").attr("src", $pic.attr("src"));
         });
     }
+    $(document).ajaxStop(function() {
+        $(".product-detail-slider").slick({
+            autoplay: false,
+            dots: false,
+            vertical: true,
+            verticalSwiping: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: "50%",
+            responsive: [
+                {
+                    breakpoint: 1700,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 1399,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 780,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                        vertical: false,
+                        verticalSwiping: false,
+                        arrows: false,
+                    },
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        vertical: false,
+                        verticalSwiping: false,
+                        arrows: false,
+                    },
+                },
+                {
+                    breakpoint: 496,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        vertical: false,
+                        verticalSwiping: false,
+                        arrows: false,
+                    },
+                },
+            ],
+        });
+        });
 </script>
 @endsection

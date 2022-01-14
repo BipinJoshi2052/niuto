@@ -21,6 +21,25 @@
       body{
         overflow-x: hidden;
       }
+
+      section#product_detail ._boxzoom .zoom-thumb {
+        margin: auto;
+        overflow: hidden;
+    }
+    section#product_detail .slick-slide {
+        margin: 0px 2px !important;
+    }
+    section#product_detail ._boxzoom ._product-images .picZoomer img.my_img {
+        width: auto;
+        position: unset;
+    }
+    section#product_detail ._boxzoom {
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    section#product_detail ._boxzoom ._product-images .picZoomer .picZoomer-pic-wp img {
+        left: unset;
+    }
 /* SEARCH MOBILE START  */
 .search_top {
   background: var(--blue);
