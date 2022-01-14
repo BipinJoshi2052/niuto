@@ -7,6 +7,15 @@
 
 </script> --}}
 @extends('layouts.master')
+<style>
+    .modal{
+        z-index: 9999!important;
+    }
+    .modal-header{
+        background: #0fa549;
+        color: white;
+    }
+</style>
 @section('content')
     <section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
         <div class="container">
