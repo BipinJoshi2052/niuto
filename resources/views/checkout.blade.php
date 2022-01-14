@@ -943,7 +943,7 @@
                             $("#shipping_detail_form").addClass('d-none');
                             $("#shippingAddressButton").removeClass('d-none');
                             $("#shipping-address-listing-show").html('');
-                            $(".shipping-address-listing-card").html('');
+                            $(".shipping_info_card").html('');
                             const templ = document.getElementById("shipping-address-listing-template");
                             const cardTempl = document.getElementById("shipping-address-listing-card-template");
                             for (i = 0; i < data.data.length; i++) {
