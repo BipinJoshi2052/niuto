@@ -398,7 +398,16 @@
                 error: function(data) {},
             });
         }
-
+        function our_brand(){
+            $(".our_brand").slick({
+                dots: false,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            });
+        }
         function fetchProductWithBrand(page, brand) {
             var limit = "{{ isset($_GET['limit']) ? $_GET['limit'] : '12' }}";
             var category = "{{ isset($_GET['category']) ? $_GET['category'] : '' }}";

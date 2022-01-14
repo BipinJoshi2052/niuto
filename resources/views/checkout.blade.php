@@ -96,16 +96,16 @@
                     <div class="col-xl-12">
                         <div class="my-car-title d-flex mb-3 mt-4">
                             <div class="my-cart-number">2</div>
-                            <div class="my-cart-order">
+                            <div class="my-cart-order d-flex justify-content-between w-100 align-items-center">
                                 <h4>Shipping Information</h4>
-                                <button type="button" id="shippingAddressButton" class="btn btn-primary d-none float-right"
+                                <button type="button" id="shippingAddressButton" class="btn btn-primary d-none"
                                     data-toggle="modal" data-target="#addNewShippingAddressModal">
                                     Add New Address
                                 </button>
                             </div>
                         </div>
                         <!-- table start  -->
-                        <div id="shipping_table_content" class="table-responsive-lg d-none">
+                        {{-- <div id="shipping_table_content" class="table-responsive-lg d-none">
                             <table class="table border_new">
                                 <thead>
                                     <tr class="text-center">
@@ -120,32 +120,21 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" id="shipping-address-listing-show">
-                                    {{-- <tr class="text-center">
-                                        <td class="border_trhee">
-                                            <div class="img-block">
-                                                <img src="https://montechbd.com/shopist/demo/public/uploads/1619866402-h-250-7-front-f.jpg"
-                                                    alt="">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex flex-column w-100">
-                                                <div class="head w-100">Blue Diamond Almonds</div>
-                                            </div>
-                                        </td>
-                                        <td class="text_gray">$20</td>
-                                        <td class="text_gray">
-                                            <div class="qty">
-                                                <input type="number" class="" name="qty" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="text_gray">$0</td>
-                                        <td class="text_gray">$20</td>
-                                    </tr> --}}
+                                    
                                 </tbody>
 
                             </table>
-                        </div>
+                        </div> --}}
                         <!-- table end  -->
+
+
+                        <!--========================== SHIPPING START  --->
+
+                        <div class="grid shipping_info_card d-none" id="shipping">
+                            
+                        </div>
+                        <!--========================== SHIPPING end  --->
+
                         <form class="d-none" id="shipping_detail_form">
                             <div class="row">
                                 <div class="col-md-6">
@@ -276,6 +265,21 @@
 
             </td> --}}
         </tr>
+    </template>
+
+    <template id="shipping-address-listing-card-template">
+        <label class="card">
+            <input name="plan" class="radio shipping-address-listing-card-is-default" type="radio">
+
+            <span class="plan-details">
+                <span class="plan-type shipping-address-listing-first-name-last-name"></span>
+                {{-- <span class="plan-cost">$0<span class="slash">/</span><abbr
+                        class="plan-cycle" title="month">mo</abbr></span> --}}
+                <span><b>Country: </b> <span id="detail_card_country"></span></span>
+                <span><b>State: </b><span id="detail_card_state"></span></span>
+                <span><b>City: </b><span id="detail_card_city"></span></span>
+            </span>
+        </label>
     </template>
     {{-- Template End --}}
 
@@ -472,11 +476,11 @@
                                         k = data.data[i].combination.length;
                                     }
                                 }
-                                if (data.data[i].product_detail != null && $.trim(data.data[i]
-                                        .product_detail) != '') {
-                                    imageAlt = data.data[i].product_detail[0].title;
-                                    itemName = data.data[i].product_detail[0].title;
-                                }
+                                // if (data.data[i].product_detail != null && $.trim(data.data[i]
+                                //         .product_detail) != '') {
+                                //     imageAlt = data.data[i].product_detail[0].title;
+                                //     itemName = data.data[i].product_detail[0].title;
+                                // }
                             } else {
                                 total_weight += parseInt(data.data[i].product_weight) * parseInt(data.data[i]
                                     .qty);
@@ -885,7 +889,7 @@
                                 $("#addNewShippingAddressModal").modal('toggle');
                             } else if (data.status == 'Error') {
                                 toastr.error(
-                                '{{ trans('response.some_thing_went_wrong') }}');
+                                    '{{ trans('response.some_thing_went_wrong') }}');
                             }
                         },
                         error: function(data) {
@@ -899,7 +903,7 @@
                                 });
                             } else {
                                 toastr.error(
-                                '{{ trans('response.some_thing_went_wrong') }}');
+                                    '{{ trans('response.some_thing_went_wrong') }}');
                             }
                         },
                     });
@@ -934,37 +938,49 @@
                 success: function(data) {
                     if (data.status == 'Success') {
                         if (data.data.length > 0) {
-                            $("#shipping_table_content").removeClass('d-none');
+                            $("#shipping_table_content").addClass('d-none');
+                            $(".shipping_info_card").removeClass('d-none');
                             $("#shipping_detail_form").addClass('d-none');
                             $("#shippingAddressButton").removeClass('d-none');
                             $("#shipping-address-listing-show").html('');
+                            $(".shipping_info_card").html('');
                             const templ = document.getElementById("shipping-address-listing-template");
+                            const cardTempl = document.getElementById("shipping-address-listing-card-template");
                             for (i = 0; i < data.data.length; i++) {
                                 const clone = templ.content.cloneNode(true);
-                                clone.querySelector(".shipping-address-listing-first-name").innerHTML = data
-                                    .data[i]
-                                    .first_name;
-                                clone.querySelector(".shipping-address-listing-last-name").innerHTML = data
-                                    .data[i]
-                                    .last_name;
+                                const cloneCard = cardTempl.content.cloneNode(true);
+                                cloneCard.querySelector(".shipping-address-listing-first-name-last-name").innerHTML = data.data[i].first_name + ' ' + data.data[i].last_name;
+                                // clone.querySelector(".shipping-address-listing-first-name").innerHTML = data
+                                //     .data[i]
+                                //     .first_name;
+                                // clone.querySelector(".shipping-address-listing-last-name").innerHTML = data
+                                //     .data[i]
+                                //     .last_name;
                                 country = state = '';
                                 if (data.data[i].country_id != 'null' && data.data[i].country_id != null && data
                                     .data[i].country_id != '') {
                                     country = data.data[i].country_id.country_name + ', ';
+                                    cardCountry = data.data[i].country_id.country_name;
                                 }
                                 if (data.data[i].state_id != 'null' && data.data[i].state_id != null && data
                                     .data[i]
                                     .state_id != '') {
                                     state = data.data[i].state_id.name + ', ';
+                                    cardState = data.data[i].state_id.name;
                                 }
-                                clone.querySelector(".shipping-address-listing-country-state-city").innerHTML =
-                                    country + state + data.data[i].city;
-                                clone.querySelector(".shipping-address-listing-is-default").setAttribute(
-                                    'data-id',
-                                    data.data[i].id);
-                                clone.querySelector(".shipping-address-listing-is-default").setAttribute(
-                                    'onclick',
-                                    'setAddress(this)');
+                                cloneCard.querySelector("#detail_card_country").innerHTML = cardCountry;
+                                cloneCard.querySelector("#detail_card_state").innerHTML = cardState;
+                                cloneCard.querySelector("#detail_card_city").innerHTML = data.data[i].city;
+                                // clone.querySelector(".shipping-address-listing-country-state-city").innerHTML =
+                                //     country + state + data.data[i].city;
+                                // clone.querySelector(".shipping-address-listing-is-default").setAttribute(
+                                //     'data-id',
+                                //     data.data[i].id);
+                                // clone.querySelector(".shipping-address-listing-is-default").setAttribute(
+                                //     'onclick',
+                                //     'setAddress(this)');
+                                cloneCard.querySelector(".shipping-address-listing-card-is-default").setAttribute('data-id', data.data[i].id);
+                                cloneCard.querySelector(".shipping-address-listing-card-is-default").setAttribute('onclick', 'setAddress(this)');
                                 // clone.querySelector(".shipping-address-listing-edit-btn").setAttribute('data-id', data.data[i].id);
                                 // clone.querySelector(".shipping-address-listing-edit-btn").setAttribute('onclick', 'shippingEdit(this)');
                                 // clone.querySelector(".shipping-address-listing-delete-btn").setAttribute('data-id', data.data[i].id);
@@ -973,14 +989,18 @@
                                     $("#shippingAddressForm").find("#gender").val(data.data[i].gender);
                                     $("#shippingAddressForm").find("#dob").val(data.data[i].dob);
                                     $("#shippingAddressForm").find("#phone").val(data.data[i].phone);
-                                    clone.querySelector(".shipping-address-listing-is-default").setAttribute(
+                                    // clone.querySelector(".shipping-address-listing-is-default").setAttribute(
+                                    //     'checked', true);
+                                    cloneCard.querySelector(".shipping-address-listing-card-is-default").setAttribute(
                                         'checked', true);
                                 }
-                                $("#shipping-address-listing-show").append(clone);
+                                // $("#shipping-address-listing-show").append(clone);
+                                $(".shipping_info_card").append(cloneCard);
                             }
                             $("#shippingAddressForm").find("#method").val('post');
                         } else {
                             $("#shipping_table_content").addClass('d-none');
+                            $(".shipping_info_card").addClass('d-none');
                             $("#shipping_detail_form").removeClass('d-none');
                             $("#shippingAddressButton").addClass('d-none');
                         }
@@ -1065,15 +1085,15 @@
                             $("#delivery_state_hidden").val(state);
                             countries1();
                             $("#delivery_country").val(country);
-                            
+
                             $("#delivery_state").val(state);
                             $("#delivery_city").val(data.data[i].city);
                             $("#delivery_street_aadress").val(data.data[i].street_address);
                             $("#delivery_phone").val(data.data[i].phone);
                         }
-                        // if (data.data.length == 0) {
-                        //     countries1();
-                        // }
+                        if (data.data.length == 0) {
+                            countries1();
+                        }
                         shippingMethodisDefault();
                     }
                 },
@@ -1188,7 +1208,7 @@
                                 $("#delivery_country_hidden").val('');
                             } else if (data.data[i].country_id == country) {
                                 selected = 'selected';
-                            } 
+                            }
                             // else if (data.data[i].country_name == 'Nepal') {
                             //     selected = 'selected';
                             // }
@@ -1625,8 +1645,7 @@
                     i = 0;
                     interval = setInterval(function() {
                         i = ++i % 4;
-                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join(
-                            "."));
+                        $(".createOrder").html("Wait Your Order is Submitting" + Array(i + 1).join("."));
                     }, 200);
                 },
                 success: function(data) {

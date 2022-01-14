@@ -134,7 +134,7 @@
                                 {{ attributes.detail == null ? '' : (attributes.detail[0] ? attributes.detail[0].name : '') }}
                                 </option>
                             </select>
-                            <button type="button" @click.prevent="getVariation()" class="btn-secondary btn ml-2 white pt-2 pb-1" :disabled="editChild == true">ADD</button>
+                            <button type="button" @click.prevent="getVariation()" class="btn-secondary btn ml-2 white pt-2 pb-1">ADD</button>
                             <button type="button" @click.prevent="unsetVariationData()" class="btn-secondary btn ml-2 white pt-2 pb-1" :disabled="editChild == true" v-show="displayClearBtn">Remove</button>
                         </fieldset>
                             <small class="form-text text-danger" v-if="errors.has('attributes')" v-text="errors.get('attributes')"></small>
