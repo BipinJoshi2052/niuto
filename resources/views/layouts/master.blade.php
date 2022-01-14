@@ -1093,14 +1093,14 @@ $categories = App\Models\Admin\Category::where('parent_id', null)
                                 if (data.data[i].currency.symbol_position == 'left') {
                                     sum = +data.data[i].qty * +price;
                                     cartItemTotal = data.data[i].currency.code + ' ' + sum.toFixed(2);
-                                    cartItemPrice = data.data[i].currency.code + ' ' + price.toFixed(2);
+                                    cartItemPrice = data.data[i].currency.code + ' ' + (Number(price)).toFixed(2);
                                 } else {
                                     sum = +data.data[i].qty * +price;
                                     cartItemTotal = sum.toFixed(2) + ' ' + data.data[i].currency.code;
                                     cartItemPrice = price.toFixed(2) + ' ' + data.data[i].currency.code;
                                 }
                             } else {
-                                cartItemPrice = price.toFixed(2);
+                                cartItemPrice = (Number(price)).toFixed(2);
                             }
                             itemQty = +data.data[i].qty;
                             $(".cartItem-qty").attr('id', 'quantity' + i);
