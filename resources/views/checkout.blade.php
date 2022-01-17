@@ -185,6 +185,19 @@
                                 </div>
                             </div>
                         </form>
+
+
+
+                        <form class="d-none" id="pickup_form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="country"></label>
+                                    <select id="pickupSelectCountry" class="form-control">
+                                        <option value="">Select Country</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="col-md-12">
                         <div class="my-car-title d-flex mt-5">
