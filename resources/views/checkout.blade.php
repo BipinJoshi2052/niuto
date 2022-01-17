@@ -135,6 +135,17 @@
                         </div> --}}
                         <!-- table end  -->
 
+                        <form class="d-none mt-3" id="pickup_form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="country"></label>
+                                    <select id="pickupSelectCountry" class="form-control">
+                                        <option value="">Select Country</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+
 
                         <!--========================== SHIPPING START  --->
 
@@ -186,18 +197,6 @@
                             </div>
                         </form>
 
-
-
-                        <form class="d-none" id="pickup_form">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="country"></label>
-                                    <select id="pickupSelectCountry" class="form-control">
-                                        <option value="">Select Country</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                     <div class="col-md-12">
                         <div class="my-car-title d-flex mt-5">
@@ -770,21 +769,32 @@
         $(document).ready(function(){
             $("#pickupCheckbox").on("click", function(){
                 if($(this).is(":checked")){
-                    getPickupInformation();
+                    // getPickupInformation();
+                    $("#pickup_form").removeClass('d-none');
                     $("#shipping").addClass('d-none');
+                    getcountriesInPickupForm();
                 } else {
                     getShippingInformation();
                     $("#shipping").removeClass('d-none');
+                    $("#pickup_form").addClass('d-none');
                 }
+            });
+
+            $("#pickupSelectCountry").on('change', function(){
+                // alert($(this).val());
+                var country_id = $(this).val();
+                $("#pickup_form").removeClass('d-none');
+                getPickupInformation(country_id);
             });
         });
 
 
-        function getPickupInformation() {
+        function getPickupInformation(pickup_country_id) {
             $.ajax({
                 type: 'get',
                 url: "{{ url('') }}" +
-                    '/api/client/customer_address_book',
+                    '/api/client/get-pickup-address',
+                data: {'country_id': pickup_country_id},
                 headers: {
                     'Authorization': 'Bearer ' + customerToken,
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -793,48 +803,73 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    if (data.status == 'Success') {
-                        if (data.data.length > 0) {
-                            $(".pickup_info_card").removeClass('d-none');
+                    console.log(data.data);
+                    if(data.status == "success"){
+                        if(data.data.length > 0){
+                            $(".pickup_info_card").removeClass("d-none");
                             $(".pickup_info_card").html('');
                             const templ = document.getElementById("pickup-card-template");
-                            for (i = 0; i < data.data.length; i++) {
+                            for(i = 0; i < data.data.length; i++){
                                 const clone = templ.content.cloneNode(true);
-                                clone.querySelector(".pickup-address-listing-first-name-last-name")
-                                    .innerHTML = data.data[i].first_name + ' ' + data.data[i].last_name;
+                                clone.querySelector(".pickup-address-listing-first-name-last-name").innerHTML = data.data[i].name;
                                 country = state = '';
-                                if (data.data[i].country_id != 'null' && data.data[i].country_id != null && data
-                                    .data[i].country_id != '') {
-                                    country = data.data[i].country_id.country_name + ', ';
-                                    cardCountry = data.data[i].country_id.country_name;
+                                if(data.data[i].country != 'null' && data.data[i].country != null && data.data[i].country != ''){
+                                    country = data.country.name;
                                 }
-                                if (data.data[i].state_id != 'null' && data.data[i].state_id != null && data
-                                    .data[i]
-                                    .state_id != '') {
-                                    state = data.data[i].state_id.name + ', ';
-                                    cardState = data.data[i].state_id.name;
+                                if(data.data[i].state != 'null' && data.data[i].state != null && data.data[i].state != ''){
+                                    state = data.state.name;
                                 }
-                                clone.querySelector("#pickup_detail_card_country").innerHTML = cardCountry;
-                                clone.querySelector("#pickup_detail_card_state").innerHTML = cardState;
+                                clone.querySelector("#pickup_detail_card_country").innerHTML = country;
+                                clone.querySelector("#pickup_detail_card_state").innerHTML = state;
                                 clone.querySelector("#pickup_detail_card_city").innerHTML = data.data[i].city;
-                                clone.querySelector(".pickup-address-listing-card-is-default")
-                                    .setAttribute('data-id', data.data[i].id);
-                                clone.querySelector(".pickup-address-listing-card-is-default")
-                                    .setAttribute('onclick', 'setPickupInformation(this)');
-                                if (data.data[i].default_address == '1') {
-                                    $("#shippingAddressForm").find("#gender").val(data.data[i].gender);
-                                    $("#shippingAddressForm").find("#dob").val(data.data[i].dob);
-                                    $("#shippingAddressForm").find("#phone").val(data.data[i].phone);
-                                    // clone.querySelector(".pickup-address-listing-card-is-default")
-                                    //     .setAttribute(
-                                    //         'checked', true);
-                                }
-                                $(".pickup_info_card").html(clone);
+                                clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('data-id', data.data[i].id);
+                                clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('onclick', setPickupInformation(this));
+                                $(".pickup_info_card").append(clone);
                             }
-                        } else {
-                            $(".pickup_info_card").addClass('d-none');
                         }
                     }
+                    // if (data.status == 'Success') {
+                    //     if (data.data.length > 0) {
+                    //         $(".pickup_info_card").removeClass('d-none');
+                    //         $(".pickup_info_card").html('');
+                    //         const templ = document.getElementById("pickup-card-template");
+                    //         for (i = 0; i < data.data.length; i++) {
+                    //             const clone = templ.content.cloneNode(true);
+                    //             clone.querySelector(".pickup-address-listing-first-name-last-name")
+                    //                 .innerHTML = data.data[i].first_name + ' ' + data.data[i].last_name;
+                    //             country = state = '';
+                    //             if (data.data[i].country_id != 'null' && data.data[i].country_id != null && data
+                    //                 .data[i].country_id != '') {
+                    //                 country = data.data[i].country_id.country_name + ', ';
+                    //                 cardCountry = data.data[i].country_id.country_name;
+                    //             }
+                    //             if (data.data[i].state_id != 'null' && data.data[i].state_id != null && data
+                    //                 .data[i]
+                    //                 .state_id != '') {
+                    //                 state = data.data[i].state_id.name + ', ';
+                    //                 cardState = data.data[i].state_id.name;
+                    //             }
+                    //             clone.querySelector("#pickup_detail_card_country").innerHTML = cardCountry;
+                    //             clone.querySelector("#pickup_detail_card_state").innerHTML = cardState;
+                    //             clone.querySelector("#pickup_detail_card_city").innerHTML = data.data[i].city;
+                    //             clone.querySelector(".pickup-address-listing-card-is-default")
+                    //                 .setAttribute('data-id', data.data[i].id);
+                    //             clone.querySelector(".pickup-address-listing-card-is-default")
+                    //                 .setAttribute('onclick', 'setPickupInformation(this)');
+                    //             if (data.data[i].default_address == '1') {
+                    //                 $("#shippingAddressForm").find("#gender").val(data.data[i].gender);
+                    //                 $("#shippingAddressForm").find("#dob").val(data.data[i].dob);
+                    //                 $("#shippingAddressForm").find("#phone").val(data.data[i].phone);
+                    //                 // clone.querySelector(".pickup-address-listing-card-is-default")
+                    //                 //     .setAttribute(
+                    //                 //         'checked', true);
+                    //             }
+                    //             $(".pickup_info_card").html(clone);
+                    //         }
+                    //     } else {
+                    //         $(".pickup_info_card").addClass('d-none');
+                    //     }
+                    // }
                 },
                 error: function(data) {},
             });
@@ -1384,6 +1419,36 @@
                             $("#delivery_country").trigger('change');
 
                         }
+
+                    } else if (data.status == 'Error') {
+                        toastr.error('{{ trans('response.some_thing_went_wrong') }}');
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+
+
+        function getcountriesInPickupForm() {
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}/api/client/country?getAllData=1",
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success') {
+                        html = '<option value="">Select Country</option>';
+                        for (i = 0; i < data.data.length; i++) {
+                            html += '<option value="' + data.data[i].country_id + '">' + data
+                                .data[i].country_name + '</option>';
+                        }
+                        $("#pickupSelectCountry").html(html);
 
                     } else if (data.status == 'Error') {
                         toastr.error('{{ trans('response.some_thing_went_wrong') }}');

@@ -157,7 +157,7 @@ Route::group(['prefix' => 'client', 'middleware' => ['auth:customer-api', 'scope
     Route::delete('cart/delete', 'API\Web\CartController@destroy');
     Route::post('esewaMerchant', 'Web\PaymentVerification@esewaMerchant');
     Route::resource('customer_address_book', 'API\Web\CustomerAddressBookController', ['names' => ['index' => 'admin.customer_address_book.index', 'store' => 'admin.customer_address_book.store', 'update' => 'admin.customer_address_book.update', 'destroy' => 'admin.customer_address_book.delete']])->except(['edit', 'create']);
-    Route::resource('pickup_address', 'API\Web\CustomerAddressBookController', ['names' => ['index' => 'admin.pickup_address.index', 'store' => 'admin.pickup_address.store', 'update' => 'admin.pickup_address.update', 'destroy' => 'admin.pickup_address.delete']])->except(['edit', 'create']);
+    Route::get('get-pickup-address', 'API\Web\PickupController@all')->name("getPickupPoint");
     Route::resource('customer/order', 'API\Admin\OrderController')->only(['index', 'show']);
     Route::resource('profile', 'API\Web\CustomerController')->only(['show', 'update']);
     Route::post('change-password', 'API\Web\CustomerController@changePassword')->name('change-old-password');
