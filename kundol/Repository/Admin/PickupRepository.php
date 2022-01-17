@@ -74,14 +74,9 @@ class PickupRepository implements PickupInterface
     public function store(array $parms)
     {
         \DB::beginTransaction();
-        if (isset($parms['is_active'])) {
-            $single['is_active'] = $parms['is_active'];
-        } else {
-            $single['is_active'] = 1;
-        }
         try {
-            $single['created_by'] = \Auth::id();
-            $sql = Pickup::create($single);
+            $parms['created_by'] = \Auth::id();
+            $sql = Pickup::create($parms);
         } catch (Exception $e) {
             \DB::rollback();
             return $this->errorResponse();
@@ -134,11 +129,6 @@ class PickupRepository implements PickupInterface
 
     public function destroy($pickup)
     {
-         $isExistedInProduct = Product::where('product_Pickup','==',$pickup)->count();
-         if($isExistedInProduct > 0 ){
-            return $this->errorResponse('linked in another table can not be deleted',422,null);
-         }
-
         try {
             $sql = Pickup::findOrFail($pickup);
             $sql->delete();

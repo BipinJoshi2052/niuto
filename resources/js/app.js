@@ -33,6 +33,7 @@ let routes = [
             
 
             { path: '/admin/product-unit', component: require('./components/admin/ProductUnit.vue').default, name: 'product-unit-list', meta: { auth: true } },
+            { path: '/admin/product-pick-up', component: require('./components/admin/ProductPickup.vue').default, name: 'product-pick-up', meta: { auth: true } },
             { path: '/admin/product-attribute', component: require('./components/admin/ProductAttribute.vue').default, name: 'product-attribute-list', meta: { auth: true } },
             { path: '/admin/product-variation', component: require('./components/admin/ProductVariation.vue').default, name: 'product-variation-list', meta: { auth: true } },
             { path: '/admin/product-brand', component: require('./components/admin/ProductBrand.vue').default, name: 'product-brand-list', meta: { auth: true } },
