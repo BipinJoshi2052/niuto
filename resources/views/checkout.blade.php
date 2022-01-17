@@ -807,7 +807,7 @@
                                 clone.querySelector(".pickup-address-listing-card-is-default")
                                     .setAttribute('data-id', data.data[i].id);
                                 clone.querySelector(".pickup-address-listing-card-is-default")
-                                    .setAttribute('onclick', 'setAddress(this)');
+                                    .setAttribute('onclick', 'setPickupInformation(this)');
                                 if (data.data[i].default_address == '1') {
                                     $("#shippingAddressForm").find("#gender").val(data.data[i].gender);
                                     $("#shippingAddressForm").find("#dob").val(data.data[i].dob);
@@ -1118,6 +1118,51 @@
 
 
         function setAddress(input) {
+            id = $(input).attr('data-id');
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" + '/api/client/customer_address_book/' + id,
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success') {
+
+                        $("#delivery_first_name").val(data.data.first_name);
+                        $("#delivery_last_name").val(data.data.last_name);
+                        $("#delivery_postcode").val(data.data.postcode);
+
+                        country = state = '';
+                        if (data.data.country_id != 'null' && data.data.country_id != null && data.data
+                            .country_id != '') {
+                            country = data.data.country_id.country_id;
+                        }
+                        if (data.data.state_id != 'null' && data.data.state_id != null && data.data.state_id !=
+                            '') {
+                            state = data.data.state_id.id;
+                        }
+                        // countries1();
+                        $("#delivery_country_hidden").val(country);
+                        $("#delivery_country").val(country);
+                        $("#delivery_country").trigger('change');
+                        $("#delivery_state_hidden").val(state);
+                        $("#delivery_state").val(state);
+                        $("#delivery_city").val(data.data.city);
+                        $("#delivery_street_aadress").val(data.data.street_address);
+                        $("#delivery_phone").val(data.data.phone);
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+
+
+        function setPickupInformation(input){
             id = $(input).attr('data-id');
             $.ajax({
                 type: 'get',
