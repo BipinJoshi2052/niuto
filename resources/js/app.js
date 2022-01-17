@@ -23,6 +23,7 @@ let routes = [
         path: '/admin/', component: require('./components/admin/Main.vue').default, name: 'main',
         children: [
             { path: '/admin/dashboard', component: require('./components/admin/Dashboard.vue').default, name: 'dashboard', meta: { auth: true } },
+            { path: '/admin/pickup', component: require('./components/admin/pickup.vue').default, name: 'pickup', meta: { auth: true } },
             { path: '/admin/bussiness-setting', component: require('./components/admin/BusinessSetting.vue').default, name: 'business-setting', meta: { auth: true } },
             { path: '/admin/website-setting', component: require('./components/admin/WebsiteSetting.vue').default, name: 'website-setting', meta: { auth: true } },
             { path: '/admin/app-setting', component: require('./components/admin/AppSetting.vue').default, name: 'mobile-setting', meta: { auth: true } },
