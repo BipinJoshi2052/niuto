@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user-api', 'scopes:use
     Route::resource('currency', 'API\Admin\CurrencyController', ['names' => ['index' => 'admin.currency.index', 'store' => 'admin.currency.store', 'update' => 'admin.currency.update', 'destroy' => 'admin.currency.delete']])->except(['edit', 'create']);
     Route::post('currency/is_default', 'API\Admin\CurrencyController@isDefault');
     Route::resource('unit', 'API\Admin\UnitController', ['names' => ['index' => 'admin.unit.index', 'store' => 'admin.unit.store', 'update' => 'admin.unit.update', 'destroy' => 'admin.unit.delete']])->except(['edit', 'create']);
+    Route::resource('pickup', 'API\Admin\PickupController', ['names' => ['index' => 'admin.pickup.index', 'store' => 'admin.pickup.store', 'update' => 'admin.pickup.update', 'destroy' => 'admin.pickup.delete']])->except(['edit', 'create']);
     Route::resource('category', 'API\Admin\CategoryController', ['names' => ['index' => 'admin.category.index', 'store' => 'admin.category.store', 'update' => 'admin.category.update', 'destroy' => 'admin.category.delete']])->except(['edit', 'create']);
     Route::resource('coa', 'API\Admin\CoaController', ['names' => ['index' => 'admin.coa.index', 'store' => 'admin.coa.store', 'update' => 'admin.coa.update', 'destroy' => 'admin.coa.delete']])->except(['edit', 'create']);
     Route::resource('warehouse', 'API\Admin\WarehouseController', ['names' => ['index' => 'admin.warehouse.index', 'store' => 'admin.warehouse.store', 'update' => 'admin.warehouse.update', 'destroy' => 'admin.warehouse.delete']])->except(['edit', 'create']);
@@ -156,6 +157,7 @@ Route::group(['prefix' => 'client', 'middleware' => ['auth:customer-api', 'scope
     Route::delete('cart/delete', 'API\Web\CartController@destroy');
     Route::post('esewaMerchant', 'Web\PaymentVerification@esewaMerchant');
     Route::resource('customer_address_book', 'API\Web\CustomerAddressBookController', ['names' => ['index' => 'admin.customer_address_book.index', 'store' => 'admin.customer_address_book.store', 'update' => 'admin.customer_address_book.update', 'destroy' => 'admin.customer_address_book.delete']])->except(['edit', 'create']);
+    Route::resource('pickup_address', 'API\Web\CustomerAddressBookController', ['names' => ['index' => 'admin.pickup_address.index', 'store' => 'admin.pickup_address.store', 'update' => 'admin.pickup_address.update', 'destroy' => 'admin.pickup_address.delete']])->except(['edit', 'create']);
     Route::resource('customer/order', 'API\Admin\OrderController')->only(['index', 'show']);
     Route::resource('profile', 'API\Web\CustomerController')->only(['show', 'update']);
     Route::post('change-password', 'API\Web\CustomerController@changePassword')->name('change-old-password');
