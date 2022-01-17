@@ -70,6 +70,61 @@
                     </div>
                 </div>
                 <!-- First Collapse Ends -->
+                
+                <div class="card">
+                    <div class="card-header p-0 bg-light" id="headingTwo">
+                        <h5 class="mb-0">
+                            <div class="collapsed p-3" data-toggle="collapse" data-target="#collapseThress" aria-expanded="false" aria-controls="collapseThress">
+                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Payment Details
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseThress" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="text_gray"><b>Payment Method:</b> <span class="order-payment-method"></span></label><br/>
+
+                                        <label class="text_gray transaction-label hidden"><b>Transaction Id:</b> <span class="transaction-id"></span></label><br/>
+                                    </div>
+                                    {{-- <div class="col-md-6">
+                                        <label class="text_gray"><b>Address:</b> <span class="order-delivery-address"></span> </label><br/>
+                                        <label class="text_gray"><b>Address Detail:</b> <span class="order-delivery-detail"></span> </label><br/>
+                                    </div> --}}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="card">
+                    <div class="card-header p-0 bg-light" id="headingTwo">
+                        <h5 class="mb-0">
+                            <div class="collapsed p-3" data-toggle="collapse" data-target="#collapseThress1" aria-expanded="false" aria-controls="collapseThress1">
+                                <span class="mr-2"><i class="fa fa-ravelry" aria-hidden="true"></i></span> Shipping Address
+                            </div>
+                        </h5>
+                    </div>
+                    <div id="collapseThress1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="text_gray"><b>Order Delivery Detail:</b> <span class="order-delivery-detail"></span></label><br/>
+                                        <label class="text_gray"><b>Order Billing Address:</b> <span class="order-billing-address"></span></label><br/>
+                                        <label class="text_gray"><b>Order Billing Detail:</b> <span class="order-billing-detail"></span></label><br/>
+                                    </div>
+                                    {{-- <div class="col-md-6">
+                                        <label class="text_gray"><b>Address:</b> <span class="order-delivery-address"></span> </label><br/>
+                                        <label class="text_gray"><b>Address Detail:</b> <span class="order-delivery-detail"></span> </label><br/>
+                                    </div> --}}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <!-- Second Collapse  -->
                 <div class="card">
                     <div class="card-header p-0 bg-light" id="headingTwo">
@@ -139,6 +194,7 @@
                     </div>
                 </div>
                 <!-- Second Collapse End -->
+                
             </div>
             </div>
           </div>
@@ -189,12 +245,14 @@
             },
             beforeSend: function() {},
             success: function(data) {
+                // console.log(data);
                 if (data.status == 'Success') {
                     $("#order-show-detaill").html('');
                     order = data.data.order_date.split('T');
                     $(".order-date").html(order[0]); 
                     $(".order-no").html(data.data.order_id);
                     $(".order-status").html(data.data.order_status);
+                    // $(".payment-method").html(data.data.payment_method);
                     $(".order-billing-address").html(data.data.order_status);
                     $(".order-billing-detail").html(data.data.order_status);
                     $(".order-delivery-address").html(data.data.delivery_street_aadress);
@@ -220,6 +278,10 @@
                     detail_address = data.data.billing_street_aadress +', '+ data.data.billing_city + state +country;
                     $(".order-billing-detail").html(detail_address);
                     $(".order-payment-method").html(data.data.payment_method);
+                    if(data.data.payment_method == 'esewa'){
+                        $(".transaction-label").removeClass('hidden');
+                    $(".transaction-id").html(data.data.transaction_id);
+                    }
 
                     if (data.data.order_detail != null && data.data.order_detail != 'null' && data.data.order_detail != '') {
                         for (k = 0; k < data.data.order_detail.length; k++) {
