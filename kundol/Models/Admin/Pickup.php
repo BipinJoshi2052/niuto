@@ -14,7 +14,7 @@ class Pickup extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'country', 'state', 'city', 'phone', 'postalcode', 'is_active', 'created_by', 'updated_by'
+        'is_active', 'created_by', 'updated_by'
     ];
 
     public function scopeGetPickupDetailByLanguageId($query, $languageId)

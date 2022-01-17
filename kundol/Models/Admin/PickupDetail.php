@@ -14,7 +14,7 @@ class PickupDetail extends Model
      * @var array
      */
     protected $fillable = [
-        'pickup_id','language_id'
+        'name', 'country', 'state', 'city', 'phone', 'postalcode', 'pickup_id','language_id'
     ];
 
     public function language()
