@@ -17,6 +17,17 @@ class Pickup extends JsonResource
     public function toArray($request)
     {
         $pickup_detail = PickupDetail::where('pickup_id',$this->id)->where('language_id','1')->first();
+<<<<<<< HEAD
+        //PickupDetailResource::collection($this->whenLoaded('detail'))
+        return [
+                'id' => $this->id,
+                'name' => $this->name,
+                'country' => $this->country,
+                'state' => $this->state,
+                'city' => $this->city,
+                'phone' => $this->phone,
+                'postalcode' => $this->postalcode,
+=======
         // dd($pickup_detail);
         //PickupDetailResource::collection($this->whenLoaded('detail'))
         return [
@@ -27,6 +38,7 @@ class Pickup extends JsonResource
                 'city' => $pickup_detail->city,
                 'phone' => $pickup_detail->phone,
                 'postalcode' => $pickup_detail->postalcode,
+>>>>>>> master
                 'is_active' => $this->is_active,
                 'detail' => PickupDetailResource::collection($this->whenLoaded('detail')),
         ];
