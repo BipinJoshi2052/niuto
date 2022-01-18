@@ -93,11 +93,7 @@
                                                             <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('is_active')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'is_active'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'is_active' ? 'sorting_desc' : 'sorting'">
                                                             Status
                                                             </th>
-<<<<<<< HEAD
-                                                            <th class="no-sort sorting_disabled" rowspan="1" colspan="1" aria-label="Action" style="width: 53.1891px;" v-if="$parent.permissions.includes('product-pickup-manage')">
-=======
                                                             <th class="no-sort sorting_disabled" rowspan="1" colspan="1" aria-label="Action" style="width: 53.1891px;" v-if="$parent.permissions.includes('product-unit-manage')">
->>>>>>> master
                                                                 Action
                                                             </th>
                                                         </tr>
@@ -128,11 +124,7 @@
                                                             <td>
                                                                 {{ pickup.is_active == '1' ? 'Active' : 'InActive' }}
                                                             </td>
-<<<<<<< HEAD
-                                                            <td v-if="$parent.permissions.includes('product-pickup-manage')">
-=======
                                                             <td v-if="$parent.permissions.includes('product-unit-manage')">
->>>>>>> master
                                                             <a href="javascript:void(0)" class=" click-edit" id="click-edit1" data-toggle="tooltip" title="" data-placement="right" data-original-title="Check out more demos" @click="editpickup(pickup)"><i class="fa fa-edit"></i></a>
                                                             <a class="" href="#" @click="deletepickup(pickup.id)"><i class="fa fa-trash"></i></a>
                                                             </td>
@@ -192,14 +184,11 @@
                         <small class="form-text text-danger" v-if="errors.has('state')" v-text="errors.get('state')"></small>
                     </div>
                     <div class="form-group " v-for="(language,index) in languages" v-if="language.id == selectedLanguage">
-<<<<<<< HEAD
-=======
                         <label class="text-dark">City ( {{ language.language_name }} ) </label>
                         <input type="text" :name="'city'+index" v-model="pickup.city[index]" class="form-control" />
                         <small class="form-text text-danger" v-if="errors.has('city')" v-text="errors.get('city')"></small>
                     </div>
                     <div class="form-group " v-for="(language,index) in languages" v-if="language.id == selectedLanguage">
->>>>>>> master
                         <label class="text-dark">Phone ( {{ language.language_name }} ) </label>
                         <input type="text" :name="'phone'+index" v-model="pickup.phone[index]" class="form-control" />
                         <small class="form-text text-danger" v-if="errors.has('phone')" v-text="errors.get('phone')"></small>
@@ -385,6 +374,11 @@ export default {
             this.errors = new ErrorHandling();
             this.pickup.id = pickup.id;
             this.pickup.name = [];
+            this.pickup.country = [];
+            this.pickup.state = [];
+            this.pickup.city = [];
+            this.pickup.phone = [];
+            this.pickup.postalcode = [];
             this.pickup.is_active = pickup.is_active;
             this.$parent.loading = true;
             axios.get(`/api/admin/pickup/${pickup.id}?getDetail=1`,this.token)
@@ -393,6 +387,11 @@ export default {
                     res.data.data.detail.forEach(u => {
                         // this.pickup.name.push(u.name)
                         this.pickup.name[this.pickup.language_id.indexOf(u.language.id)] = u.name;
+                        this.pickup.country[this.pickup.language_id.indexOf(u.language.id)] = u.country;
+                        this.pickup.state[this.pickup.language_id.indexOf(u.language.id)] = u.state;
+                        this.pickup.city[this.pickup.language_id.indexOf(u.language.id)] = u.city;
+                        this.pickup.phone[this.pickup.language_id.indexOf(u.language.id)] = u.phone;
+                        this.pickup.postalcode[this.pickup.language_id.indexOf(u.language.id)] = u.postalcode;
                     });
                     this.pickup = Object.assign({}, this.pickup, { is_active: pickup.is_active })
                 }
@@ -407,6 +406,11 @@ export default {
             this.edit = false;
             this.pickup.id = null;
             this.pickup.name = [];
+            this.pickup.country = [];
+            this.pickup.state = [];
+            this.pickup.city = [];
+            this.pickup.phone = [];
+            this.pickup.postalcode = [];
             this.pickup.is_active = 'inactive';
             },
         sorting(sortBy){

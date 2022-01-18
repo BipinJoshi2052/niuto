@@ -375,6 +375,11 @@ export default {
             this.errors = new ErrorHandling();
             this.pickup.id = pickup.id;
             this.pickup.name = [];
+            this.pickup.country = [];
+            this.pickup.state = [];
+            this.pickup.city = [];
+            this.pickup.phone = [];
+            this.pickup.postalcode = [];
             this.pickup.is_active = pickup.is_active;
             this.$parent.loading = true;
             axios.get(`/api/admin/pickup/${pickup.id}?getDetail=1`,this.token)
@@ -383,6 +388,11 @@ export default {
                     res.data.data.detail.forEach(u => {
                         // this.pickup.name.push(u.name)
                         this.pickup.name[this.pickup.language_id.indexOf(u.language.id)] = u.name;
+                        this.pickup.country[this.pickup.language_id.indexOf(u.language.id)] = u.country;
+                        this.pickup.state[this.pickup.language_id.indexOf(u.language.id)] = u.state;
+                        this.pickup.city[this.pickup.language_id.indexOf(u.language.id)] = u.city;
+                        this.pickup.phone[this.pickup.language_id.indexOf(u.language.id)] = u.phone;
+                        this.pickup.postalcode[this.pickup.language_id.indexOf(u.language.id)] = u.postalcode;
                     });
                     this.pickup = Object.assign({}, this.pickup, { is_active: pickup.is_active })
                 }
@@ -397,6 +407,11 @@ export default {
             this.edit = false;
             this.pickup.id = null;
             this.pickup.name = [];
+            this.pickup.country = [];
+            this.pickup.state = [];
+            this.pickup.city = [];
+            this.pickup.phone = [];
+            this.pickup.postalcode = [];
             this.pickup.is_active = 'inactive';
             },
         sorting(sortBy){
