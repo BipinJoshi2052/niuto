@@ -774,9 +774,12 @@
                     $("#shipping").addClass('d-none');
                     getcountriesInPickupForm();
                 } else {
+                    getCustomerAdress();
                     getShippingInformation();
                     $("#shipping").removeClass('d-none');
                     $("#pickup_form").addClass('d-none');
+                    $("#pickupCard").html('');
+                    $("#pickupCard").addClass('d-none');
                 }
             });
 
@@ -814,62 +817,20 @@
                                 clone.querySelector(".pickup-address-listing-first-name-last-name").innerHTML = data.data[i].name;
                                 country = state = '';
                                 if(data.data[i].country != 'null' && data.data[i].country != null && data.data[i].country != ''){
-                                    country = data.country.name;
+                                    country = data.data[i].country.name;
                                 }
                                 if(data.data[i].state != 'null' && data.data[i].state != null && data.data[i].state != ''){
-                                    state = data.state.name;
+                                    state = data.data[i].state.name;
                                 }
                                 clone.querySelector("#pickup_detail_card_country").innerHTML = country;
                                 clone.querySelector("#pickup_detail_card_state").innerHTML = state;
                                 clone.querySelector("#pickup_detail_card_city").innerHTML = data.data[i].city;
                                 clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('data-id', data.data[i].id);
-                                clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('onclick', setPickupInformation(this));
+                                clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('onclick', 'setPickupInformation(this)');
                                 $(".pickup_info_card").append(clone);
                             }
                         }
                     }
-                    // if (data.status == 'Success') {
-                    //     if (data.data.length > 0) {
-                    //         $(".pickup_info_card").removeClass('d-none');
-                    //         $(".pickup_info_card").html('');
-                    //         const templ = document.getElementById("pickup-card-template");
-                    //         for (i = 0; i < data.data.length; i++) {
-                    //             const clone = templ.content.cloneNode(true);
-                    //             clone.querySelector(".pickup-address-listing-first-name-last-name")
-                    //                 .innerHTML = data.data[i].first_name + ' ' + data.data[i].last_name;
-                    //             country = state = '';
-                    //             if (data.data[i].country_id != 'null' && data.data[i].country_id != null && data
-                    //                 .data[i].country_id != '') {
-                    //                 country = data.data[i].country_id.country_name + ', ';
-                    //                 cardCountry = data.data[i].country_id.country_name;
-                    //             }
-                    //             if (data.data[i].state_id != 'null' && data.data[i].state_id != null && data
-                    //                 .data[i]
-                    //                 .state_id != '') {
-                    //                 state = data.data[i].state_id.name + ', ';
-                    //                 cardState = data.data[i].state_id.name;
-                    //             }
-                    //             clone.querySelector("#pickup_detail_card_country").innerHTML = cardCountry;
-                    //             clone.querySelector("#pickup_detail_card_state").innerHTML = cardState;
-                    //             clone.querySelector("#pickup_detail_card_city").innerHTML = data.data[i].city;
-                    //             clone.querySelector(".pickup-address-listing-card-is-default")
-                    //                 .setAttribute('data-id', data.data[i].id);
-                    //             clone.querySelector(".pickup-address-listing-card-is-default")
-                    //                 .setAttribute('onclick', 'setPickupInformation(this)');
-                    //             if (data.data[i].default_address == '1') {
-                    //                 $("#shippingAddressForm").find("#gender").val(data.data[i].gender);
-                    //                 $("#shippingAddressForm").find("#dob").val(data.data[i].dob);
-                    //                 $("#shippingAddressForm").find("#phone").val(data.data[i].phone);
-                    //                 // clone.querySelector(".pickup-address-listing-card-is-default")
-                    //                 //     .setAttribute(
-                    //                 //         'checked', true);
-                    //             }
-                    //             $(".pickup_info_card").html(clone);
-                    //         }
-                    //     } else {
-                    //         $(".pickup_info_card").addClass('d-none');
-                    //     }
-                    // }
                 },
                 error: function(data) {},
             });
@@ -883,43 +844,6 @@
                 getcountriesInModal();
             });
 
-
-            // $("#shipping_detail_form").validate({
-            //     rules: {
-            //         new_first_name: "required",
-            //         new_last_name: "required",
-            //         new_phone: {
-            //             required: true,
-            //             digits: true,
-            //             minlength: 10,
-            //             maxlength: 13
-            //         },
-            //         new_street_aadress: "required",
-            //         new_city: "required",
-            //         new_country: "required",
-            //         new_state: "required",
-            //         new_postcode: "required",
-            //     },
-            //     messages: {
-            //         new_first_name: "The first name is required",
-            //         new_last_name: "The last name is required",
-            //         new_phone: {
-            //             digits: "Phone must contain only numeric value",
-            //             minlength: "Phone must have at least 10 digits",
-            //             maxlength: "The phone length must not be greater than 13",
-            //         },
-            //         new_street_aadress: "The street address is required",
-            //         new_city: "The city is required",
-            //         new_country: "Select Country",
-            //         new_state: "Select State",
-            //         new_postcode: "Postcode is required",
-
-            //     },
-            //     submitHandler: function() {
-            //         $("#shipping_detail_form").submit();
-            //     }
-
-            // });
 
 
             $("#SaveNewShippingAddress").on('click', function() {
@@ -1214,7 +1138,8 @@
             id = $(input).attr('data-id');
             $.ajax({
                 type: 'get',
-                url: "{{ url('') }}" + '/api/client/customer_address_book/' + id,
+                url: "{{ url('') }}" + '/api/client/get-single-pickup-address/',
+                data: {'pickup_id': id},
                 headers: {
                     'Authorization': 'Bearer ' + customerToken,
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -1223,20 +1148,22 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    if (data.status == 'Success') {
-
-                        $("#delivery_first_name").val(data.data.first_name);
-                        $("#delivery_last_name").val(data.data.last_name);
-                        $("#delivery_postcode").val(data.data.postcode);
+                    console.log("set pickup");
+                    console.log(data.data.country);
+                    if (data.status == 'success') {
+                        console.log("I am here");
+                        $("#delivery_first_name").val(data.data.name);
+                        $("#delivery_last_name").val('');
+                        $("#delivery_postcode").val(data.data.postalcode);
 
                         country = state = '';
-                        if (data.data.country_id != 'null' && data.data.country_id != null && data.data
-                            .country_id != '') {
-                            country = data.data.country_id.country_id;
+                        if (data.data.country != 'null' && data.data.country != null && data.data
+                            .country != '') {
+                            country = data.data.country.id;
                         }
-                        if (data.data.state_id != 'null' && data.data.state_id != null && data.data.state_id !=
+                        if (data.data.state != 'null' && data.data.state != null && data.data.state !=
                             '') {
-                            state = data.data.state_id.id;
+                            state = data.data.state.id;
                         }
                         // countries1();
                         $("#delivery_country_hidden").val(country);
@@ -1245,7 +1172,7 @@
                         $("#delivery_state_hidden").val(state);
                         $("#delivery_state").val(state);
                         $("#delivery_city").val(data.data.city);
-                        $("#delivery_street_aadress").val(data.data.street_address);
+                        $("#delivery_street_aadress").val(data.data.city);
                         $("#delivery_phone").val(data.data.phone);
                     }
                 },

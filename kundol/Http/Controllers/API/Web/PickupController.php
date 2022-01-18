@@ -22,4 +22,20 @@ class PickupController extends Controller
             return response()->json(["error"=>$e->getMessage(), "status" => "error"]);
         }
     }
+
+
+    public function getSinglePickupDetail(Request $request)
+    {
+        try{
+            $pickup_point = Pickup::where("id", $request->pickup_id);
+            if($pickup_point->exists()){
+                $pickup_point = $pickup_point->with(['country', 'state'])->first();
+                return response()->json(['data' => $pickup_point, "message" => "Data get successfully", "status" => "success"]);
+            } else {
+                return response()->json(['error'=>"Something went wrong", "status" => "error"]);
+            }
+        } catch(Exception $e){
+            return response()->json(["error" => $e->getMessage(), "status" => "error"]);
+        }
+    }
 }
