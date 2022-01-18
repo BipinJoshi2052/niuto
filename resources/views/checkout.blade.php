@@ -806,14 +806,18 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    console.log("I am in get pickup");
                     console.log(data);
+                    // console.log(data.data.detail[0].length);
                     if(data.status == "success"){
                         if(data.data.length > 0){
                             $(".pickup_info_card").removeClass("d-none");
                             $(".pickup_info_card").html('');
                             const templ = document.getElementById("pickup-card-template");
                             for(i = 0; i < data.data.length; i++){
+                                if(data.data[i].detail.length == 0){
+                                    toastr.error('No pickup point exist for this country');
+                                    break;
+                                }
                                 const clone = templ.content.cloneNode(true);
                                 clone.querySelector(".pickup-address-listing-first-name-last-name").innerHTML = data.data[i].detail[0].name;
                                 country = state = '';
@@ -829,6 +833,7 @@
                                 clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('data-id', data.data[i].id);
                                 clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('onclick', 'setPickupInformation(this)');
                                 $(".pickup_info_card").append(clone);
+
                             }
                         }
                     }
