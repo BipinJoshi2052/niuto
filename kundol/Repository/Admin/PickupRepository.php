@@ -19,6 +19,7 @@ class PickupRepository implements PickupInterface
      */
     public function all()
     {
+        
         try {
             $pickup = new Pickup;
             if (isset($_GET['getDetail']) && $_GET['getDetail'] == '1') {
@@ -62,6 +63,7 @@ class PickupRepository implements PickupInterface
     {
         try {
             if (isset($_GET['getDetail']) && $_GET['getDetail'] == '1') {
+                // dd(new PickupResource(Pickup::with('detail')->PickupId($pickup->id)->firstOrFail()));
                 return $this->successResponse(new PickupResource(Pickup::with('detail')->PickupId($pickup->id)->firstOrFail()), 'Data Get Successfully!');
             }
 
