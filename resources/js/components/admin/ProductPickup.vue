@@ -104,23 +104,24 @@
                                                                 {{pickup.id}}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.name }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].name : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.country }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].country : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.state }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].state : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.city }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].city : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.phone }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].phone : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.postalcode }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].postalcode : '') }}
                                                             </td>
+                                                            <td>
                                                             <td>
                                                                 {{ pickup.is_active == '1' ? 'Active' : 'InActive' }}
                                                             </td>
