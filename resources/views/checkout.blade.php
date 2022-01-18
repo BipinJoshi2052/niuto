@@ -1150,6 +1150,7 @@
                 beforeSend: function() {},
                 success: function(data) {
                     console.log("set pickup");
+                    console.log(data);
                     console.log(data.data[0]);
                     if (data.status == 'success') {
                         console.log("I am here");
@@ -1160,9 +1161,9 @@
                         country = state = '';
                         if (data.data[0].detail[0].country != 'null' && data.data[0].detail[0].country != null && data.data[0]
                             .detail[0].country != '') {
-                            country = data.data.detail[0].country.id;
+                            country = data.data[0].detail[0].country.id;
                         }
-                        if (data.data[0].state != 'null' && data.data[0].state != null && data.data[0].state !=
+                        if (data.data[0].detail[0].state != 'null' && data.data[0].detail[0].state != null && data.data[0].detail[0].state !=
                             '') {
                             state = data.data[0].detail[0].state.id;
                         }
@@ -1172,7 +1173,7 @@
                         $("#delivery_country").trigger('change');
                         $("#delivery_state_hidden").val(state);
                         $("#delivery_state").val(state);
-                        $("#delivery_city").val(data.data.city);
+                        $("#delivery_city").val(data.data[0].detail[0].city);
                         $("#delivery_street_aadress").val(data.data[0].detail[0].city);
                         $("#delivery_phone").val(data.data[0].phone);
                     }
