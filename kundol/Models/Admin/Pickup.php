@@ -14,7 +14,7 @@ class Pickup extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'country', 'state', 'city', 'phone', 'postalcode', 'is_active', 'created_by', 'updated_by'
+        'is_active', 'created_by', 'updated_by'
     ];
 
     public function scopeGetPickupDetailByLanguageId($query, $languageId)
@@ -38,16 +38,5 @@ class Pickup extends Model
     {
         return $query->orderBy(PickupDetail::select($sortBy)
             ->whereColumn('pickup_detail.pickup_id', 'pickups.id')->where('language_id', $languageId), $sortType);
-    }
-
-
-    public function country()
-    {
-        return $this->belongsTo("App\Models\Admin\Country", "country", "id");
-    }
-
-    public function state()
-    {
-        return $this->belongsTo("App\Models\Admin\State", "state", "id");
     }
 }

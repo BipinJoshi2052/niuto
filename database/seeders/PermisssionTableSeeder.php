@@ -62,6 +62,12 @@ class PermisssionTableSeeder extends Seeder
             'Value' => 'product-unit-manage',
             'parent_id'=>5
         ]);
+        //7.1
+        Permission::insertOrIgnore([
+            'key' => 'Manage Product Unit',
+            'Value' => 'product-pickup-manage',
+            'parent_id'=>5
+        ]);
 
         //8
         Permission::insertOrIgnore([

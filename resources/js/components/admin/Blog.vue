@@ -12,7 +12,7 @@
                                     <div class="card-title mb-0">
                                         <h3 class="card-label mb-0 font-weight-bold text-body">
                                             Blog
-                                        </h3>
+                                        </h3>blog-manage
                                     </div>
                                     <div class="icons d-flex">
                                         <button class="btn ml-2 p-0 kt_notes_panel_toggle" data-toggle="tooltip" title="" data-placement="right" data-original-title="Check out more demos" v-if="$parent.permissions.includes('blog-manage')">
