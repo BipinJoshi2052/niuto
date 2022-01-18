@@ -17,7 +17,7 @@
                                     <div class="icons d-flex">
                                         <button class="btn ml-2 p-0 kt_notes_panel_toggle" data-toggle="tooltip" title="" data-placement="right" data-original-title="Check out more demos" v-if="$parent.permissions.includes('blog-manage')">
                                             <span class="bg-secondary h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center  rounded-circle shadow-sm " v-on:click="
-                                                        display_form = !display_form
+                                                        display_form = !display_form, clearForm()
                                                     ">
                                                 <svg width="25px" height="25px" viewBox="0 0 16 16" class="bi bi-plus white" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
@@ -104,22 +104,22 @@
                                                                 {{pickup.id}}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.name }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].name : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.country }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].country : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.state }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].state : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.city }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].city : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.phone }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].phone : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.postalcode }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].postalcode : '') }}
                                                             </td>
                                                             <td>
                                                                 {{ pickup.is_active == '1' ? 'Active' : 'InActive' }}

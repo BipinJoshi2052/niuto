@@ -17,7 +17,12 @@ class PickupDetail extends JsonResource
     public function toArray($request)
     {
         return [
-            'pickup_id' => $this->pickup_id,
+            'name' => $this->name,
+            'country' => $this->country,
+            'state' => $this->state,
+            'city' => $this->city,
+            'phone' => $this->phone,
+            'postalcode' => $this->postalcode,
             'language' => new LanguageResource($this->language),
         ];
     }
