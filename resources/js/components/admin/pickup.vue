@@ -69,28 +69,28 @@
                                                 <table id="productpickupTable" class="display dataTable no-footer" role="grid">
                                                     <thead class="text-body">
                                                         <tr role="row">
-                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending" style="width: 31.25px;" @click="sorting('id')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'id'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'id' ? 'sorting_desc' : 'sorting'">
+                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending" style="width: 31.25px;" @click="sorting('id')" :class="(this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'id'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'id' ? 'sorting_desc' : 'sorting'">
                                                                 ID
                                                             </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
+                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
                                                             Name
                                                             </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
+                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
                                                             Country
                                                             </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
+                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
                                                             State
                                                             </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
+                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
                                                             City
                                                             </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
+                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
                                                             Phone
                                                             </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
+                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('name')" :class="(this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'name' ? 'sorting_desc' : 'sorting'">
                                                             Postal Code
                                                             </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('is_active')" :class="(this.$data.sortType == 'asc' || this.$data.sortType == 'ASC') && this.$data.sortBy == 'is_active'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'is_active' ? 'sorting_desc' : 'sorting'">
+                                                            <th class="sorting" tabindex="0" aria-controls="productpickupTable" rowspan="1" colspan="1" aria-label="pickup: activate to sort column ascending" style="width: 95.5288px;" @click="sorting('is_active')" :class="(this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'is_active'  ? 'sorting_asc' : (this.$data.sortType == 'desc' || this.$data.sortType == 'DESC') && this.$data.sortBy == 'is_active' ? 'sorting_desc' : 'sorting'">
                                                             Status
                                                             </th>
                                                             <th class="no-sort sorting_disabled" rowspan="1" colspan="1" aria-label="Action" style="width: 53.1891px;" v-if="$parent.permissions.includes('product-unit-manage')">
@@ -235,7 +235,7 @@ export default {
             },
             searchParameter: '',
             sortBy: 'id',
-            sortType: 'ASC',
+            sortType: 'DESC',
             limit: 10,
             error_message: '',
             edit: false,
@@ -415,7 +415,7 @@ export default {
             },
         sorting(sortBy){
             this.sortBy = sortBy;
-            this.sortType = this.sortType == 'asc' || this.sortType == 'ASC' ? this.sortType='desc' : this.sortType = 'asc';
+            this.sortType = 'desc';
             this.fetchpickups();
         },
         setSelectedLanguage(selectedLanguage){
