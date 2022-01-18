@@ -104,23 +104,24 @@
                                                                 {{pickup.id}}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.name }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].name : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.country }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].country : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.state }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].state : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.city }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].city : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.phone }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].phone : '') }}
                                                             </td>
                                                             <td>
-                                                                {{ pickup.postalcode }}
+                                                                {{ pickup.detail == null ? '' : (pickup.detail[0] ? pickup.detail[0].postalcode : '') }}
                                                             </td>
+                                                            <td>
                                                             <td>
                                                                 {{ pickup.is_active == '1' ? 'Active' : 'InActive' }}
                                                             </td>
@@ -374,6 +375,11 @@ export default {
             this.errors = new ErrorHandling();
             this.pickup.id = pickup.id;
             this.pickup.name = [];
+            this.pickup.country = [];
+            this.pickup.state = [];
+            this.pickup.city = [];
+            this.pickup.phone = [];
+            this.pickup.postalcode = [];
             this.pickup.is_active = pickup.is_active;
             this.$parent.loading = true;
             axios.get(`/api/admin/pickup/${pickup.id}?getDetail=1`,this.token)
@@ -382,6 +388,11 @@ export default {
                     res.data.data.detail.forEach(u => {
                         // this.pickup.name.push(u.name)
                         this.pickup.name[this.pickup.language_id.indexOf(u.language.id)] = u.name;
+                        this.pickup.country[this.pickup.language_id.indexOf(u.language.id)] = u.country;
+                        this.pickup.state[this.pickup.language_id.indexOf(u.language.id)] = u.state;
+                        this.pickup.city[this.pickup.language_id.indexOf(u.language.id)] = u.city;
+                        this.pickup.phone[this.pickup.language_id.indexOf(u.language.id)] = u.phone;
+                        this.pickup.postalcode[this.pickup.language_id.indexOf(u.language.id)] = u.postalcode;
                     });
                     this.pickup = Object.assign({}, this.pickup, { is_active: pickup.is_active })
                 }
@@ -396,6 +407,11 @@ export default {
             this.edit = false;
             this.pickup.id = null;
             this.pickup.name = [];
+            this.pickup.country = [];
+            this.pickup.state = [];
+            this.pickup.city = [];
+            this.pickup.phone = [];
+            this.pickup.postalcode = [];
             this.pickup.is_active = 'inactive';
             },
         sorting(sortBy){
