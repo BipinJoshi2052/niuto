@@ -20,9 +20,9 @@ class Pickup extends JsonResource
         // dd($pickup_detail);
         //PickupDetailResource::collection($this->whenLoaded('detail'))
         return [
-                'id' => $this->id,
-                'is_active' => $this->is_active,
-                'detail' => PickupDetailResource::collection($this->whenLoaded('detail')),
+            'id' => $this->id,
+            'is_active' => $this->is_active,
+            'detail' => PickupDetailResource::collection($this->whenLoaded('detail')),
         ];
     }
 }

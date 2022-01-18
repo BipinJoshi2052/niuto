@@ -99,6 +99,7 @@
             beforeSend: function() {},
             success: function(data) {
                 if (data.status == 'Success') {
+                    // console.log(data);
                     var clone = '';
                     var sideGal = '';
                     var thumbGal = '';
