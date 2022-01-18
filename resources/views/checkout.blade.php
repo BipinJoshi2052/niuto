@@ -806,7 +806,8 @@
                 },
                 beforeSend: function() {},
                 success: function(data) {
-                    console.log(data.data);
+                    console.log("I am in get pickup");
+                    console.log(data);
                     if(data.status == "success"){
                         if(data.data.length > 0){
                             $(".pickup_info_card").removeClass("d-none");
@@ -814,17 +815,17 @@
                             const templ = document.getElementById("pickup-card-template");
                             for(i = 0; i < data.data.length; i++){
                                 const clone = templ.content.cloneNode(true);
-                                clone.querySelector(".pickup-address-listing-first-name-last-name").innerHTML = data.data[i].name;
+                                clone.querySelector(".pickup-address-listing-first-name-last-name").innerHTML = data.data[i].detail[0].name;
                                 country = state = '';
-                                if(data.data[i].country != 'null' && data.data[i].country != null && data.data[i].country != ''){
-                                    country = data.data[i].country.name;
+                                if(data.data[i].detail[0].country != 'null' && data.data[i].detail[0].country != null && data.data[i].detail[0].country != ''){
+                                    country = data.data[i].detail[0].country.name;
                                 }
-                                if(data.data[i].state != 'null' && data.data[i].state != null && data.data[i].state != ''){
-                                    state = data.data[i].state.name;
+                                if(data.data[i].detail[0].state != 'null' && data.data[i].detail[0].state != null && data.data[i].detail[0].state != ''){
+                                    state = data.data[i].detail[0].state.name;
                                 }
                                 clone.querySelector("#pickup_detail_card_country").innerHTML = country;
                                 clone.querySelector("#pickup_detail_card_state").innerHTML = state;
-                                clone.querySelector("#pickup_detail_card_city").innerHTML = data.data[i].city;
+                                clone.querySelector("#pickup_detail_card_city").innerHTML = data.data[i].detail[0].city;
                                 clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('data-id', data.data[i].id);
                                 clone.querySelector(".pickup-address-listing-card-is-default").setAttribute('onclick', 'setPickupInformation(this)');
                                 $(".pickup_info_card").append(clone);
@@ -1149,21 +1150,21 @@
                 beforeSend: function() {},
                 success: function(data) {
                     console.log("set pickup");
-                    console.log(data.data.country);
+                    console.log(data.data[0]);
                     if (data.status == 'success') {
                         console.log("I am here");
-                        $("#delivery_first_name").val(data.data.name);
+                        $("#delivery_first_name").val(data.data[0].detail[0].name);
                         $("#delivery_last_name").val('');
-                        $("#delivery_postcode").val(data.data.postalcode);
+                        $("#delivery_postcode").val(data.data[0].detail[0].postalcode);
 
                         country = state = '';
-                        if (data.data.country != 'null' && data.data.country != null && data.data
-                            .country != '') {
-                            country = data.data.country.id;
+                        if (data.data[0].detail[0].country != 'null' && data.data[0].detail[0].country != null && data.data[0]
+                            .detail[0].country != '') {
+                            country = data.data.detail[0].country.id;
                         }
-                        if (data.data.state != 'null' && data.data.state != null && data.data.state !=
+                        if (data.data[0].state != 'null' && data.data[0].state != null && data.data[0].state !=
                             '') {
-                            state = data.data.state.id;
+                            state = data.data[0].detail[0].state.id;
                         }
                         // countries1();
                         $("#delivery_country_hidden").val(country);
@@ -1172,8 +1173,8 @@
                         $("#delivery_state_hidden").val(state);
                         $("#delivery_state").val(state);
                         $("#delivery_city").val(data.data.city);
-                        $("#delivery_street_aadress").val(data.data.city);
-                        $("#delivery_phone").val(data.data.phone);
+                        $("#delivery_street_aadress").val(data.data[0].detail[0].city);
+                        $("#delivery_phone").val(data.data[0].phone);
                     }
                 },
                 error: function(data) {},

@@ -21,4 +21,14 @@ class PickupDetail extends Model
     {
         return $this->belongsTo('App\Models\Admin\Language','language_id','id');
     }
+
+    public function country()
+    {
+        return $this->belongsTo("App\Models\Admin\Country", "country", "id");
+    }
+
+    public function state()
+    {
+        return $this->belongsTo("App\Models\Admin\State", "state", "id");
+    }
 }
