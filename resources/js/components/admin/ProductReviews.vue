@@ -156,7 +156,7 @@ export default {
              display_form: 0,
             searchParameter: '',
             sortBy: 'id',
-            sortType: 'ASC',
+            sortType: 'DESC',
             limit: 10,
             error_message: '',
             edit: false,
