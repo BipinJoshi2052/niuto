@@ -124,7 +124,7 @@ class ProductService
             }
 
             if ($type == 'store') {
-                $productCombinationData = $this->storeProductCombination($parms[$price], $parms[$gallary], $id, $parms[$sku]);
+                $productCombinationData = $this->storeProductCombination($parms[$price], isset($parms[$gallary]) ? $parms[$gallary] : '', $id, $parms[$sku]);
 
                 foreach ($result as $single_variation) {
                     $this->storeProductCombinationDtl($single_variation, $id, $productCombinationData->id);
@@ -225,9 +225,9 @@ class ProductService
             if (!isset($parms[$price])) {
                 return $this->errorResponse($k . '-Price is required.', 401);
             }
-            if (!isset($parms[$gallary])) {
-                return $this->errorResponse($k . '-Combination Gallary_ is required.', 401);
-            }
+            // if (!isset($parms[$gallary])) {
+            //     return $this->errorResponse($k . '-Combination Gallary_ is required.', 401);
+            // }
             if (!isset($parms[$sku])) {
                 return $this->errorResponse($k . '-Combination Sku_ is required.', 401);
             }
