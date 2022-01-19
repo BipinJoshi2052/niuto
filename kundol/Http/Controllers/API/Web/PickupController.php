@@ -18,7 +18,10 @@ class PickupController extends Controller
         
         try{
             $pickup_points = Pickup::with(['detail' => function($q) use ($request){
-                 $q->where("country", $request->country_id)->with(['country', 'state']);
+
+                $q->where("country", $request->country_id)->with(['country', 'state']);
+               
+                 
             }])->get();
             return response()->json(["data" => $pickup_points, "message" => "Data get successfully", "status" => "success"]);
         } catch(Exception $e){
