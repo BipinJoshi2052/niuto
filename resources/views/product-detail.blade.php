@@ -122,42 +122,22 @@
                         for (var g = 0; g < data.data.product_gallary_detail.length; g++) {
                             
                             prodGalDetGalName = data.data.product_gallary_detail[g].gallary_name;
-                            sideGal += '<li class="slider_item position-relative">'+
-                                            '<img class="d-block w-100 img-fluid" src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
-                                        '</li>';
+                            sideGal += '<div class="slider_item position-relative">'+
+                                '<img class="d-block w-100 img-fluid throwImage" src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">' +
+                            '</div>';
                             if(g == 0){
-                                dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
-            
-                                showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
-                            }
-                            if(g == 3){
-                                break;
+                                dataImg = "{{ asset('/') }}gallary/large" + prodGalDetGalName;
+                                showImg = '<img class="my_img catchImage" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
                             }
                         }
-                        // if(data.data.product_combination){
-                        //     for (loop = 0; loop < data.data.product_combination.length; loop++) {
-                        //         if (data.data.product_combination[loop].gallary != null) {
-                        //             sideGal +=  '<li>'+
-                        //                             '<img src="{{ asset('/')}}gallary/large' + prodGalDetGalName + ' " alt="">'+
-                        //                         '</li>';
-                        //             if(loop == 0){
-                        //                 dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
-                        //                 showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
-                        //             }
-                        //         }
-                        //         if(loop == 3){
-                        //             break;
-                        //         }
-                        //     }
-                        // }
                     } 
                     else {
                         if(data.data.product_gallary != null){
-                            sideGal +=  '<li>'+
-                                            '<img src="{{ asset("/")}}gallary/' + data.data.product_gallary.gallary_name + ' " alt="">'+
-                                        '</li>';
-                            dataImg = "{{ asset('/') }}gallary/large"+prodGalDetGalName;
-                            showImg = '<img class="my_img" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
+                            sideGal +=  '<div class="slider_item position-relative">'+
+                                '<img class="d-block w-100 img-fluid throwImage" src="{{ asset("/")}}gallary/' + data.data.product_gallary.gallary_name + ' " alt="">'+
+                            '</div>';
+                            dataImg = "{{ asset('/') }}gallary/large" + data.data.product_gallary.gallary_name;
+                            showImg = '<img class="my_img catchImage" src="'+ dataImg +'?fit=inside|140:140,'+ dataImg+'?fit=inside|220:220,'+ dataImg +'?fit=inside|540:540" alt="product">';
                         }
                     }
                     $('#side-gallery').html(sideGal);
@@ -878,6 +858,12 @@
                 },
             ],
         });
-        });
+
+        $(document).on('click', '.throwImage', function(){
+            imgSrc = $(this).attr('src');
+            imgSrc = $.trim(imgSrc);
+            $('.catchImage').attr('src', imgSrc +'\?fit=inside|140:140,'+ imgSrc+'\?fit=inside|220:220,'+ imgSrc +'\?fit=inside|540:540');
+        })
+    });
 </script>
 @endsection
