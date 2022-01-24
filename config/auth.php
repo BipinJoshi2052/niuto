@@ -56,6 +56,16 @@ return [
             'provider' => 'customers',
         ],
 
+        'delivery' => [
+            'driver' => 'session',
+            'provider' => 'delivery_boys',
+        ],
+
+        'delivery-api' => [
+            'driver' => 'passport',
+            'provider' => 'delivery_boys',
+        ],
+
     ],
 
 
@@ -84,6 +94,10 @@ return [
         'customers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin\Customer::class,
+        ],
+        'delivery_boys' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin\DeliveryBoy::class,
         ],
         
     ],

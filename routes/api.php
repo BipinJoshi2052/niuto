@@ -204,6 +204,19 @@ Route::group(['prefix' => 'client', 'middleware' => ['checkClientCredentials']],
     
 });
 
+
+Route::group(["prefix"=>"delivery-boy/", "as" => "delivery."], function(){
+    Route::post('login', 'API\Delivery\AuthController@login')->name('apiLogin');
+
+    Route::group(['middleware' => 'auth:delivery-api', 'scopes:delivery-boy'], function () {
+        Route::post('logout', 'API\Delivery\AuthController@logout')->name('apiLogout');
+        Route::get('get-delivery-boy-orders', 'API\Delivery\DeliveryBoyController@getDeliveryBoyOrders')->name('getDeliveryBoyOrders');
+        Route::get('change-delivery-boy-status', 'API\Delivery\DeliveryBoyController@changeDeliveryBoyAvailablityStatus')->name('changeDeliveryBoyAvailablityStatus');
+    });
+});
+
+
+
 Route::get('clear', function () {
     \Artisan::call('cache:clear');
     \Artisan::call('config:clear');
