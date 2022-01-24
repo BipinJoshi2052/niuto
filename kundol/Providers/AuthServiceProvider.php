@@ -31,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensCan([
             'user' => 'User Type',
             'customer' => 'Customer User Type',
+            'delivery-boy' => "Delivery Boy",
         ]);
         
         Gate::define('isDigital', function() {

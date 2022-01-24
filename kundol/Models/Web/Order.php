@@ -81,6 +81,12 @@ class Order extends Model
     {
         return $this->hasMany('App\Models\Admin\OrderComment', 'order_id', 'id');
     }
+
+
+    public function delivery_boy()
+    {
+        return $this->belongsTo('App\Models\Admin\DeliveryBoy', 'delivery_boy_id', 'id')->with('detail');
+    }
     
     
 }

@@ -9,6 +9,7 @@ use App\Models\Admin\Attribute;
 use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
 use App\Models\Admin\Customer;
+use App\Models\Admin\DeliveryBoy;
 use App\Models\Admin\Page;
 use App\Models\Admin\PaymentMethod;
 use App\Models\Admin\PaymentMethodSetting;
@@ -87,6 +88,7 @@ class IndexController extends Controller
         //     // }
         // }
         // dd('asdasd');
+        // $this->__createDeliveryBoy();
         return view('home', compact('data', 'setting'));
     }
 
@@ -461,6 +463,37 @@ class IndexController extends Controller
         
     }
 
+    // [
+    //     'first_name','last_name','email','phone_number','avatar','dob','blood_group','bommission','email_address',
+    //     'pin_code','status',
+    //     'availability_status',
+    //     'address','city','country','in_active','zip_code','state','vehicle_name','owner_name',
+    //     'vehicle_color','vehicle_registration_no','vehicle_details','driving_license_no',
+    //     'vehicle_rc_book_no','account_name','account_number','gpay_number','bank_address','ifsc_code','branch_name'];
+    private function __createDeliveryBoy()
+    {
+        $delivery_boy = new DeliveryBoy();
+        $delivery_boy->first_name = "Amar";
+        $delivery_boy->last_name = "Singh";
+        $delivery_boy->email = 'amarsingh@gmail.com';
+        $delivery_boy->phone_number = '9800000000';
+        $delivery_boy->avatar = 'defaul.png';
+        $delivery_boy->dob = '1996-1-10';
+        $delivery_boy->blood_group = 'A+';
+        $delivery_boy->commission = '2';
+        $delivery_boy->email_address = 'amarsingh@gmail.com';
+        $delivery_boy->pin_code = '123456';
+        $delivery_boy->status = 1;
+        $delivery_boy->availability_status = 1;
+        $delivery_boy->address = "Kathmandu";
+        $delivery_boy->city = "Lalitpur";
+        $delivery_boy->country = 149;
+        $delivery_boy->state = 182;
+        $delivery_boy->vehicle_name = "Pulsar NS 200";
+        $delivery_boy->created_at = date('Y-m-d h:i:s');
+        $delivery_boy->updated_at = date('Y-m-d h:i:s');
+        $delivery_boy->save();
+    }
     /* public function query()
 {
 $vendorId = \Auth::user()->vendor_id;
