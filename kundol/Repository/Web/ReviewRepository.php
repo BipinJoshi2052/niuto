@@ -33,6 +33,11 @@ class ReviewRepository implements ReviewInterface
             } else {
                 $numOfResult = 100;
             }
+            
+            if (isset($_GET['sortBy']) && $_GET['sortBy'] != '' && isset($_GET['sortType']) && $_GET['sortType'] != '') {
+                $review = $review->orderBy($_GET['sortBy'], $_GET['sortType']);
+            }
+            
             // dd($review);
 
             return $this->successResponse(ReviewResource::collection($review->paginate($numOfResult)), 'Data Get Successfully!');
