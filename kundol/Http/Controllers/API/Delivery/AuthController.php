@@ -14,6 +14,7 @@ class AuthController extends Controller
         if (Auth::guard('delivery-api')->check()) {
             return response()->json(['errors' => "Delivery Boy is already logged in."]);
         }
+        
         $validator = Validator::make($request->all(), [
             'device_id' => 'required|email',
             'pincode' => 'required',
