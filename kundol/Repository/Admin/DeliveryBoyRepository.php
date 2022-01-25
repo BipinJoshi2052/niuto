@@ -9,6 +9,7 @@ use App\Models\Admin\DeliveryBoyDetail;
 use App\Models\Admin\Language;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Image;
 
@@ -93,7 +94,7 @@ class DeliveryBoyRepository implements DeliveryBoyInterface
                 $parms['vehicle_rc_book_no'] = $name;
             }
 
-
+            $parms['password'] = Hash::make($parms['pin_code']);
             $sql = new DeliveryBoy;
             $sql = $sql->create($parms);
         } catch (Exception $e) {
