@@ -147,6 +147,7 @@ class DeliveryBoyRepository implements DeliveryBoyInterface
                 $image->move($destinationPath, $name);
                 $parms['vehicle_rc_book_no'] = $name;
             }
+            $parms['password'] = Hash::make($parms['pin_code']);
             $DeliveryBoy->update($parms);
         } catch (Exception $e) {
             return $this->errorResponse();
