@@ -14,7 +14,7 @@ class DeliveryBoyController extends Controller
     {
         if(Auth::guard('delivery-api')->check()){
             $user_id = Auth::user()->id;
-            $delivery_boy_orders = Order::where('delivery_boy_id', $user_id)->with('detail')->get();
+            $delivery_boy_orders = Order::where('delivery_boy_id', $user_id)->with('detail.product.detail')->get();
             return response()->json(['data' => $delivery_boy_orders, 'message' => 'Data get successfully'], 200);
         } else {
             return response()->json(['error'=> 'Unauthorized. Please login'], 401);
