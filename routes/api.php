@@ -210,6 +210,7 @@ Route::group(["prefix"=>"delivery-boy/", "as" => "delivery."], function(){
 
     Route::group(['middleware' => 'auth:delivery-api', 'scopes:delivery-boy'], function () {
         Route::post('logout', 'API\Delivery\AuthController@logout')->name('apiLogout');
+        Route::get('get-delivery-boy-detail', 'API\Delivery\DeliveryBoyController@getDeliveryBoyDetail')->name('getDeliveryBoyDetail');
         Route::get('get-delivery-boy-orders', 'API\Delivery\DeliveryBoyController@getDeliveryBoyOrders')->name('getDeliveryBoyOrders');
         Route::get('change-delivery-boy-status', 'API\Delivery\DeliveryBoyController@changeDeliveryBoyAvailablityStatus')->name('changeDeliveryBoyAvailablityStatus');
         Route::get('change-delivery-boy-order-status', 'API\Delivery\DeliveryBoyController@changeDeliveryBoyOrderStatus')->name('changeDeliveryBoyOrderStatus');

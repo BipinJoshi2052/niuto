@@ -20,6 +20,16 @@ class DeliveryBoyController extends Controller
             return response()->json(['error'=> 'Unauthorized. Please login'], 401);
         }
     }
+    public function getDeliveryBoyDetail(Request $request)
+    {
+        if(Auth::guard('delivery-api')->check()){
+            $user_id = Auth::user()->id;
+            $delivery_boy_orders = DeliveryBoy::where('id', $user_id)->first();
+            return response()->json(['data' => $delivery_boy_orders, 'message' => 'Data get successfully'], 200);
+        } else {
+            return response()->json(['error'=> 'Unauthorized. Please login'], 401);
+        }
+    }
 
     public function changeDeliveryBoyAvailablityStatus(Request $request)
     {
